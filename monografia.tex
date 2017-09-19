@@ -1,0 +1,187 @@
+\documentclass[]{politex}
+
+% REMOVER LINHA ABAIXO PARA VOLTAR À FONTE NORMAL DO LATEX
+\renewcommand{\familydefault}{\sfdefault}
+% ========== Opções ==========
+% pnumromarab - Numeração de páginas usando algarismos romanos na parte pré-textual e arábicos na parte textual
+% abnttoc - Forçar paginação no sumário conforme ABNT (inclui "p." na frente das páginas)
+% normalnum - Numeração contínua de figuras e tabelas 
+%	(caso contrário, a numeração é reiniciada a cada capítulo)
+% draftprint - Ajusta as margens para impressão de rascunhos
+%	(reduz a margem interna)
+% twosideprint - Ajusta as margens para impressão frente e verso
+% capsec - Forçar letras maiúsculas no título das seções
+% espacosimples - Documento usando espaçamento simples
+% espacoduplo - Documento usando espaçamento duplo
+%	(o padrão é usar espaçamento 1.5)
+% times - Tenta usar a fonte Times New Roman para o corpo do texto
+% noindentfirst - Não indenta o primeiro parágrafo dos capítulos/seções
+
+
+% ========== Packages ==========
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{graphicx,cite,enumerate}
+\usepackage{blkarray}
+\usepackage{float}
+\usepackage{caption}
+\graphicspath{ {imagens/} }
+
+% ========= Check Marks =========
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+% ========== Language options ==========
+\usepackage[brazil]{babel}
+%\usepackage[english]{babel}
+
+% ========== ABNT (requer ABNTeX 2) ==========
+%	http://www.ctan.org/tex-archive/macros/latex/contrib/abntex2
+\usepackage[alf]{abntex2cite}
+
+% Forçar o abntex2 a usar [ ] nas referências ao invés de ( )
+%\citebrackets{[}{]}
+
+% ========== Opções do documento ==========
+% Título
+\titulo{Hedwig - Casa Conectada}
+
+% Autor
+%\autor{Nome Sobrenome}
+
+% Para múltiplos autores (TCC)
+\autor{Daniela Yassuda\\
+Gabriela Melo\\[0.15cm]
+Hugo Possani\\[0.15cm]
+Victor Takashi}
+
+% Orientador / Coorientador
+\orientador{Prof. Dr. Reginaldo Arakaki}
+\coorientador{Eng. Marcelo Pita}
+
+
+% Tipo de documento
+\tcc{Eletricista com ênfase em Computação}
+
+% Departamento e área de concentração
+\departamento{PCS}
+\areaConcentracao{Engenharia de Computação}
+
+% Local
+\local{São Paulo}
+
+% Ano
+\data{2017}
+
+
+
+\begin{document}
+% ========== Capa e folhas de rosto ==========
+\capa
+\newpage\mbox{}\newpage
+
+\falsafolhaderosto
+\newpage\mbox{}\newpage
+
+\folhaderosto
+\newpage\mbox{}\newpage
+
+
+% ========== Folha de assinaturas (opcional) ==========
+%\begin{folhadeaprovacao}
+%	\assinatura{Prof.\ X}
+%	\assinatura{Prof.\ Y}
+%	\assinatura{Prof.\ Z}
+%\end{folhadeaprovacao}
+
+
+% ========== Ficha catalográfica ==========
+% Fazer solicitação no site:
+%	http://www.poli.usp.br/en/bibliotecas/servicos/catalogacao-na-publicacao.html
+
+
+% ========== Dedicatória (opcional) ==========
+%\dedicatoria{Dedicatória}
+
+
+% ========== Agradecimentos ==========
+%\begin{agradecimentos}
+
+%\end{agradecimentos}
+
+
+% ========== Epígrafe (opcional) ==========
+% \epigrafe{
+
+% 	\emph{``Anything one man can imagine, other men can make real''}
+% 	\begin{flushright}
+%		-{}- Jules Verne
+%	\end{flushright}
+	
+%	\hfill \break
+	
+%	\emph{``Enquanto sentir vontade de competir, buscar desafios e correr atrás de torneios, vou jogar''}
+%	\begin{flushright}
+%		-{}- Gustavo Kuerten
+%	\end{flushright}
+	
+%	\hfill \break
+	
+%	\emph{``Not all those who wander are lost''}
+%	\begin{flushright}
+%		-{}- J. R. R. Tolkien
+%	\end{flushright}
+%}
+\newpage\mbox{}\newpage
+
+% ========== Resumo ==========
+% \input{chapters/resumo.tex}
+\newpage\mbox{}\newpage
+% ========== Abstract ==========
+% \input{chapters/abstract.tex}
+\newpage\mbox{}\newpage
+% ========== Listas (opcional) ==========
+\listadefiguras
+\listadetabelas
+
+% ========== Listas definidas pelo usuário (opcional) ==========
+\begin{pretextualsection}{Lista de siglas}
+\input{siglas.tex}
+\end{pretextualsection}
+
+\newpage\mbox{}\newpage
+% ========== Sumário ==========
+\sumario
+
+
+% ========== Elementos textuais ==========
+
+% \input{chapters/}
+
+
+% ========== Referências ==========
+% --- IEEE ---
+%	http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran
+%\bibliographystyle{IEEEbib}
+
+% --- ABNT (requer ABNTeX 2) ---
+%	http://www.ctan.org/tex-archive/macros/latex/contrib/abntex2
+\bibliographystyle{abntex2-alf}
+
+\bibliography{citations}
+
+
+% ========== Apêndices (opcional) ==========
+%\apendice
+
+
+
+% ========== Anexos (opcional) ==========
+\anexo
+% \input{attachments/github.tex}
+
+
+
+\end{document}
