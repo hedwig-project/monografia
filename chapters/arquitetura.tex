@@ -189,9 +189,9 @@ Para a intercomunicação entre os módulos e a nuvem, há a presença do servid
 \end{itemize}
 
 \subsection{Formato dos Tópicos MQTT}
-hw/<nome_do_modulo>/s2m (Server to Module - o módulo deve ser subscriber desse tópico. O servidor deve ser publisher desse tópico).
+hw\/\textless nome\_do\_modulo\textgreater	\/s2m (Server to Module - o módulo deve ser subscriber desse tópico. O servidor deve ser publisher desse tópico).
 
-hw/<nome_do_modulo>/m2s (Module to Server - o servidor deve ser subscriber desse tópico. O módulo deve ser publisher desse tópico).
+hw\/\textless nome\_do\_modulo\textgreater	\/m2s (Module to Server - o servidor deve ser subscriber desse tópico. O módulo deve ser publisher desse tópico).
 
 \subsection{Regras de Negócio}
 
@@ -205,8 +205,8 @@ hw/<nome_do_modulo>/m2s (Module to Server - o servidor deve ser subscriber desse
 
 \subsection{Definição de Interfaces}
 \begin{itemize}
-\item Dois tipos de mensagens do servidor para os módulos: Configuração (configuration) e Requisição de Ação (action_request);
-\item Três tipos de mensagens dos módulos para o servidor: Confirmação (confirmation), Envio de Dados (data_transmission) e Data Request (data_request).
+\item Dois tipos de mensagens do servidor para os módulos: Configuração (configuration) e Requisição de Ação (action\_request);
+\item Três tipos de mensagens dos módulos para o servidor: Confirmação (confirmation), Envio de Dados (data\_transmission) e Data Request (data\_request).
 \end{itemize}
 
 \subsection{Definição das Mensagens}
@@ -216,25 +216,25 @@ hw/<nome_do_modulo>/m2s (Module to Server - o servidor deve ser subscriber desse
 \item Protocolo: MQTT
 \item Uso: Envio dos parâmetros para se adaptar ao comportamento do usuário (Machine Learning). Isso ocorre quando o algoritmo de ML, na nuvem, identifica a necessidade de modificar um comportamento do módulo. O servidor da nuvem envia uma mensagem para o servidor local, com a identificação de cada módulo e quais variáveis devem ser modificadas em cada um deles.
 \item Definição do formato:
-#configuration
-\$ts:<timestamp>
-\$ty:<tipo da configuracao>
+\#configuration
+\$ts:\textless timestamp\textgreater
+\$ty:\textless tipo da configuracao\textgreater
 @
-<dados a serem interpretados pelo módulo>
+\textless dados a serem interpretados pelo módulo\textgreater
 @
 \end{itemize}
 
-\subsubsection{Requisição de ação (action_request)}
+\subsubsection{Requisição de ação (action\_request)}
 \begin{itemize}
 \item Sentido: Servidor para módulo
 \item Protocolo: MQTT
-\item Uso: Quando um usuário faz a requisição de uma ação por meio do aplicativo. Por exemplo, quando deseja-se acender uma luz, o aplicativo envia uma requisição para o servidor local, o qual enviará uma mensagem de action_request para o módulo correspondente.
+\item Uso: Quando um usuário faz a requisição de uma ação por meio do aplicativo. Por exemplo, quando deseja-se acender uma luz, o aplicativo envia uma requisição para o servidor local, o qual enviará uma mensagem de action\_request para o módulo correspondente.
 \item Definição do formato:
-#action_request
-\$ts:<timestamp>
-\$ty:<tipo da ação>
+\#action\_request
+\$ts:\textless timestamp\textgreater 
+\$ty:\textless tipo da ação\textgreater
 @
-<dados a serem interpretados pelo módulo>
+\textless dados a serem interpretados pelo módulo\textgreater
 @
 \end{itemize}
 
@@ -244,49 +244,49 @@ hw/<nome_do_modulo>/m2s (Module to Server - o servidor deve ser subscriber desse
 \item Protocolo: MQTT
 \item Uso: Confirmação de uma configuração, patch ou requisição de ação, vindas do servidor.
 \item Definição do formato:
-#confirmation
-\$ts:<timestamp>
-\$ty:<tipo da confirmação>
+\#confirmation
+\$ts:\textless timestamp\textgreater
+\$ty:\textless tipo da confirmação\textgreater
 @
-<dados a serem interpretados pelo servidor>
+\textless dados a serem interpretados pelo servidor\textgreater
 @
 \end{itemize}
 
-\subsubsection{Transmissão de dados (data_transmission)}
+\subsubsection{Transmissão de dados (data\_transmission)}
 \begin{itemize}
 \item Sentido: Do módulo para o servidor
 \item Protocolo: MQTT
 \item Uso: Envio de dados de sensores para o servidor
 \item Definição do formato:
-#data_transmission
-\$ts:<timestamp>
+\#data\_transmission
+\$ts:\textless timestamp\textgreater
 
-\$ty:<tipo de dados>
+\$ty:\textless tipo de dados\textgreater
 @
 *
-sn:<sensor name>
-vl:<value>
+sn:\textless sensor name\textgreater
+vl:\textless value\textgreater
 *
 *
-sn:<sensor name>
-vl:<value>
+sn:\textless sensor name\textgreater
+vl:\textless value\textgreater
 *
 *
-sn:<sensor name>
-vl:<value>
+sn:\textless sensor name\textgreater
+vl:\textless value\textgreater
 *
 @
 \end{itemize}
 
-\subsubsection{Requisição de dados (data_request)}
+\subsubsection{Requisição de dados (data\_request)}
 \begin{itemize}
 \item Sentido: Do módulo para o servidor
 \item Protocolo: MQTT
 \item Uso: Requisição de alguma informação do servidor. Ex.: Atualização de hora
 \item Definição do formato:
-#data_request
-\$ts:<timestamp>
-\$ty:<request_type>
+\#data\_request
+\$ts:\textless timestamp\textgreater
+\$ty:\textless request\_type\textgreater
 \end{itemize}
 
 \begin{figure}[H]
