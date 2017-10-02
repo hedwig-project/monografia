@@ -1,0 +1,824 @@
+\section{Morpheus}
+
+\subsection{Descrição}
+%TODO add source below
+Morpheus é o servidor local responsável pela interconexão da casa inteligente com os serviços de nuvem. O nome tem sua origem na mitologia grega, onde o Deus dos sonhos, Morpheus, era responsável pelo envio de mensagens entre dois mundos diferentes, os dos deuses, e os dos mortais [add source]. Sua principal atribuição é garantir que a troca de mensagem entre os módulos e a nuvem seja realizada com segurança e confiabilidade, munindo-se de soluções robustas para desempenhar o seu papel.
+
+\subsection{Plataforma}
+O Morpheus tem seu desenvolvimento realizado em Java. Tal escolha foi realizada com base na portabilidade que a máquina virtual Java (JVM) oferece, bem como na disponibilidade de bibliotecas e serviços largamente utilizados em aplicações comerciais. O servidor foi construído utilizando-se o Spring Boot Framework, com a utilização de seu container de Inversão de Controle (IoC - Inversion of Control), para injeção de dependências. Essa técnica diminui o acoplamento entre classes, e permite a evolução e implementação de novas funcionalidades de maneira mais facilitada.
+
+Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um broker MQTT, o qual utilizamos o Mosquitto, por ser uma solução Open Source largamente utilizada em projetos de Internet of Things. Conforme detalhado a frente, configurações de segurança específicas para nosso projeto foram registradas no broker. Para a conexão com os serviços na nuvem, é utilizado um canal Websocket, aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, a qual está documentada aqui.
+
+\subsection{Requisitos}
+Para a concepção do servidor local, foram discutidos os seus requisitos funcionais e não funcionais, bem com suas prioridades na implementação.
+
+\subsubsection{Requisitos Funcionais}
+\begin{itemize}
+\item Configuração dos módulos: De acordo com as regras e interfaces estabelecidas, documentadas aqui, os módulos podem ser configurados por meio de mensagens. Os serviços da nuvem enviarão os parâmetros de configuração de cada módulo ao Morpheus, que os transmitirão ao módulo.
+\item Conexão de emergência: Quando não há conexão da casa com a nuvem, deverá haver um canal para comunicação local entre o aplicativo e alguns dos módulos, com funcionalidades limitadas, apenas para serviços essenciais.
+\item Envio de dados para a nuvem: Dados provenientes de sensores são enviados para a nuvem, para que sejam tratados de acordo com as regras de Business Intelligence, por meio de Machine Learning.
+\item Persistência de dados. Quando não houver conexão, o servidor deverá armazenar os dados localmente e, quando solicitado, enviá-los à nuvem.
+\item Tentativas de reenvio: Quando uma mensagem não é enviada com sucesso à nuvem, o Morpheus deverá tentar novamente, um número configurável de vezes, em um curto espaço de tempo. Isso ocorre pois, se determinada mensagem não pode ser enviada em uma janela temporal, ela perde o seu sentido, mesmo por questões de segurança.
+\item Envio de e-mail: Se o Morpheus estiver desconectado da nuvem por um período, configurável, deverá avisar o usuário, por meio de uma mensagem de e-mail.
+\item Verificação do time-stamp: Quando uma nova mensagem chegar, seu timestamp deverá ser verificado, e a mensagem tomará curso somente se não for obsoleta.
+\item Tomadas de ação: Quando o usuário requisitar uma tomada de ação, esta deverá ser enviada por meio de uma mensagem ao Morpheus, o qual a transmitirá ao módulo.
+\item Configuração em arquivo: As configurações básicas do Morpheus devem ser registradas em um arquivo YAML, que será lido durante a inicialização.
+\item Listeners para diferentes tipos de mensagens: Deverão haver listeners para todos os tipos de mensagens, definidos aqui, que serão recebidos da nuvem e dos módulos.
+\end{itemize}
+
+\subsubsection{Requisitos Não Funcionais}
+\begin{itemize}
+\item Processamento concorrente: Toda a infraestrutura do Morpheus deverá permitir o processamento de mensagens de maneira concorrente. Não deve ser permitido esperar o processamento completo de uma mensagem para que outra comece a ser processada.
+\item Utilização de criptografia na troca de mensagens com a nuvem: Os dados que trafegam entre a nuvem e o servidor local não devem ser codificados em texto puro. Devem estar protegidos contra sniffers.
+\item Conversão de mensagens : As mensagens enviadas à nuvem devem estar em formato JSON, e não no protocolo definido aqui, para troca de mensagens entre os módulos e o Morpheus.
+\item Serialização das configurações: O servidor deverá serializar e persistir as configurações relativas aos módulos que foram configurados, e carregá-las em sua inicialização.
+\item Destruição de pools de threads: Ao ser desligado, todos os pools de threads criados devem ser destruídos.
+\end{itemize}
+
+\subsection{Especificações}
+
+\subsubsection{Tópicos}
+Todos os tópicos devem seguir o formato especificado abaixo. Com essa formatação, é possível garantir que:
+
+\begin{enumerate}
+\item Somente o Morpheus conseguirá publicar em qualquer tópico, ou ser um subscriber de qualquer tópico.
+\item Cada módulo somente consiga publicar no tópico determinado para ele, que será garantido com as credenciais (usuário e senha) fornecidos pelo tópico.
+\item Caso um módulo malicioso seja implantado, com o roubo das credenciais de um módulo legítimo, o impacto será unicamente concentrado naquele tópico, não atingindo outros módulos.
+\end{enumerate}
+
+Temos as seguintes regras:
+
+\textbf{hw/\textless ID do módulo\textgreater /s2m} (Server to Module - o módulo deve ser subscriber desse tópico. O servidor deve ser publisher desse tópico).
+
+\textbf{hw/\textless ID do módulo\textgreater /m2s} (Module to Server - o servidor deve ser subscriber desse tópico. O módulo deve ser publisher desse tópico).
+
+\subsubsection{Regras de negócio}
+O servidor foi desenvolvido com base nas regras de negócio seguintes.
+\begin{itemize}
+\item Após a compra de cada módulo, o usuário deverá registrar online a aquisição. O servidor da nuvem enviará para o servidor local, da casa, a requisição para configurar o módulo.
+\item Cada módulo enviará mensagens para o servidor local com o seus dados, por meio do MQTT.
+\item Troca de senha do wifi: O usuário cadastra no site a nova senha. O servidor na nuvem faz a requisição para o servidor local, o qual enviará um arquivo de configuração com a nova senha para cada um dos módulos registrados. Após a configuração de todos os módulos, o servidor local envia resposta de sucesso para a nuvem, a qual indica ao usuário que a troca de senha já pode ser feita com sucesso.
+\item Todo módulo sai de fábrica configurado com o tópico que deve se inscrever e publicar, com base no seu ID, o qual será o seu usuário, e também haverá a senha para se autenticar junto ao broker MQTT.
+\end{itemize}
+
+\subsubsection{Definição de interfaces}
+\begin{itemize}
+\item Há três tipos de mensagens que vão do Morpheus para os módulos:
+  \begin{itemize}
+  \item Configuração (configuration)
+  \item Requisição de Ação (action\_request)
+  \item Requisição de dados (data\_transmission)
+  \end{itemize}
+\item Há três tipos de mensagens que chegam dos módulos:
+  \begin{itemize}
+  \item Confirmação (confirmation)
+  \item Envio de Dados (data\_transmission)
+  \item Data Request (data\_request)
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Definição das mensagens}
+\paragraph{Configuração (configuration)}
+\begin{itemize}
+\item Sentido: Morpheus para módulo
+\item Uso: Envio de parâmetros para configuração dos módulos.
+\end{itemize}
+
+\textbf{Configuração de hora:}
+
+\#configuration
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:time\_config
+
+@
+
+updated\_ntp: \textless segundos desde 0h de 1 de Janeiro de 1970, 64 bits \textgreater
+
+@
+
+\textbf{Configuração de nome:}
+
+\#configuration
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:name\_config
+
+@
+
+new\_name: \textless string do nome\textgreater
+
+new\_rele1name: \textless string do nome|””\textgreater
+
+new\_rele2name: \textless string do nome|””\textgreater
+
+@
+
+\textbf{Configuração de comunicação:}
+
+\#configuration
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:comunication\_config
+
+@
+
+new\_ssid: \textless novo ssid\textgreater
+
+new\_password: \textless nova senha\textgreater
+
+ip\_local: \textless novo ip local fixo\textgreater
+
+ap\_mod: \textless ”sempre ativo” ou “automatico”\textgreater
+
+ap\_name: \textless nome do ap para acesso direto\textgreater
+
+ap\_password: \textless senha do ap para acesso direto\textgreater
+
+@
+
+\textbf{Configuração de RF:}
+
+\#configuration
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:rf\_config
+
+@
+
+*
+
+\textless nome do sensor/controle/função\textgreater : \textless store|clear|keep\textgreater
+
+*
+
+@
+
+\textbf{Configuração de display:}
+
+\#configuration
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:display\_config
+
+@
+
+displaytype: \textless 1|2|3\textgreater
+
+backlight: \textless 0 para desligar, 1 para ligar\textgreater
+
+@
+
+\paragraph{Requisição de ação (action\_request)}
+\begin{itemize}
+\item Sentido: Servidor para módulo
+\item Uso: Quando um usuário faz a requisição de uma ação por meio do aplicativo. Por exemplo, quando deseja-se acender uma luz, o aplicativo envia uma requisição para o servidor local, o qual enviará uma mensagem de action\_request para o módulo correspondente.
+\end{itemize}
+
+\textbf{Requisição de acionamento:}
+
+\#action\_request
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:rele1\_action
+
+@
+
+rele1: \textless 0 para desligar, 1 para ligar\textgreater
+
+@
+
+
+\#action\_request
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:rele2\_action
+
+@
+
+rele2: \textless 0 para desligar, 1 para ligar\textgreater
+
+@
+
+\textbf{Requisição de SW Restart:}
+
+\#action\_request
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:sw\_reset
+
+@
+
+swreset: \textless 0 para não|1 para sim\textgreater
+
+@
+
+\textbf{Requisição de Teste de Auto Reset:}
+
+\#action\_request
+
+\$ts:\textless timestamp\textgreater
+
+\$ty: autoreset\_test
+
+@
+
+autoreset: \textless 0 para não|1 para sim\textgreater
+
+@
+
+\textbf{Confirmação (confirmation)}
+\begin{itemize}
+\item Sentido: Do módulo para o servidor
+\item Uso: Confirmação de uma configuração, patch ou requisição de ação, vindas do servidor.
+\end{itemize}
+
+\textbf{Confirmação de hora}
+
+\#confirmation
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:time\_confirm
+
+@
+
+ntp: \textless segundos desde 0h de 1 de Janeiro de 1970, 64 bits \textgreater
+
+@
+
+\textbf{Confirmação de nome}
+
+\#confirmation
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:name\_confirm
+
+@
+
+name: \textless string do nome\textgreater
+
+rele1name: \textless string do nome|””\textgreater
+
+rele2name: \textless string do nome|””\textgreater
+
+@
+
+\textbf{Confirmação de comunicação}
+
+\#confirmation
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:communication\_confirm
+
+@
+
+ssid: \textless novo ssid\textgreater
+
+password: \textless nova senha\textgreater
+
+ip\_local: \textless novo ip local fixo\textgreater
+
+ap\_mod: \textless ”sempre ativo” ou “automatico”\textgreater
+
+ap\_name: \textless nome do ap para acesso direto\textgreater
+
+ap\_password: \textless senha do ap para acesso direto\textgreater
+
+@
+
+\textbf{Confirmação de RF:}
+
+\#confirmation
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:rf\_confirm
+
+@
+
+*
+
+\textless nome do sensor/controle/função\textgreater : \textless valor gravado\textgreater
+
+*
+
+@
+
+\textbf{Configuração de Display:}
+
+\#confirmation
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:display\_confirm
+
+@
+
+displaytype: \textless 1|2|3\textgreater
+
+backlight: \textless 0|1\textgreater
+
+@
+
+\textbf{Confirmação de SW Restart:}
+
+\#confirmation
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:sw\_reset\_confirm
+
+@
+
+swreset
+
+@
+
+\textbf{Confirmação de Teste de Auto Reset:}
+
+\#confirmation
+
+\$ts:\textless timestamp\textgreater
+
+\$ty: autoreset\_test\_confirm
+
+@
+
+autoreset
+
+@
+
+\paragraph{Transmissão de dados (data\_transmission)}
+\begin{itemize}
+\item Sentido: Do módulo para o servidor
+\item Uso: Envio de dados de sensores para o servidor
+\end{itemize}
+
+\textbf{Transmissão de Umidade, Temperatura, Presença e Reles}
+
+\#data\_transmission
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:temp\_umi\_pres
+
+@
+
+s1:umidade
+
+vl1:\textless value\textgreater
+
+s2:temperatura
+
+vl2:\textless value\textgreater
+
+s3:presenca
+
+vl3:\textless value\textgreater
+
+s4:rl1
+
+vl4:\textless value\textgreater
+
+s5:rl2
+
+vl5:\textless value\textgreater
+
+@
+
+
+\paragraph{Requisição de dados (data\_request)}
+\begin{itemize}
+\item Sentido: Do módulo para o servidor
+\item Protocolo: MQTT
+\item Uso: Requisição de alguma informação do servidor. Ex.: Atualização de hora
+\end{itemize}
+
+\textbf{Requisição de atualização da hora}
+
+\#data\_request
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:time\_update
+
+\subsubsection{Testes realizados da comunicação Morpheus e módulos:}
+
+Para que fosse simulado o envio de mensagens, o aplicativo MQTT Fx foi utilizado. Com o uso deste software, é possível se inscrever em determinado tópico (enviando as credenciais para o broker, tanto em forma de usuário e senha, quando em forma de certificados), bem como publicar no tópico desejado.
+
+\textbf{Requisição de acionamento 1:}
+
+\#action\_request
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:rele1\_action
+
+@
+
+rele1: 0
+
+@
+
+\textit{Esperado: 0 no serial do Arduino, indicando recebimento}
+
+\textit{Resultado: De acordo}
+
+\textbf{Requisição de acionamento 2:}
+
+\#action\_request
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:rele2\_action
+
+@
+
+rele2: 1
+
+@
+
+\textit{Esperado: 1 no serial do Arduino, indicando recebimento}
+
+\textit{Resultado: De acordo}
+
+\textbf{Requisição e confirmação de SW Restart:}
+
+\#action\_request
+
+\$ts:\textless timestamp\textgreater
+
+\$ty:sw\_reset
+
+@
+
+swreset: 1
+
+@
+
+\textit{Esperado: Confirmação de SW Restart no tópico MQTT m2s}
+
+\textit{Resultado: De acordo}
+
+\textbf{Requisição e confirmação de Teste de Auto Reset:}
+
+\#action\_request
+
+\$ts:\textless timestamp\textgreater
+
+\$ty: autoreset\_test
+
+@
+
+autoreset: 1
+
+@
+
+\textit{Esperado: Confirmação no tópico MQTT m2s}
+
+\textit{Resultado: De acordo}
+
+\textbf{Configuração e confirmação de hora:}
+
+\#configuration
+
+\$ts:293029
+
+\$ty:time\_config
+
+@
+
+updated\_ntp: 293029
+
+@
+
+\textit{Esperado: Confirmação no tópico MQTT m2s}
+
+\textit{Resultado: De acordo}
+
+\textbf{Configuração e confirmação de nome:}
+
+\#configuration
+
+\$ts:432524
+
+\$ty:name\_config
+
+@
+
+new\_name: NovoNome
+
+new\_rele1name: Portal1
+
+new\_rele2name: Portal2
+
+@
+
+\textit{Esperado: Confirmação no tópico MQTT m2s}
+
+\textit{Resultado: De acordo}
+
+\textbf{Configuração e confirmação de comunicação:}
+
+\#configuration
+
+\$ts:5349545
+
+\$ty:comunication\_config
+
+@
+
+new\_ssid: Novossid
+
+new\_password: novaSenha
+
+ip\_local: 192.168.0.32
+
+ap\_mod: automatico
+
+ap\_name: AcessoDiretoAP
+
+ap\_password: 1234
+
+@
+
+\textit{Esperado: Confirmação no tópico MQTT m2s}
+
+\textit{Resultado: De acordo}
+
+\textbf{Configuração e confirmação de RF:}
+
+\#configuration
+
+\$ts:4839434
+
+\$ty:rf\_config
+
+@
+
+Janela4: 01234
+
+@
+
+\textit{Esperado: Confirmação no tópico MQTT m2s}
+
+\textit{Resultado: De acordo}
+
+\textbf{Configuração e confirmação de display:}
+
+\#configuration
+
+\$ts:543242
+
+\$ty:display\_config
+
+@
+
+displaytype: 3
+
+backlight: 1
+
+@
+
+\textit{Esperado: Confirmação no tópico MQTT m2s}
+
+\textit{Resultado: De acordo}
+
+\textbf{Transmissão de Umidade Temperatura e Presença e Reles}
+
+messageToSend = UmiTempPresReles(0,80,25,1,1,0);
+
+//UmiTempPresReles(unsigned long ts, int umidade, float temp, bool pres, bool rele1, bool rele2)
+
+\textit{Esperado: Mensagem no Tópico MQTT m2s}
+\textit{Resultado: De acordo}
+
+
+\subsection{Comunicação entre Morpheus e Nuvem}
+
+Inicialmente, foi proposto um modelo arquitetural onde, para a comunicação com a nuvem, haveriam endpoints tanto do lado da casa quanto do lado da nuvem. Assim, quando o Morpheus precisasse enviar uma mensagem, seria necessário que fosse realizada uma chamada ao endpoint correspondente. Neste sentido (Morpheus para nuvem), não há nenhum problema, pois é possível garantir configurações avançadas de segurança, bem como a utilização de load balancers e servidores terceiros (como Akamai), para lidar com ataques do tipo DoS (Denial of Service).
+
+O problema, no entanto, está em garantir a segurança e usabilidade do lado da casa. Primeiramente, os IPs residenciais não são fixos, e são trocados a cada nova conexão. Assim, se a conexão com a internet for perdida, por exemplo, um novo IP será atribuído àquela residência. Dessa forma, após essa troca, a não ser que o Morpheus atualize a nuvem, não será possível receber as mensagens que chegariam dos serviços remotos. Esta questão, no entanto, é contornável, por meio de um serviço de watchdog, que seria responsável por analisar o IP e notificar a nuvem sobre a troca, sempre que esta ocorrer. Há, ainda, um problema mais grave e mais difícil de ser contornado. Com essa arquitetura, o Morpheus também será um servidor, do ponto de vista da nuvem, e qualquer dispositivo pode tentar fazer uma requisição em um dos endpoints disponíveis. Mesmo que forem checados os dados da requisição, para garantir que esta é válida, temos ainda uma grave ameaça de segurança, em relação à negação de serviço. Para que este risco fosse minimizado, seria necessária configurações avançadas no roteador local, e mesmo assim, este não seria suficiente para processar um grande número de requisições, deixando a casa vulnerável.
+
+Foi discutida, então, uma mudança arquitetural na forma de comunicação entre a nuvem e a casa. A solução para o problema se encontra no uso de websockets. Assim, o Morpheus se comporta como um cliente em relação à nuvem, e é sempre ele que abre uma conexão. Assim, já não há mais a vulnerabilidade local, de estar exposto às negativas de serviço. Além disso, a conexão se mantém aberta, e forma um caminho full duplex, de modo que é possível receber as mensagens da nuvem a qualquer momento também. Com essa arquitetura, os desafios relativos à segurança recaem aos servidores, e não mais à casa, de modo que é possível gerenciar esses riscos, como o fazem grandes empresas, de forma transparente ao cliente final.
+
+Por fim, somente restou um endpoint no Morpheus, que seria o de emergência. Este endpoint somente aceita requisições vindas do localhost, e não mais de fora.
+
+\subsection{Websocket}
+Com a utilização do canal de comunicação por websocket, foram utilizados eventos, que são recebidos e enviados, para a comunicação. São eles descritos abaixo.
+
+\subsubsection{Morpheus}
+O Morpheus ouvirá os seguintes eventos, vindos da nuvem.
+
+\begin{itemize}
+\item configurationMessage
+\item actionRequest
+\item dataTransmission (Requisitar informações sobre módulo, e.g. se portão está aberto ou não).
+\end{itemize}
+
+\subsubsection{Nuvem}
+A nuvem ouvirá os seguintes eventos, vindos do Morpheus.
+
+\begin{itemize}
+\item confirmation
+\item configuration
+\item data
+\end{itemize}
+
+Definição de Mensagens Entre Nuvem e Morpheus
+configuration
+{
+    configurationId: \textless configurationId\textgreater ,
+    timestamp: \textless timestamp\textgreater ,
+    morpheusConfiguration: \textless morpheusConfiguration\textgreater ,
+    modulesConfiguration: \textless modulesConfiguration\textgreater
+}
+
+\textless morpheusConfiguration\textgreater  =
+{
+    	register: [\textless eachModuleRegistration\textgreater ],
+requestSendingPersistedMessages: \textless true | false\textgreater
+}
+
+\textless eachModuleRegistration\textgreater  =
+{
+moduleId: \textless moduleId\textgreater ,
+            moduleName: \textless moduleName\textgreater ,
+            moduleTopic: \textless moduleTopic\textgreater ,
+            receiveMessagesAtMostEvery: \textless time\textgreater ,
+            qos: \textless qosLevel\textgreater
+ }
+
+\textbf{Requisitos:}
+
+O campo receiveMessagesAtMostEvery deve estar no formato“\textless time\textgreater :\textless unit\textgreater ”
+A unidade deve ser “s” para segundos, “m” para minutos ou “h” para horas. O valor padrão é 60 segundos.
+
+Ex: Requisição de mensagens persistidas e configuração do Morpheus
+
+\textbf{Module configuration}
+
+A seção de configuração de módulo será um objeto com duas partes. A primeira identifica o módulo dentro do Morpheus e, a segunda, envia as mensagens que serão interpretadas pelo módulo.
+
+ {
+            “moduleId”: \textless moduleId\textgreater ,
+            “moduleName”: \textless moduleName\textgreater ,
+            “moduleTopic”: \textless moduleTopic\textgreater ,
+“unregister”: \textless true|false\textgreater
+	 messages: [\textless message\textgreater ]
+         }
+
+\textless message\textgreater
+“controlParameters”:
+{
+parameter: \textless name\textgreater ,
+value: \textless value\textgreater
+}
+“payload”: {
+\textless key\textgreater : \textless value\textgreater
+….
+}
+Ex.: Unregister a module and configure another
+
+
+\textbf{Action Request Messages}
+As mensagens de action\_request seguem o mesmo protocolo de mensagens, estabelecido anteriormente.
+
+\textbf{Data Transmission Messages}
+As mensagens de data\_transmission também seguem o mesmo protocolo de mensagens, estabelecido anteriormente.
+
+\subsection{Configurações}
+
+\subsubsection{MQTT Mosquitto broker - Configuração}
+
+\begin{enumerate}
+\item Para efeitos de desenvolvimento e testes, criamos uma instância na nuvem do MQTT Broker Mosquitto. Para um cenário real, essa instância rodará localmente, e somente aceitará conexões vinda da localhost.
+\item Configurar restrição de tópicos na instância. Exemplo em: http://www.steves-internet-guide.com/topic-restriction-mosquitto-configuration/
+\item Os tópicos que finalizam com s2m devem ser exclusivamente restritos para o Morpheus. Ninguém mais consegue publicar nestes tópicos. Morpheus pode publicar e ouvir todos os tópicos.
+\end{enumerate}
+
+\subsubsection{Estratégia}
+\begin{enumerate}
+\item Usar a porta padrão 1883 para os módulos se conectarem. Essa porta não exige criptografia, deve exigir somente usuário e senha (que estarão vulneráveis).
+\item O Morpheus será obrigado a se conectar por SSL na porta 8883, passando suas credenciais. Assim, suas credenciais serão protegidas.
+\item Configurar a proteção de tópicos.
+\end{enumerate}
+
+\subsubsection{Guia de instalação (Testado no Ubuntu 16,10 x64)}
+Instalação
+\begin{enumerate}
+\item sudo apt-get update
+\item sudo apt-get install mosquitto mosquitto-clients
+\item sudo systemctl enable mosquitto
+\item Create a .conf file in /etc/mosquitto/conf.d
+\end{enumerate}
+
+\# Listener
+
+listener 8883
+
+\subsubsection{Criação dos certificados}
+
+\begin{enumerate}
+\item
+Criação da autoridade certificadora (key e certificado). Para a versão atual, a senha é hedwig123
+
+openssl req -new -x509 -extensions v3\_ca -keyout ca.key -out ca.crt
+\item
+Mosquitto Key e Certificado. Foi adicionado o IP do servidor. O Common Name deve ser o IP do servidor
+
+openssl genrsa -out mosquitto.key 2048
+openssl req -new -key mosquitto.key -out mosquitto.csr
+openssl x509 -req -in mosquitto.csr -CA ../ca.crt -CAkey ../ca.key -CAcreateserial -out mosquitto.crt -days 3650 -sha256
+\item
+Morpheus Key e Certificado. Common Name será localhost
+
+openssl genrsa -out morpheus.key 2048
+openssl req -new -key morpheus.key -out morpheus.csr
+openssl x509 -req -in morpheus.csr -CA ../ca.crt -CAkey ../ca.key -CAcreateserial -out morpheus.crt -days 3650 -sha256 -addtrust clientAuth
+openssl x509 -in morpheus.crt -outform der -out morpheus.der
+\end{enumerate}
+
+\subsubsection{Comandos úteis}
+Inicia na manualmente o mosquitto com as configurações do arquivo. Útil para checar se há algum erro no .conf.
+mosquitto -c /etc/mosquitto/conf.d/mosquitto.conf -d
+
+\subsubsection{Senhas}
+\begin{enumerate}
+\item Criar o arquivo de senha no formato usuario:senha e usar sudo mosquitto\_passwd -U passwd para gerar o hash da senha
+\item No mosquiito.conf, insira:
+allow\_anonymous false
+password\_file c:\textbackslash mosquitto\textbackslash passwords.txt \# Windows machine
+Tutorial:http://www.steves-internet-guide.com/mqtt-username-password-example/
+\end{enumerate}
+
+
+\subsubsection{Casos de teste para Controle de Acesso nos Tópicos MQTT entre módulos e nuvem}
+\begin{enumerate}
+\item
+Conectar na porta 1883 sem usuário e senha.
+
+Esperado: Falha de conexão
+
+Resultado: Bem sucedido.
+\item Conectar na porta 1883 com usuário e senha corretos.
+
+Esperado: Permissão de conexão
+
+Resultado: Bem sucedido.
+\item
+Conectar com credenciais corretas e tentar publicar em tópico que não pertence ao seu usuário
+
+Esperado: Não publicação
+
+Resultado: Bem sucedido.
+\item
+Conectar com credenciais corretas e tentar publicar em tópico que pertence ao seu usuário
+
+Esperado: Publicação
+
+Resultado: Bem sucedido.
+\item
+Conectar com credenciais corretas e tentar ouvir de um tópico que não pertence ao seu usuário
+
+Esperado: Não receber dados
+
+Resultado: Bem sucedido.
+\item
+Conectar com credenciais corretas e tentar ouvir de um tópico que pertence ao seu usuário
+
+Esperado: Receber dados
+
+Resultado: Bem sucedido.
+
+\item
+Conectar com credenciais referentes ao Morpheus e tentar publicar ou ouvir qualquer tópico começando com hw.
+
+Esperado: Publicação ou subscrição com sucesso
+
+Resultado: Bem sucedido.
+\end{enumerate}
+
+\subsubsection{Restrição de Tópicos s2m (Server to Module)}
+\begin{enumerate}
+\item Morpheus consegue em todos que comecem com hw pubsub
+\item Módulos conseguem pub em hw/username/m2s
+\item Módulos conseguem sub em hw/username/s2m
+\end{enumerate}
+
+Tutorial:http://www.steves-internet-guide.com/topic-restriction-mosquitto-configuration/
+
+Sobre Segurança no Mosquitto: http://www.steves-internet-guide.com/mqtt-security-mechanisms/
+
+Biblioteca do Arduino para o Client: https://pubsubclient.knolleary.net/index.html
