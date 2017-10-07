@@ -85,94 +85,64 @@ O servidor foi desenvolvido com base nas regras de negócio seguintes.
 \end{itemize}
 
 \textbf{Configuração de hora:}
-
-\#configuration
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:time\_config
-
+\begin{lstlisting}
+#configuration
+$ts: <timestamp>
+$ty: time_config
 @
-
-updated\_ntp: \textless segundos desde 0h de 1 de Janeiro de 1970, 64 bits \textgreater
-
+updated_ntp: <segundos desde 0h de 1 de Janeiro de 1970, 64 bits>
 @
+\end{lstlisting}
 
 \textbf{Configuração de nome:}
-
-\#configuration
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:name\_config
-
+\begin{lstlisting}
+#configuration
+$ts:\textless timestamp\textgreater
+$ty:name\_config
 @
-
-new\_name: \textless string do nome\textgreater
-
-new\_rele1name: \textless string do nome|””\textgreater
-
-new\_rele2name: \textless string do nome|””\textgreater
-
+new_name: <nome>
+new_rele1name: <nome | "">
+new_rele2name: <nome | "">
 @
+\end{lstlisting}
 
 \textbf{Configuração de comunicação:}
-
-\#configuration
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:comunication\_config
-
+\begin{lstlisting}
+#configuration
+$ts: <timestamp>
+$ty: comunication_config
 @
-
-new\_ssid: \textless novo ssid\textgreater
-
-new\_password: \textless nova senha\textgreater
-
-ip\_local: \textless novo ip local fixo\textgreater
-
-ap\_mod: \textless ”sempre ativo” ou “automatico”\textgreater
-
-ap\_name: \textless nome do ap para acesso direto\textgreater
-
-ap\_password: \textless senha do ap para acesso direto\textgreater
-
+new_ssid: <novo_SSID>
+new_password: <nova_senha>
+ip_local: <novo_IP_local>
+ap_mod: <"sempre ativo" | "automatico">
+ap_name: <nome_AP_acesso_direto>
+ap_password: <senha_AP_acesso_direto>
 @
+\end{lstlisting}
 
 \textbf{Configuração de RF:}
-
-\#configuration
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:rf\_config
-
+\begin{lstlisting}
+#configuration
+$ts: <timestamp>
+$ty: rf_config
 @
-
 *
-
-\textless nome do sensor/controle/função\textgreater : \textless store|clear|keep\textgreater
-
+<nome_do_[sensor | controle | funcao]>: "store" | "clear" | "keep"
 *
-
 @
+\end{lstlisting}
 
 \textbf{Configuração de display:}
-
-\#configuration
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:display\_config
-
+\begin{lstlisting}
+#configuration
+$ts: <timestamp>
+$ty: display_config
 @
-
-displaytype: \textless 1|2|3\textgreater
-
-backlight: \textless 0 para desligar, 1 para ligar\textgreater
-
+displaytype: <1 | 2 | 3>
+backlight: <0 | 1>
 @
+\end{lstlisting}
 
 \paragraph{Requisição de ação (action\_request)}
 \begin{itemize}
@@ -181,59 +151,43 @@ backlight: \textless 0 para desligar, 1 para ligar\textgreater
 \end{itemize}
 
 \textbf{Requisição de acionamento:}
-
-\#action\_request
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:rele1\_action
-
+\begin{lstlisting}
+#action_request
+$ts: <timestamp>
+$ty: rele1_action
 @
-
-rele1: \textless 0 para desligar, 1 para ligar\textgreater
-
+rele1: <0 | 1>
 @
+\end{lstlisting}
 
-
-\#action\_request
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:rele2\_action
-
+\begin{lstlisting}
+#action_request
+$ts: <timestamp>
+$ty: rele2_action
 @
-
-rele2: \textless 0 para desligar, 1 para ligar\textgreater
-
+rele2: <0 | 1>
 @
+\end{lstlisting}
 
 \textbf{Requisição de SW Restart:}
-
-\#action\_request
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:sw\_reset
-
+\begin{lstlisting}
+#action_request
+$ts: <timestamp>
+$ty: sw_reset
 @
-
-swreset: \textless 0 para não|1 para sim\textgreater
-
+swreset: <0 | 1> 
 @
+\end{lstlisting}
 
 \textbf{Requisição de Teste de Auto Reset:}
-
-\#action\_request
-
-\$ts:\textless timestamp\textgreater
-
-\$ty: autoreset\_test
-
+\begin{lstlisting}
+#action request
+$ts: <timestamp>
+$ty: autoreset_test
 @
-
-autoreset: \textless 0 para não|1 para sim\textgreater
-
+autoreset: <0 | 1>
 @
+\end{lstlisting}
 
 \textbf{Confirmação (confirmation)}
 \begin{itemize}
@@ -242,122 +196,84 @@ autoreset: \textless 0 para não|1 para sim\textgreater
 \end{itemize}
 
 \textbf{Confirmação de hora}
-
-\#confirmation
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:time\_confirm
-
+\begin{lstlisting}
+#confirmation
+$ts: <timestamp>
+$ty: time_confirm
 @
-
-ntp: \textless segundos desde 0h de 1 de Janeiro de 1970, 64 bits \textgreater
-
+ntp: <segundos desde 0h de 1 de Janeiro de 1970, 64 bits>
 @
+\end{lstlisting}
 
 \textbf{Confirmação de nome}
-
-\#confirmation
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:name\_confirm
-
+\begin{lstlisting}
+#confirmation
+$ts: <timestamp>
+$ty: name_confirm
 @
-
-name: \textless string do nome\textgreater
-
-rele1name: \textless string do nome|””\textgreater
-
-rele2name: \textless string do nome|””\textgreater
-
+name: <nome>
+rele1name: <nome | "">
+rele2name: <nome | "">
 @
+\end{lstlisting}
 
 \textbf{Confirmação de comunicação}
-
-\#confirmation
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:communication\_confirm
-
+\begin{lstlisting}
+#confirmation
+$ts: <timestamp>
+$ty: communication_confirm
 @
-
-ssid: \textless novo ssid\textgreater
-
-password: \textless nova senha\textgreater
-
-ip\_local: \textless novo ip local fixo\textgreater
-
-ap\_mod: \textless ”sempre ativo” ou “automatico”\textgreater
-
-ap\_name: \textless nome do ap para acesso direto\textgreater
-
-ap\_password: \textless senha do ap para acesso direto\textgreater
-
+ssid: <novo ssid>
+password: <nova senha>
+ip local: <novo ip local fixo>
+ap mod: "sempre ativo" | "automatico"
+ap name: <nome do ap para acesso direto>
+ap password: <senha do ap para acesso direto>
 @
+\end{lstlisting}
 
 \textbf{Confirmação de RF:}
-
-\#confirmation
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:rf\_confirm
-
+\begin{lstlisting}
+#confirmation
+$ts: <timestamp>
+$ty: rf_confirm64
 @
-
 *
-
-\textless nome do sensor/controle/função\textgreater : \textless valor gravado\textgreater
-
+<nome_do_[sensor | controle | funcao>: <valor_gravado>
 *
-
 @
+\end{lstlisting}
 
 \textbf{Configuração de Display:}
-
-\#confirmation
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:display\_confirm
-
+\begin{lstlisting}
+#confirmation
+$ts: <timestamp>
+$ty: display_confirm
 @
-
-displaytype: \textless 1|2|3\textgreater
-
-backlight: \textless 0|1\textgreater
-
+displaytype: <1 | 2 | 3>
+backlight: <0 | 1>
 @
+\end{lstlisting}
 
 \textbf{Confirmação de SW Restart:}
-
-\#confirmation
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:sw\_reset\_confirm
-
+\begin{lstlisting}
+#confirmation
+$ts: <timestamp>
+$ty: sw_reset_confirm
 @
-
-swreset
-
+swreset: <0 | 1>
 @
+\end{lstlisting}
 
 \textbf{Confirmação de Teste de Auto Reset:}
-
-\#confirmation
-
-\$ts:\textless timestamp\textgreater
-
-\$ty: autoreset\_test\_confirm
-
+\begin{lstlisting}
+#confirmation
+$ts: <timestamp>
+$ty: autoreset_test_confirm
 @
-
-autoreset
-
+autoreset: <0 | 1>
 @
+\end{lstlisting}
 
 \paragraph{Transmissão de dados (data\_transmission)}
 \begin{itemize}
@@ -366,37 +282,23 @@ autoreset
 \end{itemize}
 
 \textbf{Transmissão de Umidade, Temperatura, Presença e Reles}
-
-\#data\_transmission
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:temp\_umi\_pres
-
+\begin{lstlisting}
+#data_transmission
+$ts: <timestamp>
+$ty: temp_umi_pres
 @
-
-s1:umidade
-
-vl1:\textless value\textgreater
-
-s2:temperatura
-
-vl2:\textless value\textgreater
-
-s3:presenca
-
-vl3:\textless value\textgreater
-
-s4:rl1
-
-vl4:\textless value\textgreater
-
-s5:rl2
-
-vl5:\textless value\textgreater
-
+s1: umidade
+vl1: <valor>
+s2: temperatura
+vl2: <valor>
+s3: presenca
+vl3: <valor>
+s4: rl1
+vl4: <valor>
+s5: rl2
+vl5: <valor>
 @
-
+\end{lstlisting}
 
 \paragraph{Requisição de dados (data\_request)}
 \begin{itemize}
@@ -406,200 +308,157 @@ vl5:\textless value\textgreater
 \end{itemize}
 
 \textbf{Requisição de atualização da hora}
-
-\#data\_request
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:time\_update
+\begin{lstlisting}
+#data_request
+$ts: <timestamp>
+$ty: time_update
+@
+@
+\end{lstlisting}
 
 \subsubsection{Testes realizados da comunicação Morpheus e módulos:}
 
 Para que fosse simulado o envio de mensagens, o aplicativo MQTT Fx foi utilizado. Com o uso deste software, é possível se inscrever em determinado tópico (enviando as credenciais para o broker, tanto em forma de usuário e senha, quando em forma de certificados), bem como publicar no tópico desejado.
 
 \textbf{Requisição de acionamento 1:}
-
-\#action\_request
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:rele1\_action
-
+\begin{lstlisting}
+#action_request
+$ts:<timestamp>
+$ty: rele1_action
 @
-
 rele1: 0
-
 @
+\end{lstlisting}
 
 \textit{Esperado: 0 no serial do Arduino, indicando recebimento}
 
 \textit{Resultado: De acordo}
 
 \textbf{Requisição de acionamento 2:}
-
-\#action\_request
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:rele2\_action
-
+\begin{lstlisting}
+#action request
+$ts: <timestamp>
+$ty: rele2_action
 @
-
 rele2: 1
-
 @
+\end{lstlisting}
 
 \textit{Esperado: 1 no serial do Arduino, indicando recebimento}
 
 \textit{Resultado: De acordo}
 
 \textbf{Requisição e confirmação de SW Restart:}
-
-\#action\_request
-
-\$ts:\textless timestamp\textgreater
-
-\$ty:sw\_reset
-
+\begin{lstlisting}
+#action_request
+$ts: <timestamp>
+$ty: sw_reset
 @
-
 swreset: 1
-
 @
+\end{lstlisting}
 
 \textit{Esperado: Confirmação de SW Restart no tópico MQTT m2s}
 
 \textit{Resultado: De acordo}
 
 \textbf{Requisição e confirmação de Teste de Auto Reset:}
-
-\#action\_request
-
-\$ts:\textless timestamp\textgreater
-
-\$ty: autoreset\_test
-
+\begin{lstlisting}
+#action request
+$ts: <timestamp>
+$ty: autoreset_test
 @
-
 autoreset: 1
-
 @
+\end{lstlisting}
 
 \textit{Esperado: Confirmação no tópico MQTT m2s}
 
 \textit{Resultado: De acordo}
 
 \textbf{Configuração e confirmação de hora:}
-
-\#configuration
-
-\$ts:293029
-
-\$ty:time\_config
-
+\begin{lstlisting}
+#configuration
+$ts: 293029
+$ty: time_config
 @
-
-updated\_ntp: 293029
-
+updated_ntp: 293029
 @
+\end{lstlisting}
 
 \textit{Esperado: Confirmação no tópico MQTT m2s}
 
 \textit{Resultado: De acordo}
 
 \textbf{Configuração e confirmação de nome:}
-
-\#configuration
-
-\$ts:432524
-
-\$ty:name\_config
-
+\begin{lstlisting}
+#configuration
+$ts: 432524
+$ty: name_config
 @
-
-new\_name: NovoNome
-
-new\_rele1name: Portal1
-
-new\_rele2name: Portal2
-
+new_name: NovoNome
+new_rele1name: Portal1
+new_rele2name: Portal2
 @
+\end{lstlisting}
 
 \textit{Esperado: Confirmação no tópico MQTT m2s}
 
 \textit{Resultado: De acordo}
 
 \textbf{Configuração e confirmação de comunicação:}
-
-\#configuration
-
-\$ts:5349545
-
-\$ty:comunication\_config
-
+\begin{lstlisting}
+#configuration
+$ts: 5349545
+$ty: comunication_config
 @
-
-new\_ssid: Novossid
-
-new\_password: novaSenha
-
-ip\_local: 192.168.0.32
-
-ap\_mod: automatico
-
-ap\_name: AcessoDiretoAP
-
-ap\_password: 1234
-
+new_ssid: Novossid
+new_password: novaSenha
+ip_local: 192.168.0.32
+ap_mod: automatico
+ap_name: AcessoDiretoAP
+ap_password: 1234
 @
+\end{lstlisting}
 
 \textit{Esperado: Confirmação no tópico MQTT m2s}
 
 \textit{Resultado: De acordo}
 
 \textbf{Configuração e confirmação de RF:}
-
-\#configuration
-
-\$ts:4839434
-
-\$ty:rf\_config
-
+\begin{lstlisting}
+#configuration
+$ts: 4839434
+$ty: rf_config
 @
-
 Janela4: 01234
-
 @
+\end{lstlisting}
 
 \textit{Esperado: Confirmação no tópico MQTT m2s}
 
 \textit{Resultado: De acordo}
 
 \textbf{Configuração e confirmação de display:}
-
-\#configuration
-
-\$ts:543242
-
-\$ty:display\_config
-
+\begin{lstlisting}
+#configuration
+$ts: 543242
+$ty: display_config
 @
-
-displaytype: 3
-
+displaytype: 369
 backlight: 1
-
 @
+\end{lstlisting}
 
 \textit{Esperado: Confirmação no tópico MQTT m2s}
 
 \textit{Resultado: De acordo}
 
 \textbf{Transmissão de Umidade Temperatura e Presença e Reles}
-
+\begin{lstlisting}
 messageToSend = UmiTempPresReles(0,80,25,1,1,0);
-
 //UmiTempPresReles(unsigned long ts, int umidade, float temp, bool pres, bool rele1, bool rele2)
+\end{lstlisting}
 
 \textit{Esperado: Mensagem no Tópico MQTT m2s}
 \textit{Resultado: De acordo}
@@ -636,29 +495,36 @@ A nuvem ouvirá os seguintes eventos, vindos do Morpheus.
 \item data
 \end{itemize}
 
-Definição de Mensagens Entre Nuvem e Morpheus
-configuration
+Definição de mensagens entre Nuvem e Morpheus
+\begin{lstlisting}
+configuration =
 {
-    configurationId: \textless configurationId\textgreater ,
-    timestamp: \textless timestamp\textgreater ,
-    morpheusConfiguration: \textless morpheusConfiguration\textgreater ,
-    modulesConfiguration: \textless modulesConfiguration\textgreater
+    "configurationId": <configurationId> ,
+    "timestamp": <timestamp> ,
+    "morpheusConfiguration": <morpheusConfiguration> ,
+    "modulesConfiguration": <modulesConfiguration>
 }
+\end{lstlisting}
 
-\textless morpheusConfiguration\textgreater  =
+\begin{lstlisting}
+<morpheusConfiguration>  =
 {
-    	register: [\textless eachModuleRegistration\textgreater ],
-requestSendingPersistedMessages: \textless true | false\textgreater
+    "register": [<eachModuleRegistration> ],
+    "requestSendingPersistedMessages": <true | false>
 }
+\end{lstlisting}
 
-\textless eachModuleRegistration\textgreater  =
+\begin{lstlisting}
+<eachModuleRegistration>  =
 {
-moduleId: \textless moduleId\textgreater ,
-            moduleName: \textless moduleName\textgreater ,
-            moduleTopic: \textless moduleTopic\textgreater ,
-            receiveMessagesAtMostEvery: \textless time\textgreater ,
-            qos: \textless qosLevel\textgreater
+    "moduleId": <moduleId> ,
+    "moduleName": <moduleName> ,
+    "moduleTopic": <moduleTopic> ,
+    "receiveMessagesAtMostEvery": <time> ,
+    "qos": <qosLevel>
  }
+ \end{lstlisting}
+
 
 \textbf{Requisitos:}
 
@@ -667,28 +533,33 @@ A unidade deve ser “s” para segundos, “m” para minutos ou “h” para h
 
 Ex: Requisição de mensagens persistidas e configuração do Morpheus
 
-\textbf{Module configuration}
+\textbf{Configuração de módulo}
 
 A seção de configuração de módulo será um objeto com duas partes. A primeira identifica o módulo dentro do Morpheus e, a segunda, envia as mensagens que serão interpretadas pelo módulo.
-
- {
-            “moduleId”: \textless moduleId\textgreater ,
-            “moduleName”: \textless moduleName\textgreater ,
-            “moduleTopic”: \textless moduleTopic\textgreater ,
-“unregister”: \textless true|false\textgreater
-	 messages: [\textless message\textgreater ]
-         }
-
-\textless message\textgreater
-“controlParameters”:
+\begin{lstlisting}
 {
-parameter: \textless name\textgreater ,
-value: \textless value\textgreater
+    "moduleId": <moduleId> ,
+    "moduleName": <moduleName> ,
+    "moduleTopic": <moduleTopic> ,
+    "unregister": <true|false>,
+    "messages": [<message> ]
 }
-“payload”: {
-\textless key\textgreater : \textless value\textgreater
-….
+\end{lstlisting}
+
+\begin{lstlisting}
+<message> = 
+"controlParameters":
+{
+    "parameter": <name> ,
+    "value": <value>
+},
+"payload": {
+    [
+        <key>: <value>
+    ]
 }
+\end{lstlisting}
+
 Ex.: Unregister a module and configure another
 
 
@@ -718,11 +589,12 @@ As mensagens de data\_transmission também seguem o mesmo protocolo de mensagens
 \subsubsection{Guia de instalação (Testado no Ubuntu 16,10 x64)}
 Instalação
 \begin{enumerate}
-\item sudo apt-get update
-\item sudo apt-get install mosquitto mosquitto-clients
-\item sudo systemctl enable mosquitto
-\item Create a .conf file in /etc/mosquitto/conf.d
+\item \lstinline{sudo apt-get update}
+\item \lstinline{sudo apt-get install mosquitto mosquitto-clients}
+\item \lstinline{sudo systemctl enable mosquitto}
+\item \lstinline{Create a .conf file in /etc/mosquitto/conf.d}
 \end{enumerate}
+
 
 \# Listener
 
@@ -734,25 +606,31 @@ listener 8883
 \item
 Criação da autoridade certificadora (key e certificado). Para a versão atual, a senha é hedwig123
 
-openssl req -new -x509 -extensions v3\_ca -keyout ca.key -out ca.crt
+\lstinline{openssl req -new -x509 -extensions v3\_ca -keyout ca.key -out ca.crt}
 \item
 Mosquitto Key e Certificado. Foi adicionado o IP do servidor. O Common Name deve ser o IP do servidor
 
+\begin{lstlisting}[language=bash]
 openssl genrsa -out mosquitto.key 2048
 openssl req -new -key mosquitto.key -out mosquitto.csr
-openssl x509 -req -in mosquitto.csr -CA ../ca.crt -CAkey ../ca.key -CAcreateserial -out mosquitto.crt -days 3650 -sha256
+openssl x509 -req -in mosquitto.csr -CA ../ca.crt -CAkey ../ca.key -CAcreateserial -out mosquitto.crt -days 3650 -sha256    
+\end{lstlisting}
+
 \item
 Morpheus Key e Certificado. Common Name será localhost
 
+\begin{lstlisting}[language=bash]
 openssl genrsa -out morpheus.key 2048
 openssl req -new -key morpheus.key -out morpheus.csr
 openssl x509 -req -in morpheus.csr -CA ../ca.crt -CAkey ../ca.key -CAcreateserial -out morpheus.crt -days 3650 -sha256 -addtrust clientAuth
-openssl x509 -in morpheus.crt -outform der -out morpheus.der
-\end{enumerate}
+openssl x509 -in morpheus.crt -outform der -out morpheus.der    
+\end{lstlisting}
 
 \subsubsection{Comandos úteis}
 Inicia na manualmente o mosquitto com as configurações do arquivo. Útil para checar se há algum erro no .conf.
+\begin{lstlisting}[language=bash]
 mosquitto -c /etc/mosquitto/conf.d/mosquitto.conf -d
+\end{lstlisting}
 
 \subsubsection{Senhas}
 \begin{enumerate}

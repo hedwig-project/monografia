@@ -41,6 +41,16 @@
 %	http://www.ctan.org/tex-archive/macros/latex/contrib/abntex2
 \usepackage[alf]{abntex2cite}
 
+% ========== Packages to display code ==========
+\usepackage{listings}
+\usepackage{color}
+\lstset {
+    basicstyle=\ttfamily,
+    columns=fullflexible,
+    breaklines=true,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+}
+
 % Forçar o abntex2 a usar [ ] nas referências ao invés de ( )
 %\citebrackets{[}{]}
 
