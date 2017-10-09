@@ -7,7 +7,14 @@ Morpheus é o servidor local responsável pela interconexão da casa inteligente
 \subsection{Plataforma}
 O Morpheus tem seu desenvolvimento realizado em Java. Tal escolha foi realizada com base na portabilidade que a máquina virtual Java (JVM) oferece, bem como na disponibilidade de bibliotecas e serviços largamente utilizados em aplicações comerciais. O servidor foi construído utilizando-se o Spring Boot Framework, com a utilização de seu container de Inversão de Controle (IoC - Inversion of Control), para injeção de dependências. Essa técnica diminui o acoplamento entre classes, e permite a evolução e implementação de novas funcionalidades de maneira mais facilitada.
 
-Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um broker MQTT, o qual utilizamos o Mosquitto, por ser uma solução Open Source largamente utilizada em projetos de Internet of Things. Conforme detalhado a frente, configurações de segurança específicas para nosso projeto foram registradas no broker. Para a conexão com os serviços na nuvem, é utilizado um canal Websocket, aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, a qual está documentada aqui.
+Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um broker MQTT, o qual utilizamos o Mosquitto, por ser uma solução Open Source largamente utilizada em projetos de Internet of Things. Conforme detalhado a frente, configurações de segurança específicas para nosso projeto foram registradas no broker. Para a conexão com os serviços na nuvem, é utilizado um canal Websocket, aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, a qual está documentada aqui. Na figura a seguir, é possível verificar a arquitetura desenvolvida.
+
+\begin{figure}[H]
+	\centering
+	\caption{Arquitetura do servidor local}
+  \includegraphics[width=0.8\textwidth]{diagramaDeComunicacao}
+\label{fig:diagramaDeComunicacao}
+\end{figure}
 
 \subsection{Requisitos}
 Para a concepção do servidor local, foram discutidos os seus requisitos funcionais e não funcionais, bem com suas prioridades na implementação.

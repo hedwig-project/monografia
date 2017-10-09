@@ -177,124 +177,7 @@ Segue abaixo uma ilustração sobre o funcionamento do circuito.
 \subsubsection{Montagem}
 
 \section{Controlador Local}
-Para a intercomunicação entre os módulos e a nuvem, há a presença do servidor local Morpheus, responsável por introduzir mais uma camada de segurança, na autenticação das mensagens e garantir que as autorizações necessárias para os procedimentos existam. Para isso, foi desenvolvido um sistema de mensageria, com a definição de um protocolo de comunicação entre os serviços de nuvem e os módulos, e dos módulos para os serviços. Assim, quando um usuário desejar realizar determinada operação por meio do cliente web, uma mensagem é enviada, a qual será interpretada pelo servidor local, e em seguida encaminhada para o destino, por meio do protocolo MQTT, com o broker Mosquitto.
-
-\subsection{Requisitos funcionais}
-\begin{itemize}
-\item Configuração dos módulos, de acordo com as regras e interfaces estabelecidas. Irá enviar para os módulos os novos parâmetros (vindos da nuvem) para se adaptar, de acordo com as necessidades do usuário;
-\item Autenticação local do usuário;
-\item Envio dos dados vindos do módulo para a nuvem, para que sejam tratados. É necessário estabelecer interface para a comunicação e formato dos dados;
-\item Persistência de dados. Quando não houver conexão, o servidor deverá armazenar os dados localmente, e depois enviar para a nuvem;
-\item Envio de pedidos de tomadas de ação para os módulos.
-\end{itemize}
-
-\subsection{Formato dos Tópicos MQTT}
-hw\/\textless nome\_do\_modulo\textgreater	\/s2m (Server to Module - o módulo deve ser subscriber desse tópico. O servidor deve ser publisher desse tópico).
-
-hw\/\textless nome\_do\_modulo\textgreater	\/m2s (Module to Server - o servidor deve ser subscriber desse tópico. O módulo deve ser publisher desse tópico).
-
-\subsection{Regras de Negócio}
-
-\begin{itemize}
-\item Após a compra de cada módulo, o usuário deverá registrar online a aquisição. O servidor da nuvem enviará para o servidor local, da casa, a requisição para configurar o módulo;
-\item Cada módulo enviará mensagens para o servidor local com o seus dados, por meio do MQTT. A interface de comunicação deve ser estabelecida;
-\item Troca de senha do wifi: O usuário cadastra no site a nova senha. O servidor na nuvem faz a requisição para o servidor local, o qual enviará um arquivo de configuração com a nova senha para cada um dos módulos registrados. Após a configuração de todos os módulos, o servidor local envia resposta de sucesso para a nuvem, a qual indica ao usuário que a troca de senha já pode ser feita com sucesso;
-\item Todo módulo sai de fábrica configurado com o tópico que deve se inscrever e publicar;
-\item Cada módulo terá um certificado digital. O broker MQTT somente deixará alguém ser publisher/subscriber de um tópico caso tenha esse certificado.
-\end{itemize}
-
-\subsection{Definição de Interfaces}
-\begin{itemize}
-\item Dois tipos de mensagens do servidor para os módulos: Configuração (configuration) e Requisição de Ação (action\_request);
-\item Três tipos de mensagens dos módulos para o servidor: Confirmação (confirmation), Envio de Dados (data\_transmission) e Data Request (data\_request).
-\end{itemize}
-
-\subsection{Definição das Mensagens}
-\subsubsection{Configuração (configuration)}
-\begin{itemize}
-\item Sentido: Servidor para módulo
-\item Protocolo: MQTT
-\item Uso: Envio dos parâmetros para se adaptar ao comportamento do usuário (Machine Learning). Isso ocorre quando o algoritmo de ML, na nuvem, identifica a necessidade de modificar um comportamento do módulo. O servidor da nuvem envia uma mensagem para o servidor local, com a identificação de cada módulo e quais variáveis devem ser modificadas em cada um deles.
-\item Definição do formato:
-\#configuration
-\$ts:\textless timestamp\textgreater
-\$ty:\textless tipo da configuracao\textgreater
-@
-\textless dados a serem interpretados pelo módulo\textgreater
-@
-\end{itemize}
-
-\subsubsection{Requisição de ação (action\_request)}
-\begin{itemize}
-\item Sentido: Servidor para módulo
-\item Protocolo: MQTT
-\item Uso: Quando um usuário faz a requisição de uma ação por meio do aplicativo. Por exemplo, quando deseja-se acender uma luz, o aplicativo envia uma requisição para o servidor local, o qual enviará uma mensagem de action\_request para o módulo correspondente.
-\item Definição do formato:
-\#action\_request
-\$ts:\textless timestamp\textgreater
-\$ty:\textless tipo da ação\textgreater
-@
-\textless dados a serem interpretados pelo módulo\textgreater
-@
-\end{itemize}
-
-\subsubsection{Confirmação (confirmation)}
-\begin{itemize}
-\item Sentido: Do módulo para o servidor
-\item Protocolo: MQTT
-\item Uso: Confirmação de uma configuração, patch ou requisição de ação, vindas do servidor.
-\item Definição do formato:
-\#confirmation
-\$ts:\textless timestamp\textgreater
-\$ty:\textless tipo da confirmação\textgreater
-@
-\textless dados a serem interpretados pelo servidor\textgreater
-@
-\end{itemize}
-
-\subsubsection{Transmissão de dados (data\_transmission)}
-\begin{itemize}
-\item Sentido: Do módulo para o servidor
-\item Protocolo: MQTT
-\item Uso: Envio de dados de sensores para o servidor
-\item Definição do formato:
-\#data\_transmission
-\$ts:\textless timestamp\textgreater
-
-\$ty:\textless tipo de dados\textgreater
-@
-*
-sn:\textless sensor name\textgreater
-vl:\textless value\textgreater
-*
-*
-sn:\textless sensor name\textgreater
-vl:\textless value\textgreater
-*
-*
-sn:\textless sensor name\textgreater
-vl:\textless value\textgreater
-*
-@
-\end{itemize}
-
-\subsubsection{Requisição de dados (data\_request)}
-\begin{itemize}
-\item Sentido: Do módulo para o servidor
-\item Protocolo: MQTT
-\item Uso: Requisição de alguma informação do servidor. Ex.: Atualização de hora
-\item Definição do formato:
-\#data\_request
-\$ts:\textless timestamp\textgreater
-\$ty:\textless request\_type\textgreater
-\end{itemize}
-
-\begin{figure}[H]
-	\centering
-\caption{Tópicos MQTT}
-  \includegraphics[width=0.8\textwidth]{topicosMQTT}
-\label{fig:topicosMQTT}
-\end{figure}
+Para a intercomunicação entre os módulos e a nuvem, há a presença do servidor local Morpheus, responsável por introduzir mais uma camada de segurança, na troca de mensagens. Para isso, foi desenvolvido uma plataforma, com a utilização de mensageria, e a definição de um protocolo de comunicação entre os serviços de nuvem e os módulos. Assim, quando um usuário desejar realizar determinada operação por meio do cliente web, uma mensagem é enviada, a qual será interpretada pelo servidor local, e em seguida encaminhada para o destino, por meio do protocolo MQTT, com o broker Mosquitto.
 
 \subsection{Raspberry Pi}
 O Raspberry Pi é um computador integrado num único chip, do tamanho de um cartão de crédito. Foi desenvolvido com o objetivo de promover o ensino de computação básica, que possui funcionalidades tais como um computador desktop: navegação na internet, reprodução de video, processamento de texto, dentre outros. No projeto, será utilizado como servidor local (gerenciador de módulos local da casa), exatamente pelas funcionalidades compatíveis com a de um computador desktop.
@@ -382,6 +265,8 @@ O broker Mosquitto será utilizado, e foi escolhido por ser amplamente adotado e
 A arquitetura de comunicação é representada pelo diagrama abaixo, com um alto nível de abstração, cujos detalhes serão vistos no momento oportuno, com granularidade menor.
 
 % TODO o diagrama ta diferente no arquivo da quarta entrega
+% TODO update: Provavelmente esta certo agora, mas precisamos confirmar
+
 \begin{figure}[H]
 	\centering
 	\caption{}
