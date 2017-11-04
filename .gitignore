@@ -1,3 +1,4 @@
+# LaTeX
 monografia.aux
 monografia.lof
 monografia.log
@@ -5,3 +6,6 @@ monografia.lot
 monografia.toc
 monografia.bbl
 monografia.blg
+
+# General
+.DS_Store
