@@ -7,7 +7,7 @@ Morpheus é o servidor local responsável pela interconexão da casa inteligente
 \subsection{Plataforma}
 O Morpheus tem seu desenvolvimento realizado em Java. Conforme será detalhado em seguida, tal escolha foi realizada com base na portabilidade que a máquina virtual Java (JVM) oferece, bem como na disponibilidade de bibliotecas e serviços largamente utilizados em aplicações comerciais. O servidor foi construído utilizando-se o Spring Boot Framework, com a utilização de seu container de Inversão de Controle (IoC - Inversion of Control), para injeção de dependências. Essa técnica diminui o acoplamento entre classes, e permite a evolução e implementação de novas funcionalidades de maneira mais facilitada. 
 
-Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um broker MQTT, o qual utilizamos o Mosquitto, por ser uma solução Open Source largamente utilizada em projetos de Internet of Things. Conforme detalhado a frente, configurações de segurança específicas para nosso projeto foram registradas no broker. Para a conexão com os serviços na nuvem, é utilizado um canal Websocket, aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, a qual está documentada aqui. Na figura a seguir, é possível verificar a arquitetura desenvolvida.
+Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um broker \wmqtt, o qual utilizamos o Mosquitto, por ser uma solução Open Source largamente utilizada em projetos de Internet of Things. Conforme detalhado a frente, configurações de segurança específicas para nosso projeto foram registradas no broker. Para a conexão com os serviços na nuvem, é utilizado um canal Websocket, aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, a qual está documentada aqui. Na figura a seguir, é possível verificar a arquitetura desenvolvida.
 
 \subsection{Tecnologias utilizadas}
 Toda a implementação do Morpheus foi realizada em java. Desde o começo do projeto, decidiu-se que a escolha de tecnologias para implementação das diversas camadas deveria ter por base os seus benefícios, e não necessitaria ser rígida ou uniforme. Assim, o principal esforço foi sempre no planejamento das interfaces de comunicação entre as partes, que poderiam ser desenvolvidas em linguagens complementamente diferentes. Os sistemas de nuvem, por exemplo, foram implementados em NodeJs, com front-end em React. Os módulos de hardware foram programados em C e, como comentado acima, o controlador local em Java.
@@ -16,7 +16,7 @@ Essa flexibilidade permitiu com que fossem utilizados os recursos e tecnologias 
 Um requisito essencial para o controlador local é a sua robustez. Em um cenário em que este controlador não esteja disponível, a casa passa a funcionar em estado de emergência, onde os comandos são reduzidos, e não permitem acesso remoto. Entretanto, há inúmeras possibilidades e eventos que poderiam causar a queda deste controlador, muitas das quais referem-se a situações fora de nosso alcance. A falta de energia na residência, ou de internet, interrompe o seu funcionamento, e não é possível ter controle sobre tal situação. O mesmo ocorre no evento de problemas de hardware, na plataforma que o sistema estiver rodando. Ao mesmo tempo que tais situações estejam fora de nosso controle, os planos para contenção dos seus efeitos são complexos, custosos e fogem do escopo deste projeto, como seria o caso de se implementar duplicações, banco de baterias e tecnologia celular para comunicação secundária.
 
 Há, entretanto, problemas no software que poderiam afetar o funcionamento do controlador. Por meio de testes, muitos desses problemas podem ser evitados, ainda em tempo de desenvolvimento. A utilização de tecnologias que facilitam o desenvolvimento seguro da aplicação é uma vantagem para este caso, já que ferramentas estão disponíveis para que haja maior controle sobre o código desenvolvido, e a pode-se detectar erros mais facilmente, ainda em tempo de compilação, por exemplo.
-O controlador local também precisa lidar com as requisições assíncronamente. Parte desta tarefa é facilitada, com a utilização do sistema de mensageria MQTT, operado pelo Broker Mosquitto. Com sua utilização, mensagens podem ser enviadas, e mesmo que o controlador não consiga recebê-las, elas não serão perdidas. Entretanto, devido às características do sistema proposto, as mensagens precisam ser operadas sem maiores demoras. O controlador deve receber e processar as mensagens paralelamente, e não esperar o processamento de uma mensagem inteira, para assim processar a próxima, de modo que paralelismo deve ser parte essencial da arquitetura.
+O controlador local também precisa lidar com as requisições assíncronamente. Parte desta tarefa é facilitada, com a utilização do sistema de mensageria \wmqtt, operado pelo Broker Mosquitto. Com sua utilização, mensagens podem ser enviadas, e mesmo que o controlador não consiga recebê-las, elas não serão perdidas. Entretanto, devido às características do sistema proposto, as mensagens precisam ser operadas sem maiores demoras. O controlador deve receber e processar as mensagens paralelamente, e não esperar o processamento de uma mensagem inteira, para assim processar a próxima, de modo que paralelismo deve ser parte essencial da arquitetura.
 
 Ainda, para a integração com os serviços da nuvem, é necessário a utilização de JSON, para a serialização das mensagens, em um formato que pode ser desserializado posteriormente, independentemente da plataforma. Para a utilização de WebSockets, é necessário o uso de bibliotecas disponíveis, de modo que o desenvolvimento seja facilitado. Por último, é necessário gerenciar eficientemente todas essas dependências. Atualizá-las quando necessário, ou substituí-las, se desejado, deve ser uma tarefa simples.
 
@@ -25,13 +25,13 @@ A arquitetura oferecida pelo Java mostra ser efetiva para as necessidades levant
 Java é utilizado em vasta gama de aplicações, deste complexos softwares comerciais como a IDE Eclipse, até software embutidos, como controladores de BlueRay\footnote{http://www.oracle.com/technetwork/articles/javame/bluray-142687.html}. 
 O padrão de inversão de controle, com injeção de dependências, foi utilizado para o desenvolvimento, de modo a diminuir o acoplamento entre as partes, e facilitar futuras modificações. Assim, cada módulo recebe, em seu construtor, todas as dependências que serão utilizadas. A responsabilidade da construção de tais dependências passa, então, a ser responsabilidade do gerenciador de contexto, e não mais do módulo. A escolha do Java 8 foi decidida para que o desenvolvimento possa utilizar certos recursos de paradigmas funcionais, como o conceito de Streams de dados e Funções Lambdas.
 
-Internamente, o Morpheus é dividido em pacotes, que responsáveis pela modelagem do problema. Há classes que modelam o domínio, que executam as regras de negócio, que fazem a interface entre outros sistemas (MQTT Mosquitto Broker e nuvem), e também para execução de tarefas como backup de mensagens, e serviços de conversão.
+Internamente, o Morpheus é dividido em pacotes, que responsáveis pela modelagem do problema. Há classes que modelam o domínio, que executam as regras de negócio, que fazem a interface entre outros sistemas (\wmqtt Mosquitto Broker e nuvem), e também para execução de tarefas como backup de mensagens, e serviços de conversão.
 Assim que uma mensagem chega ao Morpheus, ela é reconhecida e é realizado o seu parsing, para as estruturas de domínio internas. Caso haja algum erro, para mensagens vindas da nuvem, há o envio de relatório com os problemas encontrados. A partir daí, a mensagem é colocada em uma fila interna, onde outro módulo será responsável por capturá-la e realizar o processamento necessário.
 
-\begin{figure}[H]
+\begin{figure}
 	\centering
 	\caption{Arquitetura do servidor local}
-  \includegraphics[width=0.8\textwidth]{diagramaDeComunicacao}
+  \includegraphics[width=\textwidth]{diagramaDeComunicacao}
 \label{fig:diagramaDeComunicacao}
 \end{figure}
 
@@ -39,27 +39,74 @@ Assim que uma mensagem chega ao Morpheus, ela é reconhecida e é realizado o se
 Para a concepção do servidor local, foram discutidos os seus requisitos funcionais e não funcionais, bem com suas prioridades na implementação.
 
 \subsubsection{Requisitos Funcionais}
-\begin{itemize}
-\item Configuração dos módulos: De acordo com as regras e interfaces estabelecidas, documentadas aqui, os módulos podem ser configurados por meio de mensagens. Os serviços da nuvem enviarão os parâmetros de configuração de cada módulo ao Morpheus, que os transmitirão ao módulo.
-\item Conexão de emergência: Quando não há conexão da casa com a nuvem, deverá haver um canal para comunicação local entre o aplicativo e alguns dos módulos, com funcionalidades limitadas, apenas para serviços essenciais.
-\item Envio de dados para a nuvem: Dados provenientes de sensores são enviados para a nuvem, para que sejam tratados de acordo com as regras de Business Intelligence, por meio de Machine Learning.
-\item Persistência de dados. Quando não houver conexão, o servidor deverá armazenar os dados localmente e, quando solicitado, enviá-los à nuvem.
-\item Tentativas de reenvio: Quando uma mensagem não é enviada com sucesso à nuvem, o Morpheus deverá tentar novamente, um número configurável de vezes, em um curto espaço de tempo. Isso ocorre pois, se determinada mensagem não pode ser enviada em uma janela temporal, ela perde o seu sentido, mesmo por questões de segurança.
-\item Envio de e-mail: Se o Morpheus estiver desconectado da nuvem por um período, configurável, deverá avisar o usuário, por meio de uma mensagem de e-mail.
-\item Verificação do time-stamp: Quando uma nova mensagem chegar, seu timestamp deverá ser verificado, e a mensagem tomará curso somente se não for obsoleta.
-\item Tomadas de ação: Quando o usuário requisitar uma tomada de ação, esta deverá ser enviada por meio de uma mensagem ao Morpheus, o qual a transmitirá ao módulo.
-\item Configuração em arquivo: As configurações básicas do Morpheus devem ser registradas em um arquivo YAML, que será lido durante a inicialização.
-\item Listeners para diferentes tipos de mensagens: Deverão haver listeners para todos os tipos de mensagens, definidos aqui, que serão recebidos da nuvem e dos módulos.
-\end{itemize}
+\begin{description}
+
+\item \textbf{Configuração dos módulos}
+
+De acordo com as regras e interfaces estabelecidas, documentadas aqui, os módulos podem ser configurados por meio de mensagens. Os serviços da nuvem enviarão os parâmetros de configuração de cada módulo ao Morpheus, que os transmitirão ao módulo.
+
+\item \textbf{Conexão de emergência}
+
+Quando não há conexão da casa com a nuvem, deverá haver um canal para comunicação local entre o aplicativo e alguns dos módulos, com funcionalidades limitadas, apenas para serviços essenciais.
+
+\item \textbf{Envio de dados para a nuvem}
+
+Dados provenientes de sensores são enviados para a nuvem, para que sejam tratados de acordo com as regras de Business Intelligence, por meio de Machine Learning.
+
+\item \textbf{Persistência de dados}
+
+Quando não houver conexão, o servidor deverá armazenar os dados localmente e, quando solicitado, enviá-los à nuvem.
+
+\item \textbf{Tentativas de reenvio}
+
+Quando uma mensagem não é enviada com sucesso à nuvem, o Morpheus deverá tentar novamente, um número configurável de vezes, em um 
+curto espaço de tempo. Isso ocorre pois, se determinada mensagem não pode ser enviada em uma janela temporal, ela perde o seu sentido, mesmo por questões de segurança.
+
+\item \textbf{Envio de e-mail}
+
+Se o Morpheus estiver desconectado da nuvem por um período, configurável, deverá avisar o usuário, por meio de uma mensagem de e-mail.
+
+\item \textbf{Verificação do time-stamp}
+
+Quando uma nova mensagem chegar, seu timestamp deverá ser verificado, e a mensagem tomará curso somente se não for obsoleta.
+
+\item \textbf{Tomadas de ação}
+
+Quando o usuário requisitar uma tomada de ação, esta deverá ser enviada por meio de uma mensagem ao Morpheus, o qual a transmitirá ao módulo.
+
+\item \textbf{Configuração em arquivo}
+
+As configurações básicas do Morpheus devem ser registradas em um arquivo YAML, que será lido durante a inicialização.
+
+\item \textbf{Listeners para diferentes tipos de mensagens}
+
+Deverão haver listeners para todos os tipos de mensagens, definidos aqui, que serão recebidos da nuvem e dos módulos.
+
+\end{description}
 
 \subsubsection{Requisitos Não Funcionais}
-\begin{itemize}
-\item Processamento concorrente: Toda a infraestrutura do Morpheus deverá permitir o processamento de mensagens de maneira concorrente. Não deve ser permitido esperar o processamento completo de uma mensagem para que outra comece a ser processada.
-\item Utilização de criptografia na troca de mensagens com a nuvem: Os dados que trafegam entre a nuvem e o servidor local não devem ser codificados em texto puro. Devem estar protegidos contra sniffers.
-\item Conversão de mensagens : As mensagens enviadas à nuvem devem estar em formato JSON, e não no protocolo definido aqui, para troca de mensagens entre os módulos e o Morpheus.
-\item Serialização das configurações: O servidor deverá serializar e persistir as configurações relativas aos módulos que foram configurados, e carregá-las em sua inicialização.
-\item Destruição de pools de threads: Ao ser desligado, todos os pools de threads criados devem ser destruídos.
-\end{itemize}
+\begin{description}
+\item \textbf{Processamento concorrente}
+
+Toda a infraestrutura do Morpheus deverá permitir o processamento de mensagens de maneira concorrente. Não deve ser permitido esperar o processamento completo de uma mensagem para que outra comece a ser processada.
+
+\item \textbf{Utilização de criptografia na troca de mensagens com a nuvem}
+
+Os dados que trafegam entre a nuvem e o servidor local não devem ser codificados em texto puro. Devem estar protegidos contra sniffers.
+
+\item \textbf{Conversão de mensagens}
+
+As mensagens enviadas à nuvem devem estar em formato JSON, e não no protocolo definido aqui, para troca de mensagens entre os módulos e o Morpheus.
+
+\item \textbf{Serialização das configurações}
+
+O servidor deverá serializar e persistir as configurações relativas aos módulos que foram configurados, e carregá-las em sua inicialização.
+
+\item \textbf{Destruição de pools de threads}
+
+Ao ser desligado, todos os pools de threads criados devem ser destruídos.
+
+\end{description}
 
 \subsection{Especificações}
 
@@ -80,12 +127,12 @@ Temos as seguintes regras:
 
 \subsubsection{Regras de negócio}
 O servidor foi desenvolvido com base nas regras de negócio seguintes.
-\begin{itemize}
+\begin{enumerate}
 \item Após a compra de cada módulo, o usuário deverá registrar online a aquisição. O servidor da nuvem enviará para o servidor local, da casa, a requisição para configurar o módulo.
-\item Cada módulo enviará mensagens para o servidor local com o seus dados, por meio do MQTT.
-\item Troca de senha do wifi: O usuário cadastra no site a nova senha. O servidor na nuvem faz a requisição para o servidor local, o qual enviará um arquivo de configuração com a nova senha para cada um dos módulos registrados. Após a configuração de todos os módulos, o servidor local envia resposta de sucesso para a nuvem, a qual indica ao usuário que a troca de senha já pode ser feita com sucesso.
-\item Todo módulo sai de fábrica configurado com o tópico que deve se inscrever e publicar, com base no seu ID, o qual será o seu usuário, e também haverá a senha para se autenticar junto ao broker MQTT.
-\end{itemize}
+\item Cada módulo enviará mensagens para o servidor local com o seus dados, por meio do \wmqtt.
+\item Para a troca de senha do \wwifi, o usuário cadastra no site a nova senha. O servidor na nuvem faz a requisição para o servidor local, o qual enviará um arquivo de configuração com a nova senha para cada um dos módulos registrados. Após a configuração de todos os módulos, o servidor local envia resposta de sucesso para a nuvem, a qual indica ao usuário que a troca de senha já pode ser feita com sucesso.
+\item Todo módulo sai de fábrica configurado com o tópico que deve se inscrever e publicar, com base no seu ID, o qual será o seu usuário, e também haverá a senha para se autenticar junto ao broker \wmqtt.
+\end{enumerate}
 
 \subsubsection{Definição de interfaces}
 \begin{itemize}
@@ -329,7 +376,7 @@ vl5: <valor>
 \paragraph{Requisição de dados (data\_request)}
 \begin{itemize}
 \item Sentido: Do módulo para o servidor
-\item Protocolo: MQTT
+\item Protocolo: \wmqtt
 \item Uso: Requisição de alguma informação do servidor. Ex.: Atualização de hora
 \end{itemize}
 
@@ -344,7 +391,7 @@ $ty: time_update
 
 \subsubsection{Testes realizados da comunicação Morpheus e módulos:}
 
-Para que fosse simulado o envio de mensagens, o aplicativo MQTT Fx foi utilizado. Com o uso deste software, é possível se inscrever em determinado tópico (enviando as credenciais para o broker, tanto em forma de usuário e senha, quando em forma de certificados), bem como publicar no tópico desejado.
+Para que fosse simulado o envio de mensagens, o aplicativo \wmqtt Fx foi utilizado. Com o uso deste software, é possível se inscrever em determinado tópico (enviando as credenciais para o broker, tanto em forma de usuário e senha, quando em forma de certificados), bem como publicar no tópico desejado.
 
 \textbf{Requisição de acionamento 1:}
 \begin{lstlisting}
@@ -384,7 +431,7 @@ swreset: 1
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação de SW Restart no tópico MQTT m2s}
+\textit{Esperado: Confirmação de SW Restart no tópico \wmqtt m2s}
 
 \textit{Resultado: De acordo}
 
@@ -398,7 +445,7 @@ autoreset: 1
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação no tópico MQTT m2s}
+\textit{Esperado: Confirmação no tópico \wmqtt m2s}
 
 \textit{Resultado: De acordo}
 
@@ -412,7 +459,7 @@ updated_ntp: 293029
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação no tópico MQTT m2s}
+\textit{Esperado: Confirmação no tópico \wmqtt m2s}
 
 \textit{Resultado: De acordo}
 
@@ -428,7 +475,7 @@ new_rele2name: Portal2
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação no tópico MQTT m2s}
+\textit{Esperado: Confirmação no tópico \wmqtt m2s}
 
 \textit{Resultado: De acordo}
 
@@ -447,7 +494,7 @@ ap_password: 1234
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação no tópico MQTT m2s}
+\textit{Esperado: Confirmação no tópico \wmqtt m2s}
 
 \textit{Resultado: De acordo}
 
@@ -461,7 +508,7 @@ Janela4: 01234
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação no tópico MQTT m2s}
+\textit{Esperado: Confirmação no tópico \wmqtt m2s}
 
 \textit{Resultado: De acordo}
 
@@ -476,7 +523,7 @@ backlight: 1
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação no tópico MQTT m2s}
+\textit{Esperado: Confirmação no tópico \wmqtt m2s}
 
 \textit{Resultado: De acordo}
 
@@ -486,7 +533,7 @@ messageToSend = UmiTempPresReles(0,80,25,1,1,0);
 //UmiTempPresReles(unsigned long ts, int umidade, float temp, bool pres, bool rele1, bool rele2)
 \end{lstlisting}
 
-\textit{Esperado: Mensagem no Tópico MQTT m2s}
+\textit{Esperado: Mensagem no Tópico \wmqtt m2s}
 \textit{Resultado: De acordo}
 
 
@@ -597,10 +644,10 @@ As mensagens de data\_transmission também seguem o mesmo protocolo de mensagens
 
 \subsection{Configurações}
 
-\subsubsection{MQTT Mosquitto broker - Configuração}
+\subsubsection{\wmqtt Mosquitto broker - Configuração}
 
 \begin{enumerate}
-\item Para efeitos de desenvolvimento e testes, criamos uma instância na nuvem do MQTT Broker Mosquitto. Para um cenário real, essa instância rodará localmente, e somente aceitará conexões vinda da localhost.
+\item Para efeitos de desenvolvimento e testes, criamos uma instância na nuvem do \wmqtt Broker Mosquitto. Para um cenário real, essa instância rodará localmente, e somente aceitará conexões vinda da localhost.
 \item Configurar restrição de tópicos na instância. Exemplo em: http://www.steves-internet-guide.com/topic-restriction-mosquitto-configuration/
 \item Os tópicos que finalizam com s2m devem ser exclusivamente restritos para o Morpheus. Ninguém mais consegue publicar nestes tópicos. Morpheus pode publicar e ouvir todos os tópicos.
 \end{enumerate}
@@ -660,15 +707,26 @@ mosquitto -c /etc/mosquitto/conf.d/mosquitto.conf -d
 
 \subsubsection{Senhas}
 \begin{enumerate}
-\item Criar o arquivo de senha no formato usuario:senha e usar sudo mosquitto\_passwd -U passwd para gerar o hash da senha
+\item Criar o arquivo de senha no formato \lstinline{usuario:senha}, e usar:
+
+\begin{lstlisting}
+  sudo mosquitto_passwd -U passwd
+\end{lstlisting}
+para gerar o hash da senha
+
 \item No mosquiito.conf, insira:
-allow\_anonymous false
-password\_file c:\textbackslash mosquitto\textbackslash passwords.txt \# Windows machine
+
+\begin{lstlisting}
+allow_anonymous false
+password_file c:\textbackslash mosquitto\textbackslash passwords.txt # Windows machine
+\end{lstlisting}
 Tutorial:http://www.steves-internet-guide.com/mqtt-username-password-example/
+
+
 \end{enumerate}
 
 
-\subsubsection{Casos de teste para Controle de Acesso nos Tópicos MQTT entre módulos e nuvem}
+\subsubsection{Casos de teste para Controle de Acesso nos Tópicos \wmqtt entre módulos e nuvem}
 \begin{enumerate}
 \item
 Conectar na porta 1883 sem usuário e senha.
