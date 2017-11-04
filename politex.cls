@@ -583,8 +583,7 @@
   \parbox[b]{\textwidth}{%
     \parbox[t]{4ex}{\thechapter}%
     \parbox[t]{\textwidth-4ex-1ex}%
-      {\interlinepenalty\@M\raggedright%
-       \MakeUppercase{#1}%
+      {\interlinepenalty\@M\raggedright{#1}%
       }%
     \vspace*{0cm}
     }\\[2pt]%
@@ -947,7 +946,7 @@
 
 \providecommand{\ABNTautordata}{}
 \newcommand{\autor}[1]{\renewcommand{\ABNTautordata}{\uppercase{#1}}}
-\newcommand{\autorformat}{\large\ABNTsectionfont}
+\newcommand{\autorformat}{\large\ABNTsectionfont\mdseries}
 
 \providecommand{\ABNTorientadordata}{}
 \providecommand{\ABNTorientadorname}{}
@@ -1012,7 +1011,7 @@
 	% Distance = 12cm - (margin top) - (authors height)
 	\setlength{\authorTitleLength}{12cm - 3.2cm - \totalheightof{\vbox{\autorformat \ABNTautordata}}}
 	\vspace{\authorTitleLength}
-    {\tituloformat \ABNTuppercasetitulodata}
+    {\tituloformat \ABNTtitulodata}
 
     % local e data
     \vfill
@@ -1037,7 +1036,7 @@
 	% Distance = 12cm - (margin top) - (authors height)
 	\setlength{\authorTitleLength}{12cm - 3.2cm - \totalheightof{\vbox{\autorformat \ABNTautordata}}}
 	\vspace{\authorTitleLength}
-    {\tituloformat \ABNTuppercasetitulodata}
+    {\tituloformat \ABNTtitulodata}
 
     % comentário
     \vspace{2cm}
@@ -1070,7 +1069,7 @@
 	% Distance = 12cm - (margin top) - (authors height)
 	\setlength{\authorTitleLength}{12cm - 3.2cm - \totalheightof{\vbox{\autorformat \ABNTautordata}}}
 	\vspace{\authorTitleLength}
-    {\tituloformat \ABNTuppercasetitulodata}
+    {\tituloformat \ABNTtitulodata}
 
     % comentário
     \vspace{2cm}
