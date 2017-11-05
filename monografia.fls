@@ -195,9 +195,6 @@ INPUT ./images/hedwigLogo.png
 INPUT ./images/hedwigLogo.png
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
 INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/base/omscmr.fd
-INPUT images/diagramaModuloAcesso.png
-INPUT ./images/diagramaModuloAcesso.png
-INPUT ./images/diagramaModuloAcesso.png
 INPUT chapters/projetos_relacionados.tex
 INPUT chapters/projetos_relacionados.tex
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
@@ -245,6 +242,9 @@ INPUT ./images/entradasEmA0.png
 INPUT images/circuitoAntiTravamento.png
 INPUT ./images/circuitoAntiTravamento.png
 INPUT ./images/circuitoAntiTravamento.png
+INPUT images/diagramaModuloAcesso.png
+INPUT ./images/diagramaModuloAcesso.png
+INPUT ./images/diagramaModuloAcesso.png
 INPUT images/estruturaMicrosservicos.png
 INPUT ./images/estruturaMicrosservicos.png
 INPUT ./images/estruturaMicrosservicos.png
