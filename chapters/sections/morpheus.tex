@@ -7,7 +7,7 @@ Morpheus é o servidor local responsável pela interconexão da casa inteligente
 \subsection{Plataforma}
 O Morpheus tem seu desenvolvimento realizado em Java. Conforme será detalhado em seguida, tal escolha foi realizada com base na portabilidade que a máquina virtual Java (JVM) oferece, bem como na disponibilidade de bibliotecas e serviços largamente utilizados em aplicações comerciais. O servidor foi construído utilizando-se o Spring Boot Framework, com a utilização de seu container de Inversão de Controle (IoC - Inversion of Control), para injeção de dependências. Essa técnica diminui o acoplamento entre classes, e permite a evolução e implementação de novas funcionalidades de maneira mais facilitada. 
 
-Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um broker \wmqtt, o qual utilizamos o Mosquitto, por ser uma solução Open Source largamente utilizada em projetos de Internet of Things. Conforme detalhado a frente, configurações de segurança específicas para nosso projeto foram registradas no broker. Para a conexão com os serviços na nuvem, é utilizado um canal Websocket, aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, a qual está documentada aqui. Na figura a seguir, é possível verificar a arquitetura desenvolvida.
+Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um broker \wmqtt{}, o qual utilizamos o Mosquitto, por ser uma solução Open Source largamente utilizada em projetos de Internet of Things. Conforme detalhado a frente, configurações de segurança específicas para nosso projeto foram registradas no broker. Para a conexão com os serviços na nuvem, é utilizado um canal Websocket, aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, a qual está documentada aqui. Na figura a seguir, é possível verificar a arquitetura desenvolvida.
 
 \subsection{Tecnologias utilizadas}
 Toda a implementação do Morpheus foi realizada em java. Desde o começo do projeto, decidiu-se que a escolha de tecnologias para implementação das diversas camadas deveria ter por base os seus benefícios, e não necessitaria ser rígida ou uniforme. Assim, o principal esforço foi sempre no planejamento das interfaces de comunicação entre as partes, que poderiam ser desenvolvidas em linguagens complementamente diferentes. Os sistemas de nuvem, por exemplo, foram implementados em NodeJs, com front-end em React. Os módulos de hardware foram programados em C e, como comentado acima, o controlador local em Java.
@@ -16,7 +16,7 @@ Essa flexibilidade permitiu com que fossem utilizados os recursos e tecnologias 
 Um requisito essencial para o controlador local é a sua robustez. Em um cenário em que este controlador não esteja disponível, a casa passa a funcionar em estado de emergência, onde os comandos são reduzidos, e não permitem acesso remoto. Entretanto, há inúmeras possibilidades e eventos que poderiam causar a queda deste controlador, muitas das quais referem-se a situações fora de nosso alcance. A falta de energia na residência, ou de internet, interrompe o seu funcionamento, e não é possível ter controle sobre tal situação. O mesmo ocorre no evento de problemas de hardware, na plataforma que o sistema estiver rodando. Ao mesmo tempo que tais situações estejam fora de nosso controle, os planos para contenção dos seus efeitos são complexos, custosos e fogem do escopo deste projeto, como seria o caso de se implementar duplicações, banco de baterias e tecnologia celular para comunicação secundária.
 
 Há, entretanto, problemas no software que poderiam afetar o funcionamento do controlador. Por meio de testes, muitos desses problemas podem ser evitados, ainda em tempo de desenvolvimento. A utilização de tecnologias que facilitam o desenvolvimento seguro da aplicação é uma vantagem para este caso, já que ferramentas estão disponíveis para que haja maior controle sobre o código desenvolvido, e a pode-se detectar erros mais facilmente, ainda em tempo de compilação, por exemplo.
-O controlador local também precisa lidar com as requisições assíncronamente. Parte desta tarefa é facilitada, com a utilização do sistema de mensageria \wmqtt, operado pelo Broker Mosquitto. Com sua utilização, mensagens podem ser enviadas, e mesmo que o controlador não consiga recebê-las, elas não serão perdidas. Entretanto, devido às características do sistema proposto, as mensagens precisam ser operadas sem maiores demoras. O controlador deve receber e processar as mensagens paralelamente, e não esperar o processamento de uma mensagem inteira, para assim processar a próxima, de modo que paralelismo deve ser parte essencial da arquitetura.
+O controlador local também precisa lidar com as requisições assíncronamente. Parte desta tarefa é facilitada, com a utilização do sistema de mensageria \wmqtt{}, operado pelo Broker Mosquitto. Com sua utilização, mensagens podem ser enviadas, e mesmo que o controlador não consiga recebê-las, elas não serão perdidas. Entretanto, devido às características do sistema proposto, as mensagens precisam ser operadas sem maiores demoras. O controlador deve receber e processar as mensagens paralelamente, e não esperar o processamento de uma mensagem inteira, para assim processar a próxima, de modo que paralelismo deve ser parte essencial da arquitetura.
 
 Ainda, para a integração com os serviços da nuvem, é necessário a utilização de JSON, para a serialização das mensagens, em um formato que pode ser desserializado posteriormente, independentemente da plataforma. Para a utilização de WebSockets, é necessário o uso de bibliotecas disponíveis, de modo que o desenvolvimento seja facilitado. Por último, é necessário gerenciar eficientemente todas essas dependências. Atualizá-las quando necessário, ou substituí-las, se desejado, deve ser uma tarefa simples.
 
@@ -25,7 +25,7 @@ A arquitetura oferecida pelo Java mostra ser efetiva para as necessidades levant
 Java é utilizado em vasta gama de aplicações, deste complexos softwares comerciais como a IDE Eclipse, até software embutidos, como controladores de BlueRay\footnote{http://www.oracle.com/technetwork/articles/javame/bluray-142687.html}. 
 O padrão de inversão de controle, com injeção de dependências, foi utilizado para o desenvolvimento, de modo a diminuir o acoplamento entre as partes, e facilitar futuras modificações. Assim, cada módulo recebe, em seu construtor, todas as dependências que serão utilizadas. A responsabilidade da construção de tais dependências passa, então, a ser responsabilidade do gerenciador de contexto, e não mais do módulo. A escolha do Java 8 foi decidida para que o desenvolvimento possa utilizar certos recursos de paradigmas funcionais, como o conceito de Streams de dados e Funções Lambdas.
 
-Internamente, o Morpheus é dividido em pacotes, que responsáveis pela modelagem do problema. Há classes que modelam o domínio, que executam as regras de negócio, que fazem a interface entre outros sistemas (\wmqtt Mosquitto Broker e nuvem), e também para execução de tarefas como backup de mensagens, e serviços de conversão.
+Internamente, o Morpheus é dividido em pacotes, que responsáveis pela modelagem do problema. Há classes que modelam o domínio, que executam as regras de negócio, que fazem a interface entre outros sistemas (\wmqtt{} Mosquitto Broker e nuvem), e também para execução de tarefas como backup de mensagens, e serviços de conversão.
 Assim que uma mensagem chega ao Morpheus, ela é reconhecida e é realizado o seu parsing, para as estruturas de domínio internas. Caso haja algum erro, para mensagens vindas da nuvem, há o envio de relatório com os problemas encontrados. A partir daí, a mensagem é colocada em uma fila interna, onde outro módulo será responsável por capturá-la e realizar o processamento necessário.
 
 \begin{figure}
@@ -129,9 +129,9 @@ Temos as seguintes regras:
 O servidor foi desenvolvido com base nas regras de negócio seguintes.
 \begin{enumerate}
 \item Após a compra de cada módulo, o usuário deverá registrar online a aquisição. O servidor da nuvem enviará para o servidor local, da casa, a requisição para configurar o módulo.
-\item Cada módulo enviará mensagens para o servidor local com o seus dados, por meio do \wmqtt.
+\item Cada módulo enviará mensagens para o servidor local com o seus dados, por meio do \wmqtt{}.
 \item Para a troca de senha do \wwifi, o usuário cadastra no site a nova senha. O servidor na nuvem faz a requisição para o servidor local, o qual enviará um arquivo de configuração com a nova senha para cada um dos módulos registrados. Após a configuração de todos os módulos, o servidor local envia resposta de sucesso para a nuvem, a qual indica ao usuário que a troca de senha já pode ser feita com sucesso.
-\item Todo módulo sai de fábrica configurado com o tópico que deve se inscrever e publicar, com base no seu ID, o qual será o seu usuário, e também haverá a senha para se autenticar junto ao broker \wmqtt.
+\item Todo módulo sai de fábrica configurado com o tópico que deve se inscrever e publicar, com base no seu ID, o qual será o seu usuário, e também haverá a senha para se autenticar junto ao broker \wmqtt{}.
 \end{enumerate}
 
 \subsubsection{Definição de interfaces}
@@ -376,7 +376,7 @@ vl5: <valor>
 \paragraph{Requisição de dados (data\_request)}
 \begin{itemize}
 \item Sentido: Do módulo para o servidor
-\item Protocolo: \wmqtt
+\item Protocolo: \wmqtt{}
 \item Uso: Requisição de alguma informação do servidor. Ex.: Atualização de hora
 \end{itemize}
 
@@ -391,7 +391,7 @@ $ty: time_update
 
 \subsubsection{Testes realizados da comunicação Morpheus e módulos:}
 
-Para que fosse simulado o envio de mensagens, o aplicativo \wmqtt Fx foi utilizado. Com o uso deste software, é possível se inscrever em determinado tópico (enviando as credenciais para o broker, tanto em forma de usuário e senha, quando em forma de certificados), bem como publicar no tópico desejado.
+Para que fosse simulado o envio de mensagens, o aplicativo \wmqtt{} Fx foi utilizado. Com o uso deste software, é possível se inscrever em determinado tópico (enviando as credenciais para o broker, tanto em forma de usuário e senha, quando em forma de certificados), bem como publicar no tópico desejado.
 
 \textbf{Requisição de acionamento 1:}
 \begin{lstlisting}
@@ -431,7 +431,7 @@ swreset: 1
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação de SW Restart no tópico \wmqtt m2s}
+\textit{Esperado: Confirmação de SW Restart no tópico \wmqtt{} m2s}
 
 \textit{Resultado: De acordo}
 
@@ -445,7 +445,7 @@ autoreset: 1
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação no tópico \wmqtt m2s}
+\textit{Esperado: Confirmação no tópico \wmqtt{} m2s}
 
 \textit{Resultado: De acordo}
 
@@ -459,7 +459,7 @@ updated_ntp: 293029
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação no tópico \wmqtt m2s}
+\textit{Esperado: Confirmação no tópico \wmqtt{} m2s}
 
 \textit{Resultado: De acordo}
 
@@ -475,7 +475,7 @@ new_rele2name: Portal2
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação no tópico \wmqtt m2s}
+\textit{Esperado: Confirmação no tópico \wmqtt{} m2s}
 
 \textit{Resultado: De acordo}
 
@@ -494,7 +494,7 @@ ap_password: 1234
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação no tópico \wmqtt m2s}
+\textit{Esperado: Confirmação no tópico \wmqtt{} m2s}
 
 \textit{Resultado: De acordo}
 
@@ -508,7 +508,7 @@ Janela4: 01234
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação no tópico \wmqtt m2s}
+\textit{Esperado: Confirmação no tópico \wmqtt{} m2s}
 
 \textit{Resultado: De acordo}
 
@@ -523,7 +523,7 @@ backlight: 1
 @
 \end{lstlisting}
 
-\textit{Esperado: Confirmação no tópico \wmqtt m2s}
+\textit{Esperado: Confirmação no tópico \wmqtt{} m2s}
 
 \textit{Resultado: De acordo}
 
@@ -533,7 +533,7 @@ messageToSend = UmiTempPresReles(0,80,25,1,1,0);
 //UmiTempPresReles(unsigned long ts, int umidade, float temp, bool pres, bool rele1, bool rele2)
 \end{lstlisting}
 
-\textit{Esperado: Mensagem no Tópico \wmqtt m2s}
+\textit{Esperado: Mensagem no Tópico \wmqtt{} m2s}
 \textit{Resultado: De acordo}
 
 
@@ -644,36 +644,156 @@ As mensagens de data\_transmission também seguem o mesmo protocolo de mensagens
 
 \subsection{Configurações}
 
-\subsubsection{\wmqtt Mosquitto broker - Configuração}
+\subsubsection{Configuração do \wmqtt{} Mosquitto broker}
+
+Em situações reais, cada casa terá uma instância do \emph{Mosquitto Broker} rodando, independente de todas as outras, e aceitando conexões locais, somente. Entretanto, para que fossem realizados testes e simulações, a instalação e execução de uma instância em cada máquina diferente, locais, seria inviável. Para tanto, foi configurada uma instalação em uma máquina remota - Digital Ocean\footnote{Digital Ocean: https://www.digitalocean.com/}, mas com configurações diferentes, uma para cada residência simulada. São executadas instâncias como processos \emph{Daemon}, e vinculadas à portas diferentes - a partir da porta 8883 (conexão com criptografia), para Morpheus, e 1883 para módulos. Também foi criado um script em \emph{bash} para iniciar o processo e ativar as portas no \emph{firewall}. São necessárias as seguintes configurações, para a máquina remota.
 
 \begin{enumerate}
-\item Para efeitos de desenvolvimento e testes, criamos uma instância na nuvem do \wmqtt Broker Mosquitto. Para um cenário real, essa instância rodará localmente, e somente aceitará conexões vinda da localhost.
-\item Configurar restrição de tópicos na instância. Exemplo em: http://www.steves-internet-guide.com/topic-restriction-mosquitto-configuration/
-\item Os tópicos que finalizam com s2m devem ser exclusivamente restritos para o Morpheus. Ninguém mais consegue publicar nestes tópicos. Morpheus pode publicar e ouvir todos os tópicos.
+\item Habilitar a restrição de tópicos na instância\footnote{Mosquitto Configuration http://www.steves-internet-guide.com/topic-restriction-mosquitto-configuration/}. A restrição deve levar em conta as credenciais do dispositivo logado no momento (para definição do formato dos tópicos).
+
+\item Os tópicos que finalizam em \emph{s2m} devem ser exclusivamente restritos ao Morpheus. Nenhum outro dispositivo deve conseguir publicar nestes tópicos. O Morpheus pode publicar e ouvir todos os tópicos.
+
+\item Os tópicos que finalizam em \emph{m2s} são exclusivos de cada módulo. O \emph{broker} saberá se um módulo pode se inscrever ou publicar no tópico de acordo com o seu número serial.
+
+\item Para cada casa, os módulos devem ser conectar a partir da porta 1883 (e.g. primeira casa \textrightarrow{} 1883; segunda casa \textrightarrow{} 1884). Essa porta não exige criptografia, mas deve exigir somente usuário e senha (que estarão vulneráveis).
+
+\item O Morpheus será obrigado a se conectar a partir da porta 8883 (e.g. primeira casa \textrightarrow{} 8884; segunda casa \textrightarrow{} 8884), passando suas credenciais encriptadas.
+
 \end{enumerate}
 
-\subsubsection{Estratégia}
+\subsubsection{Guia de instalação (Testado com Ubuntu 16.10 x64)}\label{sec:arquivosCriados}
 \begin{enumerate}
-\item Usar a porta padrão 1883 para os módulos se conectarem. Essa porta não exige criptografia, deve exigir somente usuário e senha (que estarão vulneráveis).
-\item O Morpheus será obrigado a se conectar por SSL na porta 8883, passando suas credenciais. Assim, suas credenciais serão protegidas.
-\item Configurar a proteção de tópicos.
+\item Utilizar o terminal para fornecer os seguintes comandos.
+
+\lstinline{sudo apt-get update}
+
+\lstinline{sudo apt-get install mosquitto mosquitto-clients}
+
+\lstinline{sudo systemctl enable mosquitto}
+
+\item Criar pastas para cada casa, em \lstinline{/etc/mosquitto/conf.d}, com os nomes \emph{home\textless Número\textgreater }. Deve se adicionar os arquivos \emph{acl\_list}, \emph{m\_home\_\textless Número\textgreater .conf}, \emph{passwd}. O conteúdo de cada um desses arquivos é mostrado abaixo (relativos à casa de número 1).
+
+
+\textbf{acl\_list}
+
+\begin{lstlisting}[language=bash]
+    # General section
+    
+    # User specific section
+    ## Morpheus
+    user adf654wae84fea5d8ea6
+    topic readwrite hw/#
+    
+    # Client section
+    
+    ## Modules can write only to the topic with their username in the m2s version
+    pattern write hw/%u/m2s
+    
+    ## Modules can only read to the topic with their username in the s2m version
+    pattern read hw/%u/s2m
+\end{lstlisting}
+
+\textbf{m\_home\_1.conf}
+
+\begin{lstlisting}[language=bash]
+    password_file /etc/mosquitto/conf.d/home1/passwd
+    allow_anonymous false
+    acl_file /etc/mosquitto/conf.d/home1/acl_list
+    
+    # General Listener
+    # When running in production, this dhould bind to localhost
+    port 1883
+    require_certificate false
+    use_username_as_clientid true
+    
+    # Morpheus Listener
+    # When running in production, this should bind to localhost
+    listener 8883
+    cafile /etc/mosquitto/ca_certificates/ca.crt
+    keyfile /etc/mosquitto/certs/mosquitto.key
+    certfile /etc/mosquitto/certs/mosquitto.crt
+    require_certificate true
+\end{lstlisting}
+
+\textbf{passwd}
+
+\begin{lstlisting}[language=bash]
+    0002D3D7:135876
+    01344682:374028
+    000750A1:524708
+    001A1B07:321115
+    0014BB3E:147203
+    asd561asd5asd984faee:852456987
+\end{lstlisting}
+
+\item Para execução do \emph{script}, basta utilizar o comando seguinte (na pasta onde o arquivo se localiza).
+
+\lstinline{. start.sh}
+
+O conteúdo do \emph{script} é mostrado na listagem seguinte.
+
+\begin{lstlisting}[language=bash]
+    #!/bin/bash
+    
+    NUMBER_OF_HOMES=4
+    BASE_PORT_MORPHEUS=8882
+    BASE_PORT_MODULES=1882
+    
+    echo "Oi, $USER! Bem vindo ao MQTT - Hedwig"
+    echo $'--------------------------------------\n'
+    
+    echo 'Desativando o firewall...'
+    `sudo ufw disable > /dev/null`
+    echo 'Firewall desativado!'
+    echo $'--------------------------------------\n'
+    
+    
+    echo 'Parando os processos do mosquitto...'
+    
+    for each_instance_pid in `pgrep mosquitto`; do
+    `sudo kill -9 $each_instance_pid`
+    echo "Instancia com PID $each_instance_pid eliminada"
+    done
+    
+    echo 'Todos os processos do mosquitto parados'
+    echo $'--------------------------------------\n'
+    
+    echo 'Iniciando os processos do mosquitto...'
+    for count in `seq 1 $NUMBER_OF_HOMES`; do
+    
+    echo "Iniciando Casa $count..."
+    `sudo mosquitto -c conf.d/home"$count"/m_home_"$count".conf -d`
+    echo "Casa $count iniciada!"
+    
+    morpheus_port_number=$((BASE_PORT_MORPHEUS+count))
+    modules_port_number=$((BASE_PORT_MODULES+count))
+    
+    echo "Adicionando Casa $count ao firewall..."
+    
+    `sudo ufw allow "$morpheus_port_number"/tcp > /dev/null`
+    `sudo ufw allow "$modules_port_number"/tcp > /dev/null`
+    echo "Adicionando Casa $count adicionada ao firewall!"
+    echo ''
+    done
+    
+    echo 'Todos os processos do mosquitto iniciados!'
+    echo $'--------------------------------------\n'
+    
+    echo 'Ativando firewall...'
+    
+    `yes | sudo ufw enable > /dev/null`
+    
+    echo 'Firewall ativado!'
+    echo $'--------------------------------------\n'
+    
+    echo 'Tudo pronto, divirta-se!'    
+\end{lstlisting}
+
 \end{enumerate}
-
-\subsubsection{Guia de instalação (Testado no Ubuntu 16,10 x64)}
-Instalação
-\begin{enumerate}
-\item \lstinline{sudo apt-get update}
-\item \lstinline{sudo apt-get install mosquitto mosquitto-clients}
-\item \lstinline{sudo systemctl enable mosquitto}
-\item \lstinline{Create a .conf file in /etc/mosquitto/conf.d}
-\end{enumerate}
-
-
-\# Listener
-
-listener 8883
 
 \subsubsection{Criação dos certificados}
+
+Por fim, deve-se criar certificados válidos, tanto para o \emph{Broker Mosquitto}, quanto para as instâncias do Morpheus. Neste projeto, os certificados são gerados e auto-assinados. Entretanto, em um ambiente de produção, deve-se haver uma autoridade certificadora independente, para garantia da validade e segurança.
 
 \begin{enumerate}
 \item
@@ -699,34 +819,15 @@ openssl x509 -req -in morpheus.csr -CA ../ca.crt -CAkey ../ca.key -CAcreateseria
 openssl x509 -in morpheus.crt -outform der -out morpheus.der    
 \end{lstlisting}
 
-\subsubsection{Comandos úteis}
-Inicia na manualmente o mosquitto com as configurações do arquivo. Útil para checar se há algum erro no .conf.
-\begin{lstlisting}[language=bash]
-mosquitto -c /etc/mosquitto/conf.d/mosquitto.conf -d
-\end{lstlisting}
-
 \subsubsection{Senhas}
-\begin{enumerate}
-\item Criar o arquivo de senha no formato \lstinline{usuario:senha}, e usar:
+
+Conforme mostrado anteriormente, no guia de instalação, \ref{sec:arquivosCriados}, o arquivo de senha deve ser criado no formato \lstinline{usuario:senha}. Deve-se, então rodar o comando seguinte, para que a senha não fique exposta em formato de texto:
 
 \begin{lstlisting}
   sudo mosquitto_passwd -U passwd
 \end{lstlisting}
-para gerar o hash da senha
 
-\item No mosquiito.conf, insira:
-
-\begin{lstlisting}
-allow_anonymous false
-password_file c:\textbackslash mosquitto\textbackslash passwords.txt # Windows machine
-\end{lstlisting}
-Tutorial:http://www.steves-internet-guide.com/mqtt-username-password-example/
-
-
-\end{enumerate}
-
-
-\subsubsection{Casos de teste para Controle de Acesso nos Tópicos \wmqtt entre módulos e nuvem}
+\subsubsection{Casos de teste para Controle de Acesso nos Tópicos \wmqtt{} entre módulos e nuvem}
 \begin{enumerate}
 \item
 Conectar na porta 1883 sem usuário e senha.
@@ -772,15 +873,14 @@ Esperado: Publicação ou subscrição com sucesso
 Resultado: Bem sucedido.
 \end{enumerate}
 
-\subsubsection{Restrição de Tópicos s2m (Server to Module)}
-\begin{enumerate}
-\item Morpheus consegue em todos que comecem com hw pubsub
-\item Módulos conseguem pub em hw/username/m2s
-\item Módulos conseguem sub em hw/username/s2m
-\end{enumerate}
+Para a realização das configurações acima, foram consultados materiais úteis, conforme a nota.\footnote{Topic Restriction:
 
-Tutorial:http://www.steves-internet-guide.com/topic-restriction-mosquitto-configuration/
+\url{http://www.steves-internet-guide.com/topic-restriction-mosquitto-configuration/}
 
-Sobre Segurança no Mosquitto: http://www.steves-internet-guide.com/mqtt-security-mechanisms/
+Security Mechanisms:
 
-Biblioteca do Arduino para o Client: https://pubsubclient.knolleary.net/index.html
+\url{http://www.steves-internet-guide.com/mqtt-security-mechanisms/}
+
+Pub/Sub Client:
+
+\url{https://pubsubclient.knolleary.net/index.html}}
