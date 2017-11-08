@@ -2,16 +2,16 @@
 
 \subsection{Descrição}
 %TODO add source below
-Morpheus é o servidor local responsável pela interconexão da casa inteligente com os serviços de nuvem. O nome tem sua origem na mitologia grega, onde o Deus dos sonhos, Morpheus, era responsável pelo envio de mensagens entre dois mundos diferentes, os dos deuses, e os dos mortais [add source]. Sua principal atribuição é garantir que a troca de mensagem entre os módulos e a nuvem seja realizada com segurança e confiabilidade, munindo-se de soluções robustas para desempenhar o seu papel.
+Morpheus é o servidor local responsável pela interconexão da casa inteligente com os serviços de nuvem. O nome tem sua origem na mitologia grega, onde o Deus dos sonhos, Morpheus, era responsável pelo envio de mensagens entre dois mundos diferentes, o dos deuses e o dos mortais [add source]. Sua principal atribuição é garantir que a troca de mensagem entre os módulos e a nuvem seja realizada com segurança e confiabilidade, munindo-se de soluções robustas para desempenhar o seu papel.
 
 \subsection{Plataforma}
-O Morpheus tem seu desenvolvimento realizado em Java. Conforme será detalhado em seguida, tal escolha foi realizada com base na portabilidade que a máquina virtual Java (JVM) oferece, bem como na disponibilidade de bibliotecas e serviços largamente utilizados em aplicações comerciais. O servidor foi construído utilizando-se o Spring Boot Framework, com a utilização de seu container de Inversão de Controle (IoC - Inversion of Control), para injeção de dependências. Essa técnica diminui o acoplamento entre classes, e permite a evolução e implementação de novas funcionalidades de maneira mais facilitada. 
+O Morpheus tem seu desenvolvimento realizado em Java. Conforme será detalhado em seguida, tal escolha foi realizada com base na portabilidade que a máquina virtual Java (JVM) oferece, bem como na disponibilidade de bibliotecas e serviços largamente utilizados em aplicações comerciais. O servidor foi construído utilizando-se o Spring Boot Framework, com a utilização de seu container de Inversão de Controle (\textit{IoC - Inversion of Control}), para injeção de dependências. Essa técnica diminui o acoplamento entre classes, e permite a evolução e implementação de novas funcionalidades de maneira mais facilitada.
 
 Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um broker \wmqtt{}, o qual utilizamos o Mosquitto, por ser uma solução Open Source largamente utilizada em projetos de Internet of Things. Conforme detalhado a frente, configurações de segurança específicas para nosso projeto foram registradas no broker. Para a conexão com os serviços na nuvem, é utilizado um canal Websocket, aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, a qual está documentada aqui. Na figura a seguir, é possível verificar a arquitetura desenvolvida.
 
 \subsection{Tecnologias utilizadas}
-Toda a implementação do Morpheus foi realizada em java. Desde o começo do projeto, decidiu-se que a escolha de tecnologias para implementação das diversas camadas deveria ter por base os seus benefícios, e não necessitaria ser rígida ou uniforme. Assim, o principal esforço foi sempre no planejamento das interfaces de comunicação entre as partes, que poderiam ser desenvolvidas em linguagens complementamente diferentes. Os sistemas de nuvem, por exemplo, foram implementados em NodeJs, com front-end em React. Os módulos de hardware foram programados em C e, como comentado acima, o controlador local em Java.
-Essa flexibilidade permitiu com que fossem utilizados os recursos e tecnologias que fossem melhores integrados com os requisitos propostos. 
+Toda a implementação do Morpheus foi realizada em java. Desde o começo do projeto, decidiu-se que a escolha de tecnologias para implementação das diversas camadas deveria ter por base os seus benefícios, e não necessitaria ser rígida ou uniforme. Assim, o principal esforço foi sempre no planejamento das interfaces de comunicação entre as partes, que poderiam ser desenvolvidas em linguagens complementamente diferentes. Os sistemas de nuvem, por exemplo, foram implementados em Node.js, com front-end em React. Os módulos de hardware foram programados em C e, como comentado acima, o controlador local em Java.
+Essa flexibilidade permitiu com que fossem utilizados os recursos e tecnologias que fossem melhores integrados com os requisitos propostos.
 
 Um requisito essencial para o controlador local é a sua robustez. Em um cenário em que este controlador não esteja disponível, a casa passa a funcionar em estado de emergência, onde os comandos são reduzidos, e não permitem acesso remoto. Entretanto, há inúmeras possibilidades e eventos que poderiam causar a queda deste controlador, muitas das quais referem-se a situações fora de nosso alcance. A falta de energia na residência, ou de internet, interrompe o seu funcionamento, e não é possível ter controle sobre tal situação. O mesmo ocorre no evento de problemas de hardware, na plataforma que o sistema estiver rodando. Ao mesmo tempo que tais situações estejam fora de nosso controle, os planos para contenção dos seus efeitos são complexos, custosos e fogem do escopo deste projeto, como seria o caso de se implementar duplicações, banco de baterias e tecnologia celular para comunicação secundária.
 
@@ -20,9 +20,9 @@ O controlador local também precisa lidar com as requisições assíncronamente.
 
 Ainda, para a integração com os serviços da nuvem, é necessário a utilização de JSON, para a serialização das mensagens, em um formato que pode ser desserializado posteriormente, independentemente da plataforma. Para a utilização de WebSockets, é necessário o uso de bibliotecas disponíveis, de modo que o desenvolvimento seja facilitado. Por último, é necessário gerenciar eficientemente todas essas dependências. Atualizá-las quando necessário, ou substituí-las, se desejado, deve ser uma tarefa simples.
 
-A arquitetura oferecida pelo Java mostra ser efetiva para as necessidades levantadas acima. Com a utilização de uma IDE avançada, inúmeros recursos estão disponíveis para limpeza, refatoração, organização do código, etc. O framework Spring Boot\footnote{https://projects.spring.io/spring-boot/} foi utilizado para o desenvolvimento, por oferecer diversos recursos que facilitam o desenvolvimento, com configurações de ambiente e o oferecimento de um container para inversão de controle e injeção de dependência\footnote{https://martinfowler.com/articles/injection.html}. Além disso, o gerenciador de dependências Gradle\footnote{https://gradle.org/} foi também utilizado, por oferecer um poderoso ambiente para configurar, construir e distribuir aplicações. Gradle faz uso de Groovy\footnote{http://groovy-lang.org/}, tecnologia que também roda na Java Virtual Machine (JVM). Por outro lado, o uso de tais ferramentas e plataformas necessita de hardware mais robusto, para que funcione, sendo uma desvantagem. Entretanto, frente aos benefícios, ainda é vantajoso a utilização de Java, neste caso.
+A arquitetura oferecida pelo Java mostra ser efetiva para as necessidades levantadas acima. Com a utilização de uma IDE avançada, inúmeros recursos estão disponíveis para limpeza, refatoração, organização do código, etc. O \textit{framework} Spring Boot\footnote{https://projects.spring.io/spring-boot/} foi utilizado para o desenvolvimento, por oferecer diversos recursos que facilitam o desenvolvimento, com configurações de ambiente e o oferecimento de um container para inversão de controle e injeção de dependência\footnote{https://martinfowler.com/articles/injection.html}. Além disso, o gerenciador de dependências Gradle\footnote{https://gradle.org/} foi também utilizado, por oferecer um poderoso ambiente para configurar, construir e distribuir aplicações. Gradle faz uso de Groovy\footnote{http://groovy-lang.org/}, tecnologia que também roda na \textit{Java Virtual Machine} (JVM). Por outro lado, o uso de tais ferramentas e plataformas necessita de hardware mais robusto, para que funcione, sendo uma desvantagem. Entretanto, frente aos benefícios, ainda é vantajoso a utilização de Java, neste caso.
 
-Java é utilizado em vasta gama de aplicações, deste complexos softwares comerciais como a IDE Eclipse, até software embutidos, como controladores de BlueRay\footnote{http://www.oracle.com/technetwork/articles/javame/bluray-142687.html}. 
+Java é utilizado em vasta gama de aplicações, deste complexos softwares comerciais como a IDE Eclipse, até software embutidos, como controladores de BlueRay\footnote{http://www.oracle.com/technetwork/articles/javame/bluray-142687.html}.
 O padrão de inversão de controle, com injeção de dependências, foi utilizado para o desenvolvimento, de modo a diminuir o acoplamento entre as partes, e facilitar futuras modificações. Assim, cada módulo recebe, em seu construtor, todas as dependências que serão utilizadas. A responsabilidade da construção de tais dependências passa, então, a ser responsabilidade do gerenciador de contexto, e não mais do módulo. A escolha do Java 8 foi decidida para que o desenvolvimento possa utilizar certos recursos de paradigmas funcionais, como o conceito de Streams de dados e Funções Lambdas.
 
 Internamente, o Morpheus é dividido em pacotes, que responsáveis pela modelagem do problema. Há classes que modelam o domínio, que executam as regras de negócio, que fazem a interface entre outros sistemas (\wmqtt{} Mosquitto Broker e nuvem), e também para execução de tarefas como backup de mensagens, e serviços de conversão.
@@ -59,7 +59,7 @@ Quando não houver conexão, o servidor deverá armazenar os dados localmente e,
 
 \item \textbf{Tentativas de reenvio}
 
-Quando uma mensagem não é enviada com sucesso à nuvem, o Morpheus deverá tentar novamente, um número configurável de vezes, em um 
+Quando uma mensagem não é enviada com sucesso à nuvem, o Morpheus deverá tentar novamente, um número configurável de vezes, em um
 curto espaço de tempo. Isso ocorre pois, se determinada mensagem não pode ser enviada em uma janela temporal, ela perde o seu sentido, mesmo por questões de segurança.
 
 \item \textbf{Envio de e-mail}
@@ -248,7 +248,7 @@ rele2: <0 | 1>
 $ts: <timestamp>
 $ty: sw_reset
 @
-swreset: <0 | 1> 
+swreset: <0 | 1>
 @
 \end{lstlisting}
 
@@ -539,7 +539,7 @@ messageToSend = UmiTempPresReles(0,80,25,1,1,0);
 
 \subsection{Comunicação entre Morpheus e Nuvem}
 
-Inicialmente, foi proposto um modelo arquitetural onde, para a comunicação com a nuvem, haveriam endpoints tanto do lado da casa quanto do lado da nuvem. Assim, quando o Morpheus precisasse enviar uma mensagem, seria necessário que fosse realizada uma chamada ao endpoint correspondente. Neste sentido (Morpheus para nuvem), não há nenhum problema, pois é possível garantir configurações avançadas de segurança, bem como a utilização de load balancers e servidores terceiros (como Akamai), para lidar com ataques do tipo DoS (Denial of Service).
+Inicialmente, foi proposto um modelo arquitetural onde, para a comunicação com a nuvem, haveriam endpoints tanto do lado da casa quanto do lado da nuvem. Assim, quando o Morpheus precisasse enviar uma mensagem, seria necessário que fosse realizada uma chamada ao endpoint correspondente. Neste sentido (Morpheus para nuvem), não há nenhum problema, pois é possível garantir configurações avançadas de segurança, bem como a utilização de load balancers e servidores terceiros (como Akamai), para lidar com ataques do tipo DoS (\textit{Denial of Service}).
 
 O problema, no entanto, está em garantir a segurança e usabilidade do lado da casa. Primeiramente, os IPs residenciais não são fixos, e são trocados a cada nova conexão. Assim, se a conexão com a internet for perdida, por exemplo, um novo IP será atribuído àquela residência. Dessa forma, após essa troca, a não ser que o Morpheus atualize a nuvem, não será possível receber as mensagens que chegariam dos serviços remotos. Esta questão, no entanto, é contornável, por meio de um serviço de watchdog, que seria responsável por analisar o IP e notificar a nuvem sobre a troca, sempre que esta ocorrer. Há, ainda, um problema mais grave e mais difícil de ser contornado. Com essa arquitetura, o Morpheus também será um servidor, do ponto de vista da nuvem, e qualquer dispositivo pode tentar fazer uma requisição em um dos endpoints disponíveis. Mesmo que forem checados os dados da requisição, para garantir que esta é válida, temos ainda uma grave ameaça de segurança, em relação à negação de serviço. Para que este risco fosse minimizado, seria necessária configurações avançadas no roteador local, e mesmo assim, este não seria suficiente para processar um grande número de requisições, deixando a casa vulnerável.
 
@@ -620,7 +620,7 @@ A seção de configuração de módulo será um objeto com duas partes. A primei
 \end{lstlisting}
 
 \begin{lstlisting}
-<message> = 
+<message> =
 "controlParameters":
 {
     "parameter": <name> ,
@@ -658,7 +658,6 @@ Em situações reais, cada casa terá uma instância do \emph{Mosquitto Broker} 
 \item Para cada casa, os módulos devem ser conectar a partir da porta 1883 (e.g. primeira casa \textrightarrow{} 1883; segunda casa \textrightarrow{} 1884). Essa porta não exige criptografia, mas deve exigir somente usuário e senha (que estarão vulneráveis).
 
 \item O Morpheus será obrigado a se conectar a partir da porta 8883 (e.g. primeira casa \textrightarrow{} 8884; segunda casa \textrightarrow{} 8884), passando suas credenciais encriptadas.
-
 \end{enumerate}
 
 \subsubsection{Guia de instalação (Testado com Ubuntu 16.10 x64)}\label{sec:arquivosCriados}
@@ -678,17 +677,17 @@ Em situações reais, cada casa terá uma instância do \emph{Mosquitto Broker} 
 
 \begin{lstlisting}[language=bash]
     # General section
-    
+
     # User specific section
     ## Morpheus
     user adf654wae84fea5d8ea6
     topic readwrite hw/#
-    
+
     # Client section
-    
+
     ## Modules can write only to the topic with their username in the m2s version
     pattern write hw/%u/m2s
-    
+
     ## Modules can only read to the topic with their username in the s2m version
     pattern read hw/%u/s2m
 \end{lstlisting}
@@ -699,13 +698,13 @@ Em situações reais, cada casa terá uma instância do \emph{Mosquitto Broker} 
     password_file /etc/mosquitto/conf.d/home1/passwd
     allow_anonymous false
     acl_file /etc/mosquitto/conf.d/home1/acl_list
-    
+
     # General Listener
     # When running in production, this dhould bind to localhost
     port 1883
     require_certificate false
     use_username_as_clientid true
-    
+
     # Morpheus Listener
     # When running in production, this should bind to localhost
     listener 8883
@@ -734,59 +733,59 @@ O conteúdo do \emph{script} é mostrado na listagem seguinte.
 
 \begin{lstlisting}[language=bash]
     #!/bin/bash
-    
+
     NUMBER_OF_HOMES=4
     BASE_PORT_MORPHEUS=8882
     BASE_PORT_MODULES=1882
-    
+
     echo "Oi, $USER! Bem vindo ao MQTT - Hedwig"
     echo $'--------------------------------------\n'
-    
+
     echo 'Desativando o firewall...'
     `sudo ufw disable > /dev/null`
     echo 'Firewall desativado!'
     echo $'--------------------------------------\n'
-    
-    
+
+
     echo 'Parando os processos do mosquitto...'
-    
+
     for each_instance_pid in `pgrep mosquitto`; do
     `sudo kill -9 $each_instance_pid`
     echo "Instancia com PID $each_instance_pid eliminada"
     done
-    
+
     echo 'Todos os processos do mosquitto parados'
     echo $'--------------------------------------\n'
-    
+
     echo 'Iniciando os processos do mosquitto...'
     for count in `seq 1 $NUMBER_OF_HOMES`; do
-    
+
     echo "Iniciando Casa $count..."
     `sudo mosquitto -c conf.d/home"$count"/m_home_"$count".conf -d`
     echo "Casa $count iniciada!"
-    
+
     morpheus_port_number=$((BASE_PORT_MORPHEUS+count))
     modules_port_number=$((BASE_PORT_MODULES+count))
-    
+
     echo "Adicionando Casa $count ao firewall..."
-    
+
     `sudo ufw allow "$morpheus_port_number"/tcp > /dev/null`
     `sudo ufw allow "$modules_port_number"/tcp > /dev/null`
     echo "Adicionando Casa $count adicionada ao firewall!"
     echo ''
     done
-    
+
     echo 'Todos os processos do mosquitto iniciados!'
     echo $'--------------------------------------\n'
-    
+
     echo 'Ativando firewall...'
-    
+
     `yes | sudo ufw enable > /dev/null`
-    
+
     echo 'Firewall ativado!'
     echo $'--------------------------------------\n'
-    
-    echo 'Tudo pronto, divirta-se!'    
+
+    echo 'Tudo pronto, divirta-se!'
 \end{lstlisting}
 
 \end{enumerate}
@@ -806,7 +805,7 @@ Mosquitto Key e Certificado. Foi adicionado o IP do servidor. O Common Name deve
 \begin{lstlisting}[language=bash]
 openssl genrsa -out mosquitto.key 2048
 openssl req -new -key mosquitto.key -out mosquitto.csr
-openssl x509 -req -in mosquitto.csr -CA ../ca.crt -CAkey ../ca.key -CAcreateserial -out mosquitto.crt -days 3650 -sha256    
+openssl x509 -req -in mosquitto.csr -CA ../ca.crt -CAkey ../ca.key -CAcreateserial -out mosquitto.crt -days 3650 -sha256
 \end{lstlisting}
 
 \item
@@ -816,8 +815,9 @@ Morpheus Key e Certificado. Common Name será localhost
 openssl genrsa -out morpheus.key 2048
 openssl req -new -key morpheus.key -out morpheus.csr
 openssl x509 -req -in morpheus.csr -CA ../ca.crt -CAkey ../ca.key -CAcreateserial -out morpheus.crt -days 3650 -sha256 -addtrust clientAuth
-openssl x509 -in morpheus.crt -outform der -out morpheus.der    
+openssl x509 -in morpheus.crt -outform der -out morpheus.der
 \end{lstlisting}
+\end{enumerate}
 
 \subsubsection{Senhas}
 
