@@ -257,6 +257,9 @@ INPUT ./images/diagramaModuloAcesso.png
 INPUT ./images/diagramaModuloAcesso.png
 INPUT chapters/arquitetura/controlador_local.tex
 INPUT chapters/arquitetura/controlador_local.tex
+INPUT images/Raspberry-Pi-3.jpg
+INPUT ./images/Raspberry-Pi-3.jpg
+INPUT ./images/Raspberry-Pi-3.jpg
 INPUT chapters/arquitetura/servidor_na_nuvem.tex
 INPUT chapters/arquitetura/servidor_na_nuvem.tex
 INPUT images/estruturaMicrosservicos.png
