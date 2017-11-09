@@ -176,6 +176,8 @@ INPUT /usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT preliminary/agradecimentos.tex
+INPUT preliminary/agradecimentos.tex
 INPUT preliminary/resumo.tex
 INPUT preliminary/resumo.tex
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
