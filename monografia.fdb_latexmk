@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex monografia"] 1510372136 "monografia.aux" "monografia.bbl" "monografia" 1510372142
+["bibtex monografia"] 1510412952 "monografia.aux" "monografia.bbl" "monografia" 1510412958
   "/usr/local/texlive/2017/texmf-dist/bibtex/bib/abntex2/abntex2-options.bib" 1480098425 5396 4eb260dac60f150ae608d45252853090 ""
   "/usr/local/texlive/2017/texmf-dist/bibtex/bst/abntex2/abntex2-alf.bst" 1480098433 60064 6469892b646cc99dbd8ecd5e965537d8 ""
-  "citations.bib" 1510371353 10146 524bb9f5c0b4a394f36ced6656966e52 ""
-  "monografia.aux" 1510372141 20528 01c20e3b30a0f08e719fc3897def330e ""
+  "citations.bib" 1510412647 10146 b4be720e1b0f6271a2cb94a6782a8c6b ""
+  "monografia.aux" 1510412957 20528 fb3458ecaa51a475e462f28f626810d7 ""
   (generated)
   "monografia.bbl"
   "monografia.blg"
-["pdflatex"] 1510372137 "monografia.tex" "monografia.pdf" "monografia" 1510372142
+["pdflatex"] 1510412953 "monografia.tex" "monografia.pdf" "monografia" 1510412958
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1480098666 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1480098689 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -169,21 +169,21 @@
   "images/tabelaRequisitos.png" 1510011755 45652 866df57b8fe4968cb6fd420c2896bb05 ""
   "images/tratamentoDoS.png" 1510011755 18025 fb22baa72cd2eadc9b5840cda1890cc6 ""
   "images/tratamentoIndisponibilidade.png" 1510011755 32539 fa8e366b0ada95b57f6a9913f86f7587 ""
-  "monografia.aux" 1510372141 20528 01c20e3b30a0f08e719fc3897def330e ""
-  "monografia.bbl" 1510372137 9544 c05c36db62aa912e4bdd6378b30e1a99 "bibtex monografia"
-  "monografia.lof" 1510372141 2256 34f5aa5e3c63178a19051ddb82d16d6a ""
-  "monografia.lot" 1510372141 26 40048587411634ca0873ba1eb7c5b9bc ""
+  "monografia.aux" 1510412957 20528 fb3458ecaa51a475e462f28f626810d7 ""
+  "monografia.bbl" 1510412953 9544 7ee03e5f9466040dc4a010d766a76e93 "bibtex monografia"
+  "monografia.lof" 1510412957 2256 34f5aa5e3c63178a19051ddb82d16d6a ""
+  "monografia.lot" 1510412957 26 40048587411634ca0873ba1eb7c5b9bc ""
   "monografia.tex" 1510234782 5119 2e2f80264bff55b34166264aa53c20df ""
-  "monografia.toc" 1510372141 8572 c68be1a13f8ff74a954a2315de088bfe ""
+  "monografia.toc" 1510412957 8572 c68be1a13f8ff74a954a2315de088bfe ""
   "politex.cls" 1510011755 37651 8afad14b722bbfbf8a460f8ea47136d5 ""
   "preliminary/abstract.tex" 1510101612 1789 35bbb9bce8e120fc59bc9e5463fca46f ""
   "preliminary/agradecimentos.tex" 1510234782 7 49984594d8fb22ea5c85d3bce02cedf7 ""
   "preliminary/resumo.tex" 1510101612 1978 a590ef44deb02a8589256450bf5a3ec5 ""
   "preliminary/siglas.tex" 1510370683 2008 24085ee6251d01fe240ed89a84b95421 ""
   (generated)
-  "monografia.pdf"
-  "monografia.aux"
-  "monografia.log"
-  "monografia.lot"
   "monografia.lof"
+  "monografia.lot"
+  "monografia.log"
+  "monografia.aux"
   "monografia.toc"
+  "monografia.pdf"
