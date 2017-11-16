@@ -659,7 +659,7 @@ Em situações reais, cada casa terá uma instância do \emph{Mosquitto Broker} 
 
 \item Os tópicos que finalizam em \emph{m2s} são exclusivos de cada módulo. O \emph{broker} saberá se um módulo pode se inscrever ou publicar no tópico de acordo com o seu número serial.
 
-\item Para cada casa, os módulos devem ser conectar a partir da porta 1883 (e.g. primeira casa \textrightarrow{} 1883; segunda casa \textrightarrow{} 1884). Essa porta não exige criptografia, mas deve exigir somente usuário e senha (que estarão vulneráveis).
+\item Para cada casa, os módulos devem se conectar a partir da porta 1883 (e.g. primeira casa \textrightarrow{} 1883; segunda casa \textrightarrow{} 1884). Essa porta não exige criptografia, mas deve exigir somente usuário e senha (que estarão vulneráveis).
 
 \item O Morpheus será obrigado a se conectar a partir da porta 8883 (e.g. primeira casa \textrightarrow{} 8884; segunda casa \textrightarrow{} 8884), passando suas credenciais encriptadas.
 \end{enumerate}
