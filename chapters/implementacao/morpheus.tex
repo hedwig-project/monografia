@@ -2,30 +2,33 @@
 
 \subsection{Descrição}
 %TODO add source below
-Morpheus é o servidor local responsável pela interconexão da casa inteligente com os serviços de nuvem. O nome tem sua origem na mitologia grega, onde o Deus dos sonhos, Morpheus, era responsável pelo envio de mensagens entre dois mundos diferentes, o dos deuses e o dos mortais [add source]. Sua principal atribuição é garantir que a troca de mensagem entre os módulos e a nuvem seja realizada com segurança e confiabilidade, munindo-se de soluções robustas para desempenhar o seu papel.
+Morpheus é o servidor local responsável pela interconexão da casa inteligente com os serviços de nuvem. O nome tem sua origem na mitologia grega, onde o Deus dos sonhos, Morpheus, era responsável pelo envio de mensagens entre dois mundos diferentes, o dos deuses e o dos mortais [TODO add source]. Sua principal atribuição é garantir que a troca de mensagem entre os módulos e a nuvem seja realizada com segurança e confiabilidade, munindo-se de soluções robustas para desempenhar o seu papel.
 
 \subsection{Plataforma}
 O Morpheus tem seu desenvolvimento realizado em Java. Conforme será detalhado em seguida, tal escolha foi realizada com base na portabilidade que a máquina virtual Java (JVM) oferece, bem como na disponibilidade de bibliotecas e serviços largamente utilizados em aplicações comerciais. O servidor foi construído utilizando-se o Spring Boot Framework, com a utilização de seu container de Inversão de Controle (\textit{IoC - Inversion of Control}), para injeção de dependências. Essa técnica diminui o acoplamento entre classes, e permite a evolução e implementação de novas funcionalidades de maneira mais facilitada.
 
-Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um broker \wmqtt{}, o qual utilizamos o Mosquitto, por ser uma solução Open Source largamente utilizada em projetos de Internet of Things. Conforme detalhado a frente, configurações de segurança específicas para nosso projeto foram registradas no broker. Para a conexão com os serviços na nuvem, é utilizado um canal Websocket, aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, a qual está documentada aqui. Na figura a seguir, é possível verificar a arquitetura desenvolvida.
+Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um \textit{broker} \wmqtt{}. O \textit{broker} que utilizamos é o Mosquitto, por ser uma solução Open Source largamente utilizada em projetos de Internet das Coisas. Conforme detalhado a frente, configurações de segurança específicas para nosso projeto foram registradas no \textit{broker}. Para a conexão com os serviços na nuvem, é utilizado um canal WebSocket, aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, a qual está documentada aqui. Na figura a seguir, é possível verificar a arquitetura desenvolvida.
+
+% TODO cade a figura que foi citada na linha acima?
 
 \subsection{Tecnologias utilizadas}
-Toda a implementação do Morpheus foi realizada em java. Desde o começo do projeto, decidiu-se que a escolha de tecnologias para implementação das diversas camadas deveria ter por base os seus benefícios, e não necessitaria ser rígida ou uniforme. Assim, o principal esforço foi sempre no planejamento das interfaces de comunicação entre as partes, que poderiam ser desenvolvidas em linguagens complementamente diferentes. Os sistemas de nuvem, por exemplo, foram implementados em Node.js, com front-end em React. Os módulos de hardware foram programados em C e, como comentado acima, o controlador local em Java.
-Essa flexibilidade permitiu com que fossem utilizados os recursos e tecnologias que fossem melhores integrados com os requisitos propostos.
+Toda a implementação do Morpheus foi realizada na linguagem Java. Desde o começo do projeto, decidiu-se que a escolha de tecnologias para implementação das diversas camadas deveria ter por base os seus benefícios, e não necessitaria ser rígida ou uniforme. Assim, o principal esforço foi sempre no planejamento das interfaces de comunicação entre as partes, que poderiam ser desenvolvidas em linguagens complementamente diferentes. Os sistemas de nuvem, por exemplo, foram implementados em Node.js. O aplicativo web, também em JavaScript, com utilização da biblioteca React. Os módulos de hardware foram programados em C e, como comentado acima, o controlador local em Java.
+Essa flexibilidade permitiu que fossem utilizados os recursos e tecnologias que fossem melhores integrados com os requisitos propostos.
 
-Um requisito essencial para o controlador local é a sua robustez. Em um cenário em que este controlador não esteja disponível, a casa passa a funcionar em estado de emergência, onde os comandos são reduzidos, e não permitem acesso remoto. Entretanto, há inúmeras possibilidades e eventos que poderiam causar a queda deste controlador, muitas das quais referem-se a situações fora de nosso alcance. A falta de energia na residência, ou de internet, interrompe o seu funcionamento, e não é possível ter controle sobre tal situação. O mesmo ocorre no evento de problemas de hardware, na plataforma que o sistema estiver rodando. Ao mesmo tempo que tais situações estejam fora de nosso controle, os planos para contenção dos seus efeitos são complexos, custosos e fogem do escopo deste projeto, como seria o caso de se implementar duplicações, banco de baterias e tecnologia celular para comunicação secundária.
+Um requisito essencial para o controlador local é a sua robustez. Em um cenário em que este controlador não esteja disponível, a casa passa a funcionar em estado de emergência, onde os comandos são reduzidos, e não permitem acesso remoto. Entretanto, há inúmeras possibilidades e eventos que poderiam causar a queda deste controlador, muitas das quais referem-se a situações fora de nosso alcance. A falta de energia na residência, ou de Internet, interrompe o seu funcionamento, e não é possível ter controle sobre tal situação. O mesmo ocorre no evento de problemas de hardware, na plataforma que o sistema estiver rodando. Além do fato de que tais situações estão fora de nosso controle, os planos para contenção dos seus efeitos são complexos, custosos e fogem do escopo deste projeto, como seria o caso de se implementar duplicações, banco de baterias e tecnologia celular para comunicação secundária.
 
-Há, entretanto, problemas no software que poderiam afetar o funcionamento do controlador. Por meio de testes, muitos desses problemas podem ser evitados, ainda em tempo de desenvolvimento. A utilização de tecnologias que facilitam o desenvolvimento seguro da aplicação é uma vantagem para este caso, já que ferramentas estão disponíveis para que haja maior controle sobre o código desenvolvido, e a pode-se detectar erros mais facilmente, ainda em tempo de compilação, por exemplo.
-O controlador local também precisa lidar com as requisições assíncronamente. Parte desta tarefa é facilitada, com a utilização do sistema de mensageria \wmqtt{}, operado pelo Broker Mosquitto. Com sua utilização, mensagens podem ser enviadas, e mesmo que o controlador não consiga recebê-las, elas não serão perdidas. Entretanto, devido às características do sistema proposto, as mensagens precisam ser operadas sem maiores demoras. O controlador deve receber e processar as mensagens paralelamente, e não esperar o processamento de uma mensagem inteira, para assim processar a próxima, de modo que paralelismo deve ser parte essencial da arquitetura.
+Há, entretanto, problemas no software que poderiam afetar o funcionamento do controlador. Por meio de testes, muitos desses problemas podem ser evitados, ainda em tempo de desenvolvimento. A utilização de tecnologias que facilitam o desenvolvimento seguro da aplicação é uma vantagem para este caso, já que ferramentas estão disponíveis para que haja maior controle sobre o código desenvolvido, e pode-se detectar erros mais facilmente, ainda em tempo de compilação, por exemplo.
+
+O controlador local também precisa lidar com as requisições assíncronamente. Parte desta tarefa é facilitada com a utilização do sistema de mensageria \wmqtt{}, operado pelo \textit{broker} Mosquitto. Com sua utilização, mensagens podem ser enviadas, e mesmo que o controlador não consiga recebê-las, elas não serão perdidas. Entretanto, devido às características do sistema proposto, as mensagens precisam ser operadas sem maiores demoras. O controlador deve receber e processar as mensagens paralelamente, e não esperar o processamento de uma mensagem inteira, para assim processar a próxima, de modo que paralelismo deve ser parte essencial da arquitetura.
 
 Ainda, para a integração com os serviços da nuvem, é necessário a utilização de JSON, para a serialização das mensagens, em um formato que pode ser desserializado posteriormente, independentemente da plataforma. Para a utilização de WebSockets, é necessário o uso de bibliotecas disponíveis, de modo que o desenvolvimento seja facilitado. Por último, é necessário gerenciar eficientemente todas essas dependências. Atualizá-las quando necessário, ou substituí-las, se desejado, deve ser uma tarefa simples.
 
-A arquitetura oferecida pelo Java mostra ser efetiva para as necessidades levantadas acima. Com a utilização de uma IDE avançada, inúmeros recursos estão disponíveis para limpeza, refatoração, organização do código, etc. O \textit{framework} Spring Boot\footnote{https://projects.spring.io/spring-boot/} foi utilizado para o desenvolvimento, por oferecer diversos recursos que facilitam o desenvolvimento, com configurações de ambiente e o oferecimento de um container para inversão de controle e injeção de dependência\footnote{https://martinfowler.com/articles/injection.html}. Além disso, o gerenciador de dependências Gradle\footnote{https://gradle.org/} foi também utilizado, por oferecer um poderoso ambiente para configurar, construir e distribuir aplicações. Gradle faz uso de Groovy\footnote{http://groovy-lang.org/}, tecnologia que também roda na \textit{Java Virtual Machine} (JVM). Por outro lado, o uso de tais ferramentas e plataformas necessita de hardware mais robusto, para que funcione, sendo uma desvantagem. Entretanto, frente aos benefícios, ainda é vantajoso a utilização de Java, neste caso.
+A arquitetura oferecida pelo Java mostra ser efetiva para as necessidades levantadas acima. Com a utilização de uma IDE avançada, inúmeros recursos estão disponíveis para limpeza, refatoração, organização do código, etc. O \textit{framework} Spring Boot\footnote{https://projects.spring.io/spring-boot/} foi utilizado para o desenvolvimento, por oferecer diversos recursos que facilitam o desenvolvimento, com configurações de ambiente e o oferecimento de um \textit{container} para inversão de controle e injeção de dependência\footnote{https://martinfowler.com/articles/injection.html}. Além disso, o gerenciador de dependências Gradle\footnote{https://gradle.org/} foi também utilizado, por oferecer um poderoso ambiente para configurar, construir e distribuir aplicações. Gradle faz uso de Groovy\footnote{http://groovy-lang.org/}, tecnologia que também roda na \textit{Java Virtual Machine} (JVM). Por outro lado, o uso de tais ferramentas e plataformas necessita de hardware mais robusto, para que funcione, sendo uma desvantagem. Entretanto, frente aos benefícios, ainda é vantajoso a utilização de Java, neste caso.
 
 Java é utilizado em vasta gama de aplicações, deste complexos softwares comerciais como a IDE Eclipse, até software embutidos, como controladores de BlueRay\footnote{http://www.oracle.com/technetwork/articles/javame/bluray-142687.html}.
 O padrão de inversão de controle, com injeção de dependências, foi utilizado para o desenvolvimento, de modo a diminuir o acoplamento entre as partes, e facilitar futuras modificações. Assim, cada módulo recebe, em seu construtor, todas as dependências que serão utilizadas. A responsabilidade da construção de tais dependências passa, então, a ser responsabilidade do gerenciador de contexto, e não mais do módulo. A escolha do Java 8 foi decidida para que o desenvolvimento possa utilizar certos recursos de paradigmas funcionais, como o conceito de Streams de dados e Funções Lambdas.
 
-Internamente, o Morpheus é dividido em pacotes, que responsáveis pela modelagem do problema. Há classes que modelam o domínio, que executam as regras de negócio, que fazem a interface entre outros sistemas (\wmqtt{} Mosquitto Broker e nuvem), e também para execução de tarefas como backup de mensagens, e serviços de conversão.
+Internamente, o Morpheus é dividido em pacotes, que são responsáveis pela modelagem do problema. Há classes que modelam o domínio, que executam as regras de negócio, que fazem a interface entre outros sistemas (\wmqtt{} Mosquitto Broker e nuvem), e que fazem a execução de tarefas como backup de mensagens, e serviços de conversão.
 Assim que uma mensagem chega ao Morpheus, ela é reconhecida e é realizado o seu parsing, para as estruturas de domínio internas. Caso haja algum erro, para mensagens vindas da nuvem, há o envio de relatório com os problemas encontrados. A partir daí, a mensagem é colocada em uma fila interna, onde outro módulo será responsável por capturá-la e realizar o processamento necessário.
 
 \begin{figure}
@@ -41,17 +44,18 @@ Para a concepção do servidor local, foram discutidos os seus requisitos funcio
 \subsubsection{Requisitos Funcionais}
 \begin{description}
 
-\item \textbf{Configuração dos módulos}
+\item \textbf{Configuração dos módulos físicos}
 
-De acordo com as regras e interfaces estabelecidas, documentadas aqui, os módulos podem ser configurados por meio de mensagens. Os serviços da nuvem enviarão os parâmetros de configuração de cada módulo ao Morpheus, que os transmitirão ao módulo.
+De acordo com as regras e interfaces estabelecidas, documentadas aqui, os módulos podem ser configurados por meio de mensagens. Os serviços da nuvem enviarão os parâmetros de configuração de cada módulo ao Morpheus, que os transmitirá ao módulo.
 
 \item \textbf{Conexão de emergência}
+% TODO (gabi falando) não sei se esse é um requisito do Morpheus, isso pra mim tem a ver com a arquitetura geral do sistema. Pro Morpheus deveria não importar se os módulos podem ser controlados de outra forma ou não
 
 Quando não há conexão da casa com a nuvem, deverá haver um canal para comunicação local entre o aplicativo e alguns dos módulos, com funcionalidades limitadas, apenas para serviços essenciais.
 
 \item \textbf{Envio de dados para a nuvem}
 
-Dados provenientes de sensores são enviados para a nuvem, para que sejam tratados de acordo com as regras de Business Intelligence, por meio de Machine Learning.
+Dados provenientes de sensores são enviados para a nuvem, para que sejam tratados de acordo com as regras de Business Intelligence, e utilizados em algoritmos de Machine Learning.
 
 \item \textbf{Persistência de dados}
 
@@ -59,8 +63,8 @@ Quando não houver conexão, o servidor deverá armazenar os dados localmente e,
 
 \item \textbf{Tentativas de reenvio}
 
-Quando uma mensagem não é enviada com sucesso à nuvem, o Morpheus deverá tentar novamente, um número configurável de vezes, em um
-curto espaço de tempo. Isso ocorre pois, se determinada mensagem não pode ser enviada em uma janela temporal, ela perde o seu sentido, mesmo por questões de segurança.
+Quando uma mensagem não é enviada com sucesso à nuvem, o Morpheus deverá tentar novamente, por um número configurável de vezes, em um
+curto espaço de tempo. Isso ocorre pois se determinada mensagem não pode ser enviada em uma janela temporal, ela perde o seu sentido, bem como por questões de segurança.
 
 \item \textbf{Envio de e-mail}
 
@@ -80,7 +84,7 @@ As configurações básicas do Morpheus devem ser registradas em um arquivo YAML
 
 \item \textbf{Listeners para diferentes tipos de mensagens}
 
-Deverão haver listeners para todos os tipos de mensagens, definidos aqui, que serão recebidos da nuvem e dos módulos.
+Deverão haver \textit{listeners} para todos os tipos de mensagens, definidos aqui, que serão recebidos da nuvem e dos módulos.
 
 \end{description}
 
@@ -92,11 +96,11 @@ Toda a infraestrutura do Morpheus deverá permitir o processamento de mensagens 
 
 \item \textbf{Utilização de criptografia na troca de mensagens com a nuvem}
 
-Os dados que trafegam entre a nuvem e o servidor local não devem ser codificados em texto puro. Devem estar protegidos contra sniffers.
+Os dados que trafegam entre a nuvem e o servidor local não devem ser codificados em texto puro. Devem estar protegidos contra \textit{sniffers}.
 
 \item \textbf{Conversão de mensagens}
 
-As mensagens enviadas à nuvem devem estar em formato JSON, e não no protocolo definido aqui, para troca de mensagens entre os módulos e o Morpheus.
+As mensagens enviadas à nuvem devem estar em formato JSON, e não no protocolo definido aqui, que refere-se apenas à troca de mensagens entre os módulos e o Morpheus.
 
 \item \textbf{Serialização das configurações}
 
@@ -104,7 +108,7 @@ O servidor deverá serializar e persistir as configurações relativas aos módu
 
 \item \textbf{Destruição de pools de threads}
 
-Ao ser desligado, todos os pools de threads criados devem ser destruídos.
+Ao ser desligado, todos os \textit{pools} de \textit{threads} criados devem ser destruídos.
 
 \end{description}
 
@@ -114,16 +118,16 @@ Ao ser desligado, todos os pools de threads criados devem ser destruídos.
 Todos os tópicos devem seguir o formato especificado abaixo. Com essa formatação, é possível garantir que:
 
 \begin{enumerate}
-\item Somente o Morpheus conseguirá publicar em qualquer tópico, ou ser um subscriber de qualquer tópico.
+\item Somente o Morpheus conseguirá publicar em qualquer tópico, ou ser um \textit{subscriber} de qualquer tópico.
 \item Cada módulo somente consiga publicar no tópico determinado para ele, que será garantido com as credenciais (usuário e senha) fornecidos pelo tópico.
 \item Caso um módulo malicioso seja implantado, com o roubo das credenciais de um módulo legítimo, o impacto será unicamente concentrado naquele tópico, não atingindo outros módulos.
 \end{enumerate}
 
 Temos as seguintes regras:
 
-\textbf{hw/\textless ID do módulo\textgreater /s2m} (Server to Module - o módulo deve ser subscriber desse tópico. O servidor deve ser publisher desse tópico).
+\textbf{hw/\textless ID do módulo\textgreater /s2m} (Server to Module - o módulo deve ser \textit{subscriber} desse tópico. O servidor deve ser \textit{publisher} desse tópico).
 
-\textbf{hw/\textless ID do módulo\textgreater /m2s} (Module to Server - o servidor deve ser subscriber desse tópico. O módulo deve ser publisher desse tópico).
+\textbf{hw/\textless ID do módulo\textgreater /m2s} (Module to Server - o servidor deve ser \textit{subscriber} desse tópico. O módulo deve ser \textit{publisher} desse tópico).
 
 \subsubsection{Regras de negócio}
 O servidor foi desenvolvido com base nas regras de negócio seguintes.
@@ -131,7 +135,7 @@ O servidor foi desenvolvido com base nas regras de negócio seguintes.
 \item Após a compra de cada módulo, o usuário deverá registrar online a aquisição. O servidor da nuvem enviará para o servidor local, da casa, a requisição para configurar o módulo.
 \item Cada módulo enviará mensagens para o servidor local com o seus dados, por meio do \wmqtt{}.
 \item Para a troca de senha do \wwifi, o usuário cadastra no site a nova senha. O servidor na nuvem faz a requisição para o servidor local, o qual enviará um arquivo de configuração com a nova senha para cada um dos módulos registrados. Após a configuração de todos os módulos, o servidor local envia resposta de sucesso para a nuvem, a qual indica ao usuário que a troca de senha já pode ser feita com sucesso.
-\item Todo módulo sai de fábrica configurado com o tópico que deve se inscrever e publicar, com base no seu ID, o qual será o seu usuário, e também haverá a senha para se autenticar junto ao broker \wmqtt{}.
+\item Todo módulo sai de fábrica configurado com o tópico que deve se inscrever e publicar, com base no seu ID, o qual será o seu usuário, e também haverá a senha para se autenticar junto ao \textit{broker} \wmqtt{}.
 \end{enumerate}
 
 \subsubsection{Definição de interfaces}
@@ -170,8 +174,8 @@ updated_ntp: <segundos desde 0h de 1 de Janeiro de 1970, 64 bits>
 \textbf{Configuração de nome:}
 \begin{lstlisting}
 #configuration
-$ts:\textless timestamp\textgreater
-$ty:name\_config
+$ts: <timestamp>
+$ty:name_config
 @
 new_name: <nome>
 new_rele1name: <nome | "">
@@ -391,7 +395,7 @@ $ty: time_update
 
 \subsubsection{Testes realizados da comunicação Morpheus e módulos:}
 
-Para que fosse simulado o envio de mensagens, o aplicativo \wmqtt{} Fx foi utilizado. Com o uso deste software, é possível se inscrever em determinado tópico (enviando as credenciais para o broker, tanto em forma de usuário e senha, quando em forma de certificados), bem como publicar no tópico desejado.
+Para que fosse simulado o envio de mensagens, o aplicativo \wmqtt{} Fx\footnote{http://mqttfx.jensd.de/} foi utilizado. Com o uso deste software, é possível se inscrever em determinado tópico (enviando as credenciais para o \textit{broker}, tanto em forma de usuário e senha, quando em forma de certificados), bem como publicar no tópico desejado.
 
 \textbf{Requisição de acionamento 1:}
 \begin{lstlisting}
@@ -539,16 +543,16 @@ messageToSend = UmiTempPresReles(0,80,25,1,1,0);
 
 \subsection{Comunicação entre Morpheus e Nuvem}
 
-Inicialmente, foi proposto um modelo arquitetural onde, para a comunicação com a nuvem, haveriam endpoints tanto do lado da casa quanto do lado da nuvem. Assim, quando o Morpheus precisasse enviar uma mensagem, seria necessário que fosse realizada uma chamada ao endpoint correspondente. Neste sentido (Morpheus para nuvem), não há nenhum problema, pois é possível garantir configurações avançadas de segurança, bem como a utilização de load balancers e servidores terceiros (como Akamai), para lidar com ataques do tipo DoS (\textit{Denial of Service}).
+Inicialmente, foi proposto um modelo arquitetural onde, para a comunicação com a nuvem, haveriam \textit{endpoints} para requisições HTTP tanto do lado da casa quanto do lado da nuvem. Assim, quando o Morpheus precisasse enviar uma mensagem, seria necessário que fosse realizada uma chamada ao \textit{endpoint} correspondente. Neste sentido (Morpheus para nuvem), não há nenhum problema, pois é possível garantir configurações avançadas de segurança, bem como a utilização de load balancers e servidores terceiros (como Akamai\footnote{https://www.akamai.com/}), para lidar com ataques do tipo DoS (\textit{Denial of Service}).
 
-O problema, no entanto, está em garantir a segurança e usabilidade do lado da casa. Primeiramente, os IPs residenciais não são fixos, e são trocados a cada nova conexão. Assim, se a conexão com a internet for perdida, por exemplo, um novo IP será atribuído àquela residência. Dessa forma, após essa troca, a não ser que o Morpheus atualize a nuvem, não será possível receber as mensagens que chegariam dos serviços remotos. Esta questão, no entanto, é contornável, por meio de um serviço de watchdog, que seria responsável por analisar o IP e notificar a nuvem sobre a troca, sempre que esta ocorrer. Há, ainda, um problema mais grave e mais difícil de ser contornado. Com essa arquitetura, o Morpheus também será um servidor, do ponto de vista da nuvem, e qualquer dispositivo pode tentar fazer uma requisição em um dos endpoints disponíveis. Mesmo que forem checados os dados da requisição, para garantir que esta é válida, temos ainda uma grave ameaça de segurança, em relação à negação de serviço. Para que este risco fosse minimizado, seria necessária configurações avançadas no roteador local, e mesmo assim, este não seria suficiente para processar um grande número de requisições, deixando a casa vulnerável.
+O problema, no entanto, está em garantir a segurança e usabilidade do lado da casa. Primeiramente, os IPs residenciais não são fixos, e são trocados a cada nova conexão. Assim, se a conexão com a Internet for perdida, por exemplo, um novo IP será atribuído àquela residência. Dessa forma, após essa troca, a não ser que o Morpheus atualize a nuvem, não será possível receber as mensagens que chegariam dos serviços remotos. Esta questão, no entanto, é contornável, por meio de um serviço de watchdog, que seria responsável por analisar o IP e notificar a nuvem sobre a troca, sempre que esta ocorrer. Há, ainda, um problema mais grave e mais difícil de ser contornado. Com essa arquitetura, o Morpheus também será um servidor, do ponto de vista da nuvem, e qualquer dispositivo pode tentar fazer uma requisição em um dos \textit{endpoints} disponíveis. Mesmo que sejam checados os dados da requisição, para garantir que esta é válida, temos ainda uma grave ameaça de segurança, em relação à negação de serviço. Para que este risco fosse minimizado, seriam necessárias configurações avançadas no roteador local, e mesmo assim, este não seria suficiente para processar um grande número de requisições, deixando a casa vulnerável.
 
-Foi discutida, então, uma mudança arquitetural na forma de comunicação entre a nuvem e a casa. A solução para o problema se encontra no uso de websockets. Assim, o Morpheus se comporta como um cliente em relação à nuvem, e é sempre ele que abre uma conexão. Assim, já não há mais a vulnerabilidade local, de estar exposto às negativas de serviço. Além disso, a conexão se mantém aberta, e forma um caminho full duplex, de modo que é possível receber as mensagens da nuvem a qualquer momento também. Com essa arquitetura, os desafios relativos à segurança recaem aos servidores, e não mais à casa, de modo que é possível gerenciar esses riscos, como o fazem grandes empresas, de forma transparente ao cliente final.
+Foi discutida, então, uma mudança arquitetural na forma de comunicação entre a nuvem e a casa. A solução para o problema se encontra no uso de WebSockets. Assim, o Morpheus se comporta como um cliente em relação à nuvem, e é sempre ele que abre uma conexão. Assim, já não há mais a vulnerabilidade local, de estar exposto às negativas de serviço. Além disso, a conexão se mantém aberta, e forma um caminho \textit{full duplex}, de modo que é possível receber as mensagens da nuvem a qualquer momento também. Com essa arquitetura, os desafios relativos à segurança recaem aos servidores, e não mais à casa, de modo que é possível gerenciar esses riscos, como o fazem grandes empresas, de forma transparente ao cliente final.
 
-Por fim, somente restou um endpoint no Morpheus, que seria o de emergência. Este endpoint somente aceita requisições vindas do localhost, e não mais de fora.
+Por fim, somente restou um \textit{endpoint} no Morpheus, que seria o de emergência. Este \textit{endpoint} somente aceita requisições vindas do \textit{localhost}, e não mais de fora.
 
-\subsection{Websocket}
-Com a utilização do canal de comunicação por websocket, foram utilizados eventos, que são recebidos e enviados, para a comunicação. São eles descritos abaixo.
+\subsection{WebSocket}
+Com a utilização do canal de comunicação por WebSocket, foram utilizados eventos, que são recebidos e enviados, para a comunicação. São eles os descritos abaixo.
 
 \subsubsection{Morpheus}
 O Morpheus ouvirá os seguintes eventos, vindos da nuvem.
@@ -644,9 +648,9 @@ As mensagens de data\_transmission também seguem o mesmo protocolo de mensagens
 
 \subsection{Configurações}
 
-\subsubsection{Configuração do \wmqtt{} Mosquitto broker}
+\subsubsection{Configuração do \wmqtt{} Mosquitto \textit{broker}}
 
-Em situações reais, cada casa terá uma instância do \emph{Mosquitto Broker} rodando, independente de todas as outras, e aceitando conexões locais, somente. Entretanto, para que fossem realizados testes e simulações, a instalação e execução de uma instância em cada máquina diferente, locais, seria inviável. Para tanto, foi configurada uma instalação em uma máquina remota - Digital Ocean\footnote{Digital Ocean: https://www.digitalocean.com/}, mas com configurações diferentes, uma para cada residência simulada. São executadas instâncias como processos \emph{Daemon}, e vinculadas à portas diferentes - a partir da porta 8883 (conexão com criptografia), para Morpheus, e 1883 para módulos. Também foi criado um script em \emph{bash} para iniciar o processo e ativar as portas no \emph{firewall}. São necessárias as seguintes configurações, para a máquina remota.
+Em situações reais, cada casa terá uma instância do \emph{Mosquitto Broker} rodando, independente de todas as outras, e aceitando conexões locais, somente. Entretanto, para que fossem realizados testes e simulações, a instalação e execução de uma instância em cada máquina diferente, localmente, seria inviável. Para tanto, foi configurada uma instalação em uma máquina remota - em servidor da Digital Ocean\footnote{Digital Ocean: https://www.digitalocean.com/} -, mas com configurações diferentes, uma para cada residência simulada. São executadas instâncias como processos \emph{Daemon}, e vinculadas à portas diferentes - a partir da porta 8883 (conexão com criptografia), para Morpheus, e 1883 para módulos. Também foi criado um script em \emph{bash} para iniciar o processo e ativar as portas no \emph{firewall}. São necessárias as seguintes configurações, para a máquina remota.
 
 \begin{enumerate}
 \item Habilitar a restrição de tópicos na instância\footnote{Mosquitto Configuration http://www.steves-internet-guide.com/topic-restriction-mosquitto-configuration/}. A restrição deve levar em conta as credenciais do dispositivo logado no momento (para definição do formato dos tópicos).
@@ -655,7 +659,7 @@ Em situações reais, cada casa terá uma instância do \emph{Mosquitto Broker} 
 
 \item Os tópicos que finalizam em \emph{m2s} são exclusivos de cada módulo. O \emph{broker} saberá se um módulo pode se inscrever ou publicar no tópico de acordo com o seu número serial.
 
-\item Para cada casa, os módulos devem ser conectar a partir da porta 1883 (e.g. primeira casa \textrightarrow{} 1883; segunda casa \textrightarrow{} 1884). Essa porta não exige criptografia, mas deve exigir somente usuário e senha (que estarão vulneráveis).
+\item Para cada casa, os módulos devem se conectar a partir da porta 1883 (e.g. primeira casa \textrightarrow{} 1883; segunda casa \textrightarrow{} 1884). Essa porta não exige criptografia, mas deve exigir somente usuário e senha (que estarão vulneráveis).
 
 \item O Morpheus será obrigado a se conectar a partir da porta 8883 (e.g. primeira casa \textrightarrow{} 8884; segunda casa \textrightarrow{} 8884), passando suas credenciais encriptadas.
 \end{enumerate}
