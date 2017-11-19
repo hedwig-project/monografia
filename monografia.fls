@@ -244,9 +244,6 @@ INPUT ./images/arquiteturaHomeSky.png
 INPUT chapters/especificacao.tex
 INPUT chapters/especificacao.tex
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm
-INPUT images/tabelaRequisitos.png
-INPUT ./images/tabelaRequisitos.png
-INPUT ./images/tabelaRequisitos.png
 INPUT chapters/arquitetura.tex
 INPUT chapters/arquitetura.tex
 INPUT chapters/arquitetura/evolucao_arquitetural.tex

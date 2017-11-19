@@ -54,10 +54,49 @@ O levantamento de requisitos não-funcionais foi realizado com base na norma ISO
 
 \subsection{Requisitos por Nível de Conectividade}
 
-% TODO melhorar legibilidade da tabela
-\begin{figure}[H]
+Nas Tabela \ref{table:descricaoRequisitos} são descritos os requisitos, bem como a técnica de avaliação utilizada para demonstrá-lo. A Tabela \ref{table:niveisFuncionalidades} mostra tais requisitos de acordo com o nível de funcionalidade.
+
+\begin{table}[hbp]
 	\centering
-	\caption{Tabela de requisitos por nível de conectividade}
-  \includegraphics[width=0.95\textwidth]{tabelaRequisitos}
-\label{fig:tabelaRequisitos}
-\end{figure}
+	\caption{Descrição de requisitos}
+	\resizebox{\textwidth}{!}{%
+    \begin{tabular}{clp{8cm}p{8cm}}
+        \toprule
+        \textbf{ID} 			& \textbf{Requisito} 					& \textbf{Avaliação} 																					& \textbf{Descrição} \\
+        \midrule
+		1 						& Automação Residencial					& Demonstração das funcionalidades listadas															& Controle por App ou no módulo \\
+		2 						& Monitoramento Residencial				& Demonstração das funcionalidades listadas 														& Monitoramento no App e displays dos módulos \\
+		3 						& Modularidade							& Funcionamento de módulo ``stand-alone'' 															& Soluções modulares \\
+		4 						& Escalabilidade para n residências		& Testes de carga, acessos simultâneos 																& Suporta carga, acessos simultâneos \\
+		5 						& Machine Learning						& Tratamento de séries de dados reais 																& Análise dos dados para levantamento de rotinas e reconhecimento de padrões \\
+		6 						& Backup de dados						& Funcionalidade de Backup de dados no controlador local 											& - \\
+		7 						& Tolerância a falhas					& Estatísticas de keep alive, ping local, ping internet de módulo base com e sem as melhorias 		& Manter funcionalidade Online, Local e Offline \\
+		8 						& Segurança da informação				& Protocolos seguros, controle de acesso 															& Protocolos seguros, controle de acesso \\
+        \bottomrule
+	\end{tabular}}
+	\label{table:descricaoRequisitos}
+\end{table}
+
+\newcommand{\specialcell}[2][c]{%
+ 	\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+
+\begin{table}[hbp]
+	\centering
+	\caption{Níveis de funcionalidades}
+	\resizebox{\textwidth}{!}{%
+    \begin{tabular}{cp{7cm}p{8cm}p{8cm}}
+        \toprule
+        \textbf{ID} 			& \textbf{Online} 												& \textbf{Local} 																					& \textbf{Offline} \\
+        \midrule
+		1 						& Usar parâmetros para controle inteligente de lâmpada e despertador (Quarto)												& \specialcell[c]{Configurar lâmpada automática (Quarto) \\ Configurar despertador (Quarto)}								& Ligar e desligar lâmpada (Quarto) - Módulo 									 				\\
+		2 						& \specialcell[c]{Estado do portão (Acesso) \\ Temperatura, Umidade (Todos) \\ Presença (Quarto)}							& \specialcell[c]{Estado do portão (Acesso) \\ Temperatura, Umidade (Todos) \\ Presença (Quarto)}							& \specialcell[c]{Desativar despertador (Quarto) - Módulo \\ Destravar porta (Acesso) - App} 	\\
+		3 						& -																															& Inserção automática\slash reconhecimento (Todos)																			& \specialcell[c]{Temperatura, Umidade (Todos) - Módulo \\ Presença (Quarto) - Módulo} 			\\
+		4 						& -																															& -																															& - 																							\\
+		5 						& \specialcell[c]{Derivações de Regras \\ Perfil Esperado de Comportamento}													& Alerta de Portão Aberto (Acesso)																							& - 																							\\
+		6 						& Redundância na nuvem																										& Armazenamento de dados temporariamente num cartão SD, no controlador local 												& Alerta de Portão Aberto (Acesso) - Módulo 													\\
+		7 						& -																															& Notificações e alertas no App (Monitoramento estado módulos) 																& Circuito ``Keep Alive'' - Hard Reset e Soft Reset 											\\
+		8 						& Autenticação para as funcionalidades descritas nesta coluna																& Autenticação para as funcionalidades descritas nesta coluna 																& Autenticação para as funcionalidades descritas nesta coluna - Módulo  						\\
+        \bottomrule
+	\end{tabular}}
+	\label{table:niveisFuncionalidades}
+\end{table}
