@@ -155,6 +155,7 @@ O servidor foi desenvolvido com base nas regras de negócio seguintes.
 \end{itemize}
 
 \subsubsection{Definição das mensagens}
+
 \paragraph{Configuração (configuration)}
 \begin{itemize}
 \item Sentido: Morpheus para módulo
@@ -174,12 +175,12 @@ updated_ntp: <segundos desde 0h de 1 de Janeiro de 1970, 64 bits>
 \textbf{Configuração de nome:}
 \begin{lstlisting}
 #configuration
-$ts: <timestamp>
+$ts:<timestamp>
 $ty:name_config
 @
-new_name: <nome>
-new_rele1name: <nome | "">
-new_rele2name: <nome | "">
+new_name: <string>
+new_rele1name: <string>
+new_rele2name: <string>
 @
 \end{lstlisting}
 
@@ -189,12 +190,12 @@ new_rele2name: <nome | "">
 $ts: <timestamp>
 $ty: comunication_config
 @
-new_ssid: <novo_SSID>
-new_password: <nova_senha>
-ip_local: <novo_IP_local>
-ap_mod: <"sempre ativo" | "automatico">
-ap_name: <nome_AP_acesso_direto>
-ap_password: <senha_AP_acesso_direto>
+new_ssid: <string>
+new_password: <string>
+ip_local: <string>
+ap_mod: <0|1> // 0= sempre ativo; 1 = automatico
+ap_name: <string> //para acesso direto
+ap_password: <string>
 @
 \end{lstlisting}
 
@@ -204,9 +205,7 @@ ap_password: <senha_AP_acesso_direto>
 $ts: <timestamp>
 $ty: rf_config
 @
-*
-<nome_do_[sensor | controle | funcao]>: "store" | "clear" | "keep"
-*
+<sensor_abre|sensor_fecha|rele1_rf|rele2_rf>: <store|clear>
 @
 \end{lstlisting}
 
@@ -216,10 +215,11 @@ $ty: rf_config
 $ts: <timestamp>
 $ty: display_config
 @
-displaytype: <1 | 2 | 3>
-backlight: <0 | 1>
+displaytype: <1|2|3>
+backlight: <0|1|2>
 @
 \end{lstlisting}
+0 = desligado, 1=ligado, 2 = automático
 
 \paragraph{Requisição de ação (action\_request)}
 \begin{itemize}
@@ -230,41 +230,46 @@ backlight: <0 | 1>
 \textbf{Requisição de acionamento:}
 \begin{lstlisting}
 #action_request
-$ts: <timestamp>
-$ty: rele1_action
+$ts:<timestamp>
+$ty:rele1_action 
 @
-rele1: <0 | 1>
+rele1: <0|1>
 @
 \end{lstlisting}
+Essa mensagem fica sem efeito no caso do módulo de acesso, que usa mensagens com senha para o acionamento o Rele 1.
+Rele1: 0 = desligar; 1 = ligar
 
 \begin{lstlisting}
 #action_request
-$ts: <timestamp>
-$ty: rele2_action
+$ts:<timestamp>
+$ty:rele2_action
 @
-rele2: <0 | 1>
+rele2: <0|1>
 @
 \end{lstlisting}
+Rele2: 0 = desligar; 1 = ligar
 
 \textbf{Requisição de SW Restart:}
 \begin{lstlisting}
 #action_request
-$ts: <timestamp>
-$ty: sw_reset
+$ts:<timestamp>
+$ty:sw_reset
 @
-swreset: <0 | 1>
+swreset: <0|1>
 @
 \end{lstlisting}
+0 = não; 1 = confirmar reinicio
 
 \textbf{Requisição de Teste de Auto Reset:}
 \begin{lstlisting}
-#action request
-$ts: <timestamp>
+#action_request
+$ts:<timestamp>
 $ty: autoreset_test
 @
-autoreset: <0 | 1>
+autoreset: <0|1>
 @
 \end{lstlisting}
+0 = não; 1 = confirmar reinicio
 
 \textbf{Confirmação (confirmation)}
 \begin{itemize}
@@ -289,8 +294,8 @@ $ts: <timestamp>
 $ty: name_confirm
 @
 name: <nome>
-rele1name: <nome | "">
-rele2name: <nome | "">
+rele1name: <string>
+rele2name: <string>
 @
 \end{lstlisting}
 
@@ -303,7 +308,7 @@ $ty: communication_confirm
 ssid: <novo ssid>
 password: <nova senha>
 ip local: <novo ip local fixo>
-ap mod: "sempre ativo" | "automatico"
+ap mod: <sempre ativo|automatico>
 ap name: <nome do ap para acesso direto>
 ap password: <senha do ap para acesso direto>
 @
@@ -313,11 +318,9 @@ ap password: <senha do ap para acesso direto>
 \begin{lstlisting}
 #confirmation
 $ts: <timestamp>
-$ty: rf_confirm64
+$ty: rf_confirm
 @
-*
 <nome_do_[sensor | controle | funcao>: <valor_gravado>
-*
 @
 \end{lstlisting}
 
@@ -364,16 +367,20 @@ autoreset: <0 | 1>
 $ts: <timestamp>
 $ty: temp_umi_pres
 @
-s1: umidade
-vl1: <valor>
-s2: temperatura
-vl2: <valor>
-s3: presenca
-vl3: <valor>
-s4: rl1
-vl4: <valor>
-s5: rl2
-vl5: <valor>
+s1:umidade
+vl1:<int de 0 a 100>
+s2:temperatura
+vl2:<int>
+s3:presenca
+vl3:<0|1>
+s4:rl1
+vl4:<0|1>
+s5:rl2
+vl5:<0|1>
+s6: abertura
+vl6: <0|1>
+s7: luz
+vl7: <int de 0 a 1000>
 @
 \end{lstlisting}
 
@@ -384,14 +391,131 @@ vl5: <valor>
 \item Uso: Requisição de alguma informação do servidor. Ex.: Atualização de hora
 \end{itemize}
 
-\textbf{Requisição de atualização da hora}
+
+\textbf{Mensagens próprias para o Módulo de Acesso}
+\textbf{Configuração de Alarme}
 \begin{lstlisting}
-#data_request
-$ts: <timestamp>
-$ty: time_update
+#configuration
+$ts:<unix time>
+$ty:alarm_config
 @
+alarme: <0|1>
+alarme_tempo: <int do tempo em segundos>
 @
 \end{lstlisting}
+
+\textbf{Configuração de Luz Automática}
+\begin{lstlisting}
+#configuration
+$ts:<timestamp>
+$ty:auto1_config
+@
+initial_time1: <int de 0 a 23>
+final_time1: <int de 0 a 23>
+time_keepon1: <tempo em minutos>
+time_deslmanual1: <tempo em minutos>
+sensorauto1: <sensor1|sensor2|nao>
+@
+\end{lstlisting}
+
+\begin{lstlisting}
+#configuration
+$ts:<timestamp>
+$ty:auto2_config
+@
+initial_time2: <int de 0 a 23>
+final_time2: <int de 0 a 23>
+time_keepon2: <tempo em minutos>
+time_deslmanual2: <tempo em minutos>
+sensorauto2: <sensor1|sensor2|nao>
+@
+\end{lstlisting}
+
+\textbf{Configuração de Senha}
+\begin{lstlisting}
+#configuration
+$ts:<timestamp>
+$ty:password_config
+@
+old_password: <string>
+new_password: <string>
+@
+\end{lstlisting}
+
+\textbf{Abertura de Portão}
+\begin{lstlisting}
+#action_request
+$ts:<timestamp>
+$ty:abertura_portao
+@
+password: <string>
+@
+\end{lstlisting}
+
+\textbf{Confirmação de Alarme}
+\begin{lstlisting}
+#confirmation
+$ts:<timestamp>
+$ty:alarm_confirm
+@
+alarme: <0|1>
+alarme_tempo: <tempo em minutos>
+@
+\end{lstlisting}
+
+\textbf{Confirmação de Luz Automática}
+\begin{lstlisting}
+#confirmation
+$ts:<timestamp>
+$ty:auto1_confirm
+@
+initial_time1: <integer de 0 a 23>
+final_time1: <integer de 0 a 23>
+time_keepon1: <tempo em minutos>
+time_deslmanual1: <tempo em minutos>
+sensorauto1: <sensor1|sensor2|nao>
+@
+\end{lstlisting}
+
+\begin{lstlisting}
+#confirmation
+$ts:<timestamp>
+$ty:auto2_confirm
+@
+initial_time2: <integer de 0 a 23>
+final_time2: <integer de 0 a 23>
+time_keepon2: <tempo em minutos>
+time_deslmanual2: <tempo em minutos>
+sensorauto2: <sensor1|sensor2|nao>
+@
+\end{lstlisting}
+
+\textbf{Confirmação de Senha}
+\begin{lstlisting}
+#confirmation
+$ts:<timestamp>
+$ty:password_confirm
+@
+password: <string>
+@
+\end{lstlisting}
+
+\textbf{Transmissão de Estado de Acesso}
+\begin{lstlisting}
+#data_transmission
+$ts:<timestamp>
+$ty:acesso_estado
+@
+s1:aberto
+vl:<0|1> // 0 = fechado; 1 = aberto
+s2:alarme
+vl:<0|1> // 0 = desligado; 1 = ativado
+s3:tempo_alarme
+vl:<int>
+@
+\end{lstlisting}
+
+tempo alarme: tempo em minutos em que o sensor de abertura está aberto.
 
 \subsubsection{Testes realizados da comunicação Morpheus e módulos:}
 
