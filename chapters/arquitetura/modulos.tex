@@ -13,105 +13,6 @@ O ESP8266 é um microprocessador com baixo consumo e conexão Wi-Fi 802.11 integ
 
 Possui um modo de operação de baixa potência (\textit{sleep mode}) em que o consumo de bateria fica muito menor - em contrapartida, o nível de funcionalidades fica limitado. Podemos usar 7 portas de E/S digitais e uma porta de entrada analógica. Duas portas são inutilizáveis, pois são usadas para programação e outras tarefas do sistema integrado do ESP8266. Alternativas para extensão de portas são: utilizar três níveis de sinal análogico para detectar três tipos de acionamento, através de um circuito dedicado, com priorização de entrada; usar interface I2C, como o usado para o display; ou usar radiofrequência, por meio de um par receptor-transmissor integrado no módulo, controles, atuadores e sensores sem fio.
 
-\subsubsection{Multiplexação no tempo}
-Para tratar indisponibilidade dos módulos devido a tentativas de reconexão e conexão e requisições não gerenciadas, e aumentar a disponibilidade, além do circuito antitravamento e \textit{hard reset}, as diversas rotinas - desde configuração inicial, reconfigurações, coletas de dados, atuar por meio de relés, até conexão, desconexão, reconexão e envio de dados - foram multiplexadas no tempo da seguinte forma:
-
-\begin{figure}[H]
-	\centering
-	\caption{Rotina de multiplexação de procedimentos no tempo}
-  \includegraphics[width=0.8\textwidth]{rotinaMultiplexacao}
-\label{fig:rotinaMultiplexacao}
-\end{figure}
-
-\subsubsection{Tratamento de indisponibilidade}
-Nos casos de indisponibilidade de Internet, servidor ou rede local, o seguinte procedimento foi adotado (observe que a indisponibilidade do próprio módulo é tratada pelo circuito antitravamento):
-
-\begin{figure}[H]
-	\centering
-	\caption{Tratamento de indisponibilidade de recursos}
-  \includegraphics[width=0.8\textwidth]{tratamentoIndisponibilidade}
-\label{fig:tratamentoIndisponibilidade}
-\end{figure}
-
-Com esse procedimento, as tentativas de reconexão à Internet, servidor e rede local estão segregadas e com tentativas realizadas em intervalos de tempo sucessivamente maiores. Desta forma, conseguimos gerenciar esses procedimentos, já que o nível de processamento é baixo.
-
-\subsubsection{DoS Local (\textit{Evil Twin})}
-No caso de ataque de \textit{Evil Twin} - no qual uma rede mal intencionada, usualmente aberta, usa o mesmo SSID da rede original, com o objetivo de obter a senha - o sistema pode ficar indisponível até ao nível local. Módulos podem se conectar à rede mal-intencionada e ficarem somente com as funcionalidades offline, como acionamento de lâmpada por botão físico acoplado ao módulo. Outro problema é a queda da rede por interferência de radio frequência ou outro mecanismo utilizado pelo usuário mal intencionado para que os clientes se desconectem, tentem reconexão e forneçam a senha da rede.
-
-Para mitigar esses riscos, os módulos executam o seguinte procedimento:
-\begin{figure}[H]
-	\centering
-	\caption{Tratamento de ataque de DoS Local}
-  \includegraphics[width=0.8\textwidth]{tratamentoDoS}
-\label{fig:tratamentoDoS}
-\end{figure}
-
-\subsubsection{Diagrama}
-Abaixo está o diagrama do circuito impresso (PCB) feito em conjunto com o Projeto Katz-House\footnote{Katz-House, Fabio Hayashi. Projeto Pessoal, 2017.}. Funcionalidade, componentes e arquitetura foram responsabilidade do Projeto Hedwig, enquanto a disposição física, se atentando para problemas de interferência e mantendo o módulo o menor possível foi responsabilidade do Projeto Katz-House.
-
-\begin{figure}[H]
-	\centering
-	\caption{Diagrama PCB do Módulo Base}
-  \includegraphics[width=0.8\textwidth]{diagramaModuloBase}
-\label{fig:diagramaModuloBase}
-\end{figure}
-
-\begin{enumerate}
-\item Wemos D1 mini
-\item Astável 555
-\item Fonte 5V 3W
-\item \textit{Buzzer}
-\item Relé 1
-\item Relé 2
-\item Hard Reset
-\item Botões
-\item Presença
-\item RF-RX
-\item RF-TX
-\end{enumerate}
-
-\begin{figure}[H]
-	\centering
-	\caption{Diagrama PCB do Módulo Base}
-  \includegraphics[width=0.8\textwidth]{esquematicoModuloBase}
-\label{fig:esquematicoModuloBase}
-\end{figure}
-
-\begin{description}
-\item [A - Saídas] Circuitos simples de transistor para acionamento de relés (para lâmpadas) e buzzer.
-\item [Proteção 3V3 5V] Como o display trabalha com tensão de 5V, há proteções com diodos para não danificar as entradas digitais do Wemos D1 mini, que trabalha com tensão de 3V3.
-\item [3 Entradas em A0] O circuito tem como entradas um botão (para acionamento do relé 1), o LDR (para chaveamento do backlight do display), e um outro botão para hard reset do dispositivo, todos numa entrada analógica, cujo mapeamento E/S é da seguinte forma:
-
-\begin{figure}[H]
-	\centering
-	\caption{Entradas Em A0}
-  \includegraphics[width=0.4\textwidth]{entradasEmA0}
-\label{fig:entradasEmA0}
-\end{figure}
-
-\item [Presença ou RF-TX] A entrada digital D6 é usada exclusivamente como entrada do sensor de presença PIR ou receptor RF.
-\item [Astável 555 para Hard Reset e Botão] A porta D6 é usada como LED \textit{keep alive} do módulo. Sua demora ao piscar indica que o módulo está travado ou demorando muito para processar algo, o que não deveria acontecer, uma vez que os procedimentos estão multiplexados no tempo, de acordo com seus tempos limite. Dessa forma, conectamos essa saída a um circuito antitravamento, que executa o reset nos casos mencionados, de travamento ou \textit{timeout}.
-
-O primeiro capacitor tem como objetivo desacoplamento DC, de forma que a entrada do circuito envolvendo o astável 555 seja somente AC. Assim, travamentos em 0 ou 1 indicam travamento.
-
-Enquanto o LED pisca em intervalos esperados (regularmente), o transistor conduz e mantém uma saída dente de serra muito próxima de 0. Quando o módulo trava, o transistor não conduz mais, e a saída passa a oscilar entre 1/3 e 2/3 da tensão total (observe que o carregamento é feito pelo resistor de 4M7, muito maior que o resistor de 100k, fazendo com que o tempo de carga seja muito maior que o tempo de descarga, uma vez que esses tempos são diretamente proporcionais à constante de tempo dos circuitos RC, que é dada pelo produto do R*C). Durante a descarga, o reset da placa é realizado. Observe que os tempos foram ajustados pelos valores dos componentes discretos, para que o tempo entre resets sucessivos seja menor que o tempo necessário para o módulo voltar a funcionar após um reset.
-
-Segue abaixo uma ilustração sobre o funcionamento do circuito.
-
-\begin{figure}[H]
-	\centering
-	\caption{Funcionamento do Circuito de Antitravamento}
-  \includegraphics[width=0.8\textwidth]{circuitoAntiTravamento}
-\label{fig:circuitoAntiTravamento}
-\end{figure}
-
-\item [DHT11] Entrada D3 é ligada a uma montagem básica para leitura de umidade e temperatura através do periférico DHT11.
-
-\end{description}
-
-\subsection{Módulo de Interface com Sistema de Alarmes}
-% TODO vai ter essa secao mesmo?
-
 \subsection{Módulo de Acesso}
 
 Buscando garantir mais segurança e comodidade para o acesso à residência, além do controle de abertura, o módulo de acesso atua em paralelo com uma fechadura eletrônica, que é acionada por meio de controle remoto, que utiliza ondas de rádio. Assim, mesmo com falha total do sistema, o usuário pode abrir o portão diretamente, sem a necessidade de acesso à Internet.
@@ -135,11 +36,94 @@ Para o caso de falha de envio de notificação (e.g. servidor fora do ar, ou ind
 
 Por meio dos dados de login dos usuários no sistema, é possível saber qual dos usuários que solicitou a abertura do portão. A persistência destes acessos pode ser analisada, e, utilizando-se técnicas de Machine Learning, perfis de acesso podem ser determinados, e evoluir até o sistema saber quando houver um acesso em horário inesperado e notificar o usuário remotamente. O aprendizado de máquina é fundamental aqui para descobrir comportamentos que podem ser entendidos como suspeitos. Para um usuário que costuma chegar em um horário aproximado todos os dias, e acionar funções semelhantes da casa, uma tentativa de acesso que não se enquadre em tais padrões pode ser produto de atividade criminosa, a qual pode ser informada pela casa para uma central, que acionaria a polícia caso não seja um falso positivo.
 
-%\subsection{Módulo de Quarto}
-% TODO
+\subsection{Módulo de Quarto/Sala/Cozinha}
+Um módulo com muitas opções de implantação é o denominado módulo de quarto, pois pode ser usado no controle de iluminação para corredores, salas e ambientes externos.
 
-%\subsection{Módulo de Aquário}
-% TODO
+\begin{figure}[H]
+	\centering
+	\caption{Diagrama ilustrativo do módulo de Quarto/Sala/Cozinha}
+	\includegraphics[width=0.8\textwidth]{diagramaModuloQuarto}
+	\label{fig:diagramaModuloQuarto}
+\end{figure}
 
-%\subsection{Módulo de Cozinha}
-% TODO
+O diagrama ilustra equipamentos externos ao sistema em vermelho (lâmpada e abajur), enquanto o controle e sensor de abertura possuem comunicação sem fio. Em roxo, temos os equipamentos opcionais.
+
+Como principais funcionalidades, temos o despertador (configurado pelo usuário, que também pode receber recomendações baseadas na informação gerada pelo monitoramento de seus ciclos de sono); monitoramento de temperatura e umidade do ambiente (com notificações caso esses par metros indiquem perigo para a saúde); controle de iluminação (da luz direta, que é a lâmpada central do ambiente, com maior potência, e da luz indireta, que é usualmente um abajur ou uma lâmpada com menor potência, usada para leitura); e estado da janela, para verificar remotamente se a janela está fechada ou não (por notificação ou visualização no aplicativo, interessante para dias chuvosos). Além disso, se o módulo for instalado em ambientes internos e externos, o usuário pode usufruir de dados de temperatura e umidade, que podem ser usados para escolha de levar ou não uma blusa/guarda chuva para o trabalho ou se é mais vantajoso deixar roupas secando dentro ou fora de casa, e em que períodos.
+
+O módulo de quarto pode ser acoplado ao sistema existente (fisicamente, é instalado no mesmo lugar do interruptor), e possui alguns estados para o despertador. No estado inicial, somente a luz indireta é ligada. Após determinado tempo (programável pelo usuário), temos avisos sonoros periódicos. No terceiro estado, os períodos são menores. Finalmente, no quarto estado a luz direta é ligada e os avisos sonoros são ininterruptos. Até o terceiro estado, o alarme pode ser desarmado (apertar duas vezes) ou entrar em estado soneca (apertar única vez) diretamente no módulo. Já no estado 4, a critério anterior do usuário, o alarme pode ser desarmado somente fisicamente em outro módulo presente em outro aposento (por exemplo, na sala). Esse módulo pode variar de dia para dia, caso o usuário assim desejar. O sistema desarma o alarme após 40 minutos.
+
+O display possui iluminação automática para não aparentar brilho muito intenso quando todas as luzes estiverem desligadas (por meio de circuito baseado em LDR). Para o controle da iluminação, há diferentes tempos para desligamento. Por exemplo, quando ocorre controle manual (pelo botão presente no módulo), o tempo pode ser maior, por exemplo, de 10 minutos. Já pelo modo automático, quando a luz já foi ligada pelo próprio módulo, o tempo para desligamento pode ser menor (por exemplo, 4 minutos). Com o monitoramento da presença, temos um “preset” da contagem para desligamento sempre que houver presença detectada, de forma a inibirmos acionamentos desnecessários do relé. Outra aplicação para o monitoramento da presença é a descoberta de comportamento anormal. Por exemplo, se o usuário sempre toma café entre 8 e 10 horas, e não apresentar presença na casa até as 15 horas, o sistema pode notificar emails de parentes cadastrados.
+
+\subsection{Módulo de Aquário}
+
+Devido a altos custos de compra, implantação e manutenção de um aquário, que pode ser plantado, de água doce ou salgada, e até abrigar espécies raras, é desejável que uma série de riscos sejam mitigados. Além disso, também podemos ter um valor sentimental agregado.
+Dentre tais riscos, destacam-se:
+
+\begin{table}[hbp]
+	\centering
+	\caption{Riscos para o Aquário}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{clp{8cm}p{8cm}}
+			\toprule
+			\textbf{Perigo/Necessidade} 		& \textbf{Origem} 					& \textbf{Consequência} 			 	
+			\\
+			\midrule
+			1. Aquecimento acidental 									&
+			Ajuste errado da temperatura do termostato				& Superaquecimento; risco de mortes (peixes e plantas)													\\
+			2. Falta de água 									&
+			Vazamento ou evaporação natural				& Mal funcionamento ou queima da bomba submersa (à longo prazo, falta de oxigenação da água)													\\
+			3. Falta de circulação de água 									&
+			Entupimento do tubo de circulação ou mal funcionamento da bomba				& Falta de oxigenação da água, ocasionando em risco de mortes (peixes)													\\
+			4. Iluminação adequada									&
+			Existência de plantas e/ou iluminação natural insuficiente no ambiente do aquário				& Ambiente nocivo para os peixes, risco de morte das plantas (principalmente durante períodos de esquecimento/viagens)							
+			\\
+			\bottomrule
+	\end{tabular}}
+	\label{table:riscosaquario}
+\end{table}
+
+Sobre o caso específico da residência onde foram executados os testes de campo, considere um aquário com 50 litros de água, com uma bomba reserva (não a responsável pela circulação de água, que não muda o volume interno) e um aquecedor, com muitos peixes dentro, que são sensíveis à variação brusca de temperatura.
+
+\begin{figure}[H]
+	\centering
+	\caption{Aquário de Santo André}
+	\includegraphics[width=0.8\textwidth]{aquario}
+	\label{fig:aquario}
+\end{figure}
+
+Na ocasião de troca de água do aquário, cerca de 20\% do volume de água é trocado. A saída de água se dá por um funil (simplificamos para uma vazão de saída constante), e a adição é realizada pela bomba auxiliar, que possui água limpa, sem cloro e com certeza menos amônia e outros compostos nocivos aos peixes (que justificam essa troca periódica de água). O monitoramento do nível da água pode também mitigar o risco de esquecimento (o que levaria o nível da água a tender a zero).
+
+\begin{figure}[H]
+	\centering
+	\caption{Diagrama ilustrativo do módulo de Aquário}
+	\includegraphics[width=0.8\textwidth]{diagramaAquario}
+	\label{fig:diagramaAquario}
+\end{figure}
+
+Para mitigar os riscos descritos anteriormente, foi desenvolvido o módulo de aquário, que permite:
+
+\begin{enumerate}
+	\item Controle de horários em que a lâmpada fica acesa, fornecendo uma iluminação adequada para as plantas e peixes do aquário em períodos curtos de viagem;
+	\item Monitoramento do nível de água do aquário principal, alerta pelo aplicativo quando não estiver no nível esperado (pode ocorrer por muita evaporação, vazamento ou problema com a bomba);
+	\item Monitoramento da Temperatura do Aquário, e bloqueamento do aquecedor caso a água já esteja numa temperatura desejável (evitar superaquecimento devido a mal funcionamento do termostato), feito por meio de ligação em série com o termostato do aquário;
+	\item Nos casos de perigo acima descritos, alerta sonoro também localmente (por meio do buzzer).
+	
+\end{enumerate}
+
+\subsection{Módulo de Interface com Sistema de Alarmes}
+
+\begin{figure}[H]
+	\centering
+	\caption{Diagrama ilustrativo do módulo de Interface com Sistema de Alarmes}
+	\includegraphics[width=0.8\textwidth]{diagramaAlarme}
+	\label{fig:diagramaAlarme}
+\end{figure}
+
+
+O módulo de interface com o sistema de alarmes monitora dois setores específicos, um relativo a presença, que possui sensores no corredor e na sala da residência, e outro relativo a porta da sala (sensor único na porta da residência). Foi instalado numa residência em Jarinu (SP).
+
+Um problema recorrente é o estado da internet, que apesar de indicar conexão, não fornecia acesso a sites tampouco acesso externo por meio de abertura de porta do roteador. Para contornar isso e deixar o módulo disponível para que um outro módulo coletasse seus dados e os persistisse em cartão SD, foi instalado também um rele NF (normalmente fechado) em série com a alimentação do roteador. Em caso do módulo estar desligado, o roteador fica ligado.
+
+Já quando há erro persistente (maior que 10 vezes com intervalos de 2 a 3 minutos) de erro de ping com sites ou servidores conhecidos, o módulo reinicia a conexão, atuando diretamente no roteador. Ocorre a execução deste procedimento em intervalos cada vez mais espaçados, de forma a não executar muitas vezes o reinício do roteador sem que a conexão seja reestabelecida com sucesso (nas primeiras tentativas, temos um intervalo de 3 minutos até a nova tentativa, a partir da terceira vez um intervalo de 10 minutos, e assim por diante).
+
+Outra dificuldade encontrada em sua instalação em campo foi o fato de obtenção de endereço IP muito baixo (onde outros dispositivos, tais como celulares e tablets também obtinham endereços), gerando alguma interferência e indisponibilidades do módulo. Com a mudança do endereço IP para fixo, em outro intervalo de endereçamento, o módulo passou a ter alta disponibilidade, ficando até semanas sem reiniciar.
