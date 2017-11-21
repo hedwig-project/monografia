@@ -15,18 +15,18 @@ Para fins de prova de conceito, optou-se por prosseguir com uma arquitetura mono
 
 \begin{itemize}
 \item O servidor deve permitir que Morpheus e aplicativos clientes se comuniquem via WebSocket.
-\item Morpheus podem enviar as mensagens provenientes dos módulos físicos, que são: configuration, confirmation e data. Também podem receber mensagens destinadas aos módulos físicos, que são: action, configuration e data.
+\item Morpheus podem enviar as mensagens provenientes dos módulos físicos, que são: \texttt{configuration}, \texttt{confirmation} e \texttt{data}. Também podem receber mensagens destinadas aos módulos físicos, que são: \texttt{action}, \texttt{configuration} e \texttt{data}.
 \item Morpheus podem receber mensagens de registro e remoção de módulo para definir quais dispositivos ele gerencia.
-\item Morpheus podem enviar mensagens de report.
-\item Os aplicativos cliente podem enviar as mensagens correspondentes a interações do usuário, que são: action e configuration. Também podem receber mensagens provenientes dos módulos físicos, que são: confirmation e data.
-\item Aplicativos cliente podem receber mensagens de report.
+\item Morpheus podem enviar mensagens de \texttt{report}.
+\item Os aplicativos cliente podem enviar as mensagens correspondentes a interações do usuário, que são: \texttt{action} e \texttt{configuration}. Também podem receber mensagens provenientes dos módulos físicos, que são: \texttt{confirmation} e \texttt{data}.
+\item Aplicativos cliente podem receber mensagens de \texttt{report}.
 \item Aplicativos cliente podem receber o status de conectividade dos Morpheus e receber notificações quando um Morpheus for desconectado.
 \end{itemize}
 
 \item \textbf{Persistência de dados}
 
 \begin{itemize}
-\item O servidor deve persistir dados de usuário, de configurações de Morpheus e módulo e de mensagens de dados (data e report).
+\item O servidor deve persistir dados de usuário, de configurações de Morpheus e módulo e de mensagens de dados (\texttt{data} e \texttt{report}).
 \end{itemize}
 
 \item \textbf{Gerenciamento de dados}
@@ -68,3 +68,22 @@ Por fim, foi usada a ferramenta padrão do Ubuntu para firewall, ufw, que permit
 \subsection{Infraestrutura}
 
 Para hospedar o servidor do Hedwig, foi utilizado o serviço de computação na nuvem Digital Ocean \footnote{https://www.digitalocean.com/}. Com ele, foi possível implantar o servidor em uma instância que roda Ubuntu 16.04.3 x64, com 1 CPU, 512MB de memória, 20GB de armazenamento de disco SSD e 1000GB de cota disponível para transferência de dados. O data center que hospeda essa instância fica em Nova Iorque.
+
+\subsection{Segurança}
+
+O servidor na nuvem suporta conexões HTTPS, permitindo que navegadores verifiquem a autenticidade do servidor e garantindo a privacidade e integridade dos dados transmitidos. Para isso, foi usado o Let's Encrypt\footnote{https://letsencrypt.org}, uma autoridade de certificação aberta, gratuita e automatizada. O Let's Encrypt usa o protocolo ACME (\emph{Automatic Certificate Management Environment}) para automatizar a comunicação entre autoridade e candidato para assegurar a autenticidade deste e conceder-lhe certificados de forma rápida e prática. É realizado um teste para verificar que o candidato possui controle sobre o domínio e, então, é gerado um certificado válido por 90 dias que pode ser renovado a qualquer momento. Para usá-lo no servidor, basta acrescentar novas configurações ao nginx.
+
+Além disso, outra medida de segurança foi usar um firewall para bloquear conexões nas portas TCP que não estão sendo usadas.
+
+\subsection{Operação}
+
+O serviço Keymetrics\footnote{https://keymetrics.io/} permite verificar se o servidor na nuvem está online, monitorar o uso de CPU e de memória, investigar a ocorrência de erros e realizar ações comuns, como reiniciar o processo do servidor, por meio de uma interface amigável. Investir em um sistema de monitoramento como esse auxilia tanto a manutenção preventiva como a corretiva, o que é essencial para um sistema de casa inteligente que tem a disponibilidade como requisito prioritário.
+
+\begin{figure}[H]
+	\centering
+	\caption{Monitoramento do servidor na nuvem}
+  \includegraphics[width=1.0\textwidth]{keymetrics}
+\label{fig:keymetrics}
+\end{figure}
+
+Outro ponto abordado é o uso de logs, arquivos que gravam eventos relevantes que acontecem no sistema. Eles podem ser usados para realizar a auditoria de falhas ocorridas e compreender melhor o funcionamento de um programa. Por questões de simplicidade, para classificar os eventos, o servidor na nuvem do Hedwig usa três do sete níveis de severidade definidos pelo padrão syslog \cite{rfc5424}: \emph{error}, \emph{warning} e \emph{informational}. O servidor implementa um esquema de rotação de logs, criando arquivos individuais para cada dia, o que facilita o arquivamento de logs muito antigos e a pesquisa de eventos específicos. Com esse sistema, também é possível filtrar eventos de severidades diferentes em arquivos separados.

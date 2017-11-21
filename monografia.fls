@@ -320,6 +320,9 @@ INPUT chapters/implementacao/servidor_na_nuvem.tex
 INPUT images/componentesNuvem.png
 INPUT ./images/componentesNuvem.png
 INPUT ./images/componentesNuvem.png
+INPUT images/keymetrics.png
+INPUT ./images/keymetrics.png
+INPUT ./images/keymetrics.png
 INPUT chapters/implementacao/dashboard.tex
 INPUT chapters/implementacao/dashboard.tex
 INPUT images/reduxFlowchart.png
