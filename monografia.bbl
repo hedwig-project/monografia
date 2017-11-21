@@ -240,6 +240,12 @@ Accessed: 2017-11-19.}
   \url{https://www.theregister.co.uk/2009/01/16/half_billion_iphone_apps/}.
 Accessed: 2017-11-10.}
 
+\bibitem[Network Working Group 2009]{rfc5424}
+\abntrefinfo{NTWG}{NTWG}{2009}
+{NETWORK WORKING GROUP. \emph{The Syslog Protocol}. 2009.
+  \url{https://tools.ietf.org/html/rfc5424}.
+Accessed: 2017-11-20.}
+
 \bibitem[NOSQL Databases 2009]{nosql}
 \abntrefinfo{NOSQL}{NOSQL}{2009}
 {NOSQL DATABASES. \emph{NOSQL Databases}. 2009.

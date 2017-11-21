@@ -126,10 +126,22 @@ Além disso, caso o aplicativo perca conexão com a nuvem, são emitidas notific
 
 Usando um arquivo de manifesto, foi possível configurar como o aplicativo aparece na tela inicial de um dispositivo móvel como um smartphone. Diminuindo o número de passos para o usuário acessar o aplicativo o encoraja a usá-lo mais vezes, além de criar uma sensação parecida com a de um aplicativo nativo.
 
-\subsection{Publicação}
+\subsection{Implantação}
 
 O aplicativo foi publicado com o serviço Surge\footnote{https://surge.sh/}, que permite a hospedagem de websites estáticos e oferece um domínio customizado. O Surge possui uma aplicação de linha de comando que permite a publicação de um diretório de arquivos HTML, CSS e JavaScript de maneira rápida e sem extensiva configuração. A dashboard está disponível em \url{https://hedwig.surge.sh}.
 
 \subsection{Segurança}
 
 O Surge usa a comunicação via HTTPS por padrão, oferecendo o suporte básico a SSL. Dessa forma, os dados transmitidos entre navegador e servidor podem ser criptografados, permitindo uma maior segurança em operações como cadastro, login e recebimento dos dados dos sensores.
+
+\subsection{Performance}
+
+Levando em consideração que o aplicativo pode ser acessado pelo celular em situações em que a qualidade da conexão não é a ideal, a otimização da dashboard para obter uma boa performance e baixos tempos de carregamento torna-se um ponto importante. Para isso, algumas medidas foram tomadas:
+
+\begin{itemize}
+\item Arquivos estáticos são servidos por uma CDN e podem ser armazenados no cache do navegador, medida que diminui o tempo de carregamento nas visitas subsequentes à dashboard.
+\item Arquivos são compactados em formato \texttt{gzip} antes de serem enviados ao cliente, o que diminui seu tempo de download.
+\item Arquivos HTML, CSS e JavaScript são minificados, diminuindo consideravelmente seu tamanho.
+\item As imagens são redimensionadas e otimizadas, diminuindo consideravelmente seu tamanho.
+\item Não há redirecionamentos desnecessários.
+\end{itemize}

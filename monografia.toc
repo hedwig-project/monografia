@@ -12,12 +12,11 @@
 \contentsline {subsection}{\numberline {2.1.2}Sistemas Open Source}{32}
 \contentsline {section}{\numberline {2.2}Projeto HomeSky}{32}
 \contentsline {chapter}{\numberline {3}Especifica\IeC {\c c}\IeC {\~a}o}{35}
-\contentsline {section}{\numberline {3.1}Componentes}{35}
-\contentsline {section}{\numberline {3.2}Stakeholders}{35}
-\contentsline {section}{\numberline {3.3}Requisitos}{36}
-\contentsline {subsection}{\numberline {3.3.1}Requisitos Funcionais}{36}
-\contentsline {subsection}{\numberline {3.3.2}Requisitos N\IeC {\~a}o-Funcionais}{36}
-\contentsline {subsection}{\numberline {3.3.3}Requisitos por N\IeC {\'\i }vel de Conectividade}{37}
+\contentsline {section}{\numberline {3.1}Stakeholders}{35}
+\contentsline {section}{\numberline {3.2}Requisitos}{36}
+\contentsline {subsection}{\numberline {3.2.1}Requisitos Funcionais}{36}
+\contentsline {subsection}{\numberline {3.2.2}Requisitos N\IeC {\~a}o-Funcionais}{36}
+\contentsline {subsection}{\numberline {3.2.3}Requisitos por N\IeC {\'\i }vel de Conectividade}{37}
 \contentsline {chapter}{\numberline {4}Arquitetura}{39}
 \contentsline {section}{\numberline {4.1}Vis\IeC {\~a}o geral}{39}
 \contentsline {section}{\numberline {4.2}Evolu\IeC {\c c}\IeC {\~a}o arquitetural}{39}
@@ -94,47 +93,50 @@
 \contentsline {subsubsection}{\numberline {6.2.2.2}Requisitos n\IeC {\~a}o-funcionais}{99}
 \contentsline {subsection}{\numberline {6.2.3}Tecnologias usadas}{99}
 \contentsline {subsection}{\numberline {6.2.4}Infraestrutura}{100}
-\contentsline {section}{\numberline {6.3}Aplicativo de dashboard}{101}
-\contentsline {subsection}{\numberline {6.3.1}Descri\IeC {\c c}\IeC {\~a}o}{101}
-\contentsline {subsection}{\numberline {6.3.2}Requisitos}{101}
-\contentsline {subsubsection}{\numberline {6.3.2.1}Requisitos funcionais}{101}
-\contentsline {subsubsection}{\numberline {6.3.2.2}Requisitos n\IeC {\~a}o-funcionais}{102}
-\contentsline {subsection}{\numberline {6.3.3}Tecnologias utilizadas}{102}
-\contentsline {subsection}{\numberline {6.3.4}Interface}{105}
-\contentsline {subsubsection}{\numberline {6.3.4.1}Identidade visual}{105}
-\contentsline {subsection}{\numberline {6.3.5}Intera\IeC {\c c}\IeC {\~o}es}{106}
-\contentsline {subsubsection}{\numberline {6.3.5.1}Dados}{106}
-\contentsline {subsubsection}{\numberline {6.3.5.2}A\IeC {\c c}\IeC {\~o}es}{106}
-\contentsline {subsubsection}{\numberline {6.3.5.3}Conectividade}{106}
-\contentsline {subsubsection}{\numberline {6.3.5.4}Aplicativo na tela inicial do dispositivo m\IeC {\'o}vel}{106}
-\contentsline {subsection}{\numberline {6.3.6}Publica\IeC {\c c}\IeC {\~a}o}{107}
-\contentsline {subsection}{\numberline {6.3.7}Seguran\IeC {\c c}a}{107}
-\contentsline {section}{\numberline {6.4}App Backup}{107}
-\contentsline {subsection}{\numberline {6.4.1}Requisitos}{107}
-\contentsline {subsection}{\numberline {6.4.2}Tecnologias usadas}{108}
-\contentsline {subsection}{\numberline {6.4.3}Navega\IeC {\c c}\IeC {\~a}o}{109}
-\contentsline {subsection}{\numberline {6.4.4}Configura\IeC {\c c}\IeC {\~o}es}{111}
-\contentsline {subsection}{\numberline {6.4.5}Abertura de porta do roteador}{112}
-\contentsline {subsection}{\numberline {6.4.6}Controle remoto}{113}
-\contentsline {subsection}{\numberline {6.4.7}Notifica\IeC {\c c}\IeC {\~o}es}{113}
-\contentsline {subsection}{\numberline {6.4.8}Offset Temperatura e Umidade}{114}
-\contentsline {subsection}{\numberline {6.4.9}Hard Reset}{114}
-\contentsline {subsection}{\numberline {6.4.10}Setup inicial}{114}
-\contentsline {section}{\numberline {6.5}M\IeC {\'o}dulos}{115}
-\contentsline {subsection}{\numberline {6.5.1}Rotinas}{115}
-\contentsline {subsubsection}{\numberline {6.5.1.1}Multiplexa\IeC {\c c}\IeC {\~a}o no tempo}{115}
-\contentsline {subsubsection}{\numberline {6.5.1.2}Tratamento de indisponibilidade}{116}
-\contentsline {subsubsection}{\numberline {6.5.1.3}DoS Local (\textit {Evil Twin})}{117}
-\contentsline {subsubsection}{\numberline {6.5.1.4}Comunica\IeC {\c c}\IeC {\~a}o por MQTT}{118}
-\contentsline {subsection}{\numberline {6.5.2}Diagrama}{119}
-\contentsline {subsection}{\numberline {6.5.3}Montagem}{123}
-\contentsline {subsubsection}{\numberline {6.5.3.1}Montagem}{127}
-\contentsline {chapter}{\numberline {7}Aprendizado de M\IeC {\'a}quina e An\IeC {\'a}lise de Dados}{129}
-\contentsline {section}{\numberline {7.1}Coleta e An\IeC {\'a}lise de Dados}{129}
-\contentsline {subsection}{\numberline {7.1.1}Coleta}{129}
-\contentsline {chapter}{\numberline {8}Conclus\IeC {\~o}es}{149}
-\contentsline {chapter}{Refer\IeC {\^e}ncias}{151}
-\contentsline {chapter}{Anexo{} A{} -- C\IeC {\'o}digos das aplica\IeC {\c c}\IeC {\~o}es desenvolvidas}{155}
-\contentsline {chapter}{Anexo{} B{} -- Lista de materiais para montagem dos m\IeC {\'o}dulos}{157}
-\contentsline {chapter}{Anexo{} C{} -- Dados Coletados de 10/09/2017 a 13/11/2017}{159}
-\contentsline {chapter}{Anexo{} D{} -- Imagens de configura\IeC {\c c}\IeC {\~a}o para o aplicativo backup}{181}
+\contentsline {subsection}{\numberline {6.2.5}Seguran\IeC {\c c}a}{101}
+\contentsline {subsection}{\numberline {6.2.6}Opera\IeC {\c c}\IeC {\~a}o}{101}
+\contentsline {section}{\numberline {6.3}Aplicativo de dashboard}{102}
+\contentsline {subsection}{\numberline {6.3.1}Descri\IeC {\c c}\IeC {\~a}o}{102}
+\contentsline {subsection}{\numberline {6.3.2}Requisitos}{102}
+\contentsline {subsubsection}{\numberline {6.3.2.1}Requisitos funcionais}{102}
+\contentsline {subsubsection}{\numberline {6.3.2.2}Requisitos n\IeC {\~a}o-funcionais}{104}
+\contentsline {subsection}{\numberline {6.3.3}Tecnologias utilizadas}{104}
+\contentsline {subsection}{\numberline {6.3.4}Interface}{106}
+\contentsline {subsubsection}{\numberline {6.3.4.1}Identidade visual}{106}
+\contentsline {subsection}{\numberline {6.3.5}Intera\IeC {\c c}\IeC {\~o}es}{107}
+\contentsline {subsubsection}{\numberline {6.3.5.1}Dados}{107}
+\contentsline {subsubsection}{\numberline {6.3.5.2}A\IeC {\c c}\IeC {\~o}es}{107}
+\contentsline {subsubsection}{\numberline {6.3.5.3}Conectividade}{107}
+\contentsline {subsubsection}{\numberline {6.3.5.4}Aplicativo na tela inicial do dispositivo m\IeC {\'o}vel}{107}
+\contentsline {subsection}{\numberline {6.3.6}Implanta\IeC {\c c}\IeC {\~a}o}{108}
+\contentsline {subsection}{\numberline {6.3.7}Seguran\IeC {\c c}a}{108}
+\contentsline {subsection}{\numberline {6.3.8}Performance}{108}
+\contentsline {section}{\numberline {6.4}App Backup}{109}
+\contentsline {subsection}{\numberline {6.4.1}Requisitos}{109}
+\contentsline {subsection}{\numberline {6.4.2}Tecnologias usadas}{110}
+\contentsline {subsection}{\numberline {6.4.3}Navega\IeC {\c c}\IeC {\~a}o}{110}
+\contentsline {subsection}{\numberline {6.4.4}Configura\IeC {\c c}\IeC {\~o}es}{112}
+\contentsline {subsection}{\numberline {6.4.5}Abertura de porta do roteador}{113}
+\contentsline {subsection}{\numberline {6.4.6}Controle remoto}{114}
+\contentsline {subsection}{\numberline {6.4.7}Notifica\IeC {\c c}\IeC {\~o}es}{114}
+\contentsline {subsection}{\numberline {6.4.8}Offset Temperatura e Umidade}{115}
+\contentsline {subsection}{\numberline {6.4.9}Hard Reset}{115}
+\contentsline {subsection}{\numberline {6.4.10}Setup inicial}{115}
+\contentsline {section}{\numberline {6.5}M\IeC {\'o}dulos}{116}
+\contentsline {subsection}{\numberline {6.5.1}Rotinas}{116}
+\contentsline {subsubsection}{\numberline {6.5.1.1}Multiplexa\IeC {\c c}\IeC {\~a}o no tempo}{116}
+\contentsline {subsubsection}{\numberline {6.5.1.2}Tratamento de indisponibilidade}{117}
+\contentsline {subsubsection}{\numberline {6.5.1.3}DoS Local (\textit {Evil Twin})}{118}
+\contentsline {subsubsection}{\numberline {6.5.1.4}Comunica\IeC {\c c}\IeC {\~a}o por MQTT}{119}
+\contentsline {subsection}{\numberline {6.5.2}Diagrama}{120}
+\contentsline {subsection}{\numberline {6.5.3}Montagem}{124}
+\contentsline {subsubsection}{\numberline {6.5.3.1}Montagem}{128}
+\contentsline {chapter}{\numberline {7}Aprendizado de M\IeC {\'a}quina e An\IeC {\'a}lise de Dados}{131}
+\contentsline {section}{\numberline {7.1}Coleta e An\IeC {\'a}lise de Dados}{131}
+\contentsline {subsection}{\numberline {7.1.1}Coleta}{131}
+\contentsline {chapter}{\numberline {8}Conclus\IeC {\~o}es}{151}
+\contentsline {chapter}{Refer\IeC {\^e}ncias}{153}
+\contentsline {chapter}{Anexo{} A{} -- C\IeC {\'o}digos das aplica\IeC {\c c}\IeC {\~o}es desenvolvidas}{157}
+\contentsline {chapter}{Anexo{} B{} -- Lista de materiais para montagem dos m\IeC {\'o}dulos}{159}
+\contentsline {chapter}{Anexo{} C{} -- Dados Coletados de 10/09/2017 a 13/11/2017}{161}
+\contentsline {chapter}{Anexo{} D{} -- Imagens de configura\IeC {\c c}\IeC {\~a}o para o aplicativo backup}{183}
