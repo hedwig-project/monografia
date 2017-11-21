@@ -20,14 +20,14 @@ As oportunidades trazidas pelo conceito de \wiot{} à área de automação resid
 \section{Projeto Hedwig}
 
 \subsection{Objetivo}
-A contribuição do projeto para o avanço das tecnologias de \emph{Internet das Coisas} fundamenta-se na criação de um sistema com arquitetura modularizada, e em camadas, com funcionalidades locais e de nuvem, provendo uma \textit{API} que permita seu acesso por diversos clientes - como \textit{websites} ou aplicativos para \textit{smartphones} - que seja capaz de monitorar e agir em diversos módulos presentes na residência do usuário final do sistema. O projeto irá disponibilizar módulos físicos, prontos para serem instalados e configurados na residência, sem que seja necessário conhecimentos avançados de eletrônica ou computação.
+A contribuição do projeto para o avanço das tecnologias de Internet das Coisas fundamenta-se na criação de um sistema com arquitetura modularizada, e em camadas, com funcionalidades locais e de nuvem, provendo uma API que permita seu acesso por diversos clientes - como websites ou aplicativos para smartphones - que seja capaz de monitorar e agir em diversos módulos presentes na residência do usuário final do sistema. O projeto irá disponibilizar módulos físicos, prontos para serem instalados e configurados na residência, sem que sejam necessários conhecimentos avançados de eletrônica ou computação.
 
-Para a elaboração do projeto, e o alinhamento das expectativas e requisitos que o motivaram, os seguintes conceitos desempenharam papéis relevantes. 
+Para a elaboração do projeto, e o alinhamento das expectativas e requisitos que o motivaram, os seguintes conceitos desempenharam papéis relevantes:
 
 \begin{description}
 \item \textbf{Robustez}
 
-Com foco na robustez e disponibilidade, foram previstos três níveis de operação para o sistema: Online, Local e Offline, os quais dispõem de diferentes requisitos de funcionalidades, para garantir a serviços essenciais, mesmo na ocorrência de problemas (como a queda do servidor local, indisponibilidade de internet, falha no roteador, dentre diversas outras possibilidades). Há medidas tratativas, em diferentes níveis, para a tentativa automática de reconexão, monitoramento de estado e manutenções preventivas e corretivas do sistema.
+Com foco na robustez e disponibilidade, foram previstos três níveis de operação para o sistema: Online, Local e Offline, os quais dispõem de diferentes requisitos de funcionalidades para garantir serviços essenciais, mesmo na ocorrência de problemas como a queda do servidor local, indisponibilidade de internet, falha no roteador, dentre diversas outras possibilidades. Há medidas tratativas, em diferentes níveis, para a tentativa automática de reconexão, monitoramento de estado e manutenções preventivas e corretivas do sistema.
 
 \item \textbf{Modularidade}
 
@@ -35,7 +35,7 @@ A modularidade, principalmente relacionada aos dispositivos físicos e as decis�
 
 \item \textbf{Camadas}
 
-A arquitetura do projeto é concebida em camadas e níveis, cujas responsabilidades são independentes. Cada parte do sistema exercita um conjunto de tarefas específicas (de transporte, análise, tomada de ações, etc), e seus efeitos são traduzidos em entradas para o nível seguinte.
+A arquitetura do projeto é concebida em camadas e níveis, cujas responsabilidades são independentes. Cada parte do sistema exercita um conjunto de tarefas específicas (de transporte, análise, tomada de ações, etc.), e seus efeitos são traduzidos em entradas para o nível seguinte.
 
 \item \textbf{Machine Learning}
 
@@ -43,7 +43,7 @@ Geração de aprendizado de máquina por meio de análise automática do uso do 
 
 \item \textbf{Segurança}
 
-A proteção da privacidade do usuário é tão importante, ou talvez mais, quanto a proteção física da casa. Assim, necessita-se que o sistema seja seja seguro, e que o fluxo de dados trocados entre as partes ocorra em canais protegidos. Foram utilizadas tecnologias de criptografia assimétrica para comunicação entre servidor local e serviços de nuvem, juntamente com conexão por \textit{WebSocket}; a autenticação e autorização de usuários são realizados por meio de \textit{JSON Web Tokens} e é feito uso de canais \textit{Publisher/Subscriber} protegidos para troca de mensagens.
+A proteção da privacidade do usuário é tão importante, ou talvez mais, quanto a proteção física da casa. Assim, necessita-se que o sistema seja seja seguro, e que o fluxo de dados trocados entre as partes ocorra em canais protegidos. Foram utilizadas tecnologias de criptografia assimétrica para comunicação entre servidor local e serviços de nuvem, juntamente com conexão por \textit{WebSocket}; a autenticação e autorização de usuários são realizados por meio de \textit{JSON Web Tokens} e são usados canais \textit{Publisher/Subscriber} restritos para troca de mensagens.
 
 \end{description}
 
@@ -51,7 +51,7 @@ A proteção da privacidade do usuário é tão importante, ou talvez mais, quan
 O nome do projeto foi escolhido em homenagem a Hedy Lamarr. Nascida Hedwig Eva Maria Kiesler \cite{shearer}, a atriz e inventora desenvolveu, durante a Segunda Guerra Mundial, um aparelho de interferência em rádio para despistar radares nazistas, cujos princípios estão incorporados nas tecnologias atuais de \emph{Wi-Fi}, \emph{CDMA} e \emph{Bluetooth} \cite{electronicFrontier}. Baseado na ideia de um sistema de comunicação seguro, e como reconhecimento de seu trabalho, foi dado esse nome ao projeto aqui descrito.
 
 \subsection{Logo}
-O logo do projeto é uma coruja, em referência à coruja \textit{Hedwig} do personagem \textit{Harry Potter}, da série de livros de mesmo nome. A coruja é responsável por encaminhar mensagens, de maneira segura, entre os interlocutores, e o projeto desenvolvido promove uma maneira segura de comunicação com sua casa.
+O logo do projeto é uma coruja, em referência à coruja \textit{Hedwig} do personagem \textit{Harry Potter}, da série de livros de mesmo nome. A coruja é responsável por encaminhar mensagens de maneira segura entre os interlocutores, assim como o projeto desenvolvido promove uma maneira segura de comunicação com sua casa.
 \begin{figure}[H]
 	\centering
 	\caption{Logotipo do projeto Hedwig}
@@ -60,8 +60,8 @@ O logo do projeto é uma coruja, em referência à coruja \textit{Hedwig} do per
 \end{figure}
 
 \section{Aplicações}
-Como aplicações do projeto Hedwig, destacam-se a automação no uso de eletrodomésticos e iluminação, segurança no acesso à casa, economia nas contas de energia elétrica, além de um monitoramento remoto de pessoas que moram sozinhas (principalmente pessoas idosas), garantindo a tranquilidade de seus familiares e mantendo a segurança do indivíduo.
+Como aplicações do projeto Hedwig, destacam-se a automação no uso de eletrodomésticos e iluminação, segurança no acesso à casa, economia nas contas de energia elétrica, além de  monitoramento remoto de pessoas que moram sozinhas, principalmente pessoas idosas, garantindo a tranquilidade de seus familiares e mantendo a segurança do indivíduo.
 
-Exemplos de módulos que podem ser incluídos no sistema são: quarto (despertador, iluminação, monitoramento de temperatura e umidade); cozinha (\textit{timer}, iluminação, monitoramento de presença e gás); acesso (controle de abertura, monitoramento de estado); externo (monitoramento de temperatura, umidade, energia elétrica e consumo de água); corredor (monitoramento de presença, iluminação), chuveiro (controle de temperatura\slash potência a partir do perfil de usuário e temperatura externa) e ar condicionado (controle da potência a partir do monitoramento das temperaturas internas e externas da casa).
+Exemplos de módulos que podem ser incluídos no sistema são: quarto (despertador, iluminação, monitoramento de temperatura e umidade); cozinha (\textit{timer}, iluminação, monitoramento de presença e gás); acesso (controle de abertura, monitoramento de estado); externo (monitoramento de temperatura, umidade, energia elétrica e consumo de água); corredor (monitoramento de presença, iluminação); chuveiro (controle de temperatura\slash potência a partir do perfil de usuário e temperatura externa) e ar condicionado (controle da potência a partir do monitoramento das temperaturas internas e externas da casa).
 
-A presença de funcionalidades de \emph{Machine Learning} incrementa o sistema, permitindo trazer facilidades e promover maior adaptação. O sistema torna-se capaz de aprender com \emph{feedbacks} do usuário, seja pelo monitoramento dos módulos ou por respostas dadas por meio do aplicativo, e pode atuar em questões de segurança (\emph{safety}), personalizações e mesmo em possíveis sugestões de produtos relacionados à rotina do cliente.
+A presença de funcionalidades de aprendizado de máquina incrementa o sistema, traz facilidades e promove maior adaptação às rotinas dos moradores. O sistema é capaz de aprender com \emph{feedbacks} do usuário, seja pelo monitoramento dos módulos ou por respostas dadas pelo aplicativo, podendo atuar em questões de segurança (\emph{safety}), personalizações e até mesmo em possíveis sugestões de produtos relacionados aos hábitos do cliente.
