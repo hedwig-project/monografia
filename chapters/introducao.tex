@@ -20,18 +20,18 @@ As oportunidades trazidas pelo conceito de \wiot{} à área de automação resid
 \section{Projeto Hedwig}
 
 \subsection{Objetivo}
-A contribuição do projeto para o avanço das tecnologias de Internet das Coisas fundamenta-se na criação de um sistema com arquitetura modularizada, e em camadas, com funcionalidades locais e de nuvem, provendo uma API que permita seu acesso por diversos clientes - como websites ou aplicativos para smartphones - que seja capaz de monitorar e agir em diversos módulos presentes na residência do usuário final do sistema. O projeto irá disponibilizar módulos físicos, prontos para serem instalados e configurados na residência, sem que sejam necessários conhecimentos avançados de eletrônica ou computação.
+A contribuição do projeto para o avanço das tecnologias de Internet das Coisas fundamenta-se na criação de um sistema com arquitetura modularizada, e em camadas, com funcionalidades locais e de nuvem, provendo uma API que permita seu acesso por diversos clientes --- como websites ou aplicativos para smartphones --- que seja capaz de monitorar e agir em diversos módulos presentes na residência do usuário final do sistema. O projeto irá disponibilizar módulos físicos, prontos para serem instalados e configurados na residência, sem que sejam necessários conhecimentos avançados de eletrônica ou computação.
 
 Para a elaboração do projeto, e o alinhamento das expectativas e requisitos que o motivaram, os seguintes conceitos desempenharam papéis relevantes:
 
 \begin{description}
 \item \textbf{Robustez}
 
-Com foco na robustez e disponibilidade, foram previstos três níveis de operação para o sistema: Online, Local e Offline, os quais dispõem de diferentes requisitos de funcionalidades para garantir serviços essenciais, mesmo na ocorrência de problemas como a queda do servidor local, indisponibilidade de internet, falha no roteador, dentre diversas outras possibilidades. Há medidas tratativas, em diferentes níveis, para a tentativa automática de reconexão, monitoramento de estado e manutenções preventivas e corretivas do sistema.
+Com foco na robustez e disponibilidade, devem ser previstos níveis de operação para o sistema, os quais dispõem de diferentes requisitos de funcionalidades para garantir serviços essenciais, mesmo na ocorrência de problemas como a queda do servidor local, indisponibilidade de internet, falha no roteador, dentre diversas outras possibilidades. Há medidas tratativas, nos diferentes níveis, para a tentativa automática de reconexão, monitoramento de estado e manutenções preventivas e corretivas do sistema.
 
 \item \textbf{Modularidade}
 
-A modularidade, principalmente relacionada aos dispositivos físicos e as decisões arquiteturais, promove a independência de funcionamento entre as partes, e contribui no atendimento aos requisitos de robustez e disponibilidade. Em relação aos dispositivos, também representa diminuição nos custos de produção, e a possibilidade de que módulos específicos sejam desenvolvidos para aplicações diversas.
+A modularidade, principalmente relacionada aos dispositivos físicos e as decisões arquiteturais, promove a independência de funcionamento entre as partes, e contribui no atendimento aos requisitos de robustez e disponibilidade. Em relação aos dispositivos, também representa diminuição nos custos de produção, e a possibilidade de que dispositivos específicos sejam desenvolvidos para aplicações diversas.
 
 \item \textbf{Camadas}
 
@@ -43,7 +43,7 @@ Geração de aprendizado de máquina por meio de análise automática do uso do 
 
 \item \textbf{Segurança}
 
-A proteção da privacidade do usuário é tão importante, ou talvez mais, quanto a proteção física da casa. Assim, necessita-se que o sistema seja seja seguro, e que o fluxo de dados trocados entre as partes ocorra em canais protegidos. Foram utilizadas tecnologias de criptografia assimétrica para comunicação entre servidor local e serviços de nuvem, juntamente com conexão por \textit{WebSocket}; a autenticação e autorização de usuários são realizados por meio de \textit{JSON Web Tokens} e são usados canais \textit{Publisher/Subscriber} restritos para troca de mensagens.
+A proteção da privacidade do usuário é tão importante, ou talvez mais, quanto a proteção física da casa. Assim, necessita-se que o sistema seja seguro, e que o fluxo de dados trocados entre as partes ocorra em meios protegidos. Foram utilizadas protocolos criptográficcos modernos para a proteção da troca de mensagens entre servidor local e serviços de nuvem. Todo usuário é autenticado e autorizado por meio de \emph{tokens} seguros, ao utilizar o aplicativo cliente, e a comunicação interna da casa é realizada em canais restritos.
 
 \end{description}
 
