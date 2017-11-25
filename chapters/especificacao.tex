@@ -19,81 +19,40 @@ Considerando o Censo de 2010 \cite{ibge}, pode-se estimar as classes de consumid
 
 \section{Requisitos}
 
+O levantamento de requisitos funcionais e não funcionais são definidos a seguir. Para requisitos funcionais, utilizou-se o termo \emph{RF} seguido de um número identificador --- e.g. \emph{RF-1}. Os requisitos não-funcionais levam o termo \emph{RNF}, também seguido de um identificador numérico --- e.g. \emph{RNF-1}.
+
 \subsection{Requisitos Funcionais}
-\begin{itemize}
-\item O sistema deve permitir o monitoramento de aparelhos do dia a dia, dentro de uma residência, em módulos independentes;
-\item O sistema deve ser capaz de enviar notificações aos usuários, por meio de um aplicativo web ou \textit{mobile};
-\item O sistema deve poder ser personalizável pelo usuário, o qual pode adquirir novos módulos ou retirar algum já existente;
-\item O sistema deve ser capaz de aprender a respeito de cada usuário, utilizando conceitos de Machine Learning. O aprendizado de máquina é responsável por detectar padrões no comportamento do usuário, e a partir disso, sugerir ao usuário ações a serem tomadas automicamente pelo sistema;
-\item O sistema deve manter backup de dados do controlador local na nuvem;
-\item O sistema deve permitir a usuários se cadastrarem no mesmo, pela plataforma que melhor lhe convier;
-\item O usuário poderá cadastrar sua casa na plataforma, podendo ter uma ou mais casas cadastradas;
-\item O usuário poderá cadastrar os módulos dentro de uma casa, sendo que uma casa pode ter vários módulos, e cada módulo só poderá existir em uma casa;
-\item O usuário pode efetuar as operações de remoção e modificação nos seus módulos e casas;
-% TODO rever item abaixo, acho que talvez essa funcao de reset nao tenha ficado muito claro. Tipo, o que ela faz, qual parte do sistema ela afeta, etc. Dado que nesse contexto, o "sistema" é tudo, ou seja, API, etc tb. E esse reset nao afetaria API. Entao acho que vale a reescrita desse requisito
-\item O sistema deve possuir uma função de reset de fácil utilização.
-\end{itemize}
+\begin{description}
+\item[RF-1:] O sistema deve permitir o monitoramento de aparelhos do dia a dia, dentro de uma residência, de maneira independente;
+\item[RF-2:] O sistema deve ser capaz de noficar o usuário sobre o estado da casa --- e.g. temperatura, presença, etc;
+\item[RF-3:] O sistema deve poder ser personalizável pelo usuário, o qual pode adicionar ou remover funcionalidades;
+\item[RF-4:] O sistema deve ser capaz de aprender a respeito de cada usuário, podendo detectar padrões no seu comportamento e, a partir disso, sugerir ações a serem tomadas automaticamente --- e.g. acendimento automátio de lâmpadas;
+\item[RF-5:] O sistema deve permitir o acionamento de dispositivos da residência;
+\item[RF-6:] O sistema deve permitir o cadastro, remoção e atualização de usuários;
+\item[RF-7:] O sistema deve permitir o cadastro, remoção e atualização de casas, para cada usuário;
+\item[RF-8:] O sistema deve permitir o cadastro, remoção e atualização de dispositivos, para cada casa;
+\item[RF-9:] O sistema deve permitir o seu reinício (\emph{reset});
+\item[RF-10:] O sistema deve permitir a autenticação de usuários;
+\item[RF-11:] O sistema deve permitir a configuração de dispositivos;
+\item[RF-12:] O sistema deve disponibilizar uma \emph{API} para comunicação.
+
+\end{description}
 
 \subsection{Requisitos Não-Funcionais}
 O levantamento de requisitos não-funcionais foi realizado com base na norma ISO25010:2011 \cite{iso25010}.
 
-\begin{itemize}
-\item Os módulos que compõem o sistema dentro de uma residência devem ser independentes entre si, devendo obedecer a uma interface comum de integração com o core do projeto, para que seja facilitada a ampliação e a inserção de novos módulos, com outras funcionalidades. Haverá validação com o desligamento de um módulo e verificação do comportamento dos demais;
-\item O sistema deve garantir segurança dos dados por meio de protocolo de comunicação seguro, tanto para o controle de acesso à API por usuários autenticados quanto para impedir que dados sejam interceptados em sua transmissão;
-\item O banco de dados deve possuir acesso restrito e estar hospedado em servidor de alta segurança;
-% TODO como assim "em menos de 10 minutos"?
-\item O sistema deve ser robusto, de modo a continuar operando, mesmo com menor nível de funcionalidades, quando da ocorrência de falhas na comunicação com a nuvem (indisponibilidade parcial devido a problemas com os servidores remotos, ou total com perda da conexão com a Internet) ou falhas na rede local (indisponibilidade da conexão com a rede local). Também deve se recuperar em caso de travamento total do módulo e continuar funcionando em caso de DoS Local. Para validação, haverão testes de indisponibilidade de servidor, conexão com a internet, rede local e DoS local, e observação da continuidade de serviço de atuação na iluminação da casa e abertura do portão em menos de 10 minutos;
-% TODO era bom falar algo sobre os dois itens abaixo (tipo, se a gente fez algo pra tentar seguir essa meta)
-\item O sistema deve apresentar disponibilidade de 99,9\% - cerca de 8 horas de indisponibilidade por ano -, não levando em consideração problemas com a conexão de internet da residência;
-\item O sistema deve ser escalável a até 10 mil usuários, sem perdas de desempenho consideráveis, ou aumento na latência para as requisições serem atendidas;
-\item O sistema deve possuir instalação intuitiva e simplificada.
-\end{itemize}
+\begin{description}
+\item[RNF-1:]  Os dispositivos que compõem o sistema dentro de uma residência devem ser independentes entre si, devendo obedecer a uma interface comum de integração com o \emph{core} do projeto, para que seja facilitada a sua ampliação e extensão, com outras funcionalidades;
+\item[RNF-2:]  O sistema deve garantir segurança dos dados por meio de protocolos de comunicação seguros. O tráfego de informação entre as residências e os servidores externos não pode ser realizado em texto aberto. A comunicação interna da casa deve ser realizada em canais restritos;
+\item[RNF-3:]  Os dados de cadastro do sistema devem ser armazenados em servidores seguros \cite{softwareSecurity};
+\item[RNF-4:]  O sistema deve ser robusto, de modo a continuar operando, mesmo com menor nível de funcionalidades, quando há ocorrência de falhas na comunicação entre a casa e serviços externos --- e.g. indisponibilidade parcial devido a problemas com servidores remotos, indisponibilidade total devido a perda da conexão com a Internet --- ou falhas na rede interna, como a indisponibilidade de conexão local. A validação é realizada com interrupções na rede, desconexão e desligamentos de servidores e dispositivos, seguida da verificação dos serviços disponíveis;
+\item[RNF-5:] O sistema identificar e se recuperar recuperar de travamentos em suas partes, reiniciando-as;
+\item[RNF-6:] O sistema deve possuir mecanismos de proteção contra ataques de negação de serviço (\emph{DoS});
+\item[RNF-7:]  O sistema deve apresentar disponibilidade de 99,9\% --- cerca de 8 horas de indisponibilidade por ano. Essa medida de disponbilidade refere-se somente aos serviços remotos, não levando em consideração indisponibilidades das residências;
+\item[RNF-8:]  O sistema deve ser escalável a até 10 mil usuários, sem perdas de desempenho consideráveis, ou aumento na latência para as requisições serem atendidas, com variação de até 5\%. A verificação deve ser realizadas com softwares de análise de performance comerciais\footnote{Um exemplo de aplicação de monitoramento de rede é desenvolvida pela empresa Dynatrace \url{https://www.dynatrace.com/}};
+\item[RNF-9:]  O sistema deve possuir instalação intuitiva e simplificada --- a instalação é realizada em passos, seguindo o manual de instruções, sem a necessidade de conhecimentos de computação ou eletrônica;
+\end{description}
 
-\subsection{Requisitos por Nível de Conectividade}
+\subsection{Funcionalidades por Nível de Conectividade}
 
-Nas Tabela \ref{table:descricaoRequisitos} são descritos os requisitos, bem como a técnica de avaliação utilizada para demonstrá-lo. A Tabela \ref{table:niveisFuncionalidades} mostra tais requisitos de acordo com o nível de funcionalidade.
-
-\begin{table}[hbp]
-	\centering
-	\caption{Descrição de requisitos}
-	\resizebox{\textwidth}{!}{%
-    \begin{tabular}{clp{8cm}p{8cm}}
-        \toprule
-        \textbf{ID} 			& \textbf{Requisito} 					& \textbf{Avaliação} 																					& \textbf{Descrição} \\
-        \midrule
-		1 						& Automação Residencial					& Demonstração das funcionalidades listadas															& Controle por App ou no módulo \\
-		2 						& Monitoramento Residencial				& Demonstração das funcionalidades listadas 														& Monitoramento no App e displays dos módulos \\
-		3 						& Modularidade							& Funcionamento de módulo ``stand-alone'' 															& Soluções modulares \\
-		4 						& Escalabilidade para n residências		& Testes de carga, acessos simultâneos 																& Suporta carga, acessos simultâneos \\
-		5 						& Machine Learning						& Tratamento de séries de dados reais 																& Análise dos dados para levantamento de rotinas e reconhecimento de padrões \\
-		6 						& Backup de dados						& Funcionalidade de Backup de dados no controlador local 											& - \\
-		7 						& Tolerância a falhas					& Estatísticas de keep alive, ping local, ping internet de módulo base com e sem as melhorias 		& Manter funcionalidade Online, Local e Offline \\
-		8 						& Segurança da informação				& Protocolos seguros, controle de acesso 															& Protocolos seguros, controle de acesso \\
-        \bottomrule
-	\end{tabular}}
-	\label{table:descricaoRequisitos}
-\end{table}
-
-\newcommand{\specialcell}[2][c]{%
- 	\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
-
-\begin{table}[hbp]
-	\centering
-	\caption{Níveis de funcionalidades}
-	\resizebox{\textwidth}{!}{%
-    \begin{tabular}{cp{7cm}p{8cm}p{8cm}}
-        \toprule
-        \textbf{ID} 			& \textbf{Online} 												& \textbf{Local} 																					& \textbf{Offline} \\
-        \midrule
-		1 						& Usar parâmetros para controle inteligente de lâmpada e despertador (Quarto)												& \specialcell[c]{Configurar lâmpada automática (Quarto) \\ Configurar despertador (Quarto)}								& Ligar e desligar lâmpada (Quarto) - Módulo 									 				\\
-		2 						& \specialcell[c]{Estado do portão (Acesso) \\ Temperatura, Umidade (Todos) \\ Presença (Quarto)}							& \specialcell[c]{Estado do portão (Acesso) \\ Temperatura, Umidade (Todos) \\ Presença (Quarto)}							& \specialcell[c]{Desativar despertador (Quarto) - Módulo \\ Destravar porta (Acesso) - App} 	\\
-		3 						& -																															& Inserção automática\slash reconhecimento (Todos)																			& \specialcell[c]{Temperatura, Umidade (Todos) - Módulo \\ Presença (Quarto) - Módulo} 			\\
-		4 						& -																															& -																															& - 																							\\
-		5 						& \specialcell[c]{Derivações de Regras \\ Perfil Esperado de Comportamento}													& Alerta de Portão Aberto (Acesso)																							& - 																							\\
-		6 						& Redundância na nuvem																										& Armazenamento de dados temporariamente num cartão SD, no controlador local 												& Alerta de Portão Aberto (Acesso) - Módulo 													\\
-		7 						& -																															& Notificações e alertas no App (Monitoramento estado módulos) 																& Circuito ``Keep Alive'' - Hard Reset e Soft Reset 											\\
-		8 						& Autenticação para as funcionalidades descritas nesta coluna																& Autenticação para as funcionalidades descritas nesta coluna 																& Autenticação para as funcionalidades descritas nesta coluna - Módulo  						\\
-        \bottomrule
-	\end{tabular}}
-	\label{table:niveisFuncionalidades}
-\end{table}
+Os requisitos apresentados anteriormente detalham o sistema completo. Para que o requisito \emph{RNF-4} fosse implementado, o projeto incorporou três níveis de funcionalidade --- \emph{Online}, \emph{Local} e \emph{Offline}. O primeiro nível, \emph{Online}, é o mais amplo e caracteriza o comportamento normal do sistema, quando todas as conexões estão disponíveis, e os dispositivos e serviços funcionam corretamente. O nível \emph{Local} modela o cenário de não haver possibilidade de conexão externa com a casa, como é o caso quando não há internet disponível. O último nível, \emph{Offline}, reflete uma situação emergencial, no caso de problemas com o servidor interno, por exemplo.
