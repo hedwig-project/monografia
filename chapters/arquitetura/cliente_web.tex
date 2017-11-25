@@ -58,7 +58,7 @@ Outro caso de sucesso na área de e-commerce é o da AliExpress, que focou na pe
 
 O Twitter PWA Lite conseguiu reduzir o uso de dados em até 70\% usando imagens otimizadas e se aproveitando ao máximo das informações no cache. Houve um aumento de 75\% da quantidade de tweets enviados \cite{googledevtwitter}.
 
-\subsection{JSON \textit{Web Tokens}}
+\subsection{JSON \textit{Web Tokens} \label{sec:JWT}}
 
 \subsubsection{Definição}
 O cliente web realiza a autenticação de usuário por meio de JSON \textit{Web Tokens}. JSON \textit{Web Tokens}, ou JWTs, foram definidas para possibilitar a troca de informações de uma forma segura, autônoma e compacta usando objetos JSON \cite{rfc7519}. A segurança se dá pela assinatura digital das tokens usando o algoritmo HMAC com um segredo ou com criptografia RSA usando pares de chaves pública e privada. JWTs são autônomas no sentido de que o conteúdo das tokens contém toda a informação sobre o usuário, evitando transações adicionais no banco de dados. Por fim, o tamanho compacto das tokens permite que elas sejam enviadas em URLs, parâmetros e cabeçalhos HTTP sem grande ônus ao tempo de transmissão.

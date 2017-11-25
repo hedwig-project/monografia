@@ -315,6 +315,13 @@ Accessed: 2017-11-08.}
   \url{https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/}.
 Accessed: 2017-11-07.}
 
+\bibitem[SAVIT 2013]{oracleSPOF}
+\abntrefinfo{SAVIT}{SAVIT}{2013}
+{SAVIT, J. \emph{Availability Best Practices - Avoiding Single Points of
+  Failure}. 2013.
+  \url{https://blogs.oracle.com/jsavit/availability-best-practices-avoiding-single-points-of-failure}.
+Accessed: 2017-10-19.}
+
 \bibitem[SHEARER 2010]{shearer}
 \abntrefinfo{SHEARER}{SHEARER}{2010}
 {SHEARER, S.~M. \emph{Beautiful: The Life of Hedy Lamarr}. [S.l.]: Thomas Dunne

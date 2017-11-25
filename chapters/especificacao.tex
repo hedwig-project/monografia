@@ -26,8 +26,8 @@ O levantamento de requisitos funcionais e não funcionais são definidos a segui
 \item[RF-1:] O sistema deve permitir o monitoramento de aparelhos do dia a dia, dentro de uma residência, de maneira independente;
 \item[RF-2:] O sistema deve ser capaz de noficar o usuário sobre o estado da casa --- e.g. temperatura, presença, etc;
 \item[RF-3:] O sistema deve poder ser personalizável pelo usuário, o qual pode adicionar ou remover funcionalidades;
-\item[RF-4:] O sistema deve ser capaz de aprender a respeito de cada usuário, podendo detectar padrões no seu comportamento e, a partir disso, sugerir ações a serem tomadas automaticamente --- e.g. acendimento automátio de lâmpadas;
-\item[RF-5:] O sistema deve permitir o acionamento de dispositivos da residência;
+\item[RF-4:] O sistema deve permitir o acionamento de dispositivos da residência;
+\item[RF-5:] O sistema deve ser capaz de aprender a respeito de cada usuário, podendo detectar padrões no seu comportamento e, a partir disso, sugerir ações a serem tomadas automaticamente --- e.g. acendimento automátio de lâmpadas;
 \item[RF-6:] O sistema deve permitir o cadastro, remoção e atualização de usuários;
 \item[RF-7:] O sistema deve permitir o cadastro, remoção e atualização de casas, para cada usuário;
 \item[RF-8:] O sistema deve permitir o cadastro, remoção e atualização de dispositivos, para cada casa;
@@ -51,6 +51,8 @@ O levantamento de requisitos não-funcionais foi realizado com base na norma ISO
 \item[RNF-7:]  O sistema deve apresentar disponibilidade de 99,9\% --- cerca de 8 horas de indisponibilidade por ano. Essa medida de disponbilidade refere-se somente aos serviços remotos, não levando em consideração indisponibilidades das residências;
 \item[RNF-8:]  O sistema deve ser escalável a até 10 mil usuários, sem perdas de desempenho consideráveis, ou aumento na latência para as requisições serem atendidas, com variação de até 5\%. A verificação deve ser realizadas com softwares de análise de performance comerciais\footnote{Um exemplo de aplicação de monitoramento de rede é desenvolvida pela empresa Dynatrace \url{https://www.dynatrace.com/}};
 \item[RNF-9:]  O sistema deve possuir instalação intuitiva e simplificada --- a instalação é realizada em passos, seguindo o manual de instruções, sem a necessidade de conhecimentos de computação ou eletrônica;
+\item[RNF-10:] O sistema deve atender e processar requisições em paralelo, tanto dos usuários quanto dos dispositivos físicos;
+\item[RNF-11:] O sistema deve autenticar e autorizar as requisições recebidas, descartando as que invalidas. 
 \end{description}
 
 \subsection{Funcionalidades por Nível de Conectividade}
