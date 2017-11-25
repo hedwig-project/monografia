@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.23)  25 NOV 2017 18:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.23)  25 NOV 2017 19:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1254,48 +1254,53 @@ put line 24.
 Package pdftex.def Info: Requested size: 409.71692pt x 256.26526pt on input lin
 e 24.
  [41 <./images/arquiteturaV2.png>])
-(./chapters/arquitetura/modulos.tex [42] [43]
+(./chapters/arquitetura/modulos.tex [42]
+Overfull \hbox (9.89311pt too wide) in paragraph at lines 8--9
+[]\OT1/cmr/m/n/12 Em ge-ral, os m^^Sodulos con-sis-tem do mi-cro-con-tro-la-dor
+, rel^^Ses, sen-so-res e fon-tes/conversores
+ []
+
+[43]
 <images/diagramaModuloAcesso.png, id=170, 2291.56125pt x 1267.73625pt>
 File: images/diagramaModuloAcesso.png Graphic file (type png)
 <use images/diagramaModuloAcesso.png>
-Package pdftex.def Info: images/diagramaModuloAcesso.png  used on input line 23
-. on input line 23.
+Package pdftex.def Info: images/diagramaModuloAcesso.png  used on input line 31
+. on input line 31.
 Package pdftex.def Info: Requested size: 364.19667pt x 201.4685pt on input line
- 23.
+ 31.
  [44 <./images/diagramaModuloAcesso.png>] [45]
 <images/diagramaModuloQuarto.png, id=179, 583.17876pt x 427.5975pt>
 File: images/diagramaModuloQuarto.png Graphic file (type png)
 <use images/diagramaModuloQuarto.png>
-Package pdftex.def Info: images/diagramaModuloQuarto.png  used on input line 45
-. on input line 45.
+Package pdftex.def Info: images/diagramaModuloQuarto.png  used on input line 60
+. on input line 60.
 Package pdftex.def Info: Requested size: 364.19667pt x 267.03899pt on input lin
-e 45.
- [46 <./images/diagramaModuloQuarto.png>]
-<images/aquario.PNG, id=185, 516.42938pt x 291.33844pt>
+e 60.
+ [46 <./images/diagramaModuloQuarto.png>] [47]
+<images/aquario.PNG, id=188, 516.42938pt x 291.33844pt>
 File: images/aquario.PNG Graphic file (type png)
 <use images/aquario.PNG>
-Package pdftex.def Info: images/aquario.PNG  used on input line 90. on input li
-ne 90.
+Package pdftex.def Info: images/aquario.PNG  used on input line 100. on input l
+ine 100.
 Package pdftex.def Info: Requested size: 364.19667pt x 205.46475pt on input lin
-e 90.
- [47]
+e 100.
 <images/diagramaAquario.PNG, id=189, 375.65344pt x 287.57437pt>
 File: images/diagramaAquario.PNG Graphic file (type png)
 <use images/diagramaAquario.PNG>
-Package pdftex.def Info: images/diagramaAquario.PNG  used on input line 99. on 
-input line 99.
+Package pdftex.def Info: images/diagramaAquario.PNG  used on input line 109. on
+ input line 109.
 Package pdftex.def Info: Requested size: 364.19667pt x 278.82394pt on input lin
-e 99.
- [48 <./images/aquario.PNG>]
-<images/diagramaAlarme.PNG, id=194, 409.53pt x 242.40562pt>
+e 109.
+ [48 <./images/aquario.PNG>] [49 <./images/diagramaAquario.PNG>]
+<images/diagramaAlarme.PNG, id=198, 409.53pt x 242.40562pt>
 File: images/diagramaAlarme.PNG Graphic file (type png)
 <use images/diagramaAlarme.PNG>
-Package pdftex.def Info: images/diagramaAlarme.PNG  used on input line 118. on 
-input line 118.
+Package pdftex.def Info: images/diagramaAlarme.PNG  used on input line 130. on 
+input line 130.
 Package pdftex.def Info: Requested size: 364.19667pt x 215.58496pt on input lin
-e 118.
- [49 <./images/diagramaAquario.PNG>]) [50 <./images/diagramaAlarme.PNG>] (./cha
-pters/arquitetura/controlador_local.tex
+e 130.
+) [50 <./images/diagramaAlarme.PNG>]
+(./chapters/arquitetura/controlador_local.tex
 <images/Raspberry-Pi-3.jpg, id=203, 347.79938pt x 242.40562pt>
 File: images/Raspberry-Pi-3.jpg Graphic file (type jpg)
 <use images/Raspberry-Pi-3.jpg>
@@ -2204,10 +2209,10 @@ avancadasDHT.PNG> <./images/configRFBlynkWiFi.PNG>] [185 <./images/confignomept
 oacessoWiFi.PNG>]
 (./monografia.aux) ) 
 Here is how much of TeX's memory you used:
- 11074 strings out of 492990
- 163750 string characters out of 6132621
- 306478 words of memory out of 5000000
- 14192 multiletter control sequences out of 15000+600000
+ 11076 strings out of 492990
+ 163786 string characters out of 6132621
+ 306502 words of memory out of 5000000
+ 14194 multiletter control sequences out of 15000+600000
  16213 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  51i,12n,99p,1425b,1942s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2229,7 +2234,7 @@ pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pf
 b></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></
 usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on monografia.pdf (189 pages, 8288822 bytes).
+Output written on monografia.pdf (189 pages, 8289537 bytes).
 PDF statistics:
  898 PDF objects out of 1000 (max. 8388607)
  471 compressed objects within 5 object streams
