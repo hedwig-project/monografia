@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex monografia"] 1511646388 "monografia.aux" "monografia.bbl" "monografia" 1511646630
+["bibtex monografia"] 1511646987 "monografia.aux" "monografia.bbl" "monografia" 1511647073
   "/usr/local/texlive/2017/texmf-dist/bibtex/bib/abntex2/abntex2-options.bib" 1480098425 5396 4eb260dac60f150ae608d45252853090 ""
   "/usr/local/texlive/2017/texmf-dist/bibtex/bst/abntex2/abntex2-alf.bst" 1480098433 60064 6469892b646cc99dbd8ecd5e965537d8 ""
   "citations.bib" 1511641190 15607 58aea8bbbefc184de9ff55d54e7b9af6 ""
-  "monografia.aux" 1511646629 43778 467991e9dbcf73fe9f608c8026530097 ""
+  "monografia.aux" 1511647072 43778 467991e9dbcf73fe9f608c8026530097 ""
   (generated)
-  "monografia.blg"
   "monografia.bbl"
-["pdflatex"] 1511646621 "/home/hugo/Documents/TCC/monografia/monografia.tex" "monografia.pdf" "monografia" 1511646630
+  "monografia.blg"
+["pdflatex"] 1511647065 "/home/hugo/Documents/TCC/monografia/monografia.tex" "monografia.pdf" "monografia" 1511647073
   "/home/hugo/Documents/TCC/monografia/monografia.tex" 1511645286 5459 e62134f963311d49b21087d9890fda00 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1480098666 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -159,7 +159,7 @@
   "chapters/arquitetura/comunicacao.tex" 1511641190 4138 872b6a967cfec9baeb79e56465f7c348 ""
   "chapters/arquitetura/controlador_local.tex" 1510448342 1705 e9604582363accbcb06ab40794111dae ""
   "chapters/arquitetura/evolucao_arquitetural.tex" 1511641190 7156 e9ff8bb47b10917011d351118b51c2e5 ""
-  "chapters/arquitetura/modulos.tex" 1511646620 17249 33ac3ba32237a77fc0bd490cb85bab09 ""
+  "chapters/arquitetura/modulos.tex" 1511647064 17327 984086e7ffd2334a71f86ffd299e8e69 ""
   "chapters/arquitetura/servidor_na_nuvem.tex" 1511641190 11168 f5e978ebe5ab631814d279bbd42db772 ""
   "chapters/conclusoes.tex" 1506966850 30 209fb77434e19451f346874967a0017e ""
   "chapters/especificacao.tex" 1511641190 6931 f728c60f352c729379dca3153600f15e ""
@@ -282,12 +282,12 @@
   "images/usorele2salacozinhadia.PNG" 1511620779 18843 b053914a50daa507504a72f07c23251b ""
   "images/usorele2salacozinhaperiodo.PNG" 1511620779 39615 bc5542d77a2dde9563e916b4f102ada6 ""
   "images/websocketVsPolling.png" 1511120710 76720 2747f338eba7810d6c58501a2a4d4e3c ""
-  "monografia.aux" 1511646629 43778 467991e9dbcf73fe9f608c8026530097 ""
-  "monografia.bbl" 1511646388 13931 49fc42782abe47e5781ac78ce9b4f832 "bibtex monografia"
-  "monografia.lof" 1511646629 12945 d3f0ca6539b5a0626f1f3d8ed4297330 ""
-  "monografia.lot" 1511646629 433 e7e030e5ae9b60474c017d75de38ae05 ""
+  "monografia.aux" 1511647072 43778 467991e9dbcf73fe9f608c8026530097 ""
+  "monografia.bbl" 1511646987 13931 49fc42782abe47e5781ac78ce9b4f832 "bibtex monografia"
+  "monografia.lof" 1511647072 12945 d3f0ca6539b5a0626f1f3d8ed4297330 ""
+  "monografia.lot" 1511647072 433 e7e030e5ae9b60474c017d75de38ae05 ""
   "monografia.tex" 1511645286 5459 e62134f963311d49b21087d9890fda00 ""
-  "monografia.toc" 1511646629 11120 a12f22ccff6ea011b12b2a1533fa5585 ""
+  "monografia.toc" 1511647072 11120 a12f22ccff6ea011b12b2a1533fa5585 ""
   "politex.cls" 1509894692 37651 8afad14b722bbfbf8a460f8ea47136d5 ""
   "preliminary/abstract.tex" 1511633824 1780 57e0a6dfbce9f5dc7c041da1feb8b730 ""
   "preliminary/agradecimentos.tex" 1510448342 7 49984594d8fb22ea5c85d3bce02cedf7 ""
@@ -295,9 +295,9 @@
   "preliminary/siglas.tex" 1511620779 2444 e25fe1d7d48508176c8be3b4d9fb5285 ""
   "setspace.sty" 1511620779 22913 a27d7908fc6f0385466454a966a316eb ""
   (generated)
-  "monografia.aux"
-  "monografia.pdf"
+  "monografia.lot"
   "monografia.log"
+  "monografia.pdf"
+  "monografia.aux"
   "monografia.toc"
   "monografia.lof"
-  "monografia.lot"
