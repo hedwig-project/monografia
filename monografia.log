@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.23)  25 NOV 2017 13:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.23)  25 NOV 2017 16:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1228,35 +1228,15 @@ Package pdftex.def Info: Requested size: 364.19667pt x 186.017pt on input line
 ]
 Cap\'{\i }tulo 3.
 [35]
-Overfull \hbox (27.41663pt too wide) in paragraph at lines 38--39
+Overfull \hbox (27.41663pt too wide) in paragraph at lines 42--43
 []\OT1/cmr/m/n/12 O le-van-ta-mento de re-qui-si-tos n~ao-funcionais foi re-a-l
 i-zado com base na norma ISO25010:2011
  []
 
-[36]
-Underfull \hbox (badness 3460) in paragraph at lines 73--73
-[]|\OT1/cmr/m/n/12 Monitoramento no App e dis-plays dos
- []
-
-
-Underfull \hbox (badness 3148) in paragraph at lines 97--97
-[]|\OT1/cmr/m/n/12 Usar par^ametros para con-trole in-
- []
-
-
-Underfull \hbox (badness 1412) in paragraph at lines 97--97
-\OT1/cmr/m/n/12 te-li-gente de l^ampada e des-per-ta-dor
- []
-
-
-Underfull \hbox (badness 3758) in paragraph at lines 97--97
-[]|\OT1/cmr/m/n/12 Inser^^Xc~ao au-tom^^Satica/reconhecimento (To-
- []
-
-) (./chapters/arquitetura.tex [37] [38]
+[36] [37]) (./chapters/arquitetura.tex [38]
 Cap\'{\i }tulo 4.
 (./chapters/arquitetura/evolucao_arquitetural.tex
-<images/arquiteturaV1.png, id=149, 810.02625pt x 458.71375pt>
+<images/arquiteturaV1.png, id=150, 810.02625pt x 458.71375pt>
 File: images/arquiteturaV1.png Graphic file (type png)
 <use images/arquiteturaV1.png>
 Package pdftex.def Info: images/arquiteturaV1.png  used on input line 9. on inp
@@ -1266,7 +1246,7 @@ Package pdftex.def Info: Requested size: 364.19667pt x 206.2443pt on input line
  [39
 
 ]
-<images/arquiteturaV2.png, id=154, 814.04124pt x 579.16376pt>
+<images/arquiteturaV2.png, id=155, 814.04124pt x 579.16376pt>
 File: images/arquiteturaV2.png Graphic file (type png)
 <use images/arquiteturaV2.png>
 Package pdftex.def Info: images/arquiteturaV2.png  used on input line 22. on in
@@ -1275,7 +1255,7 @@ Package pdftex.def Info: Requested size: 364.19667pt x 259.11009pt on input lin
 e 22.
  [40 <./images/arquiteturaV1.png>] [41 <./images/arquiteturaV2.png>])
 (./chapters/arquitetura/modulos.tex [42] [43]
-<images/diagramaModuloAcesso.png, id=169, 2291.56125pt x 1267.73625pt>
+<images/diagramaModuloAcesso.png, id=170, 2291.56125pt x 1267.73625pt>
 File: images/diagramaModuloAcesso.png Graphic file (type png)
 <use images/diagramaModuloAcesso.png>
 Package pdftex.def Info: images/diagramaModuloAcesso.png  used on input line 23
@@ -1283,7 +1263,7 @@ Package pdftex.def Info: images/diagramaModuloAcesso.png  used on input line 23
 Package pdftex.def Info: Requested size: 364.19667pt x 201.4685pt on input line
  23.
  [44 <./images/diagramaModuloAcesso.png>]
-<images/diagramaModuloQuarto.png, id=174, 583.17876pt x 427.5975pt>
+<images/diagramaModuloQuarto.png, id=175, 583.17876pt x 427.5975pt>
 File: images/diagramaModuloQuarto.png Graphic file (type png)
 <use images/diagramaModuloQuarto.png>
 Package pdftex.def Info: images/diagramaModuloQuarto.png  used on input line 45
@@ -1291,14 +1271,14 @@ Package pdftex.def Info: images/diagramaModuloQuarto.png  used on input line 45
 Package pdftex.def Info: Requested size: 364.19667pt x 267.03899pt on input lin
 e 45.
  [45] [46 <./images/diagramaModuloQuarto.png>] [47]
-<images/aquario.PNG, id=187, 516.42938pt x 291.33844pt>
+<images/aquario.PNG, id=188, 516.42938pt x 291.33844pt>
 File: images/aquario.PNG Graphic file (type png)
 <use images/aquario.PNG>
 Package pdftex.def Info: images/aquario.PNG  used on input line 90. on input li
 ne 90.
 Package pdftex.def Info: Requested size: 364.19667pt x 205.46475pt on input lin
 e 90.
-<images/diagramaAquario.PNG, id=188, 375.65344pt x 287.57437pt>
+<images/diagramaAquario.PNG, id=189, 375.65344pt x 287.57437pt>
 File: images/diagramaAquario.PNG Graphic file (type png)
 <use images/diagramaAquario.PNG>
 Package pdftex.def Info: images/diagramaAquario.PNG  used on input line 99. on 
@@ -1306,7 +1286,7 @@ input line 99.
 Package pdftex.def Info: Requested size: 364.19667pt x 278.82394pt on input lin
 e 99.
  [48 <./images/aquario.PNG>]
-<images/diagramaAlarme.PNG, id=193, 409.53pt x 242.40562pt>
+<images/diagramaAlarme.PNG, id=194, 409.53pt x 242.40562pt>
 File: images/diagramaAlarme.PNG Graphic file (type png)
 <use images/diagramaAlarme.PNG>
 Package pdftex.def Info: images/diagramaAlarme.PNG  used on input line 118. on 
@@ -1315,7 +1295,7 @@ Package pdftex.def Info: Requested size: 364.19667pt x 215.58496pt on input lin
 e 118.
  [49 <./images/diagramaAquario.PNG>]) [50 <./images/diagramaAlarme.PNG>] (./cha
 pters/arquitetura/controlador_local.tex
-<images/Raspberry-Pi-3.jpg, id=202, 347.79938pt x 242.40562pt>
+<images/Raspberry-Pi-3.jpg, id=203, 347.79938pt x 242.40562pt>
 File: images/Raspberry-Pi-3.jpg Graphic file (type jpg)
 <use images/Raspberry-Pi-3.jpg>
 Package pdftex.def Info: images/Raspberry-Pi-3.jpg  used on input line 12. on i
@@ -1325,7 +1305,7 @@ e 12.
 ) [51]
 (./chapters/arquitetura/servidor_na_nuvem.tex [52 <./images/Raspberry-Pi-3.jpg>
 ] [53]
-<images/websocketVsPolling.png, id=213, 505.89pt x 361.35pt>
+<images/websocketVsPolling.png, id=214, 505.89pt x 361.35pt>
 File: images/websocketVsPolling.png Graphic file (type png)
 <use images/websocketVsPolling.png>
 Package pdftex.def Info: images/websocketVsPolling.png  used on input line 43. 
@@ -1333,7 +1313,7 @@ on input line 43.
 Package pdftex.def Info: Requested size: 318.66948pt x 227.62413pt on input lin
 e 43.
  [54] [55 <./images/websocketVsPolling.png>]
-<images/estruturaMicrosservicos.png, id=221, 853.1875pt x 521.95pt>
+<images/estruturaMicrosservicos.png, id=222, 853.1875pt x 521.95pt>
 File: images/estruturaMicrosservicos.png Graphic file (type png)
 <use images/estruturaMicrosservicos.png>
 Package pdftex.def Info: images/estruturaMicrosservicos.png  used on input line
@@ -1352,7 +1332,7 @@ Overfull \hbox (3.47748pt too wide) in paragraph at lines 75--76
 [][][] 
  []
 
-<images/jwtDiagram.png, id=243, 1339.0025pt x 750.805pt>
+<images/jwtDiagram.png, id=244, 1339.0025pt x 750.805pt>
 File: images/jwtDiagram.png Graphic file (type png)
 <use images/jwtDiagram.png>
 Package pdftex.def Info: images/jwtDiagram.png  used on input line 85. on input
@@ -1842,7 +1822,7 @@ sers-[]is-[]normal-[]and-[]that-[]the-[]best-[]apps-[]do-[]much-[]better /
 [153
 
 ] [154] [155]
-Underfull \hbox (badness 1377) in paragraph at lines 307--311
+Underfull \hbox (badness 1377) in paragraph at lines 313--317
 \OT1/cmr/m/it/12 Lo-sing Our Soul\OT1/cmr/m/n/12 . 2015. $\OMS/cmsy/m/n/12 h\OT
 1/cmr/m/n/12 https : / / infrequently . org / 2015 / 06 / 
  []
@@ -2223,13 +2203,13 @@ avancadasDHT.PNG> <./images/configRFBlynkWiFi.PNG>] [185 <./images/confignomept
 oacessoWiFi.PNG>]
 (./monografia.aux) ) 
 Here is how much of TeX's memory you used:
- 11067 strings out of 492990
- 163616 string characters out of 6132621
- 306467 words of memory out of 5000000
- 14185 multiletter control sequences out of 15000+600000
+ 11068 strings out of 492990
+ 163654 string characters out of 6132621
+ 306437 words of memory out of 5000000
+ 14186 multiletter control sequences out of 15000+600000
  16213 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,18n,99p,1425b,1942s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,12n,99p,1425b,1942s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-supe
 r/cm-super-ts1.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfon
@@ -2248,7 +2228,7 @@ pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pf
 b></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></
 usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on monografia.pdf (189 pages, 8294877 bytes).
+Output written on monografia.pdf (189 pages, 8294365 bytes).
 PDF statistics:
  898 PDF objects out of 1000 (max. 8388607)
  471 compressed objects within 5 object streams

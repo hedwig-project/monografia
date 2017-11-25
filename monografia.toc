@@ -15,8 +15,8 @@
 \contentsline {section}{\numberline {3.1}Stakeholders}{35}
 \contentsline {section}{\numberline {3.2}Requisitos}{36}
 \contentsline {subsection}{\numberline {3.2.1}Requisitos Funcionais}{36}
-\contentsline {subsection}{\numberline {3.2.2}Requisitos N\IeC {\~a}o-Funcionais}{36}
-\contentsline {subsection}{\numberline {3.2.3}Requisitos por N\IeC {\'\i }vel de Conectividade}{37}
+\contentsline {subsection}{\numberline {3.2.2}Requisitos N\IeC {\~a}o-Funcionais}{37}
+\contentsline {subsection}{\numberline {3.2.3}Funcionalidades por N\IeC {\'\i }vel de Conectividade}{38}
 \contentsline {chapter}{\numberline {4}Arquitetura}{39}
 \contentsline {section}{\numberline {4.1}Vis\IeC {\~a}o geral}{39}
 \contentsline {section}{\numberline {4.2}Evolu\IeC {\c c}\IeC {\~a}o arquitetural}{39}
