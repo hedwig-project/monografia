@@ -12,6 +12,12 @@
   \url{https://9to5mac.com/2011/10/21/jobs-original-vision-for-the-iphone-no-third-party-native-apps/}.
 Accessed: 2017-11-07.}
 
+\bibitem[Akamai 2017]{akamai}
+\abntrefinfo{AKAMAI}{AKAMAI}{2017}
+{AKAMAI. \emph{Denial of service attacks (DoS)}. 2017.
+  \url{https://www.akamai.com/us/en/resources/protect-against-ddos-attacks.jsp}.
+Accessed: 2017-11-10.}
+
 \bibitem[Atlassian 2017]{atlassian}
 \abntrefinfo{Atlassian}{ATLASSIAN}{2017}
 {ATLASSIAN. \emph{Comparing Workflows}. 2017.
@@ -65,6 +71,13 @@ Accessed: 2017-11-10.}
   \url{https://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/vni-hyperconnectivity-wp.pdf}.
 Accessed: 2017-11-09.}
 
+\bibitem[DHWTY 2014]{morpheusName}
+\abntrefinfo{DHWTY}{DHWTY}{2014}
+{DHWTY. \emph{Morpheus, the Greek God of Dreams who delivered messages from the
+  gods to the mortal world}. 2014.
+  \url{http://www.ancient-origins.net/myths-legends-europe/morpheus-greek-god-dreams-who-delivered-messages-gods-mortal-world-002318?nopaging=1}.
+Accessed: 2017-07-02.}
+
 \bibitem[Electronic Frontier Foundation Media Release 1997]{electronicFrontier}
 \abntrefinfo{EFF}{EFF}{1997}
 {ELECTRONIC FRONTIER FOUNDATION MEDIA RELEASE. \emph{Movie Legend Hedy Lamarr
@@ -89,6 +102,12 @@ Accessed: 2017-11-11.}
 {FACEBOOK OPEN SOURCE. \emph{Reconciliation}. 2017.
   \url{https://reactjs.org/docs/reconciliation.html}.
 Accessed: 2017-11-09.}
+
+\bibitem[FOWLER 2004]{iocFowler}
+\abntrefinfo{FOWLER}{FOWLER}{2004}
+{FOWLER, M. \emph{Inversion of Control Containers and the Dependency Injection
+  pattern}. 2004. \url{https://martinfowler.com/articles/injection.html}.
+Accessed: 2017-06-25.}
 
 \bibitem[G1 São Paulo 2015]{g1}
 \abntrefinfo{G1}{G1}{2015}
@@ -144,6 +163,12 @@ Accessed: 2017-11-07.}
 {HIVEMQ. \emph{HiveMQ Enterprise MQTT Broker}. 2017.
   \url{https://www.hivemq.com/wp-content/uploads/hivemq-data-sheet-3.3.pdf}.
 Accessed: 2017-11-05.}
+
+\bibitem[HOPKINS 2008]{javaBlueray}
+\abntrefinfo{HOPKINS}{HOPKINS}{2008}
+{HOPKINS, B. \emph{Blu-ray Disc Application Development with Java ME}. 2008.
+  \url{http://www.oracle.com/technetwork/articles/javame/bluray-142687.html}.
+Accessed: 2017-08-13.}
 
 \bibitem[i-SCOOP 2017]{iscoop}
 \abntrefinfo{i-SCOOP}{I-SCOOP}{2017}
