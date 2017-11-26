@@ -1,39 +1,39 @@
 \section{Cliente Web}
-A arquitetura do Hedwig permite a criação de vários aplicativos web ou mobile independentes para monitorar e controlar os dispositivos conectados de uma casa. Como toda a comunicação desses clientes é realizada através do servidor na nuvem por meio de WebSockets e da API REST, é possível realizar integrações nas mais diversas plataformas, seja navegadores ou sistemas operacionais nativos de smartphones.
+A arquitetura do Hedwig permite o desenvolvimento de vários clientes, web ou mobile, independentes, para monitorar e controlar os dispositivos conectados de uma casa. Como toda a comunicação desses clientes é realizada através do servidor na nuvem por meio de WebSockets e da API REST, é possível realizar integrações nas mais diversas plataformas, seja navegadores ou sistemas operacionais nativos de smartphones.
 
-A fim de demonstrar como o usuário final poderia interagir com o sistema em sua totalidade, optamos por desenvolver uma aplicação web. Esse tipo de aplicação tem o desenvolvimento facilitado por uma vasta quantidade de bibliotecas, frameworks, ferramentas e IDEs. Outro fator favorável é a evolução dos navegadores modernos, que possuem funcionalidades de depuração e integrações com os ambientes de dispositivos móveis cada vez melhores. Tais melhorias possibilitaram que aplicativos web pudessem ter uma aparência e percepção mais próxima aos aplicativos nativos.
+A fim de demonstrar como o usuário final poderia interagir com o sistema em sua totalidade, optou-se por desenvolver uma aplicação web. Esse tipo de aplicação foi escolhida devido a vasta quantidade de bibliotecas, frameworks, ferramentas e IDEs disponíveis. Outro fator favorável é a evolução dos navegadores modernos, que possuem funcionalidades de depuração e integrações com os ambientes de dispositivos móveis cada vez melhores. Tais melhorias possibilitaram que aplicativos web pudessem ter uma aparência e percepção mais próxima aos aplicativos nativos.
 
-\subsection{\textit{Progressive Web Apps}}
+\subsection{Progressive Web Apps}
 
 \subsubsection{Contexto}
-Durante a ascensão dos smartphones no mercado, os aplicativos nativos predominaram por serem mais rápidos e possuírem maior suporte para acessar funções do hardware, alcançando assim um padrão mais alto de experiência de usuário do que aplicativos web. Em 2007, Steve Jobs chegou a afirmar que sua visão para o iPhone era de que todos os aplicativos de terceiros fossem web apps \cite{9to5mac}. Contudo, apesar desse incentivo, o panorama de Jobs não foi recebido com muita empolgação, e a App Store foi ao ar em 2008 com 500 aplicativos \cite{ricker}. Em janeiro de 2009, já estavam disponíveis mais de 15 mil aplicativos, com um total de download que superava 500 milhões \cite{myslewski}.
+Durante a ascensão dos smartphones no mercado, os aplicativos nativos predominaram por serem mais rápidos e possuírem maior suporte para acessar funções do hardware, alcançando assim um padrão melhor de experiência de usuário do que aplicativos web. Em 2007, Steve Jobs chegou a afirmar que sua visão para o iPhone era de que todos os aplicativos de terceiros fossem web apps \cite{9to5mac}. Contudo, apesar desse incentivo, o panorama de Jobs não foi recebido com muita empolgação, e a App Store foi ao ar em 2008 com 500 aplicativos \cite{ricker}. Em janeiro de 2009, já estavam disponíveis mais de 15 mil aplicativos, com um total de download que superava 500 milhões \cite{myslewski}.
 
 Desde então, ocorreram grandes avanços no desenvolvimento web com o amadurecimento do HTML5, CSS3 e JavaScript, a criação de novas bibliotecas e ferramentas, surgimento de mais metodologias para design responsivo e a evolução dos navegadores para cumprir os padrões e especificações mais recentes.
 
 Assim, houve o crescimento do número de aplicativos híbridos, que combinam as técnicas de desenvolvimento web com benefícios dos aplicativos nativos como o suporte para usar funções do hardware. Pode-se dividir os aplicativos híbridos em dois grandes grupos \cite{rudolph}: aplicativos que usam WebView, uma espécie de navegador interno que é envolvido por uma aplicação nativa, permitindo que algumas APIs nativas sejam acessíveis por JavaScript, e aplicativos híbridos compilados, que são escritos em uma linguagem não nativa e então compilados para várias plataformas de dispositivos móveis. Isso permite obter versões para várias plataformas com o mesmo código, mas para obter tal resultado há limitações durante o desenvolvimento.
 
-Hoje, pesquisas indicam que os aplicativos nativos vêm perdendo força. O número de downloads de aplicativos no Estados Unidos diminui 20\% ano a ano \cite{benson}. Analisando os dados da \emph{Google Play}, descobriu-se que o aplicativo médio perde aproximadamente 77\% dos usuário após 3 dias da instalação \cite{chen} - o que demonstra a dificuldade de se alcançar um bom nível de engajamento. Logo, pedir que o usuário baixe um aplicativo para continuar desfrutando dos serviços de um site pode acarretar em evasão de visitantes. Esses fatores somam-se ao fato de que as tecnologias de desenvolvimento web continuam progredindo e permitindo experiências de usuário cada vez mais ricas - há um crescente suporte na forma de bibliotecas e metodologias para criar interfaces responsivas, transições e animações fluidas e novos tipos de interação. Nesse contexto, surge o conceito de \textit{Progressive Web Apps}, aplicações web que, de fato, podem oferecer uma experiência compatível à de uma aplicação nativa.
+Hoje, pesquisas indicam que os aplicativos nativos vêm perdendo força. O número de downloads de aplicativos no Estados Unidos diminui 20\% ano a ano \cite{benson}. Analisando os dados da \emph{Google Play}, descobriu-se que o aplicativo médio perde aproximadamente 77\% dos usuário após 3 dias da instalação \cite{chen} --- o que demonstra a dificuldade de se alcançar um bom nível de engajamento. Logo, pedir que o usuário baixe um aplicativo para continuar desfrutando dos serviços de um site pode acarretar em evasão de visitantes. Esses fatores somam-se ao fato de que as tecnologias de desenvolvimento web continuam progredindo e permitindo experiências de usuário cada vez mais ricas --- há um crescente suporte na forma de bibliotecas e metodologias para criar interfaces responsivas, transições e animações fluidas e novos tipos de interação. Nesse contexto, surge o conceito de \textit{Progressive Web Apps}, aplicações web que, de fato, podem oferecer uma experiência compatível à de uma aplicação nativa.
 
 \subsubsection{Conceito}
-O conceito de \textit{Progressive Web Apps} ou \emph{PWAs} é recente - o termo foi usado pela primeira vez em 2015 pelo designer Frances Berriman e pelo Engenheiro do Google Chrome Alex Russell \cite{russell}. A ideia dessa classe de aplicativos é ir além das aplicações web tradicionais, aproveitando o máximo das funcionalidades mais modernas dos últimos navegadores lançados e combinando-as à navegação mobile para oferecer uma melhor experiência ao usuário.
+O conceito de \textit{Progressive Web Apps} ou \emph{PWAs} é recente --- o termo foi usado pela primeira vez em 2015 pelo designer Frances Berriman e pelo engenheiro do Google Chrome Alex Russell \cite{russell}. A ideia dessa classe de aplicativos é ir além das aplicações web tradicionais, aproveitando o máximo das funcionalidades mais modernas dos últimos navegadores lançados e combinando-as à navegação mobile para oferecer uma melhor experiência ao usuário.
 
 De acordo com o  \emph{Google Developers} \cite{googledevpwa}, os \emph{PWAs} devem ser:
 
-\begin{itemize}
-\item \textbf{Confiáveis} - devem carregar de forma instantânea, independentemente das condições de conectividade, sem prejudicar a experiência com erros e falhas na aplicação
-\item \textbf{Rápidos} - devem responder rapidamente às interações do usuário, com animações e renderizações suaves
-\item \textbf{Envolventes} - devem oferecer uma experiência imersiva, que se assemelhe à de um aplicativo nativo
-\end{itemize}
+\begin{description}
+\item[Confiáveis -]devem carregar de forma instantânea, independentemente das condições de conectividade, sem prejudicar a experiência com erros e falhas na aplicação;
+\item[Rápidos -]devem responder rapidamente às interações do usuário, com animações e renderizações suaves;
+\item[Envolventes -]devem oferecer uma experiência imersiva, que se assemelhe à de um aplicativo nativo.
+\end{description}
 
 Além desses três principais aspectos, várias outras características para definir PWAs mais a fundo também são exploradas pelas documentações do Google Developers \cite{googledevpwachecklist} e por outros desenvolvedores web. Abaixo estão algumas delas:
 
-\begin{itemize}
-\item \textbf{Responsivos} - adaptação aos mais variados tipos de dispositivos e plataformas: desktops, smartphones, tablets, \textit{smart TVs}, entre outros.
-\item \textbf{Atualizados} - realizar a atualização automática do conteúdo
-\item \textbf{Seguros} - uso de medidas para evitar a adulteração de conteúdo
-\item \textbf{Descobríveis} - podem ser encontrados por mecanismos de pesquisa e identificados como aplicativos
-\item \textbf{Linkáveis} - o seu conteúdo é compartilhável por URL
-\end{itemize}
+\begin{description}
+\item[Responsivos -]adaptação aos mais variados tipos de dispositivos e plataformas: desktops, smartphones, tablets, \textit{smart TVs}, entre outros;
+\item[Atualizados -]podem realizar a atualização automática do conteúdo;
+\item[Seguros -]uso de medidas para evitar a adulteração de conteúdo;
+\item[Descobríveis -]podem ser encontrados por mecanismos de pesquisa e identificados como aplicativos;
+\item[Linkáveis -]o seu conteúdo é compartilhável por URL.
+\end{description}
 
 As ideias em torno do desenvolvimento dos PWAs são fortemente relacionadas ao conceito de \textit{progressive enhancement} ou melhoria progressiva, que propõe que camadas de interface e funcionalidades sejam progressivamente adicionadas à aplicação à medida que a conexão e navegador do usuário permitam \cite{champeon}. Dessa forma, usuários com dificuldades de conectividade e dispositivos mais antigos podem acessar o conteúdo básico, e aqueles que possuem mais banda e navegadores mais modernos podem acessar a uma versão mais completa.
 
@@ -63,11 +63,11 @@ O Twitter PWA Lite conseguiu reduzir o uso de dados em até 70\% usando imagens 
 \subsubsection{Definição}
 O cliente web realiza a autenticação de usuário por meio de JSON \textit{Web Tokens}. JSON \textit{Web Tokens}, ou JWTs, foram definidas para possibilitar a troca de informações de uma forma segura, autônoma e compacta usando objetos JSON \cite{rfc7519}. A segurança se dá pela assinatura digital das tokens usando o algoritmo HMAC com um segredo ou com criptografia RSA usando pares de chaves pública e privada. JWTs são autônomas no sentido de que o conteúdo das tokens contém toda a informação sobre o usuário, evitando transações adicionais no banco de dados. Por fim, o tamanho compacto das tokens permite que elas sejam enviadas em URLs, parâmetros e cabeçalhos HTTP sem grande ônus ao tempo de transmissão.
 
-Uma token é uma string composta por três partes separadas por pontos. As três partes são: Cabeçalho, Corpo e Assinatura. O Cabeçalho típico contém o tipo da token - ou seja, JWT - e o algoritmo de \textit{hashing} usado, como por exemplo HMAC, SHA256 ou RSA. O Corpo é constítuido por \textit{claims} (afirmações) sobre a entidade, geralmente o usuário. As \textit{claims} podem ser de três tipos: reservadas, que geralmente são informações úteis predefinidas como o tempo de expiração, públicas e privadas. O Cabeçalho e o Corpo são codificados usando Base64Url e são usados para criar a Assinatura com o algoritmo definido previamente. A token final é, então, a concatenação do Cabeçalho e do Corpo codificados e da Assinatura.
+Uma token é uma string composta por três partes separadas por pontos. As três partes são: Cabeçalho, Corpo e Assinatura. O Cabeçalho típico contém o tipo da token --- ou seja, JWT --- e o algoritmo de \textit{hashing} usado, como por exemplo HMAC, SHA256 ou RSA. O Corpo é constítuido por \textit{claims} (afirmações) sobre a entidade, geralmente o usuário. As \textit{claims} podem ser de três tipos: reservadas, que geralmente são informações úteis predefinidas como o tempo de expiração, públicas e privadas. O Cabeçalho e o Corpo são codificados usando Base64Url e são usados para criar a Assinatura com o algoritmo definido previamente. A token final é, então, o resultado da concatenação do Cabeçalho e do Corpo codificados e da Assinatura.
 
 \subsubsection{Autenticação}
 
-Para realizar a autenticação com JWTs, as tokens são geradas na nuvem durante o cadastro ou login do usuário e então são enviadas ao navegador. A partir desse momento, todas as requisições ao servidor da nuvem irão conter a JWT no campo de Authentication do cabeçalho das requisições HTTP. Somente requisições contendo tal token, e cuja token seja válida, são aceitas no back-end da aplicação. Essa estratégia de implementação é amplamente utilizada para desenvolver a funcionalidade de \textit{single sign-on}.
+Para realizar a autenticação com JWTs, as tokens são geradas na nuvem durante o cadastro ou login do usuário e então são enviadas ao navegador. A partir desse momento, todas as requisições ao servidor da nuvem irão conter a JWT no campo de Authentication do cabeçalho das requisições HTTP. Somente requisições contendo tal token, e cujo token seja válida, são aceitas no back-end da aplicação. Essa estratégia de implementação é amplamente utilizada para desenvolver a funcionalidade de \textit{single sign-on}.
 
 Um exemplo de cabeçalho HTTP que usa JWT para autenticação é:
 
@@ -75,7 +75,7 @@ Um exemplo de cabeçalho HTTP que usa JWT para autenticação é:
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
 \end{lstlisting}
 
-No Hedwig, o servidor na nuvem, ao receber um pedido de autenticação e validá-lo, gera a JWT e a manda para o aplicativo cliente, que a armazena no \textit{local storage}. O \textit{local storage} é uma forma de armazenamento no navegador que permite que aplicações guardem dados que persistam além da duração de uma sessão. É considerada uma alternativa aos cookies com maior capacidade e segurança.
+No Hedwig, o servidor na nuvem, ao receber um pedido de autenticação e validá-lo, gera a JWT e a manda para o aplicativo cliente, que a armazena no \textit{local storage}. O \textit{local storage} é uma forma de armazenamento no navegador que permite que aplicações guardem dados que persistam além da duração de uma sessão. É considerada uma alternativa aos cookies com maior capacidade e segurança \cite{w3cWebStorage}.
 
 Os navegadores em geral podem armazenar em torno de 300 cookies, com um limite de aproximadamente 20 por domínio, cada um com um tamanho máximo de 4kB \cite{cookies}. Já os limites para o local storage geralmente são de, no mínimo, 5MB por domínio \cite{localstorage}.
 

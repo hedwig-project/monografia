@@ -13,97 +13,97 @@
 \contentsline {figure}{\numberline {12}{\ignorespaces Compara\IeC {\c c}\IeC {\~a}o entre WebSockets e \emph {polling}\relax }}{55}
 \contentsline {figure}{\numberline {13}{\ignorespaces Compara\IeC {\c c}\IeC {\~a}o entre uma aplica\IeC {\c c}\IeC {\~a}o monol\IeC {\'\i }tica (esquerda) e com microsservi\IeC {\c c}os (direita)\relax }}{56}
 \contentsline {figure}{\numberline {14}{\ignorespaces Diagrama de intera\IeC {\c c}\IeC {\~a}o na autentica\IeC {\c c}\IeC {\~a}o por JWT\relax }}{63}
-\contentsline {figure}{\numberline {15}{\ignorespaces Vis\IeC {\~a}o alto n\IeC {\'\i }vel da comunica\IeC {\c c}\IeC {\~a}o no Hedwig\relax }}{65}
-\contentsline {figure}{\numberline {16}{\ignorespaces Arquitetura do servidor local\relax }}{72}
-\contentsline {figure}{\numberline {17}{\ignorespaces Componentes e implementa\IeC {\c c}\IeC {\~a}o na nuvem\relax }}{100}
-\contentsline {figure}{\numberline {18}{\ignorespaces Monitoramento do servidor na nuvem\relax }}{101}
-\contentsline {figure}{\numberline {19}{\ignorespaces Diagrama de funcionamento do Redux\relax }}{105}
-\contentsline {figure}{\numberline {20}{\ignorespaces Telas principais do aplicativo backup\relax }}{111}
-\contentsline {figure}{\numberline {21}{\ignorespaces Vis\IeC {\~a}o geral de uma planta com o aplicativo backup\relax }}{111}
-\contentsline {figure}{\numberline {22}{\ignorespaces Menu Principal\relax }}{112}
-\contentsline {figure}{\numberline {23}{\ignorespaces Teclado para digita\IeC {\c c}\IeC {\~a}o da senha\relax }}{112}
-\contentsline {figure}{\numberline {24}{\ignorespaces P\IeC {\'a}gina de configura\IeC {\c c}\IeC {\~a}o TP Link\relax }}{113}
-\contentsline {figure}{\numberline {25}{\ignorespaces Rotina de multiplexa\IeC {\c c}\IeC {\~a}o de procedimentos no tempo\relax }}{117}
-\contentsline {figure}{\numberline {26}{\ignorespaces Tratamento de indisponibilidade de recursos\relax }}{118}
-\contentsline {figure}{\numberline {27}{\ignorespaces Tratamento de ataque de DoS Local\relax }}{119}
-\contentsline {figure}{\numberline {28}{\ignorespaces Exemplo de estado da fila de sa\IeC {\'\i }da de mensagens MQTT do M\IeC {\'o}dulo\relax }}{120}
-\contentsline {figure}{\numberline {29}{\ignorespaces Diagrama PCB do M\IeC {\'o}dulo Base\relax }}{121}
-\contentsline {figure}{\numberline {30}{\ignorespaces Diagrama El\IeC {\'e}trico do M\IeC {\'o}dulo Base\relax }}{122}
-\contentsline {figure}{\numberline {31}{\ignorespaces Entradas Em A0\relax }}{123}
-\contentsline {figure}{\numberline {32}{\ignorespaces Funcionamento do Circuito de Antitravamento\relax }}{124}
-\contentsline {figure}{\numberline {33}{\ignorespaces Evolu\IeC {\c c}\IeC {\~a}o do Hardware (de fevereiro/17 a setembro/17)\relax }}{124}
-\contentsline {figure}{\numberline {34}{\ignorespaces Evolu\IeC {\c c}\IeC {\~a}o da Caixa de Prote\IeC {\c c}\IeC {\~a}o e Display\relax }}{125}
-\contentsline {figure}{\numberline {35}{\ignorespaces Materiais e prepara\IeC {\c c}\IeC {\~a}o da placa padr\IeC {\~a}o\relax }}{125}
-\contentsline {figure}{\numberline {36}{\ignorespaces Posicionamento dos Componentes\relax }}{126}
-\contentsline {figure}{\numberline {37}{\ignorespaces Prepara\IeC {\c c}\IeC {\~a}o dos displays com o I2C e soldagem\relax }}{126}
-\contentsline {figure}{\numberline {38}{\ignorespaces Prepara\IeC {\c c}\IeC {\~a}o das caixas para os m\IeC {\'o}dulos\relax }}{127}
-\contentsline {figure}{\numberline {39}{\ignorespaces Caixa protetora; liga\IeC {\c c}\IeC {\~a}o dos bot\IeC {\~o}es e cabos de for\IeC {\c c}a\relax }}{127}
-\contentsline {figure}{\numberline {40}{\ignorespaces Quatro M\IeC {\'o}dulos Prontos\relax }}{128}
-\contentsline {figure}{\numberline {41}{\ignorespaces Log na p\IeC {\'a}gina do Aplicativo Backup\relax }}{132}
-\contentsline {figure}{\numberline {42}{\ignorespaces M\IeC {\'o}dulo com cart\IeC {\~a}o SD para coleta local de dados\relax }}{132}
-\contentsline {figure}{\numberline {43}{\ignorespaces M\IeC {\'o}dulos instalados em Santo Andr\IeC {\'e}\relax }}{133}
-\contentsline {figure}{\numberline {44}{\ignorespaces Controle do Sistema de Alarme e m\IeC {\'o}dulo de interface de Jarinu\relax }}{133}
-\contentsline {figure}{\numberline {45}{\ignorespaces M\IeC {\'o}dulo B\IeC {\'a}sico e sensor de presen\IeC {\c c}a no corredor de Jarinu\relax }}{134}
-\contentsline {figure}{\numberline {46}{\ignorespaces Sensor de abertura das portas da cozinha (\IeC {\`a} esquerda) e da sala (\IeC {\`a} direita)\relax }}{134}
-\contentsline {figure}{\numberline {47}{\ignorespaces M\IeC {\'o}dulo instalado para coleta de dados do n\IeC {\'\i }vel da caixa d\IeC {\textquoteright }\IeC {\'a}gua\relax }}{135}
-\contentsline {figure}{\numberline {48}{\ignorespaces Rela\IeC {\c c}\IeC {\~a}o dos M\IeC {\'o}dulos e Dados Coletados\relax }}{135}
-\contentsline {figure}{\numberline {49}{\ignorespaces Curva Di\IeC {\'a}ria Santo Andr\IeC {\'e} - Ter\IeC {\c c}a\relax }}{138}
-\contentsline {figure}{\numberline {50}{\ignorespaces Temperatura e Aquecedor - Aqu\IeC {\'a}rio\relax }}{139}
-\contentsline {figure}{\numberline {51}{\ignorespaces Consolidado Di\IeC {\'a}rio - Aqu\IeC {\'a}rio\relax }}{140}
-\contentsline {figure}{\numberline {52}{\ignorespaces Mem\IeC {\'o}ria e loops do Corredor\relax }}{141}
-\contentsline {figure}{\numberline {53}{\ignorespaces Consolidado no Per\IeC {\'\i }odo - Corredor\relax }}{142}
-\contentsline {figure}{\numberline {54}{\ignorespaces Consolidado Di\IeC {\'a}rio dos Sensores - Corredor\relax }}{143}
-\contentsline {figure}{\numberline {55}{\ignorespaces Uso dos acionamentos no per\IeC {\'\i }odo para a l\IeC {\^a}mpada do Corredor\relax }}{144}
-\contentsline {figure}{\numberline {56}{\ignorespaces Uso dos acionamentos por dia para a l\IeC {\^a}mpada do Corredor\relax }}{144}
-\contentsline {figure}{\numberline {57}{\ignorespaces curva Di\IeC {\'a}ria do M\IeC {\'o}dulo de Acesso\relax }}{145}
-\contentsline {figure}{\numberline {58}{\ignorespaces N\IeC {\'\i }vel da Caixa d'\IeC {\'a}gua - Consolidado Di\IeC {\'a}rio\relax }}{146}
-\contentsline {figure}{\numberline {59}{\ignorespaces Tempo para Encher a Caixa d'\IeC {\'a}gua - Per\IeC {\'\i }odo\relax }}{147}
-\contentsline {figure}{\numberline {60}{\ignorespaces Atividade da Porta da Sala de Jarinu\relax }}{147}
-\contentsline {figure}{\numberline {61}{\ignorespaces Atividade da Presen\IeC {\c c}a da Sala de Jarinu\relax }}{148}
-\contentsline {figure}{\numberline {62}{\ignorespaces Consolidado no Per\IeC {\'\i }odo - Jarinu\relax }}{149}
-\contentsline {figure}{\numberline {63}{\ignorespaces Resumo do Aqu\IeC {\'a}rio\relax }}{161}
-\contentsline {figure}{\numberline {64}{\ignorespaces Disponibilidade Aqu\IeC {\'a}rio - Per\IeC {\'\i }odo\relax }}{162}
-\contentsline {figure}{\numberline {65}{\ignorespaces Disponibilidade Aqu\IeC {\'a}rio - Dia\relax }}{162}
-\contentsline {figure}{\numberline {66}{\ignorespaces Mem\IeC {\'o}ria Livre do Aqu\IeC {\'a}rio\relax }}{163}
-\contentsline {figure}{\numberline {67}{\ignorespaces Resumo do Corredor\relax }}{163}
-\contentsline {figure}{\numberline {68}{\ignorespaces Sensores do Corredor - Per\IeC {\'\i }odo\relax }}{164}
-\contentsline {figure}{\numberline {69}{\ignorespaces Uso Rele 2 Corredor - Dia\relax }}{164}
-\contentsline {figure}{\numberline {70}{\ignorespaces Uso Rele 2 Corredor - Per\IeC {\'\i }odo\relax }}{165}
-\contentsline {figure}{\numberline {71}{\ignorespaces Consolidado Di\IeC {\'a}rio Corredor\relax }}{165}
-\contentsline {figure}{\numberline {72}{\ignorespaces Resumo da Lavanderia\relax }}{166}
-\contentsline {figure}{\numberline {73}{\ignorespaces Disponibilidade da Lavanderia - Dia\relax }}{166}
-\contentsline {figure}{\numberline {74}{\ignorespaces Disponibilidade da Lavanderia - Per\IeC {\'\i }odo\relax }}{167}
-\contentsline {figure}{\numberline {75}{\ignorespaces Mem\IeC {\'o}ria Livre Lavanderia\relax }}{167}
-\contentsline {figure}{\numberline {76}{\ignorespaces Sensores da Lavanderia - Per\IeC {\'\i }odo\relax }}{168}
-\contentsline {figure}{\numberline {77}{\ignorespaces Sensores da Lavanderia - Dia\relax }}{168}
-\contentsline {figure}{\numberline {78}{\ignorespaces Uso Rele 1 Lavanderia - Dia\relax }}{169}
-\contentsline {figure}{\numberline {79}{\ignorespaces Uso Rele 1 Lavanderia - Per\IeC {\'\i }odo\relax }}{169}
-\contentsline {figure}{\numberline {80}{\ignorespaces Uso Rele 2 Lavanderia - Dia\relax }}{170}
-\contentsline {figure}{\numberline {81}{\ignorespaces Uso Rele 2 Lavanderia - Per\IeC {\'\i }odo\relax }}{170}
-\contentsline {figure}{\numberline {82}{\ignorespaces Consolidado Di\IeC {\'a}rio da Lavanderia\relax }}{171}
-\contentsline {figure}{\numberline {83}{\ignorespaces Resumo da Sala/Cozinha\relax }}{171}
-\contentsline {figure}{\numberline {84}{\ignorespaces Disponibilidade da Sala/Cozinha - Per\IeC {\'\i }odo\relax }}{172}
-\contentsline {figure}{\numberline {85}{\ignorespaces Mem\IeC {\'o}ria Livre da Sala/Cozinha\relax }}{172}
-\contentsline {figure}{\numberline {86}{\ignorespaces Sensores da Sala/Cozinha - Dia\relax }}{173}
-\contentsline {figure}{\numberline {87}{\ignorespaces Sensores da Sala/Cozinha - Per\IeC {\'\i }odo\relax }}{173}
-\contentsline {figure}{\numberline {88}{\ignorespaces Uso do Rele 1 Sala/Cozinha - Dia\relax }}{174}
-\contentsline {figure}{\numberline {89}{\ignorespaces Uso do Rele 1 Sala/Cozinha - Per\IeC {\'\i }odo\relax }}{174}
-\contentsline {figure}{\numberline {90}{\ignorespaces Uso do Rele 2 Sala/Cozinha - Dia\relax }}{175}
-\contentsline {figure}{\numberline {91}{\ignorespaces Uso do Rele 1 Sala/Cozinha - Per\IeC {\'\i }odo\relax }}{175}
-\contentsline {figure}{\numberline {92}{\ignorespaces Porta de Acesso - Dia\relax }}{176}
-\contentsline {figure}{\numberline {93}{\ignorespaces Porta de Acesso - Per\IeC {\'\i }odo\relax }}{176}
-\contentsline {figure}{\numberline {94}{\ignorespaces Resumo da Entrada\relax }}{177}
-\contentsline {figure}{\numberline {95}{\ignorespaces Consolidado da Entrada - Per\IeC {\'\i }odo\relax }}{177}
-\contentsline {figure}{\numberline {96}{\ignorespaces Mem\IeC {\'o}ria Livre Entrada\relax }}{178}
-\contentsline {figure}{\numberline {97}{\ignorespaces Sensores da Entrada - Dia\relax }}{178}
-\contentsline {figure}{\numberline {98}{\ignorespaces Sensores da Entrada - Per\IeC {\'\i }odo\relax }}{179}
-\contentsline {figure}{\numberline {99}{\ignorespaces Uso L\IeC {\^a}mpada Entrada - Dia\relax }}{179}
-\contentsline {figure}{\numberline {100}{\ignorespaces Uso L\IeC {\^a}mpada Entrada - Per\IeC {\'\i }odo\relax }}{180}
-\contentsline {figure}{\numberline {101}{\ignorespaces Uso da Entrada - Dia\relax }}{180}
-\contentsline {figure}{\numberline {102}{\ignorespaces Uso da Entrada - Per\IeC {\'\i }odo\relax }}{181}
-\contentsline {figure}{\numberline {103}{\ignorespaces Jarinu - Consolidado por Dia da Semana\relax }}{181}
-\contentsline {figure}{\numberline {104}{\ignorespaces Configura\IeC {\c c}\IeC {\~a}o de Cores e Layout do Display do M\IeC {\'o}dulo\relax }}{183}
-\contentsline {figure}{\numberline {105}{\ignorespaces Configura\IeC {\c c}\IeC {\~o}es de alertas, alarmes, reles, log e menu de ferramentas do Aplicativo Backup\relax }}{184}
-\contentsline {figure}{\numberline {106}{\ignorespaces Atualiza\IeC {\c c}\IeC {\~a}o de Firmware, menu de configura\IeC {\c c}\IeC {\~o}es avan\IeC {\c c}adas e DHT\relax }}{184}
-\contentsline {figure}{\numberline {107}{\ignorespaces Configura\IeC {\c c}\IeC {\~o}es de Radio Frequ\IeC {\^e}ncia, Blynk e WiFi\relax }}{184}
-\contentsline {figure}{\numberline {108}{\ignorespaces Configura\IeC {\c c}\IeC {\~o}es de Nome e Ponto de Acesso WiFi\relax }}{185}
+\contentsline {figure}{\numberline {15}{\ignorespaces Vis\IeC {\~a}o alto n\IeC {\'\i }vel da comunica\IeC {\c c}\IeC {\~a}o no Hedwig\relax }}{64}
+\contentsline {figure}{\numberline {16}{\ignorespaces Arquitetura do servidor local\relax }}{70}
+\contentsline {figure}{\numberline {17}{\ignorespaces Componentes e implementa\IeC {\c c}\IeC {\~a}o na nuvem\relax }}{98}
+\contentsline {figure}{\numberline {18}{\ignorespaces Monitoramento do servidor na nuvem\relax }}{99}
+\contentsline {figure}{\numberline {19}{\ignorespaces Diagrama de funcionamento do Redux\relax }}{103}
+\contentsline {figure}{\numberline {20}{\ignorespaces Telas principais do aplicativo backup\relax }}{109}
+\contentsline {figure}{\numberline {21}{\ignorespaces Vis\IeC {\~a}o geral de uma planta com o aplicativo backup\relax }}{109}
+\contentsline {figure}{\numberline {22}{\ignorespaces Menu Principal\relax }}{110}
+\contentsline {figure}{\numberline {23}{\ignorespaces Teclado para digita\IeC {\c c}\IeC {\~a}o da senha\relax }}{110}
+\contentsline {figure}{\numberline {24}{\ignorespaces P\IeC {\'a}gina de configura\IeC {\c c}\IeC {\~a}o TP Link\relax }}{111}
+\contentsline {figure}{\numberline {25}{\ignorespaces Rotina de multiplexa\IeC {\c c}\IeC {\~a}o de procedimentos no tempo\relax }}{115}
+\contentsline {figure}{\numberline {26}{\ignorespaces Tratamento de indisponibilidade de recursos\relax }}{116}
+\contentsline {figure}{\numberline {27}{\ignorespaces Tratamento de ataque de DoS Local\relax }}{117}
+\contentsline {figure}{\numberline {28}{\ignorespaces Exemplo de estado da fila de sa\IeC {\'\i }da de mensagens MQTT do M\IeC {\'o}dulo\relax }}{118}
+\contentsline {figure}{\numberline {29}{\ignorespaces Diagrama PCB do M\IeC {\'o}dulo Base\relax }}{119}
+\contentsline {figure}{\numberline {30}{\ignorespaces Diagrama El\IeC {\'e}trico do M\IeC {\'o}dulo Base\relax }}{120}
+\contentsline {figure}{\numberline {31}{\ignorespaces Entradas Em A0\relax }}{121}
+\contentsline {figure}{\numberline {32}{\ignorespaces Funcionamento do Circuito de Antitravamento\relax }}{122}
+\contentsline {figure}{\numberline {33}{\ignorespaces Evolu\IeC {\c c}\IeC {\~a}o do Hardware (de fevereiro/17 a setembro/17)\relax }}{122}
+\contentsline {figure}{\numberline {34}{\ignorespaces Evolu\IeC {\c c}\IeC {\~a}o da Caixa de Prote\IeC {\c c}\IeC {\~a}o e Display\relax }}{123}
+\contentsline {figure}{\numberline {35}{\ignorespaces Materiais e prepara\IeC {\c c}\IeC {\~a}o da placa padr\IeC {\~a}o\relax }}{123}
+\contentsline {figure}{\numberline {36}{\ignorespaces Posicionamento dos Componentes\relax }}{124}
+\contentsline {figure}{\numberline {37}{\ignorespaces Prepara\IeC {\c c}\IeC {\~a}o dos displays com o I2C e soldagem\relax }}{124}
+\contentsline {figure}{\numberline {38}{\ignorespaces Prepara\IeC {\c c}\IeC {\~a}o das caixas para os m\IeC {\'o}dulos\relax }}{125}
+\contentsline {figure}{\numberline {39}{\ignorespaces Caixa protetora; liga\IeC {\c c}\IeC {\~a}o dos bot\IeC {\~o}es e cabos de for\IeC {\c c}a\relax }}{125}
+\contentsline {figure}{\numberline {40}{\ignorespaces Quatro M\IeC {\'o}dulos Prontos\relax }}{126}
+\contentsline {figure}{\numberline {41}{\ignorespaces Log na p\IeC {\'a}gina do Aplicativo Backup\relax }}{130}
+\contentsline {figure}{\numberline {42}{\ignorespaces M\IeC {\'o}dulo com cart\IeC {\~a}o SD para coleta local de dados\relax }}{130}
+\contentsline {figure}{\numberline {43}{\ignorespaces M\IeC {\'o}dulos instalados em Santo Andr\IeC {\'e}\relax }}{131}
+\contentsline {figure}{\numberline {44}{\ignorespaces Controle do Sistema de Alarme e m\IeC {\'o}dulo de interface de Jarinu\relax }}{131}
+\contentsline {figure}{\numberline {45}{\ignorespaces M\IeC {\'o}dulo B\IeC {\'a}sico e sensor de presen\IeC {\c c}a no corredor de Jarinu\relax }}{132}
+\contentsline {figure}{\numberline {46}{\ignorespaces Sensor de abertura das portas da cozinha (\IeC {\`a} esquerda) e da sala (\IeC {\`a} direita)\relax }}{132}
+\contentsline {figure}{\numberline {47}{\ignorespaces M\IeC {\'o}dulo instalado para coleta de dados do n\IeC {\'\i }vel da caixa d\IeC {\textquoteright }\IeC {\'a}gua\relax }}{133}
+\contentsline {figure}{\numberline {48}{\ignorespaces Rela\IeC {\c c}\IeC {\~a}o dos M\IeC {\'o}dulos e Dados Coletados\relax }}{133}
+\contentsline {figure}{\numberline {49}{\ignorespaces Curva Di\IeC {\'a}ria Santo Andr\IeC {\'e} - Ter\IeC {\c c}a\relax }}{136}
+\contentsline {figure}{\numberline {50}{\ignorespaces Temperatura e Aquecedor - Aqu\IeC {\'a}rio\relax }}{137}
+\contentsline {figure}{\numberline {51}{\ignorespaces Consolidado Di\IeC {\'a}rio - Aqu\IeC {\'a}rio\relax }}{138}
+\contentsline {figure}{\numberline {52}{\ignorespaces Mem\IeC {\'o}ria e loops do Corredor\relax }}{139}
+\contentsline {figure}{\numberline {53}{\ignorespaces Consolidado no Per\IeC {\'\i }odo - Corredor\relax }}{140}
+\contentsline {figure}{\numberline {54}{\ignorespaces Consolidado Di\IeC {\'a}rio dos Sensores - Corredor\relax }}{141}
+\contentsline {figure}{\numberline {55}{\ignorespaces Uso dos acionamentos no per\IeC {\'\i }odo para a l\IeC {\^a}mpada do Corredor\relax }}{142}
+\contentsline {figure}{\numberline {56}{\ignorespaces Uso dos acionamentos por dia para a l\IeC {\^a}mpada do Corredor\relax }}{142}
+\contentsline {figure}{\numberline {57}{\ignorespaces curva Di\IeC {\'a}ria do M\IeC {\'o}dulo de Acesso\relax }}{143}
+\contentsline {figure}{\numberline {58}{\ignorespaces N\IeC {\'\i }vel da Caixa d'\IeC {\'a}gua - Consolidado Di\IeC {\'a}rio\relax }}{144}
+\contentsline {figure}{\numberline {59}{\ignorespaces Tempo para Encher a Caixa d'\IeC {\'a}gua - Per\IeC {\'\i }odo\relax }}{145}
+\contentsline {figure}{\numberline {60}{\ignorespaces Atividade da Porta da Sala de Jarinu\relax }}{145}
+\contentsline {figure}{\numberline {61}{\ignorespaces Atividade da Presen\IeC {\c c}a da Sala de Jarinu\relax }}{146}
+\contentsline {figure}{\numberline {62}{\ignorespaces Consolidado no Per\IeC {\'\i }odo - Jarinu\relax }}{147}
+\contentsline {figure}{\numberline {63}{\ignorespaces Resumo do Aqu\IeC {\'a}rio\relax }}{159}
+\contentsline {figure}{\numberline {64}{\ignorespaces Disponibilidade Aqu\IeC {\'a}rio - Per\IeC {\'\i }odo\relax }}{160}
+\contentsline {figure}{\numberline {65}{\ignorespaces Disponibilidade Aqu\IeC {\'a}rio - Dia\relax }}{160}
+\contentsline {figure}{\numberline {66}{\ignorespaces Mem\IeC {\'o}ria Livre do Aqu\IeC {\'a}rio\relax }}{161}
+\contentsline {figure}{\numberline {67}{\ignorespaces Resumo do Corredor\relax }}{161}
+\contentsline {figure}{\numberline {68}{\ignorespaces Sensores do Corredor - Per\IeC {\'\i }odo\relax }}{162}
+\contentsline {figure}{\numberline {69}{\ignorespaces Uso Rele 2 Corredor - Dia\relax }}{162}
+\contentsline {figure}{\numberline {70}{\ignorespaces Uso Rele 2 Corredor - Per\IeC {\'\i }odo\relax }}{163}
+\contentsline {figure}{\numberline {71}{\ignorespaces Consolidado Di\IeC {\'a}rio Corredor\relax }}{163}
+\contentsline {figure}{\numberline {72}{\ignorespaces Resumo da Lavanderia\relax }}{164}
+\contentsline {figure}{\numberline {73}{\ignorespaces Disponibilidade da Lavanderia - Dia\relax }}{164}
+\contentsline {figure}{\numberline {74}{\ignorespaces Disponibilidade da Lavanderia - Per\IeC {\'\i }odo\relax }}{165}
+\contentsline {figure}{\numberline {75}{\ignorespaces Mem\IeC {\'o}ria Livre Lavanderia\relax }}{165}
+\contentsline {figure}{\numberline {76}{\ignorespaces Sensores da Lavanderia - Per\IeC {\'\i }odo\relax }}{166}
+\contentsline {figure}{\numberline {77}{\ignorespaces Sensores da Lavanderia - Dia\relax }}{166}
+\contentsline {figure}{\numberline {78}{\ignorespaces Uso Rele 1 Lavanderia - Dia\relax }}{167}
+\contentsline {figure}{\numberline {79}{\ignorespaces Uso Rele 1 Lavanderia - Per\IeC {\'\i }odo\relax }}{167}
+\contentsline {figure}{\numberline {80}{\ignorespaces Uso Rele 2 Lavanderia - Dia\relax }}{168}
+\contentsline {figure}{\numberline {81}{\ignorespaces Uso Rele 2 Lavanderia - Per\IeC {\'\i }odo\relax }}{168}
+\contentsline {figure}{\numberline {82}{\ignorespaces Consolidado Di\IeC {\'a}rio da Lavanderia\relax }}{169}
+\contentsline {figure}{\numberline {83}{\ignorespaces Resumo da Sala/Cozinha\relax }}{169}
+\contentsline {figure}{\numberline {84}{\ignorespaces Disponibilidade da Sala/Cozinha - Per\IeC {\'\i }odo\relax }}{170}
+\contentsline {figure}{\numberline {85}{\ignorespaces Mem\IeC {\'o}ria Livre da Sala/Cozinha\relax }}{170}
+\contentsline {figure}{\numberline {86}{\ignorespaces Sensores da Sala/Cozinha - Dia\relax }}{171}
+\contentsline {figure}{\numberline {87}{\ignorespaces Sensores da Sala/Cozinha - Per\IeC {\'\i }odo\relax }}{171}
+\contentsline {figure}{\numberline {88}{\ignorespaces Uso do Rele 1 Sala/Cozinha - Dia\relax }}{172}
+\contentsline {figure}{\numberline {89}{\ignorespaces Uso do Rele 1 Sala/Cozinha - Per\IeC {\'\i }odo\relax }}{172}
+\contentsline {figure}{\numberline {90}{\ignorespaces Uso do Rele 2 Sala/Cozinha - Dia\relax }}{173}
+\contentsline {figure}{\numberline {91}{\ignorespaces Uso do Rele 1 Sala/Cozinha - Per\IeC {\'\i }odo\relax }}{173}
+\contentsline {figure}{\numberline {92}{\ignorespaces Porta de Acesso - Dia\relax }}{174}
+\contentsline {figure}{\numberline {93}{\ignorespaces Porta de Acesso - Per\IeC {\'\i }odo\relax }}{174}
+\contentsline {figure}{\numberline {94}{\ignorespaces Resumo da Entrada\relax }}{175}
+\contentsline {figure}{\numberline {95}{\ignorespaces Consolidado da Entrada - Per\IeC {\'\i }odo\relax }}{175}
+\contentsline {figure}{\numberline {96}{\ignorespaces Mem\IeC {\'o}ria Livre Entrada\relax }}{176}
+\contentsline {figure}{\numberline {97}{\ignorespaces Sensores da Entrada - Dia\relax }}{176}
+\contentsline {figure}{\numberline {98}{\ignorespaces Sensores da Entrada - Per\IeC {\'\i }odo\relax }}{177}
+\contentsline {figure}{\numberline {99}{\ignorespaces Uso L\IeC {\^a}mpada Entrada - Dia\relax }}{177}
+\contentsline {figure}{\numberline {100}{\ignorespaces Uso L\IeC {\^a}mpada Entrada - Per\IeC {\'\i }odo\relax }}{178}
+\contentsline {figure}{\numberline {101}{\ignorespaces Uso da Entrada - Dia\relax }}{178}
+\contentsline {figure}{\numberline {102}{\ignorespaces Uso da Entrada - Per\IeC {\'\i }odo\relax }}{179}
+\contentsline {figure}{\numberline {103}{\ignorespaces Jarinu - Consolidado por Dia da Semana\relax }}{179}
+\contentsline {figure}{\numberline {104}{\ignorespaces Configura\IeC {\c c}\IeC {\~a}o de Cores e Layout do Display do M\IeC {\'o}dulo\relax }}{181}
+\contentsline {figure}{\numberline {105}{\ignorespaces Configura\IeC {\c c}\IeC {\~o}es de alertas, alarmes, reles, log e menu de ferramentas do Aplicativo Backup\relax }}{182}
+\contentsline {figure}{\numberline {106}{\ignorespaces Atualiza\IeC {\c c}\IeC {\~a}o de Firmware, menu de configura\IeC {\c c}\IeC {\~o}es avan\IeC {\c c}adas e DHT\relax }}{182}
+\contentsline {figure}{\numberline {107}{\ignorespaces Configura\IeC {\c c}\IeC {\~o}es de Radio Frequ\IeC {\^e}ncia, Blynk e WiFi\relax }}{182}
+\contentsline {figure}{\numberline {108}{\ignorespaces Configura\IeC {\c c}\IeC {\~o}es de Nome e Ponto de Acesso WiFi\relax }}{183}

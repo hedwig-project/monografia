@@ -139,6 +139,12 @@ Accessed: 2017-11-07.}
   \url{https://developers.google.com/web/progressive-web-apps/}.
 Accessed: 2017-11-07.}
 
+\bibitem[HiveMQ 2017]{hiveMq}
+\abntrefinfo{HIVEMQ}{HIVEMQ}{2017}
+{HIVEMQ. \emph{HiveMQ Enterprise MQTT Broker}. 2017.
+  \url{https://www.hivemq.com/wp-content/uploads/hivemq-data-sheet-3.3.pdf}.
+Accessed: 2017-11-05.}
+
 \bibitem[i-SCOOP 2017]{iscoop}
 \abntrefinfo{i-SCOOP}{I-SCOOP}{2017}
 {I-SCOOP. \emph{IoT in smart home automation: the fast growing list of use
@@ -194,6 +200,12 @@ Accessed: 2017-11-08.}
   \url{http://phandroid.com/2017/02/01/google-home-gets-a-5-million-ad-spot-in-the-super-bowl}.
 Accessed: 2017-05-15.}
 
+\bibitem[LAMPKIN et al. 2012]{ibmMqtt}
+\abntrefinfo{LAMPKIN et al.}{LAMPKIN et al.}{2012}
+{LAMPKIN, V. et al. \emph{Building Smarter Planet Solutions with MQTT and IBM
+  WebSphere MQ Telemetry}. [S.l.]: IBM Red Books, 2012.
+ISBN 0738437085.}
+
 \bibitem[LEWIS e FOWLER 2014]{lewis}
 \abntrefinfo{LEWIS e FOWLER}{LEWIS; FOWLER}{2014}
 {LEWIS, J.; FOWLER, M. \emph{Microservices: a definition of this new
@@ -224,6 +236,12 @@ Accessed: 2017-04-24.}
 {MOZILLA DEVELOPER NETWORK. \emph{JavaScript}. 2016.
   \url{https://developer.mozilla.org/bm/docs/Web/JavaScript}.
 Accessed: 2017-11-11.}
+
+\bibitem[MQTT 2014]{mqttDocumentation}
+\abntrefinfo{MQTT-OASIS}{MQTT-OASIS}{2014}
+{MQTT. \emph{MQTT Version 3.1.1}. 2014.
+  \url{http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.pdf}.
+Accessed: 2017-06-21.}
 
 \bibitem[MULLINS 2017]{mullins}
 \abntrefinfo{MULLINS}{MULLINS}{2017}
@@ -345,5 +363,11 @@ Accessed: 2017-05-22.}
 {VISWANATHAN, P. \emph{Cloud Computing and Is it Really All That Beneficial?}
   2017. \url{https://www.lifewire.com/cloud-computing-explained-2373125}.
 Accessed: 2017-11-18.}
+
+\bibitem[W3C SCHOOLS 2017]{w3cWebStorage}
+\abntrefinfo{W3CSCHOOLS}{W3CSCHOOLS}{2017}
+{W3C SCHOOLS. \emph{HTML5 Web Storage}. 2017.
+  \url{https://www.w3schools.com/html/html5_webstorage.asp}.
+Accessed: 2017-11-22.}
 
 \end{thebibliography}
