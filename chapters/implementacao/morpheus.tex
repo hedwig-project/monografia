@@ -6,7 +6,7 @@ Morpheus é o servidor local responsável pela interconexão da casa inteligente
 \subsection{Plataforma}
 O Morpheus tem seu desenvolvimento realizado em Java. Conforme será detalhado em seguida, tal escolha foi realizada com base na portabilidade que a máquina virtual Java (JVM) oferece, bem como na disponibilidade de bibliotecas e serviços largamente utilizados em aplicações comerciais. O servidor foi construído utilizando-se o Spring Boot Framework, com a utilização de seu container de Inversão de Controle (\emph{IoC - Inversion of Control}), para injeção de dependências. Essa técnica diminui o acoplamento entre classes, e permite a evolução e implementação de novas funcionalidades de maneira mais facilitada \cite{iocFowler}.
 
-Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um \emph{broker} \wmqtt{}. O \emph{broker} Mosquitto foi utilizado, por ser uma solução Open Source largamente utilizada em projetos de IoT. Conforme detalhado a frente, configurações de segurança específicas para o projeto foram registradas no \emph{broker}. Para a conexão com os serviços na nuvem, é utilizado um canal WebSocket, aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, relativa ao requisito não-funcional \emph{RNF-6}, conforme documentada na Subseção \ref{sub:websocket}.
+Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um \emph{broker} \wmqtt{}. O \emph{broker} Mosquitto foi utilizado, por ser uma solução Open Source largamente utilizada em projetos de \emph{IoT}. Conforme detalhado a frente, configurações de segurança específicas para o projeto foram registradas no \emph{broker}. Para a conexão com os serviços na nuvem, é utilizado um canal WebSocket, aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, relativa ao requisito não-funcional \emph{RNF-6}, conforme documentada na Subseção \ref{sub:websocket}.
 
 \subsection{Tecnologias utilizadas}
 Toda a implementação do Morpheus foi realizada na linguagem Java. Desde o começo do projeto, decidiu-se que a escolha de tecnologias para implementação das diversas camadas deveria ter por base os seus benefícios, e não necessitaria ser rígida ou uniforme. Assim, o principal esforço foi sempre no planejamento das interfaces de comunicação entre as partes, que poderiam ser implementadas em linguagens complementamente diferentes. Os sistemas de nuvem, por exemplo, foram implementados em Node.js. O aplicativo web, também em JavaScript, com utilização da biblioteca React. Os módulos de hardware foram programados em C e, como comentado acima, o controlador local em Java.
@@ -996,4 +996,4 @@ Security Mechanisms:
 
 Pub/Sub Client:
 
-\url{https://pubsubclient.knolleary.net/index.html}}
+\url{https://pubsubclient.knolleary.net/index.html} }
