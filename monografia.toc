@@ -37,7 +37,7 @@
 \contentsline {subsection}{\numberline {4.5.5}Arquitetura de Microsservi\IeC {\c c}os}{55}
 \contentsline {subsubsection}{\numberline {4.5.5.1}Caracter\IeC {\'\i }sticas}{55}
 \contentsline {section}{\numberline {4.6}Cliente Web}{58}
-\contentsline {subsection}{\numberline {4.6.1}\textit {Progressive Web Apps}}{58}
+\contentsline {subsection}{\numberline {4.6.1}Progressive Web Apps}{58}
 \contentsline {subsubsection}{\numberline {4.6.1.1}Contexto}{58}
 \contentsline {subsubsection}{\numberline {4.6.1.2}Conceito}{59}
 \contentsline {subsubsection}{\numberline {4.6.1.3}Tecnologias e t\IeC {\'e}cnicas}{60}
@@ -46,96 +46,96 @@
 \contentsline {subsubsection}{\numberline {4.6.2.1}Defini\IeC {\c c}\IeC {\~a}o}{61}
 \contentsline {subsubsection}{\numberline {4.6.2.2}Autentica\IeC {\c c}\IeC {\~a}o}{62}
 \contentsline {section}{\numberline {4.7}Comunica\IeC {\c c}\IeC {\~a}o}{62}
-\contentsline {chapter}{\numberline {5}Metodologia}{67}
-\contentsline {section}{\numberline {5.1}Ger\IeC {\^e}ncia do projeto}{67}
-\contentsline {subsection}{\numberline {5.1.1}Ger\IeC {\^e}ncia de Escopo Tempo}{67}
-\contentsline {subsection}{\numberline {5.1.2}Ger\IeC {\^e}ncia de Partes Interessadas Aquisi\IeC {\c c}\IeC {\~a}o}{67}
-\contentsline {subsection}{\numberline {5.1.3}Ger\IeC {\^e}ncia de Processos de Software}{67}
-\contentsline {subsection}{\numberline {5.1.4}Ger\IeC {\^e}ncia de Partes Interessadas}{68}
-\contentsline {subsection}{\numberline {5.1.5}Ger\IeC {\^e}ncia de Comunica\IeC {\c c}\IeC {\~a}o}{68}
-\contentsline {subsection}{\numberline {5.1.6}Ger\IeC {\^e}ncia de Escopo}{68}
-\contentsline {subsection}{\numberline {5.1.7}Ger\IeC {\^e}ncia de Riscos}{68}
-\contentsline {section}{\numberline {5.2}Pesquisa bibliogr\IeC {\'a}fica}{68}
-\contentsline {section}{\numberline {5.3}Ferramentas e tecnologias}{68}
-\contentsline {chapter}{\numberline {6}Implementa\IeC {\c c}\IeC {\~a}o}{69}
-\contentsline {section}{\numberline {6.1}Morpheus }{69}
-\contentsline {subsection}{\numberline {6.1.1}Descri\IeC {\c c}\IeC {\~a}o}{69}
-\contentsline {subsection}{\numberline {6.1.2}Plataforma}{69}
-\contentsline {subsection}{\numberline {6.1.3}Tecnologias utilizadas}{70}
-\contentsline {subsection}{\numberline {6.1.4}Requisitos}{72}
-\contentsline {subsubsection}{\numberline {6.1.4.1}Requisitos Funcionais}{72}
-\contentsline {subsubsection}{\numberline {6.1.4.2}Requisitos N\IeC {\~a}o Funcionais}{74}
-\contentsline {subsection}{\numberline {6.1.5}Especifica\IeC {\c c}\IeC {\~o}es}{74}
-\contentsline {subsubsection}{\numberline {6.1.5.1}T\IeC {\'o}picos}{74}
-\contentsline {subsubsection}{\numberline {6.1.5.2}Regras de neg\IeC {\'o}cio}{75}
-\contentsline {subsubsection}{\numberline {6.1.5.3}Defini\IeC {\c c}\IeC {\~a}o de interfaces}{76}
-\contentsline {subsubsection}{\numberline {6.1.5.4}Defini\IeC {\c c}\IeC {\~a}o das mensagens}{76}
-\contentsline {paragraph}{Configura\IeC {\c c}\IeC {\~a}o (configuration)}{76}
-\contentsline {paragraph}{Requisi\IeC {\c c}\IeC {\~a}o de a\IeC {\c c}\IeC {\~a}o (action\_request)}{77}
-\contentsline {paragraph}{Transmiss\IeC {\~a}o de dados (data\_transmission)}{81}
-\contentsline {paragraph}{Requisi\IeC {\c c}\IeC {\~a}o de dados (data\_request)}{81}
-\contentsline {subsubsection}{\numberline {6.1.5.5}Testes realizados da comunica\IeC {\c c}\IeC {\~a}o Morpheus e m\IeC {\'o}dulos:}{84}
-\contentsline {subsection}{\numberline {6.1.6}Comunica\IeC {\c c}\IeC {\~a}o entre Morpheus e Nuvem}{88}
-\contentsline {subsection}{\numberline {6.1.7}WebSocket}{89}
-\contentsline {subsubsection}{\numberline {6.1.7.1}Morpheus}{89}
-\contentsline {subsubsection}{\numberline {6.1.7.2}Nuvem}{89}
-\contentsline {subsection}{\numberline {6.1.8}Configura\IeC {\c c}\IeC {\~o}es}{91}
-\contentsline {subsubsection}{\numberline {6.1.8.1}Configura\IeC {\c c}\IeC {\~a}o do \emph {MQTT}{} Mosquitto \textit {broker}}{91}
-\contentsline {subsubsection}{\numberline {6.1.8.2}Guia de instala\IeC {\c c}\IeC {\~a}o (Testado com Ubuntu 16.10 x64)}{92}
-\contentsline {subsubsection}{\numberline {6.1.8.3}Cria\IeC {\c c}\IeC {\~a}o dos certificados}{95}
-\contentsline {subsubsection}{\numberline {6.1.8.4}Senhas}{96}
-\contentsline {subsubsection}{\numberline {6.1.8.5}Casos de teste para Controle de Acesso nos T\IeC {\'o}picos \emph {MQTT}{} entre m\IeC {\'o}dulos e nuvem}{96}
-\contentsline {section}{\numberline {6.2}Servidor na nuvem}{97}
-\contentsline {subsection}{\numberline {6.2.1}Descri\IeC {\c c}\IeC {\~a}o}{97}
-\contentsline {subsection}{\numberline {6.2.2}Requisitos}{98}
-\contentsline {subsubsection}{\numberline {6.2.2.1}Requisitos funcionais}{98}
-\contentsline {subsubsection}{\numberline {6.2.2.2}Requisitos n\IeC {\~a}o-funcionais}{99}
-\contentsline {subsection}{\numberline {6.2.3}Tecnologias usadas}{99}
-\contentsline {subsection}{\numberline {6.2.4}Infraestrutura}{100}
-\contentsline {subsection}{\numberline {6.2.5}Seguran\IeC {\c c}a}{101}
-\contentsline {subsection}{\numberline {6.2.6}Opera\IeC {\c c}\IeC {\~a}o}{101}
-\contentsline {section}{\numberline {6.3}Aplicativo de dashboard}{102}
-\contentsline {subsection}{\numberline {6.3.1}Descri\IeC {\c c}\IeC {\~a}o}{102}
-\contentsline {subsection}{\numberline {6.3.2}Requisitos}{102}
-\contentsline {subsubsection}{\numberline {6.3.2.1}Requisitos funcionais}{102}
-\contentsline {subsubsection}{\numberline {6.3.2.2}Requisitos n\IeC {\~a}o-funcionais}{104}
-\contentsline {subsection}{\numberline {6.3.3}Tecnologias utilizadas}{104}
-\contentsline {subsection}{\numberline {6.3.4}Interface}{106}
-\contentsline {subsubsection}{\numberline {6.3.4.1}Identidade visual}{106}
-\contentsline {subsection}{\numberline {6.3.5}Intera\IeC {\c c}\IeC {\~o}es}{107}
-\contentsline {subsubsection}{\numberline {6.3.5.1}Dados}{107}
-\contentsline {subsubsection}{\numberline {6.3.5.2}A\IeC {\c c}\IeC {\~o}es}{107}
-\contentsline {subsubsection}{\numberline {6.3.5.3}Conectividade}{107}
-\contentsline {subsubsection}{\numberline {6.3.5.4}Aplicativo na tela inicial do dispositivo m\IeC {\'o}vel}{107}
-\contentsline {subsection}{\numberline {6.3.6}Implanta\IeC {\c c}\IeC {\~a}o}{108}
-\contentsline {subsection}{\numberline {6.3.7}Seguran\IeC {\c c}a}{108}
-\contentsline {subsection}{\numberline {6.3.8}Performance}{108}
-\contentsline {section}{\numberline {6.4}App Backup}{109}
-\contentsline {subsection}{\numberline {6.4.1}Requisitos}{109}
-\contentsline {subsection}{\numberline {6.4.2}Tecnologias usadas}{110}
-\contentsline {subsection}{\numberline {6.4.3}Navega\IeC {\c c}\IeC {\~a}o}{110}
-\contentsline {subsection}{\numberline {6.4.4}Configura\IeC {\c c}\IeC {\~o}es}{112}
-\contentsline {subsection}{\numberline {6.4.5}Abertura de porta do roteador}{113}
-\contentsline {subsection}{\numberline {6.4.6}Controle remoto}{114}
-\contentsline {subsection}{\numberline {6.4.7}Notifica\IeC {\c c}\IeC {\~o}es}{114}
-\contentsline {subsection}{\numberline {6.4.8}Offset Temperatura e Umidade}{115}
-\contentsline {subsection}{\numberline {6.4.9}Hard Reset}{115}
-\contentsline {subsection}{\numberline {6.4.10}Setup inicial}{115}
-\contentsline {section}{\numberline {6.5}M\IeC {\'o}dulos}{116}
-\contentsline {subsection}{\numberline {6.5.1}Rotinas}{116}
-\contentsline {subsubsection}{\numberline {6.5.1.1}Multiplexa\IeC {\c c}\IeC {\~a}o no tempo}{116}
-\contentsline {subsubsection}{\numberline {6.5.1.2}Tratamento de indisponibilidade}{117}
-\contentsline {subsubsection}{\numberline {6.5.1.3}DoS Local (\textit {Evil Twin})}{118}
-\contentsline {subsubsection}{\numberline {6.5.1.4}Comunica\IeC {\c c}\IeC {\~a}o por MQTT}{119}
-\contentsline {subsection}{\numberline {6.5.2}Diagrama}{120}
-\contentsline {subsection}{\numberline {6.5.3}Montagem}{124}
-\contentsline {subsubsection}{\numberline {6.5.3.1}Montagem}{128}
-\contentsline {chapter}{\numberline {7}Aprendizado de M\IeC {\'a}quina e An\IeC {\'a}lise de Dados}{131}
-\contentsline {section}{\numberline {7.1}Coleta e An\IeC {\'a}lise de Dados}{131}
-\contentsline {subsection}{\numberline {7.1.1}Coleta}{131}
-\contentsline {chapter}{\numberline {8}Conclus\IeC {\~o}es}{151}
-\contentsline {chapter}{Refer\IeC {\^e}ncias}{153}
-\contentsline {chapter}{Anexo{} A{} -- C\IeC {\'o}digos das aplica\IeC {\c c}\IeC {\~o}es desenvolvidas}{157}
-\contentsline {chapter}{Anexo{} B{} -- Lista de materiais para montagem dos m\IeC {\'o}dulos}{159}
-\contentsline {chapter}{Anexo{} C{} -- Dados Coletados de 10/09/2017 a 13/11/2017}{161}
-\contentsline {chapter}{Anexo{} D{} -- Imagens de configura\IeC {\c c}\IeC {\~a}o para o aplicativo backup}{183}
+\contentsline {chapter}{\numberline {5}Metodologia}{65}
+\contentsline {section}{\numberline {5.1}Ger\IeC {\^e}ncia do projeto}{65}
+\contentsline {subsection}{\numberline {5.1.1}Ger\IeC {\^e}ncia de Escopo Tempo}{65}
+\contentsline {subsection}{\numberline {5.1.2}Ger\IeC {\^e}ncia de Partes Interessadas Aquisi\IeC {\c c}\IeC {\~a}o}{65}
+\contentsline {subsection}{\numberline {5.1.3}Ger\IeC {\^e}ncia de Processos de Software}{65}
+\contentsline {subsection}{\numberline {5.1.4}Ger\IeC {\^e}ncia de Partes Interessadas}{66}
+\contentsline {subsection}{\numberline {5.1.5}Ger\IeC {\^e}ncia de Comunica\IeC {\c c}\IeC {\~a}o}{66}
+\contentsline {subsection}{\numberline {5.1.6}Ger\IeC {\^e}ncia de Escopo}{66}
+\contentsline {subsection}{\numberline {5.1.7}Ger\IeC {\^e}ncia de Riscos}{66}
+\contentsline {section}{\numberline {5.2}Pesquisa bibliogr\IeC {\'a}fica}{66}
+\contentsline {section}{\numberline {5.3}Ferramentas e tecnologias}{66}
+\contentsline {chapter}{\numberline {6}Implementa\IeC {\c c}\IeC {\~a}o}{67}
+\contentsline {section}{\numberline {6.1}Morpheus }{67}
+\contentsline {subsection}{\numberline {6.1.1}Descri\IeC {\c c}\IeC {\~a}o}{67}
+\contentsline {subsection}{\numberline {6.1.2}Plataforma}{67}
+\contentsline {subsection}{\numberline {6.1.3}Tecnologias utilizadas}{68}
+\contentsline {subsection}{\numberline {6.1.4}Requisitos}{70}
+\contentsline {subsubsection}{\numberline {6.1.4.1}Requisitos Funcionais}{70}
+\contentsline {subsubsection}{\numberline {6.1.4.2}Requisitos N\IeC {\~a}o Funcionais}{72}
+\contentsline {subsection}{\numberline {6.1.5}Especifica\IeC {\c c}\IeC {\~o}es}{72}
+\contentsline {subsubsection}{\numberline {6.1.5.1}T\IeC {\'o}picos}{72}
+\contentsline {subsubsection}{\numberline {6.1.5.2}Regras de neg\IeC {\'o}cio}{73}
+\contentsline {subsubsection}{\numberline {6.1.5.3}Defini\IeC {\c c}\IeC {\~a}o de interfaces}{74}
+\contentsline {subsubsection}{\numberline {6.1.5.4}Defini\IeC {\c c}\IeC {\~a}o das mensagens}{74}
+\contentsline {paragraph}{Configura\IeC {\c c}\IeC {\~a}o (configuration)}{74}
+\contentsline {paragraph}{Requisi\IeC {\c c}\IeC {\~a}o de a\IeC {\c c}\IeC {\~a}o (action\_request)}{75}
+\contentsline {paragraph}{Transmiss\IeC {\~a}o de dados (data\_transmission)}{79}
+\contentsline {paragraph}{Requisi\IeC {\c c}\IeC {\~a}o de dados (data\_request)}{79}
+\contentsline {subsubsection}{\numberline {6.1.5.5}Testes realizados da comunica\IeC {\c c}\IeC {\~a}o Morpheus e m\IeC {\'o}dulos:}{82}
+\contentsline {subsection}{\numberline {6.1.6}Comunica\IeC {\c c}\IeC {\~a}o entre Morpheus e Nuvem}{86}
+\contentsline {subsection}{\numberline {6.1.7}WebSocket}{87}
+\contentsline {subsubsection}{\numberline {6.1.7.1}Morpheus}{87}
+\contentsline {subsubsection}{\numberline {6.1.7.2}Nuvem}{87}
+\contentsline {subsection}{\numberline {6.1.8}Configura\IeC {\c c}\IeC {\~o}es}{89}
+\contentsline {subsubsection}{\numberline {6.1.8.1}Configura\IeC {\c c}\IeC {\~a}o do \emph {MQTT}{} Mosquitto \textit {broker}}{89}
+\contentsline {subsubsection}{\numberline {6.1.8.2}Guia de instala\IeC {\c c}\IeC {\~a}o (Testado com Ubuntu 16.10 x64)}{90}
+\contentsline {subsubsection}{\numberline {6.1.8.3}Cria\IeC {\c c}\IeC {\~a}o dos certificados}{93}
+\contentsline {subsubsection}{\numberline {6.1.8.4}Senhas}{94}
+\contentsline {subsubsection}{\numberline {6.1.8.5}Casos de teste para Controle de Acesso nos T\IeC {\'o}picos \emph {MQTT}{} entre m\IeC {\'o}dulos e nuvem}{94}
+\contentsline {section}{\numberline {6.2}Servidor na nuvem}{95}
+\contentsline {subsection}{\numberline {6.2.1}Descri\IeC {\c c}\IeC {\~a}o}{95}
+\contentsline {subsection}{\numberline {6.2.2}Requisitos}{96}
+\contentsline {subsubsection}{\numberline {6.2.2.1}Requisitos funcionais}{96}
+\contentsline {subsubsection}{\numberline {6.2.2.2}Requisitos n\IeC {\~a}o-funcionais}{97}
+\contentsline {subsection}{\numberline {6.2.3}Tecnologias usadas}{97}
+\contentsline {subsection}{\numberline {6.2.4}Infraestrutura}{98}
+\contentsline {subsection}{\numberline {6.2.5}Seguran\IeC {\c c}a}{99}
+\contentsline {subsection}{\numberline {6.2.6}Opera\IeC {\c c}\IeC {\~a}o}{99}
+\contentsline {section}{\numberline {6.3}Aplicativo de dashboard}{100}
+\contentsline {subsection}{\numberline {6.3.1}Descri\IeC {\c c}\IeC {\~a}o}{100}
+\contentsline {subsection}{\numberline {6.3.2}Requisitos}{100}
+\contentsline {subsubsection}{\numberline {6.3.2.1}Requisitos funcionais}{100}
+\contentsline {subsubsection}{\numberline {6.3.2.2}Requisitos n\IeC {\~a}o-funcionais}{102}
+\contentsline {subsection}{\numberline {6.3.3}Tecnologias utilizadas}{102}
+\contentsline {subsection}{\numberline {6.3.4}Interface}{104}
+\contentsline {subsubsection}{\numberline {6.3.4.1}Identidade visual}{104}
+\contentsline {subsection}{\numberline {6.3.5}Intera\IeC {\c c}\IeC {\~o}es}{105}
+\contentsline {subsubsection}{\numberline {6.3.5.1}Dados}{105}
+\contentsline {subsubsection}{\numberline {6.3.5.2}A\IeC {\c c}\IeC {\~o}es}{105}
+\contentsline {subsubsection}{\numberline {6.3.5.3}Conectividade}{105}
+\contentsline {subsubsection}{\numberline {6.3.5.4}Aplicativo na tela inicial do dispositivo m\IeC {\'o}vel}{105}
+\contentsline {subsection}{\numberline {6.3.6}Implanta\IeC {\c c}\IeC {\~a}o}{106}
+\contentsline {subsection}{\numberline {6.3.7}Seguran\IeC {\c c}a}{106}
+\contentsline {subsection}{\numberline {6.3.8}Performance}{106}
+\contentsline {section}{\numberline {6.4}App Backup}{107}
+\contentsline {subsection}{\numberline {6.4.1}Requisitos}{107}
+\contentsline {subsection}{\numberline {6.4.2}Tecnologias usadas}{108}
+\contentsline {subsection}{\numberline {6.4.3}Navega\IeC {\c c}\IeC {\~a}o}{108}
+\contentsline {subsection}{\numberline {6.4.4}Configura\IeC {\c c}\IeC {\~o}es}{110}
+\contentsline {subsection}{\numberline {6.4.5}Abertura de porta do roteador}{111}
+\contentsline {subsection}{\numberline {6.4.6}Controle remoto}{112}
+\contentsline {subsection}{\numberline {6.4.7}Notifica\IeC {\c c}\IeC {\~o}es}{112}
+\contentsline {subsection}{\numberline {6.4.8}Offset Temperatura e Umidade}{113}
+\contentsline {subsection}{\numberline {6.4.9}Hard Reset}{113}
+\contentsline {subsection}{\numberline {6.4.10}Setup inicial}{113}
+\contentsline {section}{\numberline {6.5}M\IeC {\'o}dulos}{114}
+\contentsline {subsection}{\numberline {6.5.1}Rotinas}{114}
+\contentsline {subsubsection}{\numberline {6.5.1.1}Multiplexa\IeC {\c c}\IeC {\~a}o no tempo}{114}
+\contentsline {subsubsection}{\numberline {6.5.1.2}Tratamento de indisponibilidade}{115}
+\contentsline {subsubsection}{\numberline {6.5.1.3}DoS Local (\textit {Evil Twin})}{116}
+\contentsline {subsubsection}{\numberline {6.5.1.4}Comunica\IeC {\c c}\IeC {\~a}o por MQTT}{117}
+\contentsline {subsection}{\numberline {6.5.2}Diagrama}{118}
+\contentsline {subsection}{\numberline {6.5.3}Montagem}{122}
+\contentsline {subsubsection}{\numberline {6.5.3.1}Montagem}{126}
+\contentsline {chapter}{\numberline {7}Aprendizado de M\IeC {\'a}quina e An\IeC {\'a}lise de Dados}{129}
+\contentsline {section}{\numberline {7.1}Coleta e An\IeC {\'a}lise de Dados}{129}
+\contentsline {subsection}{\numberline {7.1.1}Coleta}{129}
+\contentsline {chapter}{\numberline {8}Conclus\IeC {\~o}es}{149}
+\contentsline {chapter}{Refer\IeC {\^e}ncias}{151}
+\contentsline {chapter}{Anexo{} A{} -- C\IeC {\'o}digos das aplica\IeC {\c c}\IeC {\~o}es desenvolvidas}{155}
+\contentsline {chapter}{Anexo{} B{} -- Lista de materiais para montagem dos m\IeC {\'o}dulos}{157}
+\contentsline {chapter}{Anexo{} C{} -- Dados Coletados de 10/09/2017 a 13/11/2017}{159}
+\contentsline {chapter}{Anexo{} D{} -- Imagens de configura\IeC {\c c}\IeC {\~a}o para o aplicativo backup}{181}
