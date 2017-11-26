@@ -85,9 +85,7 @@
 \contentsline {subsubsection}{\numberline {6.1.8.5}Casos de teste para Controle de Acesso nos T\IeC {\'o}picos \emph {MQTT}{} entre m\IeC {\'o}dulos e nuvem}{96}
 \contentsline {section}{\numberline {6.2}Servidor na nuvem}{98}
 \contentsline {subsection}{\numberline {6.2.1}Descri\IeC {\c c}\IeC {\~a}o}{98}
-\contentsline {subsection}{\numberline {6.2.2}Requisitos}{98}
-\contentsline {subsubsection}{\numberline {6.2.2.1}Requisitos funcionais}{98}
-\contentsline {subsubsection}{\numberline {6.2.2.2}Requisitos n\IeC {\~a}o-funcionais}{99}
+\contentsline {subsection}{\numberline {6.2.2}Caracter\IeC {\'\i }sticas da implementa\IeC {\c c}\IeC {\~a}o}{98}
 \contentsline {subsection}{\numberline {6.2.3}Tecnologias usadas}{99}
 \contentsline {subsection}{\numberline {6.2.4}Infraestrutura}{101}
 \contentsline {subsection}{\numberline {6.2.5}Seguran\IeC {\c c}a}{101}

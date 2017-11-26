@@ -6,18 +6,19 @@ O servidor na nuvem é composto por um servidor WebSocket para comunicação ent
 
 Para fins de prova de conceito, optou-se por prosseguir com uma arquitetura monolítica. A implementação da arquitetura de microsserviços aumentaria consideravelmente a complexidade do projeto, e seus principais benefícios não seriam tão bem aproveitados, visto que o sistema não seria colocado a provas de carga real no momento. Contudo, ressalta-se que o monolito que compõe o servidor na nuvem poderia sim ser implementado como um conjunto de microsserviços, o que seria uma evolução natural à medida que o sistema escala.
 
-\subsection{Requisitos}
+\subsection{Características da implementação}
 
-\subsubsection{Requisitos funcionais}
+Com base nos requisitos funcionais e não-funcionais, discutidos na Subseção \ref{sec:requisitos}, foi realizada a implementação na nuvem. Suas características são discutidas em seguida.
+
 \begin{description}
 
 \item \textbf{Comunicação}
 
 \begin{itemize}
-\item O servidor deve permitir que Morpheus e aplicativos clientes se comuniquem via WebSocket.
-\item Morpheus podem enviar as mensagens provenientes dos módulos físicos, que são: \texttt{configuration}, \texttt{confirmation} e \texttt{data}. Também podem receber mensagens destinadas aos módulos físicos, que são: \texttt{action}, \texttt{configuration} e \texttt{data}.
-\item Morpheus podem receber mensagens de registro e remoção de módulo para definir quais dispositivos ele gerencia.
-\item Morpheus podem enviar mensagens de \texttt{report}.
+\item O servidor permite que Morpheus e aplicativos clientes se comuniquem via WebSocket.
+\item Morpheus pode enviar as mensagens provenientes dos módulos físicos, que são: \texttt{configuration}, \texttt{confirmation} e \texttt{data}. Também podem receber mensagens destinadas aos módulos físicos, que são: \texttt{action}, \texttt{configuration} e \texttt{data}.
+\item Morpheus pode receber mensagens de registro e remoção de módulo para definir quais dispositivos ele gerencia.
+\item Morpheus pode enviar mensagens de \texttt{report}.
 \item Os aplicativos cliente podem enviar as mensagens correspondentes a interações do usuário, que são: \texttt{action} e \texttt{configuration}. Também podem receber mensagens provenientes dos módulos físicos, que são: \texttt{confirmation} e \texttt{data}.
 \item Aplicativos cliente podem receber mensagens de \texttt{report}.
 \item Aplicativos cliente podem receber o status de conectividade dos Morpheus e receber notificações quando um Morpheus for desconectado.
@@ -26,23 +27,23 @@ Para fins de prova de conceito, optou-se por prosseguir com uma arquitetura mono
 \item \textbf{Persistência de dados}
 
 \begin{itemize}
-\item O servidor deve persistir dados de usuário, de configurações de Morpheus e módulo e de mensagens de dados (\texttt{data} e \texttt{report}).
+\item O servidor persiste dados de usuário, de configurações de Morpheus e módulo e de mensagens de dados (\texttt{data} e \texttt{report}).
 \end{itemize}
 
 \item \textbf{Gerenciamento de dados}
 
 \begin{itemize}
-\item O servidor deve oferecer uma API REST para leitura e escrita de dados de usuário, configurações de Morpheus e de módulos.
+\item O servidor deve oferece uma API REST para leitura e escrita de dados de usuário, configurações de Morpheus e de módulos.
+\end{itemize}
+
+\item \textbf{Conexões}
+
+\begin{itemize}
+\item O servidor permite o estabelecimento de conexões HTTPS seguras e criptografadas.
+\item O firewall bloqueia conexões em portas que não estão sendo utilizadas.
 \end{itemize}
 
 \end{description}
-
-\subsubsection{Requisitos não-funcionais}
-
-\begin{itemize}
-\item O servidor deve permitir o estabelecimento de conexões HTTPS seguras e criptografadas.
-\item O firewall deve bloquear conexões em portas que não estão sendo utilizadas.
-\end{itemize}
 
 \subsection{Tecnologias usadas}
 
