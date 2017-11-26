@@ -1021,65 +1021,7 @@ Em situações reais, cada casa terá uma instância do \emph{Mosquitto Broker} 
 
 \lstinline{. start.sh}
 
-O conteúdo do \emph{script} é mostrado na listagem seguinte.
-
-\begin{lstlisting}[language=bash]
-    #!/bin/bash
-
-    NUMBER_OF_HOMES=4
-    BASE_PORT_MORPHEUS=8882
-    BASE_PORT_MODULES=1882
-
-    echo "Oi, $USER! Bem vindo ao MQTT - Hedwig"
-    echo $'--------------------------------------\n'
-
-    echo 'Desativando o firewall...'
-    `sudo ufw disable > /dev/null`
-    echo 'Firewall desativado!'
-    echo $'--------------------------------------\n'
-
-
-    echo 'Parando os processos do mosquitto...'
-
-    for each_instance_pid in `pgrep mosquitto`; do
-    `sudo kill -9 $each_instance_pid`
-    echo "Instancia com PID $each_instance_pid eliminada"
-    done
-
-    echo 'Todos os processos do mosquitto parados'
-    echo $'--------------------------------------\n'
-
-    echo 'Iniciando os processos do mosquitto...'
-    for count in `seq 1 $NUMBER_OF_HOMES`; do
-
-    echo "Iniciando Casa $count..."
-    `sudo mosquitto -c conf.d/home"$count"/m_home_"$count".conf -d`
-    echo "Casa $count iniciada!"
-
-    morpheus_port_number=$((BASE_PORT_MORPHEUS+count))
-    modules_port_number=$((BASE_PORT_MODULES+count))
-
-    echo "Adicionando Casa $count ao firewall..."
-
-    `sudo ufw allow "$morpheus_port_number"/tcp > /dev/null`
-    `sudo ufw allow "$modules_port_number"/tcp > /dev/null`
-    echo "Adicionando Casa $count adicionada ao firewall!"
-    echo ''
-    done
-
-    echo 'Todos os processos do mosquitto iniciados!'
-    echo $'--------------------------------------\n'
-
-    echo 'Ativando firewall...'
-
-    `yes | sudo ufw enable > /dev/null`
-
-    echo 'Firewall ativado!'
-    echo $'--------------------------------------\n'
-
-    echo 'Tudo pronto, divirta-se!'
-\end{lstlisting}
-
+O conteúdo do \emph{script} é mostrado no Anexo \ref{att:script}.
 \end{enumerate}
 
 \subsubsection{Criação dos certificados}

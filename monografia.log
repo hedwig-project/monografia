@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.23)  26 NOV 2017 17:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.9.23)  26 NOV 2017 17:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1420,17 +1420,17 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 984.
  [94]
-[95] [96] [97] [98]) (./chapters/implementacao/servidor_na_nuvem.tex [99]
-[100] [101]
-<images/componentesNuvem.png, id=383, 709.65125pt x 1137.24875pt>
+[95] [96]) (./chapters/implementacao/servidor_na_nuvem.tex [97] [98] [99]
+<images/componentesNuvem.png, id=377, 709.65125pt x 1137.24875pt>
 File: images/componentesNuvem.png Graphic file (type png)
 <use images/componentesNuvem.png>
 Package pdftex.def Info: images/componentesNuvem.png  used on input line 64. on
  input line 64.
 Package pdftex.def Info: Requested size: 227.62206pt x 364.77733pt on input lin
 e 64.
- [102 <./images/componentesNuvem.png>]
-<images/keymetrics.png, id=388, 1207.51125pt x 229.85875pt>
+
+[100] [101 <./images/componentesNuvem.png>]
+<images/keymetrics.png, id=385, 1207.51125pt x 229.85875pt>
 File: images/keymetrics.png Graphic file (type png)
 <use images/keymetrics.png>
 Package pdftex.def Info: images/keymetrics.png  used on input line 85. on input
@@ -1438,244 +1438,244 @@ Package pdftex.def Info: images/keymetrics.png  used on input line 85. on input
 Package pdftex.def Info: Requested size: 455.24411pt x 86.65627pt on input line
  85.
 )
-(./chapters/implementacao/dashboard.tex [103 <./images/keymetrics.png>]
-[104] [105]
-<images/reduxFlowchart.png, id=400, 1506.62875pt x 1201.48875pt>
+(./chapters/implementacao/dashboard.tex [102 <./images/keymetrics.png>]
+[103] [104]
+<images/reduxFlowchart.png, id=396, 1506.62875pt x 1201.48875pt>
 File: images/reduxFlowchart.png Graphic file (type png)
 <use images/reduxFlowchart.png>
 Package pdftex.def Info: images/reduxFlowchart.png  used on input line 82. on i
 nput line 82.
 Package pdftex.def Info: Requested size: 455.24411pt x 363.0344pt on input line
  82.
- [106] [107 <./images/reduxFlowchart.png>] [108] [109] [110])
-(./chapters/implementacao/app_backup.tex [111] [112]
-<images/telasPrincipaisBackup.png, id=424, 1084.05pt x 1927.2pt>
+ [105] [106 <./images/reduxFlowchart.png>] [107] [108] [109])
+(./chapters/implementacao/app_backup.tex [110]
+<images/telasPrincipaisBackup.png, id=417, 1084.05pt x 1927.2pt>
 File: images/telasPrincipaisBackup.png Graphic file (type png)
 <use images/telasPrincipaisBackup.png>
 Package pdftex.def Info: images/telasPrincipaisBackup.png  used on input line 4
 2. on input line 42.
 Package pdftex.def Info: Requested size: 227.62206pt x 404.63573pt on input lin
 e 42.
-<images/plantaBackup.png, id=425, 967.615pt x 451.6875pt>
+ [111]
+<images/plantaBackup.png, id=422, 967.615pt x 451.6875pt>
 File: images/plantaBackup.png Graphic file (type png)
 <use images/plantaBackup.png>
 Package pdftex.def Info: images/plantaBackup.png  used on input line 49. on inp
 ut line 49.
 Package pdftex.def Info: Requested size: 364.19667pt x 170.00958pt on input lin
 e 49.
- [113 <./images/telasPrincipaisBackup.png>]
-<images/menuPrincipalBackup.png, id=429, 1068.99374pt x 1352.05125pt>
+ [112 <./images/telasPrincipaisBackup.png> <./images/plantaBackup.png>]
+<images/menuPrincipalBackup.png, id=427, 1068.99374pt x 1352.05125pt>
 File: images/menuPrincipalBackup.png Graphic file (type png)
 <use images/menuPrincipalBackup.png>
 Package pdftex.def Info: images/menuPrincipalBackup.png  used on input line 60.
  on input line 60.
 Package pdftex.def Info: Requested size: 134.96143pt x 170.71652pt on input lin
 e 60.
-<images/senhaBackup.png, id=430, 286.06876pt x 313.17pt>
+<images/senhaBackup.png, id=428, 286.06876pt x 313.17pt>
 File: images/senhaBackup.png Graphic file (type png)
 <use images/senhaBackup.png>
 Package pdftex.def Info: images/senhaBackup.png  used on input line 67. on inpu
 t line 67.
 Package pdftex.def Info: Requested size: 155.94585pt x 170.71652pt on input lin
 e 67.
- [114 <./images/plantaBackup.png> <./images/menuPrincipalBackup.png> <./images/
-senhaBackup.png>] [115]
-<images/tpLinkAppBackup.png, id=440, 1075.01625pt x 478.78876pt>
+ [113 <./images/menuPrincipalBackup.png> <./images/senhaBackup.png>]
+<images/tpLinkAppBackup.png, id=434, 1075.01625pt x 478.78876pt>
 File: images/tpLinkAppBackup.png Graphic file (type png)
 <use images/tpLinkAppBackup.png>
 Package pdftex.def Info: images/tpLinkAppBackup.png  used on input line 96. on 
 input line 96.
 Package pdftex.def Info: Requested size: 364.19667pt x 162.20155pt on input lin
 e 96.
- [116 <./images/tpLinkAppBackup.png>]
+ [114 <./images/tpLinkAppBackup.png>]
 Overfull \hbox (1.68721pt too wide) in paragraph at lines 127--128
 []\OT1/cmr/m/n/12 Aperte "OK"no canto su-pe-rior di-reito da p^^Sagina, para sa
 l-var suas con-fi-gura^^Xc~oes. 
  []
 
-[117]) (./chapters/implementacao/modulos.tex
-<images/rotinaMultiplexacao.png, id=449, 795.97375pt x 552.0625pt>
+[115] [116]) (./chapters/implementacao/modulos.tex
+<images/rotinaMultiplexacao.png, id=445, 795.97375pt x 552.0625pt>
 File: images/rotinaMultiplexacao.png Graphic file (type png)
 <use images/rotinaMultiplexacao.png>
 Package pdftex.def Info: images/rotinaMultiplexacao.png  used on input line 9. 
 on input line 9.
 Package pdftex.def Info: Requested size: 364.19667pt x 252.5956pt on input line
  9.
- [118]
-<images/tratamentoIndisponibilidade.png, id=453, 800.9925pt x 805.0075pt>
+ [117]
+<images/tratamentoIndisponibilidade.png, id=450, 800.9925pt x 805.0075pt>
 File: images/tratamentoIndisponibilidade.png Graphic file (type png)
 <use images/tratamentoIndisponibilidade.png>
 Package pdftex.def Info: images/tratamentoIndisponibilidade.png  used on input 
 line 19. on input line 19.
 Package pdftex.def Info: Requested size: 364.19667pt x 366.02104pt on input lin
 e 19.
- [119 <./images/rotinaMultiplexacao.png>]
-<images/tratamentoDoS.png, id=458, 615.29875pt x 357.335pt>
+ [118 <./images/rotinaMultiplexacao.png>]
+<images/tratamentoDoS.png, id=455, 615.29875pt x 357.335pt>
 File: images/tratamentoDoS.png Graphic file (type png)
 <use images/tratamentoDoS.png>
 Package pdftex.def Info: images/tratamentoDoS.png  used on input line 33. on in
 put line 33.
 Package pdftex.def Info: Requested size: 364.19667pt x 211.51283pt on input lin
 e 33.
- [120 <./images/tratamentoIndisponibilidade.png>] [121 <./images/tratamentoDoS.
+ [119 <./images/tratamentoIndisponibilidade.png>] [120 <./images/tratamentoDoS.
 png>]
-<images/filasaidaMQTT.PNG, id=467, 254.45062pt x 51.19125pt>
+<images/filasaidaMQTT.PNG, id=464, 254.45062pt x 51.19125pt>
 File: images/filasaidaMQTT.PNG Graphic file (type png)
 <use images/filasaidaMQTT.PNG>
 Package pdftex.def Info: images/filasaidaMQTT.PNG  used on input line 57. on in
 put line 57.
 Package pdftex.def Info: Requested size: 227.62206pt x 45.79594pt on input line
  57.
-<images/diagramaModuloBase.png, id=468, 945.5325pt x 1163.34625pt>
+<images/diagramaModuloBase.png, id=465, 945.5325pt x 1163.34625pt>
 File: images/diagramaModuloBase.png Graphic file (type png)
 <use images/diagramaModuloBase.png>
 Package pdftex.def Info: images/diagramaModuloBase.png  used on input line 72. 
 on input line 72.
 Package pdftex.def Info: Requested size: 364.19667pt x 448.09384pt on input lin
 e 72.
- [122 <./images/filasaidaMQTT.PNG>] [123 <./images/diagramaModuloBase.png>]
-<images/esquematicoModuloBase.png, id=478, 1346.02875pt x 1608.0075pt>
+ [121 <./images/filasaidaMQTT.PNG>] [122 <./images/diagramaModuloBase.png>]
+<images/esquematicoModuloBase.png, id=474, 1346.02875pt x 1608.0075pt>
 File: images/esquematicoModuloBase.png Graphic file (type png)
 <use images/esquematicoModuloBase.png>
 Package pdftex.def Info: images/esquematicoModuloBase.png  used on input line 9
 3. on input line 93.
 Package pdftex.def Info: Requested size: 364.19667pt x 435.07567pt on input lin
 e 93.
- [124 <./images/esquematicoModuloBase.png>]
-<images/entradasEmA0.png, id=483, 307.1475pt x 334.24875pt>
+ [123 <./images/esquematicoModuloBase.png>]
+<images/entradasEmA0.png, id=480, 307.1475pt x 334.24875pt>
 File: images/entradasEmA0.png Graphic file (type png)
 <use images/entradasEmA0.png>
 Package pdftex.def Info: images/entradasEmA0.png  used on input line 105. on in
 put line 105.
 Package pdftex.def Info: Requested size: 182.09486pt x 198.16388pt on input lin
 e 105.
- [125 <./images/entradasEmA0.png>]
-<images/circuitoAntiTravamento.png, id=488, 946.53625pt x 266.9975pt>
+ [124 <./images/entradasEmA0.png>]
+<images/circuitoAntiTravamento.png, id=485, 946.53625pt x 266.9975pt>
 File: images/circuitoAntiTravamento.png Graphic file (type png)
 <use images/circuitoAntiTravamento.png>
 Package pdftex.def Info: images/circuitoAntiTravamento.png  used on input line 
 121. on input line 121.
 Package pdftex.def Info: Requested size: 364.19667pt x 102.73119pt on input lin
 e 121.
-<images/evolHW.PNG, id=489, 398.99063pt x 197.98969pt>
+<images/evolHW.PNG, id=486, 398.99063pt x 197.98969pt>
 File: images/evolHW.PNG Graphic file (type png)
 <use images/evolHW.PNG>
 Package pdftex.def Info: images/evolHW.PNG  used on input line 137. on input li
 ne 137.
 Package pdftex.def Info: Requested size: 364.19667pt x 180.7328pt on input line
  137.
-<images/evolProtDisplay.PNG, id=490, 335.75438pt x 167.12437pt>
+<images/evolProtDisplay.PNG, id=487, 335.75438pt x 167.12437pt>
 File: images/evolProtDisplay.PNG Graphic file (type png)
 <use images/evolProtDisplay.PNG>
 Package pdftex.def Info: images/evolProtDisplay.PNG  used on input line 144. on
  input line 144.
 Package pdftex.def Info: Requested size: 364.19667pt x 181.28215pt on input lin
 e 144.
- [126 <./images/circuitoAntiTravamento.png> <./images/evolHW.PNG>]
-<images/materiaisPrepPlaca.PNG, id=496, 294.34969pt x 140.02313pt>
+ [125 <./images/circuitoAntiTravamento.png> <./images/evolHW.PNG>]
+<images/materiaisPrepPlaca.PNG, id=493, 294.34969pt x 140.02313pt>
 File: images/materiaisPrepPlaca.PNG Graphic file (type png)
 <use images/materiaisPrepPlaca.PNG>
 Package pdftex.def Info: images/materiaisPrepPlaca.PNG  used on input line 151.
  on input line 151.
 Package pdftex.def Info: Requested size: 364.19667pt x 173.25084pt on input lin
 e 151.
-<images/PosicionamentoComp.PNG, id=497, 439.6425pt x 358.33875pt>
+<images/PosicionamentoComp.PNG, id=494, 439.6425pt x 358.33875pt>
 File: images/PosicionamentoComp.PNG Graphic file (type png)
 <use images/PosicionamentoComp.PNG>
 Package pdftex.def Info: images/PosicionamentoComp.PNG  used on input line 161.
  on input line 161.
 Package pdftex.def Info: Requested size: 364.19667pt x 296.85243pt on input lin
 e 161.
-
-[127 <./images/evolProtDisplay.PNG> <./images/materiaisPrepPlaca.PNG>]
-<images/PrepI2CSoldagem.PNG, id=503, 302.63063pt x 152.82094pt>
+ [126 <./images/evolProtDisplay.PNG> <./images/materiaisPrepPlaca.PNG>]
+<images/PrepI2CSoldagem.PNG, id=500, 302.63063pt x 152.82094pt>
 File: images/PrepI2CSoldagem.PNG Graphic file (type png)
 <use images/PrepI2CSoldagem.PNG>
 Package pdftex.def Info: images/PrepI2CSoldagem.PNG  used on input line 170. on
  input line 170.
 Package pdftex.def Info: Requested size: 364.19667pt x 183.91118pt on input lin
 e 170.
-<images/PrepCaixasModulos.PNG, id=504, 312.41719pt x 167.87718pt>
+<images/PrepCaixasModulos.PNG, id=501, 312.41719pt x 167.87718pt>
 File: images/PrepCaixasModulos.PNG Graphic file (type png)
 <use images/PrepCaixasModulos.PNG>
 Package pdftex.def Info: images/PrepCaixasModulos.PNG  used on input line 179. 
 on input line 179.
 Package pdftex.def Info: Requested size: 364.19667pt x 195.70595pt on input lin
 e 179.
- [128 <./images/PosicionamentoComp.PNG> <./images/PrepI2CSoldagem.PNG>]
-<images/BotoesCabosForca.PNG, id=510, 375.65344pt x 140.02313pt>
+
+[127 <./images/PosicionamentoComp.PNG> <./images/PrepI2CSoldagem.PNG>]
+<images/BotoesCabosForca.PNG, id=507, 375.65344pt x 140.02313pt>
 File: images/BotoesCabosForca.PNG Graphic file (type png)
 <use images/BotoesCabosForca.PNG>
 Package pdftex.def Info: images/BotoesCabosForca.PNG  used on input line 188. o
 n input line 188.
 Package pdftex.def Info: Requested size: 364.19667pt x 135.76244pt on input lin
 e 188.
-<images/QuatroModulos.PNG, id=511, 429.10312pt x 224.33812pt>
+<images/QuatroModulos.PNG, id=508, 429.10312pt x 224.33812pt>
 File: images/QuatroModulos.PNG Graphic file (type png)
 <use images/QuatroModulos.PNG>
 Package pdftex.def Info: images/QuatroModulos.PNG  used on input line 197. on i
 nput line 197.
 Package pdftex.def Info: Requested size: 364.19667pt x 190.40761pt on input lin
 e 197.
- [129 <./images/PrepCaixasModulos.PNG> <./images/BotoesCabosForca.PNG>] [130 <.
-/images/QuatroModulos.PNG>])) (./chapters/aprendizado_de_maquina.tex [131] [132
+ [128 <./images/PrepCaixasModulos.PNG> <./images/BotoesCabosForca.PNG>] [129 <.
+/images/QuatroModulos.PNG>])) (./chapters/aprendizado_de_maquina.tex [130]
+Cap\'{\i }tulo 7.
+[131
 
 ]
-Cap\'{\i }tulo 7.
-[133]
-<images/logAppBackup.PNG, id=531, 228.10219pt x 197.23688pt>
+<images/logAppBackup.PNG, id=525, 228.10219pt x 197.23688pt>
 File: images/logAppBackup.PNG Graphic file (type png)
 <use images/logAppBackup.PNG>
 Package pdftex.def Info: images/logAppBackup.PNG  used on input line 31. on inp
 ut line 31.
 Package pdftex.def Info: Requested size: 227.62206pt x 196.82706pt on input lin
 e 31.
-<images/SDColetaDados.PNG, id=532, 142.28156pt x 155.07938pt>
+<images/SDColetaDados.PNG, id=526, 142.28156pt x 155.07938pt>
 File: images/SDColetaDados.PNG Graphic file (type png)
 <use images/SDColetaDados.PNG>
 Package pdftex.def Info: images/SDColetaDados.PNG  used on input line 38. on in
 put line 38.
 Package pdftex.def Info: Requested size: 136.57462pt x 148.87448pt on input lin
 e 38.
-<images/ModulosStoAndre.PNG, id=533, 429.85594pt x 247.67531pt>
+<images/ModulosStoAndre.PNG, id=527, 429.85594pt x 247.67531pt>
 File: images/ModulosStoAndre.PNG Graphic file (type png)
 <use images/ModulosStoAndre.PNG>
 Package pdftex.def Info: images/ModulosStoAndre.PNG  used on input line 47. on 
 input line 47.
 Package pdftex.def Info: Requested size: 364.19667pt x 209.84851pt on input lin
 e 47.
- [134 <./images/logAppBackup.PNG> <./images/SDColetaDados.PNG>]
-<images/ModuloSistAlarme.PNG, id=539, 373.395pt x 170.13562pt>
+ [132 <./images/logAppBackup.PNG> <./images/SDColetaDados.PNG>]
+<images/ModuloSistAlarme.PNG, id=533, 373.395pt x 170.13562pt>
 File: images/ModuloSistAlarme.PNG Graphic file (type png)
 <use images/ModuloSistAlarme.PNG>
 Package pdftex.def Info: images/ModuloSistAlarme.PNG  used on input line 56. on
  input line 56.
 Package pdftex.def Info: Requested size: 364.19667pt x 165.95035pt on input lin
 e 56.
-<images/BasicSensorPresJarinu.PNG, id=540, 209.28188pt x 191.9672pt>
+<images/BasicSensorPresJarinu.PNG, id=534, 209.28188pt x 191.9672pt>
 File: images/BasicSensorPresJarinu.PNG Graphic file (type png)
 <use images/BasicSensorPresJarinu.PNG>
 Package pdftex.def Info: images/BasicSensorPresJarinu.PNG  used on input line 6
 3. on input line 63.
 Package pdftex.def Info: Requested size: 227.62206pt x 208.78899pt on input lin
 e 63.
- [135 <./images/ModulosStoAndre.PNG> <./images/ModuloSistAlarme.PNG>]
-<images/SensorPortasJarinu.PNG, id=547, 171.64125pt x 167.87718pt>
+ [133 <./images/ModulosStoAndre.PNG> <./images/ModuloSistAlarme.PNG>]
+<images/SensorPortasJarinu.PNG, id=540, 171.64125pt x 167.87718pt>
 File: images/SensorPortasJarinu.PNG Graphic file (type png)
 <use images/SensorPortasJarinu.PNG>
 Package pdftex.def Info: images/SensorPortasJarinu.PNG  used on input line 70. 
 on input line 70.
 Package pdftex.def Info: Requested size: 227.62206pt x 222.62833pt on input lin
 e 70.
-<images/ModuloCxAgua.PNG, id=548, 375.65344pt x 190.46156pt>
+<images/ModuloCxAgua.PNG, id=541, 375.65344pt x 190.46156pt>
 File: images/ModuloCxAgua.PNG Graphic file (type png)
 <use images/ModuloCxAgua.PNG>
 Package pdftex.def Info: images/ModuloCxAgua.PNG  used on input line 79. on inp
 ut line 79.
 Package pdftex.def Info: Requested size: 364.19667pt x 184.66609pt on input lin
 e 79.
- [136 <./images/BasicSensorPresJarinu.PNG> <./images/SensorPortasJarinu.PNG>]
-<images/DiagramaModulosDados.PNG, id=554, 551.05875pt x 121.95563pt>
+ [134 <./images/BasicSensorPresJarinu.PNG> <./images/SensorPortasJarinu.PNG>]
+<images/DiagramaModulosDados.PNG, id=547, 551.05875pt x 121.95563pt>
 File: images/DiagramaModulosDados.PNG Graphic file (type png)
 <use images/DiagramaModulosDados.PNG>
 Package pdftex.def Info: images/DiagramaModulosDados.PNG  used on input line 90
@@ -1688,61 +1688,61 @@ Overfull \hbox (0.10085pt too wide) in paragraph at lines 97--98
 ua, es-tado do aque-ce-dor e es-tado da l^ampada
  []
 
-[137 <./images/ModuloCxAgua.PNG> <./images/DiagramaModulosDados.PNG>] [138]
-[139]
-<images/diaStoAndreTerca.PNG, id=567, 446.41782pt x 268.75406pt>
+[135 <./images/ModuloCxAgua.PNG> <./images/DiagramaModulosDados.PNG>] [136]
+[137]
+<images/diaStoAndreTerca.PNG, id=561, 446.41782pt x 268.75406pt>
 File: images/diaStoAndreTerca.PNG Graphic file (type png)
 <use images/diaStoAndreTerca.PNG>
 Package pdftex.def Info: images/diaStoAndreTerca.PNG  used on input line 228. o
 n input line 228.
 Package pdftex.def Info: Requested size: 364.19667pt x 219.25612pt on input lin
 e 228.
- [140 <./images/diaStoAndreTerca.PNG>]
-<images/TempAquecedorAqua.PNG, id=572, 452.4403pt x 282.30469pt>
+ [138 <./images/diaStoAndreTerca.PNG>]
+<images/TempAquecedorAqua.PNG, id=566, 452.4403pt x 282.30469pt>
 File: images/TempAquecedorAqua.PNG Graphic file (type png)
 <use images/TempAquecedorAqua.PNG>
 Package pdftex.def Info: images/TempAquecedorAqua.PNG  used on input line 253. 
 on input line 253.
 Package pdftex.def Info: Requested size: 455.24411pt x 284.05287pt on input lin
 e 253.
- [141 <./images/TempAquecedorAqua.PNG>]
-<images/AquaDia.PNG, id=578, 450.9347pt x 269.50688pt>
+ [139 <./images/TempAquecedorAqua.PNG>]
+<images/AquaDia.PNG, id=571, 450.9347pt x 269.50688pt>
 File: images/AquaDia.PNG Graphic file (type png)
 <use images/AquaDia.PNG>
 Package pdftex.def Info: images/AquaDia.PNG  used on input line 269. on input l
 ine 269.
 Package pdftex.def Info: Requested size: 455.24411pt x 272.09697pt on input lin
 e 269.
-<images/MemLivreCorredor.PNG, id=579, 447.17062pt x 268.75406pt>
+<images/MemLivreCorredor.PNG, id=572, 447.17062pt x 268.75406pt>
 File: images/MemLivreCorredor.PNG Graphic file (type png)
 <use images/MemLivreCorredor.PNG>
 Package pdftex.def Info: images/MemLivreCorredor.PNG  used on input line 276. o
 n input line 276.
 Package pdftex.def Info: Requested size: 455.24411pt x 273.6129pt on input line
  276.
- [142 <./images/AquaDia.PNG>]
+ [140 <./images/AquaDia.PNG>]
 Overfull \hbox (1.30392pt too wide) in paragraph at lines 283--284
 []\OT1/cmr/m/n/12 Os per^^S^^Podos de maior dis-po-ni-bi-li-dade s~ao das 11hs 
 ^^Ras 16hs, pois te-mos maior mem^^Soria
  []
 
-<images/periodoCorredor.PNG, id=584, 450.9347pt x 273.27094pt>
+<images/periodoCorredor.PNG, id=577, 450.9347pt x 273.27094pt>
 File: images/periodoCorredor.PNG Graphic file (type png)
 <use images/periodoCorredor.PNG>
 Package pdftex.def Info: images/periodoCorredor.PNG  used on input line 290. on
  input line 290.
 Package pdftex.def Info: Requested size: 455.24411pt x 275.8972pt on input line
  290.
-[143 <./images/MemLivreCorredor.PNG>]
-<images/sensoresdiaCorredor.PNG, id=589, 453.19313pt x 295.85532pt>
+[141 <./images/MemLivreCorredor.PNG>]
+<images/sensoresdiaCorredor.PNG, id=583, 453.19313pt x 295.85532pt>
 File: images/sensoresdiaCorredor.PNG Graphic file (type png)
 <use images/sensoresdiaCorredor.PNG>
 Package pdftex.def Info: images/sensoresdiaCorredor.PNG  used on input line 299
 . on input line 299.
 Package pdftex.def Info: Requested size: 455.24411pt x 297.19534pt on input lin
 e 299.
- [144 <./images/periodoCorredor.PNG>]
-<images/UsoRele1periodoCorredor.PNG, id=594, 446.41782pt x 274.77657pt>
+ [142 <./images/periodoCorredor.PNG>]
+<images/UsoRele1periodoCorredor.PNG, id=588, 446.41782pt x 274.77657pt>
 File: images/UsoRele1periodoCorredor.PNG Graphic file (type png)
 <use images/UsoRele1periodoCorredor.PNG>
 Package pdftex.def Info: images/UsoRele1periodoCorredor.PNG  used on input line
@@ -1750,67 +1750,67 @@ Package pdftex.def Info: images/UsoRele1periodoCorredor.PNG  used on input line
 Package pdftex.def Info: Requested size: 455.24411pt x 280.21387pt on input lin
 e 308.
 
-[145 <./images/sensoresdiaCorredor.PNG>]
-<images/UsoRele1DiaCorredor.PNG, id=599, 478.03593pt x 269.50688pt>
+[143 <./images/sensoresdiaCorredor.PNG>]
+<images/UsoRele1DiaCorredor.PNG, id=593, 478.03593pt x 269.50688pt>
 File: images/UsoRele1DiaCorredor.PNG Graphic file (type png)
 <use images/UsoRele1DiaCorredor.PNG>
 Package pdftex.def Info: images/UsoRele1DiaCorredor.PNG  used on input line 317
 . on input line 317.
 Package pdftex.def Info: Requested size: 364.19667pt x 205.32494pt on input lin
 e 317.
-<images/EntradaConsolidadoDia.PNG, id=600, 463.7325pt x 275.52937pt>
+<images/EntradaConsolidadoDia.PNG, id=594, 463.7325pt x 275.52937pt>
 File: images/EntradaConsolidadoDia.PNG Graphic file (type png)
 <use images/EntradaConsolidadoDia.PNG>
 Package pdftex.def Info: images/EntradaConsolidadoDia.PNG  used on input line 3
 24. on input line 324.
 Package pdftex.def Info: Requested size: 455.24411pt x 270.492pt on input line 
 324.
- [146 <./images/UsoRele1periodoCorredor.PNG> <./images/UsoRele1DiaCorredor.PNG>
+ [144 <./images/UsoRele1periodoCorredor.PNG> <./images/UsoRele1DiaCorredor.PNG>
 ]
-<images/CxAguaDia.PNG, id=607, 462.97969pt x 277.035pt>
+<images/CxAguaDia.PNG, id=600, 462.97969pt x 277.035pt>
 File: images/CxAguaDia.PNG Graphic file (type png)
 <use images/CxAguaDia.PNG>
 Package pdftex.def Info: images/CxAguaDia.PNG  used on input line 338. on input
  line 338.
 Package pdftex.def Info: Requested size: 455.24411pt x 272.40974pt on input lin
 e 338.
- [147 <./images/EntradaConsolidadoDia.PNG>]
-<images/tempoPeriodocxAgua.PNG, id=613, 455.45157pt x 272.51813pt>
+ [145 <./images/EntradaConsolidadoDia.PNG>]
+<images/tempoPeriodocxAgua.PNG, id=605, 455.45157pt x 272.51813pt>
 File: images/tempoPeriodocxAgua.PNG Graphic file (type png)
 <use images/tempoPeriodocxAgua.PNG>
 Package pdftex.def Info: images/tempoPeriodocxAgua.PNG  used on input line 355.
  on input line 355.
 Package pdftex.def Info: Requested size: 455.24411pt x 272.40102pt on input lin
 e 355.
- [148 <./images/CxAguaDia.PNG>]
-<images/AtivPortaSalaJarinu.PNG, id=618, 447.17062pt x 271.76532pt>
+ [146 <./images/CxAguaDia.PNG>]
+<images/AtivPortaSalaJarinu.PNG, id=611, 447.17062pt x 271.76532pt>
 File: images/AtivPortaSalaJarinu.PNG Graphic file (type png)
 <use images/AtivPortaSalaJarinu.PNG>
 Package pdftex.def Info: images/AtivPortaSalaJarinu.PNG  used on input line 362
 . on input line 362.
 Package pdftex.def Info: Requested size: 455.24411pt x 276.6786pt on input line
  362.
- [149 <./images/tempoPeriodocxAgua.PNG> <./images/AtivPortaSalaJarinu.PNG>]
-<images/AtivPresencaJarinu.PNG, id=624, 445.665pt x 274.77657pt>
+ [147 <./images/tempoPeriodocxAgua.PNG> <./images/AtivPortaSalaJarinu.PNG>]
+<images/AtivPresencaJarinu.PNG, id=618, 445.665pt x 274.77657pt>
 File: images/AtivPresencaJarinu.PNG Graphic file (type png)
 <use images/AtivPresencaJarinu.PNG>
 Package pdftex.def Info: images/AtivPresencaJarinu.PNG  used on input line 377.
  on input line 377.
 Package pdftex.def Info: Requested size: 455.24411pt x 280.68346pt on input lin
 e 377.
-<images/JarinuPeriodo.PNG, id=625, 450.18187pt x 269.50688pt>
+<images/JarinuPeriodo.PNG, id=619, 450.18187pt x 269.50688pt>
 File: images/JarinuPeriodo.PNG Graphic file (type png)
 <use images/JarinuPeriodo.PNG>
 Package pdftex.def Info: images/JarinuPeriodo.PNG  used on input line 384. on i
 nput line 384.
 Package pdftex.def Info: Requested size: 455.24411pt x 272.54933pt on input lin
 e 384.
- [150 <./images/AtivPresencaJarinu.PNG>])
-(./chapters/conclusoes.tex [151 <./images/JarinuPeriodo.PNG>] [152
+ [148 <./images/AtivPresencaJarinu.PNG>])
+(./chapters/conclusoes.tex [149 <./images/JarinuPeriodo.PNG>] [150
 
 ]
 Cap\'{\i }tulo 8.
-) (./monografia.bbl [153] [154
+) (./monografia.bbl [151] [152
 
 ]
 Underfull \hbox (badness 1147) in paragraph at lines 10--14
@@ -1824,80 +1824,88 @@ Overfull \hbox (77.64767pt too wide) in paragraph at lines 63--67
 sers-[]is-[]normal-[]and-[]that-[]the-[]best-[]apps-[]do-[]much-[]better / 
  []
 
-[155
+[153
 
-] [156] [157]
+] [154] [155]
 Underfull \hbox (badness 1377) in paragraph at lines 356--360
 \OT1/cmr/m/it/12 Lo-sing Our Soul\OT1/cmr/m/n/12 . 2015. $\OMS/cmsy/m/n/12 h\OT
 1/cmr/m/n/12 https : / / infrequently . org / 2015 / 06 / 
  []
 
-[158]) (./attachments/github.tex [159] [160
+[156]) (./attachments/github.tex [157] [158
 
 ]
 Anexo A.
-) (./attachments/lista_materiais.tex [161] [162
+) (./attachments/script.tex [159] [160
 
 ]
 Anexo B.
-) (./attachments/formato_mensagens_comunicacao.tex)
-(./attachments/dadosColetados.tex [163] [164]
+[161]) (./attachments/mosquittoConfig.tex [162]
 Anexo C.
-<images/resumoAqua.PNG, id=677, 559.33969pt x 311.66437pt>
+[163
+
+] [164]) (./attachments/lista_materiais.tex [165] [166
+
+]
+Anexo D.
+) (./attachments/formato_mensagens_comunicacao.tex)
+(./attachments/dadosColetados.tex [167] [168]
+Anexo E.
+<images/resumoAqua.PNG, id=690, 559.33969pt x 311.66437pt>
 File: images/resumoAqua.PNG Graphic file (type png)
 <use images/resumoAqua.PNG>
 Package pdftex.def Info: images/resumoAqua.PNG  used on input line 7. on input 
 line 7.
 Package pdftex.def Info: Requested size: 455.24411pt x 253.6737pt on input line
  7.
-<images/AquaPeriodo.PNG, id=678, 449.42906pt x 277.78781pt>
+<images/AquaPeriodo.PNG, id=691, 449.42906pt x 277.78781pt>
 File: images/AquaPeriodo.PNG Graphic file (type png)
 <use images/AquaPeriodo.PNG>
 Package pdftex.def Info: images/AquaPeriodo.PNG  used on input line 14. on inpu
 t line 14.
 Package pdftex.def Info: Requested size: 364.19667pt x 225.11708pt on input lin
 e 14.
-[165
+[169
 
  <./images/resumoAqua.PNG>]
-<images/AquaDiaDisp.PNG, id=684, 446.41782pt x 277.035pt>
+<images/AquaDiaDisp.PNG, id=696, 446.41782pt x 277.035pt>
 File: images/AquaDiaDisp.PNG Graphic file (type png)
 <use images/AquaDiaDisp.PNG>
 Package pdftex.def Info: images/AquaDiaDisp.PNG  used on input line 21. on inpu
 t line 21.
 Package pdftex.def Info: Requested size: 364.19667pt x 226.0119pt on input line
  21.
-<images/MemLivreAqua.PNG, id=685, 450.9347pt x 278.54062pt>
+<images/MemLivreAqua.PNG, id=697, 450.9347pt x 278.54062pt>
 File: images/MemLivreAqua.PNG Graphic file (type png)
 <use images/MemLivreAqua.PNG>
 Package pdftex.def Info: images/MemLivreAqua.PNG  used on input line 28. on inp
 ut line 28.
 Package pdftex.def Info: Requested size: 364.19667pt x 224.97488pt on input lin
 e 28.
- [166 <./images/AquaPeriodo.PNG> <./images/AquaDiaDisp.PNG>]
-<images/resumoCorredor.PNG, id=691, 615.0478pt x 311.66437pt>
+ [170 <./images/AquaPeriodo.PNG> <./images/AquaDiaDisp.PNG>]
+<images/resumoCorredor.PNG, id=703, 615.0478pt x 311.66437pt>
 File: images/resumoCorredor.PNG Graphic file (type png)
 <use images/resumoCorredor.PNG>
 Package pdftex.def Info: images/resumoCorredor.PNG  used on input line 35. on i
 nput line 35.
 Package pdftex.def Info: Requested size: 455.24411pt x 230.68983pt on input lin
 e 35.
-<images/sensoresperiodoCorredor.PNG, id=692, 402.75468pt x 274.02374pt>
+<images/sensoresperiodoCorredor.PNG, id=704, 402.75468pt x 274.02374pt>
 File: images/sensoresperiodoCorredor.PNG Graphic file (type png)
 <use images/sensoresperiodoCorredor.PNG>
 Package pdftex.def Info: images/sensoresperiodoCorredor.PNG  used on input line
  42. on input line 42.
 Package pdftex.def Info: Requested size: 364.19667pt x 247.78984pt on input lin
 e 42.
- [167 <./images/MemLivreAqua.PNG> <./images/resumoCorredor.PNG>]
-<images/usoRele2CorredorDia.PNG, id=698, 402.75468pt x 248.42813pt>
+ [171 <./images/MemLivreAqua.PNG> <./images/resumoCorredor.PNG>]
+<images/usoRele2CorredorDia.PNG, id=711, 402.75468pt x 248.42813pt>
 File: images/usoRele2CorredorDia.PNG Graphic file (type png)
 <use images/usoRele2CorredorDia.PNG>
 Package pdftex.def Info: images/usoRele2CorredorDia.PNG  used on input line 49.
  on input line 49.
 Package pdftex.def Info: Requested size: 364.19667pt x 224.64464pt on input lin
 e 49.
-<images/UsoRele2CorredorPeriodo.PNG, id=699, 402.00188pt x 248.42813pt>
+<images/UsoRele2CorredorPeriodo.PNG, id=712, 402.00188pt x 248.42813pt>
 File: images/UsoRele2CorredorPeriodo.PNG Graphic file (type png)
 <use images/UsoRele2CorredorPeriodo.PNG>
 Package pdftex.def Info: images/UsoRele2CorredorPeriodo.PNG  used on input line
@@ -1905,275 +1913,275 @@ Package pdftex.def Info: images/UsoRele2CorredorPeriodo.PNG  used on input line
 Package pdftex.def Info: Requested size: 364.19667pt x 225.06541pt on input lin
 e 56.
 
-[168 <./images/sensoresperiodoCorredor.PNG> <./images/usoRele2CorredorDia.PNG>]
-<images/RelesTempLuminosidadeCorredor.PNG, id=705, 402.75468pt x 248.42813pt>
+[172 <./images/sensoresperiodoCorredor.PNG> <./images/usoRele2CorredorDia.PNG>]
+<images/RelesTempLuminosidadeCorredor.PNG, id=718, 402.75468pt x 248.42813pt>
 File: images/RelesTempLuminosidadeCorredor.PNG Graphic file (type png)
 <use images/RelesTempLuminosidadeCorredor.PNG>
 Package pdftex.def Info: images/RelesTempLuminosidadeCorredor.PNG  used on inpu
 t line 63. on input line 63.
 Package pdftex.def Info: Requested size: 364.19667pt x 224.64464pt on input lin
 e 63.
-<images/resumoLavanderia.PNG, id=706, 659.46375pt x 310.91156pt>
+<images/resumoLavanderia.PNG, id=719, 659.46375pt x 310.91156pt>
 File: images/resumoLavanderia.PNG Graphic file (type png)
 <use images/resumoLavanderia.PNG>
 Package pdftex.def Info: images/resumoLavanderia.PNG  used on input line 70. on
  input line 70.
 Package pdftex.def Info: Requested size: 455.24411pt x 214.63356pt on input lin
 e 70.
-[169 <./images/UsoRele2CorredorPeriodo.PNG> <./images/RelesTempLuminosidadeCorr
+[173 <./images/UsoRele2CorredorPeriodo.PNG> <./images/RelesTempLuminosidadeCorr
 edor.PNG>]
-<images/lavanderiadiadisp.PNG, id=712, 402.00188pt x 247.67531pt>
+<images/lavanderiadiadisp.PNG, id=725, 402.00188pt x 247.67531pt>
 File: images/lavanderiadiadisp.PNG Graphic file (type png)
 <use images/lavanderiadiadisp.PNG>
 Package pdftex.def Info: images/lavanderiadiadisp.PNG  used on input line 77. o
 n input line 77.
 Package pdftex.def Info: Requested size: 364.19667pt x 224.38338pt on input lin
 e 77.
-<images/lavanderiaperiododisp.PNG, id=713, 401.24907pt x 244.66406pt>
+<images/lavanderiaperiododisp.PNG, id=726, 401.24907pt x 244.66406pt>
 File: images/lavanderiaperiododisp.PNG Graphic file (type png)
 <use images/lavanderiaperiododisp.PNG>
 Package pdftex.def Info: images/lavanderiaperiododisp.PNG  used on input line 8
 4. on input line 84.
 Package pdftex.def Info: Requested size: 364.19667pt x 222.08464pt on input lin
 e 84.
- [170 <./images/resumoLavanderia.PNG> <./images/lavanderiadiadisp.PNG>]
-<images/memLivreLavanderia.PNG, id=719, 402.75468pt x 250.68657pt>
+ [174 <./images/resumoLavanderia.PNG> <./images/lavanderiadiadisp.PNG>]
+<images/memLivreLavanderia.PNG, id=732, 402.75468pt x 250.68657pt>
 File: images/memLivreLavanderia.PNG Graphic file (type png)
 <use images/memLivreLavanderia.PNG>
 Package pdftex.def Info: images/memLivreLavanderia.PNG  used on input line 91. 
 on input line 91.
 Package pdftex.def Info: Requested size: 364.19667pt x 226.68686pt on input lin
 e 91.
-<images/lavanderiaperiodosensores.PNG, id=720, 405.01312pt x 283.81032pt>
+<images/lavanderiaperiodosensores.PNG, id=733, 405.01312pt x 283.81032pt>
 File: images/lavanderiaperiodosensores.PNG Graphic file (type png)
 <use images/lavanderiaperiodosensores.PNG>
 Package pdftex.def Info: images/lavanderiaperiodosensores.PNG  used on input li
 ne 98. on input line 98.
 Package pdftex.def Info: Requested size: 364.19667pt x 255.21472pt on input lin
 e 98.
- [171 <./images/lavanderiaperiododisp.PNG> <./images/memLivreLavanderia.PNG>]
-<images/lavanderiadiasensores.PNG, id=727, 400.49625pt x 278.54062pt>
+ [175 <./images/lavanderiaperiododisp.PNG> <./images/memLivreLavanderia.PNG>]
+<images/lavanderiadiasensores.PNG, id=739, 400.49625pt x 278.54062pt>
 File: images/lavanderiadiasensores.PNG Graphic file (type png)
 <use images/lavanderiadiasensores.PNG>
 Package pdftex.def Info: images/lavanderiadiasensores.PNG  used on input line 1
 05. on input line 105.
 Package pdftex.def Info: Requested size: 364.19667pt x 253.31084pt on input lin
 e 105.
-<images/usorele1Lavanderia.PNG, id=728, 405.01312pt x 248.42813pt>
+<images/usorele1Lavanderia.PNG, id=740, 405.01312pt x 248.42813pt>
 File: images/usorele1Lavanderia.PNG Graphic file (type png)
 <use images/usorele1Lavanderia.PNG>
 Package pdftex.def Info: images/usorele1Lavanderia.PNG  used on input line 112.
  on input line 112.
 Package pdftex.def Info: Requested size: 364.19667pt x 223.3975pt on input line
  112.
-[172 <./images/lavanderiaperiodosensores.PNG> <./images/lavanderiadiasensores.P
+[176 <./images/lavanderiaperiodosensores.PNG> <./images/lavanderiadiasensores.P
 NG>]
-<images/Usorele1lavanderiaperiodo.PNG, id=734, 404.26031pt x 244.66406pt>
+<images/Usorele1lavanderiaperiodo.PNG, id=746, 404.26031pt x 244.66406pt>
 File: images/Usorele1lavanderiaperiodo.PNG Graphic file (type png)
 <use images/Usorele1lavanderiaperiodo.PNG>
 Package pdftex.def Info: images/Usorele1lavanderiaperiodo.PNG  used on input li
 ne 119. on input line 119.
 Package pdftex.def Info: Requested size: 364.19667pt x 220.4196pt on input line
  119.
-<images/UsoRele2LavanderiaDia.PNG, id=735, 405.76593pt x 246.1697pt>
+<images/UsoRele2LavanderiaDia.PNG, id=747, 405.76593pt x 246.1697pt>
 File: images/UsoRele2LavanderiaDia.PNG Graphic file (type png)
 <use images/UsoRele2LavanderiaDia.PNG>
 Package pdftex.def Info: images/UsoRele2LavanderiaDia.PNG  used on input line 1
 26. on input line 126.
 Package pdftex.def Info: Requested size: 364.19667pt x 220.95718pt on input lin
 e 126.
- [173 <./images/usorele1Lavanderia.PNG> <./images/Usorele1lavanderiaperiodo.PNG
+ [177 <./images/usorele1Lavanderia.PNG> <./images/Usorele1lavanderiaperiodo.PNG
 >]
-<images/UsoRele2LavanderiaPeriodo.PNG, id=741, 404.26031pt x 249.18094pt>
+<images/UsoRele2LavanderiaPeriodo.PNG, id=754, 404.26031pt x 249.18094pt>
 File: images/UsoRele2LavanderiaPeriodo.PNG Graphic file (type png)
 <use images/UsoRele2LavanderiaPeriodo.PNG>
 Package pdftex.def Info: images/UsoRele2LavanderiaPeriodo.PNG  used on input li
 ne 133. on input line 133.
 Package pdftex.def Info: Requested size: 364.19667pt x 224.48889pt on input lin
 e 133.
-<images/RelesPresLumiLavanderia.PNG, id=742, 404.26031pt x 246.1697pt>
+<images/RelesPresLumiLavanderia.PNG, id=755, 404.26031pt x 246.1697pt>
 File: images/RelesPresLumiLavanderia.PNG Graphic file (type png)
 <use images/RelesPresLumiLavanderia.PNG>
 Package pdftex.def Info: images/RelesPresLumiLavanderia.PNG  used on input line
  140. on input line 140.
 Package pdftex.def Info: Requested size: 364.19667pt x 221.77603pt on input lin
 e 140.
- [174 <./images/UsoRele2LavanderiaDia.PNG> <./images/UsoRele2LavanderiaPeriodo.
+ [178 <./images/UsoRele2LavanderiaDia.PNG> <./images/UsoRele2LavanderiaPeriodo.
 PNG>]
-<images/resumoSalaCozinha.PNG, id=748, 512.66531pt x 352.31625pt>
+<images/resumoSalaCozinha.PNG, id=761, 512.66531pt x 352.31625pt>
 File: images/resumoSalaCozinha.PNG Graphic file (type png)
 <use images/resumoSalaCozinha.PNG>
 Package pdftex.def Info: images/resumoSalaCozinha.PNG  used on input line 147. 
 on input line 147.
 Package pdftex.def Info: Requested size: 455.24411pt x 312.85623pt on input lin
 e 147.
-<images/salacozinhadispperiodo.PNG, id=749, 402.75468pt x 247.67531pt>
+<images/salacozinhadispperiodo.PNG, id=762, 402.75468pt x 247.67531pt>
 File: images/salacozinhadispperiodo.PNG Graphic file (type png)
 <use images/salacozinhadispperiodo.PNG>
 Package pdftex.def Info: images/salacozinhadispperiodo.PNG  used on input line 
 154. on input line 154.
 Package pdftex.def Info: Requested size: 364.19667pt x 223.96388pt on input lin
 e 154.
- [175 <./images/RelesPresLumiLavanderia.PNG> <./images/resumoSalaCozinha.PNG>]
-<images/memlivresalacozinha.PNG, id=755, 403.5075pt x 249.18094pt>
+ [179 <./images/RelesPresLumiLavanderia.PNG> <./images/resumoSalaCozinha.PNG>]
+<images/memlivresalacozinha.PNG, id=768, 403.5075pt x 249.18094pt>
 File: images/memlivresalacozinha.PNG Graphic file (type png)
 <use images/memlivresalacozinha.PNG>
 Package pdftex.def Info: images/memlivresalacozinha.PNG  used on input line 161
 . on input line 161.
 Package pdftex.def Info: Requested size: 364.19667pt x 224.90712pt on input lin
 e 161.
-<images/sensoresdiasalacozinha.PNG, id=756, 400.49625pt x 279.29344pt>
+<images/sensoresdiasalacozinha.PNG, id=769, 400.49625pt x 279.29344pt>
 File: images/sensoresdiasalacozinha.PNG Graphic file (type png)
 <use images/sensoresdiasalacozinha.PNG>
 Package pdftex.def Info: images/sensoresdiasalacozinha.PNG  used on input line 
 168. on input line 168.
 Package pdftex.def Info: Requested size: 364.19667pt x 253.99548pt on input lin
 e 168.
- [176 <./images/salacozinhadispperiodo.PNG> <./images/memlivresalacozinha.PNG>]
-<images/sensoresperiodoSalaCozinha.PNG, id=762, 398.99063pt x 276.28218pt>
+ [180 <./images/salacozinhadispperiodo.PNG> <./images/memlivresalacozinha.PNG>]
+<images/sensoresperiodoSalaCozinha.PNG, id=775, 398.99063pt x 276.28218pt>
 File: images/sensoresperiodoSalaCozinha.PNG Graphic file (type png)
 <use images/sensoresperiodoSalaCozinha.PNG>
 Package pdftex.def Info: images/sensoresperiodoSalaCozinha.PNG  used on input l
 ine 175. on input line 175.
 Package pdftex.def Info: Requested size: 364.19667pt x 252.2013pt on input line
  175.
-<images/usorele1salacozinhadia.PNG, id=763, 404.26031pt x 249.93375pt>
+<images/usorele1salacozinhadia.PNG, id=776, 404.26031pt x 249.93375pt>
 File: images/usorele1salacozinhadia.PNG Graphic file (type png)
 <use images/usorele1salacozinhadia.PNG>
 Package pdftex.def Info: images/usorele1salacozinhadia.PNG  used on input line 
 182. on input line 182.
 Package pdftex.def Info: Requested size: 364.19667pt x 225.16711pt on input lin
 e 182.
- [177 <./images/sensoresdiasalacozinha.PNG> <./images/sensoresperiodoSalaCozinh
+ [181 <./images/sensoresdiasalacozinha.PNG> <./images/sensoresperiodoSalaCozinh
 a.PNG>]
-<images/usorele1salacozinhaperiodo.PNG, id=770, 405.01312pt x 249.18094pt>
+<images/usorele1salacozinhaperiodo.PNG, id=782, 405.01312pt x 249.18094pt>
 File: images/usorele1salacozinhaperiodo.PNG Graphic file (type png)
 <use images/usorele1salacozinhaperiodo.PNG>
 Package pdftex.def Info: images/usorele1salacozinhaperiodo.PNG  used on input l
 ine 189. on input line 189.
 Package pdftex.def Info: Requested size: 364.19667pt x 224.07445pt on input lin
 e 189.
-<images/usorele2salacozinhadia.PNG, id=771, 405.76593pt x 249.93375pt>
+<images/usorele2salacozinhadia.PNG, id=783, 405.76593pt x 249.93375pt>
 File: images/usorele2salacozinhadia.PNG Graphic file (type png)
 <use images/usorele2salacozinhadia.PNG>
 Package pdftex.def Info: images/usorele2salacozinhadia.PNG  used on input line 
 196. on input line 196.
 Package pdftex.def Info: Requested size: 364.19667pt x 224.33572pt on input lin
 e 196.
- [178 <./images/usorele1salacozinhadia.PNG> <./images/usorele1salacozinhaperiod
+ [182 <./images/usorele1salacozinhadia.PNG> <./images/usorele1salacozinhaperiod
 o.PNG>]
-<images/usorele2salacozinhaperiodo.PNG, id=777, 398.23781pt x 248.42813pt>
+<images/usorele2salacozinhaperiodo.PNG, id=789, 398.23781pt x 248.42813pt>
 File: images/usorele2salacozinhaperiodo.PNG Graphic file (type png)
 <use images/usorele2salacozinhaperiodo.PNG>
 Package pdftex.def Info: images/usorele2salacozinhaperiodo.PNG  used on input l
 ine 203. on input line 203.
 Package pdftex.def Info: Requested size: 364.19667pt x 227.19957pt on input lin
 e 203.
-<images/portaentradadia.PNG, id=778, 404.26031pt x 248.42813pt>
+<images/portaentradadia.PNG, id=790, 404.26031pt x 248.42813pt>
 File: images/portaentradadia.PNG Graphic file (type png)
 <use images/portaentradadia.PNG>
 Package pdftex.def Info: images/portaentradadia.PNG  used on input line 210. on
  input line 210.
 Package pdftex.def Info: Requested size: 364.19667pt x 223.81068pt on input lin
 e 210.
- [179 <./images/usorele2salacozinhadia.PNG> <./images/usorele2salacozinhaperiod
+ [183 <./images/usorele2salacozinhadia.PNG> <./images/usorele2salacozinhaperiod
 o.PNG>]
-<images/portaentradaperiodo.PNG, id=784, 403.5075pt x 248.42813pt>
+<images/portaentradaperiodo.PNG, id=797, 403.5075pt x 248.42813pt>
 File: images/portaentradaperiodo.PNG Graphic file (type png)
 <use images/portaentradaperiodo.PNG>
 Package pdftex.def Info: images/portaentradaperiodo.PNG  used on input line 217
 . on input line 217.
 Package pdftex.def Info: Requested size: 364.19667pt x 224.22766pt on input lin
 e 217.
-<images/resumoEntrada.PNG, id=785, 458.46281pt x 361.35pt>
+<images/resumoEntrada.PNG, id=798, 458.46281pt x 361.35pt>
 File: images/resumoEntrada.PNG Graphic file (type png)
 <use images/resumoEntrada.PNG>
 Package pdftex.def Info: images/resumoEntrada.PNG  used on input line 224. on i
 nput line 224.
 Package pdftex.def Info: Requested size: 455.24411pt x 358.82933pt on input lin
 e 224.
- [180 <./images/portaentradadia.PNG> <./images/portaentradaperiodo.PNG>]
-<images/entradaConsolidadoPeriodo.PNG, id=791, 445.665pt x 277.035pt>
+ [184 <./images/portaentradadia.PNG> <./images/portaentradaperiodo.PNG>]
+<images/entradaConsolidadoPeriodo.PNG, id=804, 445.665pt x 277.035pt>
 File: images/entradaConsolidadoPeriodo.PNG Graphic file (type png)
 <use images/entradaConsolidadoPeriodo.PNG>
 Package pdftex.def Info: images/entradaConsolidadoPeriodo.PNG  used on input li
 ne 231. on input line 231.
 Package pdftex.def Info: Requested size: 364.19667pt x 226.39235pt on input lin
 e 231.
-<images/memLivreEntrada.PNG, id=792, 441.90094pt x 279.29344pt>
+<images/memLivreEntrada.PNG, id=805, 441.90094pt x 279.29344pt>
 File: images/memLivreEntrada.PNG Graphic file (type png)
 <use images/memLivreEntrada.PNG>
 Package pdftex.def Info: images/memLivreEntrada.PNG  used on input line 238. on
  input line 238.
 Package pdftex.def Info: Requested size: 364.19667pt x 230.19406pt on input lin
 e 238.
- [181 <./images/resumoEntrada.PNG> <./images/entradaConsolidadoPeriodo.PNG>]
-<images/sensoresEntradaDia.PNG, id=798, 449.42906pt x 309.40594pt>
+ [185 <./images/resumoEntrada.PNG> <./images/entradaConsolidadoPeriodo.PNG>]
+<images/sensoresEntradaDia.PNG, id=811, 449.42906pt x 309.40594pt>
 File: images/sensoresEntradaDia.PNG Graphic file (type png)
 <use images/sensoresEntradaDia.PNG>
 Package pdftex.def Info: images/sensoresEntradaDia.PNG  used on input line 245.
  on input line 245.
 Package pdftex.def Info: Requested size: 364.19667pt x 250.74019pt on input lin
 e 245.
-<images/sensoresEntradaPeriodo.PNG, id=799, 442.65375pt x 307.1475pt>
+<images/sensoresEntradaPeriodo.PNG, id=812, 442.65375pt x 307.1475pt>
 File: images/sensoresEntradaPeriodo.PNG Graphic file (type png)
 <use images/sensoresEntradaPeriodo.PNG>
 Package pdftex.def Info: images/sensoresEntradaPeriodo.PNG  used on input line 
 252. on input line 252.
 Package pdftex.def Info: Requested size: 364.19667pt x 252.72023pt on input lin
 e 252.
- [182 <./images/memLivreEntrada.PNG> <./images/sensoresEntradaDia.PNG>]
-<images/usoLampadaEntradaDia.PNG, id=805, 447.17062pt x 278.54062pt>
+ [186 <./images/memLivreEntrada.PNG> <./images/sensoresEntradaDia.PNG>]
+<images/usoLampadaEntradaDia.PNG, id=818, 447.17062pt x 278.54062pt>
 File: images/usoLampadaEntradaDia.PNG Graphic file (type png)
 <use images/usoLampadaEntradaDia.PNG>
 Package pdftex.def Info: images/usoLampadaEntradaDia.PNG  used on input line 25
 9. on input line 259.
 Package pdftex.def Info: Requested size: 364.19667pt x 226.86195pt on input lin
 e 259.
-<images/UsoLampadaEntradaPeriodo.PNG, id=806, 451.6875pt x 274.02374pt>
+<images/UsoLampadaEntradaPeriodo.PNG, id=819, 451.6875pt x 274.02374pt>
 File: images/UsoLampadaEntradaPeriodo.PNG Graphic file (type png)
 <use images/UsoLampadaEntradaPeriodo.PNG>
 Package pdftex.def Info: images/UsoLampadaEntradaPeriodo.PNG  used on input lin
 e 266. on input line 266.
 Package pdftex.def Info: Requested size: 364.19667pt x 220.9587pt on input line
  266.
- [183 <./images/sensoresEntradaPeriodo.PNG> <./images/usoLampadaEntradaDia.PNG>
+ [187 <./images/sensoresEntradaPeriodo.PNG> <./images/usoLampadaEntradaDia.PNG>
 ]
-<images/usoacessodia.PNG, id=813, 447.92343pt x 276.28218pt>
+<images/usoacessodia.PNG, id=825, 447.92343pt x 276.28218pt>
 File: images/usoacessodia.PNG Graphic file (type png)
 <use images/usoacessodia.PNG>
 Package pdftex.def Info: images/usoacessodia.PNG  used on input line 273. on in
 put line 273.
 Package pdftex.def Info: Requested size: 364.19667pt x 224.64311pt on input lin
 e 273.
-<images/usoacessoperiodo.PNG, id=814, 447.92343pt x 274.77657pt>
+<images/usoacessoperiodo.PNG, id=826, 447.92343pt x 274.77657pt>
 File: images/usoacessoperiodo.PNG Graphic file (type png)
 <use images/usoacessoperiodo.PNG>
 Package pdftex.def Info: images/usoacessoperiodo.PNG  used on input line 280. o
 n input line 280.
 Package pdftex.def Info: Requested size: 364.19667pt x 223.41891pt on input lin
 e 280.
- [184 <./images/UsoLampadaEntradaPeriodo.PNG> <./images/usoacessodia.PNG>]
-<images/JarinuDiaSemana.PNG, id=820, 791.95876pt x 335.00156pt>
+ [188 <./images/UsoLampadaEntradaPeriodo.PNG> <./images/usoacessodia.PNG>]
+<images/JarinuDiaSemana.PNG, id=832, 791.95876pt x 335.00156pt>
 File: images/JarinuDiaSemana.PNG Graphic file (type png)
 <use images/JarinuDiaSemana.PNG>
 Package pdftex.def Info: images/JarinuDiaSemana.PNG  used on input line 287. on
  input line 287.
 Package pdftex.def Info: Requested size: 455.24411pt x 192.57327pt on input lin
 e 287.
-) (./attachments/backupApp_imagens.tex [185 <./images/usoacessoperiodo.PNG> <./
-images/JarinuDiaSemana.PNG>] [186
+) (./attachments/backupApp_imagens.tex [189 <./images/usoacessoperiodo.PNG> <./
+images/JarinuDiaSemana.PNG>] [190
 
 ]
-Anexo D.
-<images/configCoresLayoutAppBackup.PNG, id=829, 331.99031pt x 395.22656pt>
+Anexo F.
+<images/configCoresLayoutAppBackup.PNG, id=842, 331.99031pt x 395.22656pt>
 File: images/configCoresLayoutAppBackup.PNG Graphic file (type png)
 <use images/configCoresLayoutAppBackup.PNG>
 Package pdftex.def Info: images/configCoresLayoutAppBackup.PNG  used on input l
 ine 7. on input line 7.
 Package pdftex.def Info: Requested size: 227.62206pt x 270.98184pt on input lin
 e 7.
-<images/configalertasreleslogferramentas.PNG, id=830, 450.18187pt x 263.48438pt
+<images/configalertasreleslogferramentas.PNG, id=843, 450.18187pt x 263.48438pt
 >
 File: images/configalertasreleslogferramentas.PNG Graphic file (type png)
 <use images/configalertasreleslogferramentas.PNG>
@@ -2181,40 +2189,40 @@ Package pdftex.def Info: images/configalertasreleslogferramentas.PNG  used on i
 nput line 14. on input line 14.
 Package pdftex.def Info: Requested size: 364.19667pt x 213.16788pt on input lin
 e 14.
-[187 <./images/configCoresLayoutAppBackup.PNG>]
-<images/firmwareconfigavancadasDHT.PNG, id=835, 416.30531pt x 111.41624pt>
+[191 <./images/configCoresLayoutAppBackup.PNG>]
+<images/firmwareconfigavancadasDHT.PNG, id=848, 416.30531pt x 111.41624pt>
 File: images/firmwareconfigavancadasDHT.PNG Graphic file (type png)
 <use images/firmwareconfigavancadasDHT.PNG>
 Package pdftex.def Info: images/firmwareconfigavancadasDHT.PNG  used on input l
 ine 21. on input line 21.
 Package pdftex.def Info: Requested size: 364.19667pt x 97.47537pt on input line
  21.
-<images/configRFBlynkWiFi.PNG, id=836, 393.72093pt x 161.10187pt>
+<images/configRFBlynkWiFi.PNG, id=849, 393.72093pt x 161.10187pt>
 File: images/configRFBlynkWiFi.PNG Graphic file (type png)
 <use images/configRFBlynkWiFi.PNG>
 Package pdftex.def Info: images/configRFBlynkWiFi.PNG  used on input line 28. o
 n input line 28.
 Package pdftex.def Info: Requested size: 364.19667pt x 149.01935pt on input lin
 e 28.
-<images/confignomeptoacessoWiFi.PNG, id=837, 371.13657pt x 158.09062pt>
+<images/confignomeptoacessoWiFi.PNG, id=850, 371.13657pt x 158.09062pt>
 File: images/confignomeptoacessoWiFi.PNG Graphic file (type png)
 <use images/confignomeptoacessoWiFi.PNG>
 Package pdftex.def Info: images/confignomeptoacessoWiFi.PNG  used on input line
  35. on input line 35.
 Package pdftex.def Info: Requested size: 364.19667pt x 155.1376pt on input line
  35.
-) [188 <./images/configalertasreleslogferramentas.PNG> <./images/firmwareconfig
-avancadasDHT.PNG> <./images/configRFBlynkWiFi.PNG>] [189 <./images/confignomept
+) [192 <./images/configalertasreleslogferramentas.PNG> <./images/firmwareconfig
+avancadasDHT.PNG> <./images/configRFBlynkWiFi.PNG>] [193 <./images/confignomept
 oacessoWiFi.PNG>]
 (./monografia.aux) ) 
 Here is how much of TeX's memory you used:
- 11119 strings out of 492990
- 164533 string characters out of 6132621
- 328455 words of memory out of 5000000
- 14237 multiletter control sequences out of 15000+600000
+ 11138 strings out of 492990
+ 164847 string characters out of 6132621
+ 308475 words of memory out of 5000000
+ 14250 multiletter control sequences out of 15000+600000
  16213 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,12n,99p,1424b,1860s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 51i,12n,99p,1424b,1861s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-supe
 r/cm-super-ts1.enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmbx10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfon
@@ -2233,10 +2241,10 @@ pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pf
 b></usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></
 usr/local/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on monografia.pdf (193 pages, 8292822 bytes).
+Output written on monografia.pdf (197 pages, 8295661 bytes).
 PDF statistics:
- 911 PDF objects out of 1000 (max. 8388607)
- 480 compressed objects within 5 object streams
+ 923 PDF objects out of 1000 (max. 8388607)
+ 488 compressed objects within 5 object streams
  0 named destinations out of 1000 (max. 500000)
  541 words of extra memory for PDF output out of 10000 (max. 10000000)
 
