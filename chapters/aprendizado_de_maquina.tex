@@ -1,24 +1,35 @@
 \chapter{Aprendizado de Máquina}
 
-\section{O Aprendizado de Máquina}
-% TODO colocar referência ao urso do Andrew Ng
-O termo Aprendizado de Máquina (\emph{Machine Learning}) surgiu em 1959, sendo utilizado pela primeira vez  pelo cientista americano Arthur Samuel. O termo foi por ele definido como "o campo de estudos que dá a um computador a habilidade de aprender sem ser explicitamente programado" (tradução livre dos autores). Em 1998, Tom Mitchel - outro cientista da computação americano - propôs uma explicação menos abstrata do termo da seguinte maneira: "um programa de computador aprende com a expriência E com respeito a uma classe de tarefas T e medida de performance P se sua performace nas tarefas T, sendo medida por P, aumenta com o aumento da experiência E".
+	\section{O Aprendizado de Máquina}
+		% TODO colocar referência ao curso do Andrew Ng
+		O termo Aprendizado de Máquina (\emph{Machine Learning}) surgiu em 1959, sendo utilizado pela primeira vez  pelo cientista americano Arthur Samuel. O termo foi por ele definido como "o campo de estudos que dá a um computador a habilidade de aprender sem ser explicitamente programado" (tradução livre dos autores). Em 1998, Tom Mitchel - outro cientista da computação americano - propôs uma explicação menos abstrata do termo da seguinte maneira: "um programa de computador aprende com a experiência E com respeito a uma classe de tarefas T e medida de performance P se sua performace nas tarefas T, sendo medida por P, aumenta com o aumento da experiência E".
 
-% TODO colocar referencia https://hbr.org/2017/07/whats-driving-the-machine-learning-explosion
-Apesar do conceito de aprendizado de máquina existir desde a década de 50, seu crescimento e relevância aumentaram apenas na última decada. Alguns fatores levaram a esse crescimento acelerado. Os principais foram o aumento da quantidade de dados - e aplicações de \emph{IoT} têm propulsionado esse aumento -, a melhora nos algoritmos, e o \emph{hardware} cada vez mais poderoso dos computadores. Esses últimos dois fatos permitem que a vasta quantidade de dados que possuímos possam ser analisados em tempo viável.
+		% TODO colocar referencia https://hbr.org/2017/07/whats-driving-the-machine-learning-explosion
+		Apesar do conceito de aprendizado de máquina existir desde a década de 50, seu crescimento e relevância aumentaram apenas na última decada. Alguns fatores levaram a esse crescimento acelerado. Os principais foram o aumento da quantidade de dados - e aplicações de \emph{IoT} têm propulsionado esse aumento - coletados e disponíveis, a melhora nos algoritmos, e o \emph{hardware} cada vez mais poderoso dos computadores. Esses últimos dois fatores permitem que a vasta quantidade de dados que possuímos possam ser analisados em tempo viável.
 
-\section{Relação com o Projeto Hedwig}
-No projeto Hedwig, a utilização de aprendizado de máquina tem o intuito de trazer melhorias de usabilidade do sistema ao usuário, além de poder trazer medidas de segurança à casa do mesmo. As melhorias de usabilidade podem ocorrer, por exemplo, quando o sistema aprende alguma rotina do usuário e se torna então capaz de prever quando determinada ação seria solicitada pelo usuário. A partir disso, ele então poderia passar a realizar tal ação automaticamente, ou sugerir a realização de tal ação para o usuário, sem que seja necessário que o usuário proativamente aja para solicitar a ação. No quesito de segurança, o sistema pode, a partir do aprendizado de rotinas, detectar ações suspeitas na casa, e opcionalmente agir para intervir quando tal tipo de ação é detectada.
+	\section{Relação com o projeto Hedwig}
+		No projeto Hedwig, a utilização de aprendizado de máquina tem o intuito de trazer melhorias de usabilidade do sistema ao usuário, além de poder trazer medidas de segurança à casa do mesmo.
 
-% TODO possivelmente falar sobre a utilização de sistemas prontos em nuvem para ML
+		As melhorias de usabilidade podem ocorrer, por exemplo, quando o sistema aprende alguma rotina do usuário e se torna então capaz de prever quando determinada ação seria solicitada pelo usuário. A partir disso, ele então poderia passar a realizar tal ação automaticamente, ou sugerir a realização de tal ação para o usuário, sem que seja necessário que o usuário proativamente aja para solicitar a ação.
 
-\section{Implementação}
+		No quesito de segurança, o sistema pode, a partir do aprendizado de rotinas, detectar ações suspeitas na casa (como por exemplo a abertura da porta de entrada em horário não usual), e opcionalmente agir para intervir quando tal tipo de ação é detectada.
 
-\subsection{Linguagem, ferramentas e bibliotecas}
+		% TODO possivelmente falar sobre a utilização de sistemas prontos em nuvem para ML
 
-Uma das vantagens da popularização que se vê atualmente do uso de aprendizado de máquina é o surgimento de ambiente extremamente propício para a utilização de aprendizado de máquina, devido à facilidade de advém de grande comunidade trabalhando com o tema. A 
+	\section{Implementação}
 
-\subsection{Etapas}
-\subsection{Algoritmos}
-\subsection{Tratamento de Dados}
-\subsection{Seleção de Características}
+		\subsection{Linguagem, ferramentas e bibliotecas}
+			% TODO maybe get some references for paragraph below
+
+			Uma das vantagens da popularização que se vê atualmente do uso de aprendizado de máquina é o surgimento de muitas facilidades para o desenvolvimento de aplicações de aprendizado de máquina, devido às vantagens que advém de grande comunidade trabalhando com o tema. 
+
+			Atualmente as duas principais linguagens sendo utilizadas para ciência de dados e aprendizado de máquina são Python e R. As duas são linguagens interpretadas, e que possuem funcionalidade REPL (Read-Eval-Print-Loop), possibilitando desenvolvimento altamente interativo e de fácil visualização de dados e gráficos, enquanto se programa.
+
+			Para o desenvolvimento de funcionalidades de aprendizado de máquina no Hedwig, foi escolhida a linguagem Python. Apesar de R ser uma linguagem que já nasceu voltada à análise de dados e tratamento estatístico, Python possui diversos pacotes e bibliotecas que conseguem adicionar tais funcionalidades à linguagem. Tais pacotes estão altamente popularizados, e portanto é muito fácil percorrer suas documentações e procurar ajuda em fóruns online para acelerar o aprendizado de suas funcionalidades. Python, por sua vez, é uma linguagem de uso geral (\emph{general purpose language}), o que também tem seus lados positivos. Além de ser uma linguagem extremamente bem estabelecida, o fato de ser de uso geral implica que existem também pacotes e bibliotecas que possibilitam o uso de Python para desenvolvimento de aplicativos com funcionalidades de \emph{back-end} para serviços \emph{web}. Isso se torna de altamente interessante por nos possibilitar facilmente transformar essa aplicação em um microsserviço, que também interaja em tempo real com o servidor em nuvem do Hedwig, permitindo que o serviço de aprendizado de máquina aja em tempo real com toda a aplicação.
+
+			Alguns dos pacotes sendo utilizados 
+
+		\subsection{Etapas}
+		\subsection{Algoritmos}
+		\subsection{Tratamento de Dados}
+		\subsection{Seleção de Características}
