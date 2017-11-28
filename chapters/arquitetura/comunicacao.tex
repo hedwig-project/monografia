@@ -1,21 +1,10 @@
 \section{Comunicação}
-Conforme explicado anteriormente, neste projeto serão utilizados tanto protocolos de comunicação próprios quanto os criados por terceiros. A arquitetura desenvolvida aqui busca viabilizar a robustez do sistema, trabalhando em um nível local e outro nível remoto, onde o usuário terá o controle de sua casa por meio do \textit{smartphone} ou computador pessoal.
 
-O serviço em nuvem recebe as requisições do usuário por meio de um cliente web ou nativo. Esse servidor processa as requisições, aplicando os filtros de segurança necessários, de modo a consultar a autenticidade do pedido e verificar se aquele usuário possui as permissões necessárias para o serviço que deseja operar. Os serviços da nuvem se comunicam com o servidor local da casa requisitada, o qual também aplica os filtros de segurança necessários, e realiza a comunicação com os módulos.
+Conforme explicado anteriormente, neste projeto são utilizados tanto protocolos de comunicação próprios quanto os criados por terceiros. A arquitetura desenvolvida aqui busca viabilizar a robustez do sistema, trabalhando em ambos os níveis local e remoto, com o usuário tendo o controle de sua casa por meio de um \textit{smartphone} ou computador pessoal.
 
-A infraestrutura de comunicação entre a nuvem e o servidor local, e o servidor local e os sensores e atuadores utiliza o protocolo de aplicação \wmqtt{}, referência em aplicações \wiot{} no mundo. O protocolo \wmqtt{} é estabelecido em cima dos protocolos TCP/IP (nas camadas inferiores) e é orientado à sessão, diferentemente do protocolo HTTP, de mesma camada \cite{ibmMqtt}.
+O serviço em nuvem recebe as requisições do usuário por meio de um cliente web ou nativo. Esse servidor processa as requisições, aplicando os filtros de segurança necessários, de modo a consultar a autenticidade do pedido e verificar se aquele usuário possui as permissões necessárias para o serviço que deseja operar. Os serviços da nuvem se comunicam com o servidor local da casa requisitada, o qual também aplica os filtros de segurança necessários e então realiza a comunicação com os módulos.
 
-O protocolo \wmqtt{} é do tipo Pub/Sub (de \textit{publisher/subscriber}) e é estritamente orientado à tópicos. Assim, um \textit{subscriber} se inscreve a um tópico de seu interesse, e recebe todas as publicações que um \textit{publisher} realizar. Os tópicos são organizados com estrutura semelhante a de um sistema de arquivos Unix, com níveis hierárquicos separados por barras, de modo que o subscriber pode se inscrever para tópicos utilizando os \textit{wildcards} * e +, os quais são válidos para mais de um nível e um único nível, respectivamente \cite{mqttDocumentation}.
-
-Para interconectar os tópicos, com \textit{publishers} e \textit{subscribers}, é necessário um agente que realiza a transmissão das mensagens, e que garante a segurança e confiabilidade. Esse agente é conhecido como Broker (em versões anteriores) ou Server (na versão atual, V3.1.1). O \textit{broker} irá permitir ou negar a subscrição ou a publicação a determinado tópico. A segurança da troca de mensagens é realizada por meio do protocolo TLS (\textit{Transport Layer Security}) que encripta os segmentos na camada de transporte.
-
-O protocolo \wmqtt{} também oferece três tipos de QoS (\textit{Quality of Service}), possibilitando: diminuir o overhead ao máximo, enviando a mensagem uma única vez, na configuração mais simples; garantir que a mensagem seja entregue no mínimo uma vez, na configuração de segundo nível; garantir que a mensagem seja entregue exatamente uma vez, no terceiro nível, o que aumenta o overhead, consequentemente.
-
-As mensagens são transmitidas em texto puro, e é necessário estabelecer um protocolo para a sua utilização. Foi desenvolvido um protocolo de fácil utilização e com baixo overhead, mas que pudesse ser expansível e flexível aos casos de uso desejados.
-
-O \textit{broker} Mosquitto\footnote{https://mosquitto.org/} será utilizado, e foi escolhido por ser amplamente adotado em projetos de \wiot{}, além de ser open source e com licença abrangente (MIT). Entretanto, há diversas possibilidades, como o HiveMQ, adotado no projeto HomeSky, e com grande uso em aplicações enterprise \cite{hiveMq}.
-
-A arquitetura de comunicação é representada pela Figura \ref{fig:diagramaComunicacao}, com um alto nível de abstração, cujos detalhes serão vistos, com granularidade menor na Seção \ref{chap:morpheus}.
+A arquitetura de comunicação é representada pela Figura \ref{fig:diagramaComunicacao} com um alto nível de abstração. Detalhes sobre a implementação e as mensagens trocadas entre servidor local, módulos e nuvem serão vistos com menor granularidade na Seção \ref{chap:morpheus}.
 
 \begin{figure}[H]
 	\centering
@@ -24,7 +13,24 @@ A arquitetura de comunicação é representada pela Figura \ref{fig:diagramaComu
 \label{fig:diagramaComunicacao}
 \end{figure}
 
-%\subsection{Entre módulos e controlador local}
-%\subsection{Entre controlador local e nuvem}
-%\subsection{Entre cliente web e nuvem}
-%\subsection{Entre app backup e módulos}
+\subsection{Comunicação entre controlador local e módulos}
+
+A infraestrutura de comunicação entre o servidor local e os módulos com sensores e atuadores utiliza o protocolo de aplicação \wmqtt{}, referência em aplicações \wiot{} no mundo. O protocolo \wmqtt{} é estabelecido em cima dos protocolos TCP/IP e é orientado à sessão, diferentemente do protocolo HTTP, localizado na mesma camada \cite{ibmMqtt}.
+
+O protocolo \wmqtt{} é do tipo \emph{Pub/Sub} (de \textit{publisher/subscriber}) e é estritamente orientado a tópicos. Assim, um \textit{subscriber} se inscreve a um tópico de seu interesse, e recebe todas as publicações que um \textit{publisher} realizar. Os tópicos são organizados com estrutura semelhante a de um sistema de arquivos Unix, com níveis hierárquicos separados por barras, de modo que o subscriber pode se inscrever para tópicos utilizando os \textit{wildcards} * e +, os quais são válidos para mais de um nível e um único nível, respectivamente \cite{mqttDocumentation}.
+
+Para interconectar os tópicos com \textit{publishers} e \textit{subscribers}, é necessário um agente que realiza a transmissão das mensagens e que garante a segurança e confiabilidade. Esse agente é conhecido como \emph{Broker} (em versões anteriores) ou \emph{Server} (na versão atual, V3.1.1). O \textit{broker} permite ou nega a subscrição ou a publicação a determinado tópico. A segurança da troca de mensagens é realizada por meio do protocolo TLS (\textit{Transport Layer Security}) que encripta os segmentos na camada de transporte.
+
+O protocolo \wmqtt{} também oferece três tipos de QoS (\textit{Quality of Service}), possibilitando: diminuir o \emph{overhead} ao máximo, enviando a mensagem uma única vez, na configuração mais simples; garantir que a mensagem seja entregue no mínimo uma vez, na configuração de segundo nível; garantir que a mensagem seja entregue exatamente uma vez, no terceiro nível, o que consequentemente aumenta o \emph{overhead}.
+
+As mensagens são transmitidas em texto puro, e é necessário estabelecer um protocolo para a sua utilização. Foi desenvolvido um protocolo de fácil utilização e com baixo \emph{overhead}, mas que pudesse ser expansível e flexível aos casos de uso desejados.
+
+O \textit{broker} Mosquitto\footnote{https://mosquitto.org/} é utilizado no Hedwig. Ele foi escolhido por ser amplamente adotado em projetos de \wiot{}, além de ser \emph{open-source} e ter licença abrangente (MIT). Entretanto, há outras diversas possibilidades, como o HiveMQ, adotado no projeto HomeSky e com grande uso em aplicações enterprise \cite{hiveMq}.
+
+\subsection{Comunicação entre controlador local e nuvem}
+
+Inicialmente, foi proposto um modelo arquitetural para a comunicação com a nuvem no qual existiriam \emph{endpoints} para requisições HTTP tanto do lado da casa quanto do lado da nuvem. Assim, quando o Morpheus precisasse enviar uma mensagem, seria necessário realizar uma chamada ao \emph{endpoint} correspondente. Neste sentido (Morpheus para nuvem) não há nenhum problema, pois é possível garantir as configurações avançadas de segurança adequadas, bem como a utilização de balanceadores de carga e servidores terceiros para lidar com ataques do tipo \emph{DoS} \cite{akamai}, conforme \emph{RNF-6}.
+
+O problema, no entanto, está em garantir a segurança e usabilidade do lado da casa. Primeiramente, os IPs residenciais não são fixos, sendo trocados a cada nova conexão. Assim, se a conexão com a Internet for perdida, por exemplo, um novo IP será atribuído àquela residência. Dessa forma, após essa troca, a não ser que o Morpheus atualize a nuvem, não seria possível receber as mensagens que chegariam dos serviços remotos. Esta questão, no entanto, é contornável por meio de um serviço de \emph{watchdog}, que seria responsável por analisar o IP e notificar a nuvem sobre a troca sempre que esta ocorrer. Há, ainda, um problema mais grave e mais difícil de ser contornado. Com essa arquitetura, o Morpheus também seria um servidor do ponto de vista da nuvem, e qualquer dispositivo poderia tentar fazer uma requisição em um dos \emph{endpoints} disponíveis. Mesmo que sejam checados os dados da requisição para garantir que ela seja válida, tem-se ainda uma grave ameaça de segurança em relação à negação de serviço. Para que este risco fosse minimizado, seriam necessárias configurações avançadas no roteador local, e, mesmo assim, este não seria suficiente para processar um grande número de requisições, deixando a casa vulnerável.
+
+Uma forma de contornar o problema se encontra no uso de WebSockets, protocolo detalhado na Seção \ref{sub:websocket}. Assim, o Morpheus se comporta como um cliente em relação à nuvem e é sempre ele que abre uma conexão. Essa conexão se mantém aberta e forma um caminho \emph{full-duplex}, de modo que é possível receber as mensagens da nuvem a qualquer momento também. Com essa arquitetura, os desafios relativos à segurança recaem aos servidores e não mais à casa, de modo que é possível gerenciar esses riscos como o fazem grandes empresas, ou seja, de forma transparente ao cliente final.

@@ -33,8 +33,6 @@ WebSocket é um protocolo de comunicação \emph{full-duplex} sobre conexões TC
 
 A sua arquitetura diminui as latências de comunicação, fazendo-o ser um protocolo popular entre aplicações de tempo real. A compatibilidade com HTTP permite que toda a troca de dados ocorra nas portas 80 ou 443, mitigando os problemas de incompatibilidade com ambientes que possuem firewalls bloqueando certas portas TCP. A maioria dos navegadores modernos implementa o protocolo de WebSockets, possibilitando o funcionamento de aplicações de chat e de notificações.
 
-A utilização de conexões por WebSocket também se justifica pelas características do servidor local, Morpheus. O requisito não-funcional \emph{RNF-6}, identifica a necessidade de proteção contra ataques de negação de serviços (\emph{DoS}). Assim, caso o servidor local provesse uma \emph{API Rest}, aberta à conexões externas, seria necessário configurações e hardware avançados para a proteção, como firewalls, o que seria inviável para o propósito em questão. Além disso, usuários domésticos possuem endereços IP dinâmicos, de maneira que seria necessária a atualização desse endereço, na nuvem, a cada mudança. Com a utilização do WebSocket, o servidor local é um cliente, e solicita a aberta de uma conexão com a nuvem, que será mantida. Assim, a complexidade de gerenciar ataques de negação de serviço passa a ser administrada pela Hedwig (enquanto empresa), que pode utilizar soluções comerciais avançadas disponíveis \cite{akamai}.
-
 \begin{figure}[H]
 	\centering
 	\caption{Comparação entre WebSockets e \emph{polling}}
