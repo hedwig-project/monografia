@@ -68,7 +68,7 @@ O módulo de Jarinu possui uma interface com o sistema de alarmes (já instalado
 	\label{fig:SensorPortasJarinu}
 \end{figure}
 
-Os demais módulos possuem coleta de dados a partir de persistência na nuvem e, passando pelo controlador local Morpheus, e possuem como principal objetivo prover dados para o Machine Learning.
+Os demais módulos possuem coleta de dados a partir de persistência na nuvem e, passando pelo controlador local Morpheus, e possuem como principal objetivo prover dados para o aprendizado de máquina.
 
 \begin{figure}[H]
 	\centering
@@ -131,7 +131,7 @@ Foram coletados dados desde o dia 10 de setembro de 2017 até o dia 13 de novemb
         35 &
         20 &
         91 \\
-        \# (desconexões do WiFi) &
+        \# (desconexões do \wwifi) &
         15 &
         26 &
         24 &
@@ -140,14 +140,14 @@ Foram coletados dados desde o dia 10 de setembro de 2017 até o dia 13 de novemb
     \end{tabular}
 \end{table}
 
-Ao analisar o aspecto de disponibilidade a partir da média da memória disponível (quanto maior, melhor), o número de loops de 1s que ocorreram em 2s ou mais (indicando a existência de procedimentos que estão atrasando a correta execução de rotinas periódicas, como aquelas de “keep alive” de comunicação), o número de reinícios e desconexões da rede WiFi (isentos de updates de firmware, isto é, eventos de reinício e desconexões desconsiderando aqueles causados por updates de firmware dos módulos).
+Ao analisar o aspecto de disponibilidade a partir da média da memória disponível (quanto maior, melhor), o número de loops de 1s que ocorreram em 2s ou mais (indicando a existência de procedimentos que estão atrasando a correta execução de rotinas periódicas, como aquelas de “keep alive” de comunicação), o número de reinícios e desconexões da rede \wwifi (isentos de updates de firmware, isto é, eventos de reinício e desconexões desconsiderando aqueles causados por updates de firmware dos módulos).
 
 Como o firmware do Corredor, Lavanderia e SalaCozinha é o mesmo (basic), conclui-se que:
 
 \begin{itemize}
-	\item A versão aquário possui mais memória disponível, possui um menor número de desconexões da rede WiFi e número perto da média de reinícios. Contudo, possui maior ocorrência de loops de 1s maiores que 2s, indicando algum procedimento que está consumindo tempo do loop;
+	\item A versão aquário possui mais memória disponível, possui um menor número de desconexões da rede \wwifi e número perto da média de reinícios. Contudo, possui maior ocorrência de loops de 1s maiores que 2s, indicando algum procedimento que está consumindo tempo do loop;
 	\item A versão basic possui ocorrências de desconexões, reinícios e memória livre em valores médios;
-	\item A versão entrada possui o maior número de reinícios e desconexões da rede WiFi (o que já era esperado, pois é o módulo mais longe do roteador da residência, que está em outro andar);
+	\item A versão entrada possui o maior número de reinícios e desconexões da rede \wwifi (o que já era esperado, pois é o módulo mais longe do roteador da residência, que está em outro andar);
 	\item A memória livre média das versões basic e entrada possuem valores próximos.
 \end{itemize}
 
@@ -290,7 +290,7 @@ Observando sua curva diária de memória livre e loops de 1s que foram executado
 	\label{fig:periodoCorredor}
 \end{figure}
 
-Observamos, em verde, no gráfico acima, os updates de firmware (possibilidade de acompanhamento de melhoria de disponibilidade após a implantação de novas versões), a quantidade de reinícios e ocorrências de desconexão do WiFi. Entre 24/10 e 28/10, tivemos grande número de desconexões do WiFi, indicando indisponibilidade da rede nesses dias, que causaram certa quantidade de reinícios no mesmo período.
+Observamos, em verde, no gráfico acima, os updates de firmware (possibilidade de acompanhamento de melhoria de disponibilidade após a implantação de novas versões), a quantidade de reinícios e ocorrências de desconexão do \wwifi. Entre 24/10 e 28/10, tivemos grande número de desconexões do \wwifi, indicando indisponibilidade da rede nesses dias, que causaram certa quantidade de reinícios no mesmo período.
 
 \begin{figure}[H]
 	\centering

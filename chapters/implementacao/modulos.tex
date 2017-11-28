@@ -42,7 +42,7 @@ Para cada módulo, temos de fábrica id e senhas próprias, além de configuraç
 Houve o controle de comunicação da seguinte forma:
 
 \begin{enumerate}
-	\item Só há tentativa de conexão MQTT em caso de houver conexão do WiFi e o horário interno estar configurado (em caso contrário, podemos provocar travamento do módulo ou envio de mensagens sem timestamp);
+	\item Só há tentativa de conexão MQTT em caso de houver conexão do \wwifi e o horário interno estar configurado (em caso contrário, podemos provocar travamento do módulo ou envio de mensagens sem timestamp);
 	\item Configuração de callback e servidor MQTT a cada reconexão (este ponto foi crítico para o bom funcionamento da comunicação);
 	\item No callback (recebimento de mensagens, tratamento (“parse”) da mensagem recebida, através de obtenção de seu tipo e redirecionamento para rotinas específicas para obtenção dos parâmetros de interesse de cada mensagem;
 	\item Envio de mensagens de estado a cada 1 minuto, ou quando houver mudança brusca em um dos sensores (presença, abertura, umidade ou temperatura) ou então requisição de atuação (nesses casos de envio rápido, a mensagem é inserida no início da fila de saída, e enviada logo em seguida, em até um segundo);
@@ -97,7 +97,7 @@ Abaixo está o diagrama do circuito impresso (PCB).
 \begin{description}
 \item [A - Saídas] Circuitos simples de transistor para acionamento de relés (para lâmpadas) e buzzer.
 \item [Proteção 3V3 5V] Como o display trabalha com tensão de 5V, há proteções com diodos para não danificar as entradas digitais do Wemos D1 mini, que trabalha com tensão de 3V3.
-\item [3 Entradas em A0] O circuito tem como entradas um botão (para acionamento do relé 1), o LDR (para chaveamento do backlight do display), e um outro botão para hard reset do dispositivo, todos numa entrada analógica, cujo mapeamento E/S é da seguinte forma:
+\item [3 Entradas em A0] O circuito tem como entradas um botão (para acionamento do relé 1), o LDR (para chaveamento do backlight do display), e um outro botão para \emph{hard reset} do dispositivo, todos numa entrada analógica, cujo mapeamento E/S é da seguinte forma:
 
 \begin{figure}[H]
 	\centering
@@ -107,11 +107,11 @@ Abaixo está o diagrama do circuito impresso (PCB).
 \end{figure}
 
 \item [Presença ou RF-TX] A entrada digital D6 é usada exclusivamente como entrada do sensor de presença PIR ou receptor RF.
-\item [Astável 555 para Hard Reset e Botão] A porta D6 é usada como LED \textit{keep alive} do módulo. Sua demora ao piscar indica que o módulo está travado ou demorando muito para processar algo, o que não deveria acontecer, uma vez que os procedimentos estão multiplexados no tempo, de acordo com seus tempos limite. Dessa forma, conectamos essa saída a um circuito antitravamento, que executa o reset nos casos mencionados, de travamento ou \textit{timeout}.
+\item [Astável 555 para Hard Reset e Botão] A porta D6 é usada como LED \textit{keep alive} do módulo. Sua demora ao piscar indica que o módulo está travado ou demorando muito para processar algo, o que não deveria acontecer, uma vez que os procedimentos estão multiplexados no tempo, de acordo com seus tempos limite. Dessa forma, conectamos essa saída a um circuito antitravamento, que executa o \emph{reset} nos casos mencionados, de travamento ou \textit{timeout}.
 
 O primeiro capacitor tem como objetivo desacoplamento DC, de forma que a entrada do circuito envolvendo o astável 555 seja somente AC. Assim, travamentos em 0 ou 1 indicam travamento.
 
-Enquanto o LED pisca em intervalos esperados (regularmente), o transistor conduz e mantém uma saída dente de serra muito próxima de 0. Quando o módulo trava, o transistor não conduz mais, e a saída passa a oscilar entre 1/3 e 2/3 da tensão total (observe que o carregamento é feito pelo resistor de 4M7, muito maior que o resistor de 100k, fazendo com que o tempo de carga seja muito maior que o tempo de descarga, uma vez que esses tempos são diretamente proporcionais à constante de tempo dos circuitos RC, que é dada pelo produto do R*C). Durante a descarga, o reset da placa é realizado. Observe que os tempos foram ajustados pelos valores dos componentes discretos, para que o tempo entre resets sucessivos seja menor que o tempo necessário para o módulo voltar a funcionar após um reset.
+Enquanto o LED pisca em intervalos esperados (regularmente), o transistor conduz e mantém uma saída dente de serra muito próxima de 0. Quando o módulo trava, o transistor não conduz mais, e a saída passa a oscilar entre 1/3 e 2/3 da tensão total (observe que o carregamento é feito pelo resistor de 4M7, muito maior que o resistor de 100k, fazendo com que o tempo de carga seja muito maior que o tempo de descarga, uma vez que esses tempos são diretamente proporcionais à constante de tempo dos circuitos RC, que é dada pelo produto do R*C). Durante a descarga, o \emph{reset} da placa é realizado. Observe que os tempos foram ajustados pelos valores dos componentes discretos, para que o tempo entre \emph{resets} sucessivos seja menor que o tempo necessário para o módulo voltar a funcionar após um \emph{reset}.
 
 Segue abaixo uma ilustração sobre o funcionamento do circuito.
 
@@ -203,11 +203,11 @@ Ao final, também consta o procedimento utilizado para validação dos módulos 
 \subsubsection {Montagem}
 \begin{enumerate}
 	\item Carregar Programa para testar módulo;
-	\item Realizar Setup da Conexão com sua rede WiFi;
+	\item Realizar Setup da Conexão com sua rede \wwifi;
 	\item Verificar com o multímetro se há curto em algumas ligações principais (terra, VCC);
 	\item Checar a alimentação da fonte e sua saída correta;
 	\item Realizar o Hard Reset ao apertar o botão atrás do isopor do DHT até ouvir 10 beeps
-	\item Fazer o passo 2 novamente (pois o módulo deve ter voltado à versão de fábrica). Logo em seguida fazer o teste de Auto Reset, que é o teste para verificar se o circuito antitravamento está funcionando. Para esse teste, é simulado uma pausa do sinal keep alive que o circuito baseado no astável 555 monitora;
+	\item Fazer o passo 2 novamente (pois o módulo deve ter voltado à versão de fábrica). Logo em seguida fazer o teste de \emph{auto reset}, que é o teste para verificar se o circuito antitravamento está funcionando. Para esse teste, é simulado uma pausa do sinal keep alive que o circuito baseado no astável 555 monitora;
 	\item Cobrir o sensor de presença. Verificar a inatividade no aplicativo. Descobrí-lo e verificar atividade;
 	\item Executar o passo 7 para o sensor de luminosidade (LDR) também;
 	\item Verificar com um medidor externo ou consulta a um site de previsões do tempo se as medidas de temperatura e umidade estão de acordo. Realizar ajuste (offset) no aplicativo se necessário;

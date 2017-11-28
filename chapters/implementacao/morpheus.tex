@@ -6,16 +6,16 @@ Morpheus é o servidor local responsável pela interconexão da casa inteligente
 \subsection{Plataforma}
 O Morpheus tem seu desenvolvimento realizado em Java. Conforme será detalhado em seguida, tal escolha foi realizada com base na portabilidade que a máquina virtual Java (JVM) oferece, bem como na disponibilidade de bibliotecas e serviços largamente utilizados em aplicações comerciais. O servidor foi construído utilizando-se o Spring Boot Framework, que também será descrito adiante.
 
-Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um \emph{broker} \wmqtt{}. O \emph{broker} Mosquitto foi utilizado por ser uma solução \emph{open-source} largamente utilizada em projetos de \emph{IoT}. Conforme detalhado a frente, configurações de segurança específicas para o projeto foram registradas no \emph{broker}. Para a conexão com os serviços na nuvem, é utilizado um canal WebSocket aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, relativa ao requisito não-funcional \emph{RNF-6}, conforme documentada na Subseção \ref{sub:websocket}.
+Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um \emph{broker} \wmqtt{}. O \emph{broker} Mosquitto foi utilizado por ser uma solução \emph{open-source} largamente utilizada em projetos de \wiot. Conforme detalhado a frente, configurações de segurança específicas para o projeto foram registradas no \emph{broker}. Para a conexão com os serviços na nuvem, é utilizado um canal WebSocket aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, relativa ao requisito não-funcional RNF-6, conforme documentada na Subseção \ref{sub:websocket}.
 
 \subsection{Tecnologias utilizadas}
 Toda a implementação do Morpheus foi realizada na linguagem Java. Desde o começo do projeto, decidiu-se que a escolha de tecnologias para implementação das diversas camadas deveria ter por base os seus benefícios, e não necessitaria ser rígida ou uniforme. Assim, o principal esforço foi sempre no planejamento das interfaces de comunicação entre as partes, que poderiam ser implementadas em linguagens complementamente diferentes. Os sistemas de nuvem, por exemplo, foram implementados em Node.js. O aplicativo web também em foi feito em JavaScript, com utilização da biblioteca React. Os módulos de hardware foram programados em C e, como comentado acima, o controlador local em Java. Essa flexibilidade permitiu a utilização de recursos e tecnologias que fossem melhor integrados com os requisitos propostos.
 
-Um requisito essencial para o controlador local é a sua robustez (\emph{RNF-4}). Em um cenário em que este controlador não esteja disponível, a casa passa a funcionar em estado de emergência, no qual os comandos são reduzidos e não permitem acesso remoto. Entretanto, há inúmeras possibilidades e eventos que poderiam causar a queda deste controlador, muitas das quais referem-se a situações fora de nosso alcance. Por exemplo, a falta de energia ou de Internet na residência interrompe o seu funcionamento, não sendo possível ter controle sobre tal situação. O mesmo ocorre no evento de problemas de hardware na plataforma que o sistema estiver rodando. Os planos para contenção dos seus efeitos de tais situações são complexos, custosos e fogem do escopo deste projeto, como seria o caso de implementar duplicações, banco de baterias e tecnologia celular para comunicação secundária.
+Um requisito essencial para o controlador local é a sua robustez (RNF-4). Em um cenário em que este controlador não esteja disponível, a casa passa a funcionar em estado de emergência, no qual os comandos são reduzidos e não permitem acesso remoto. Entretanto, há inúmeras possibilidades e eventos que poderiam causar a queda deste controlador, muitas das quais referem-se a situações fora de nosso alcance. Por exemplo, a falta de energia ou de Internet na residência interrompe o seu funcionamento, não sendo possível ter controle sobre tal situação. O mesmo ocorre no evento de problemas de hardware na plataforma que o sistema estiver rodando. Os planos para contenção dos seus efeitos de tais situações são complexos, custosos e fogem do escopo deste projeto, como seria o caso de implementar duplicações, banco de baterias e tecnologia celular para comunicação secundária.
 
 Há, entretanto, problemas no software que poderiam afetar o funcionamento do controlador. Por meio de testes, muitos desses problemas podem ser evitados ainda em tempo de desenvolvimento. A utilização de tecnologias que facilitam o desenvolvimento seguro da aplicação é uma vantagem para este caso, já que ferramentas estão disponíveis para que haja maior controle sobre o código desenvolvido, e pode-se detectar erros mais facilmente, ainda em tempo de compilação, por exemplo.
 
-O controlador local também precisa lidar com as requisições assincronamente, conforme o requisito não-funcional \emph{RNF-10}. Parte desta tarefa é facilitada com a utilização do sistema de mensageria \wmqtt{}, operado pelo \emph{broker} Mosquitto. Com sua utilização, mensagens podem ser enviadas mesmo que o controlador não consiga recebê-las, pois elas não serão perdidas. Entretanto, devido às características do sistema proposto, as mensagens precisam ser operadas sem maiores demoras. O controlador deve receber e processar as mensagens paralelamente, e não esperar o processamento de uma mensagem inteira para processar a próxima, de modo que o paralelismo deve ser parte essencial da arquitetura.
+O controlador local também precisa lidar com as requisições assincronamente, conforme o requisito não-funcional RNF-10. Parte desta tarefa é facilitada com a utilização do sistema de mensageria \wmqtt{}, operado pelo \emph{broker} Mosquitto. Com sua utilização, mensagens podem ser enviadas mesmo que o controlador não consiga recebê-las, pois elas não serão perdidas. Entretanto, devido às características do sistema proposto, as mensagens precisam ser operadas sem maiores demoras. O controlador deve receber e processar as mensagens paralelamente, e não esperar o processamento de uma mensagem inteira para processar a próxima, de modo que o paralelismo deve ser parte essencial da arquitetura.
 
 Ainda, para a integração com os serviços da nuvem, é necessário a utilização de JSON, para a serialização das mensagens, em um formato que pode ser desserializado posteriormente, independentemente da plataforma. Para a utilização de WebSockets, é necessário o uso de bibliotecas disponíveis, de modo que o desenvolvimento seja facilitado. Por último, é necessário gerenciar eficientemente todas essas dependências. Atualizá-las quando necessário, ou substituí-las, se desejado, deve ser uma tarefa simples.
 
@@ -23,7 +23,7 @@ A arquitetura oferecida pelo Java mostra ser efetiva para as necessidades levant
 
 O \emph{framework} Spring Boot\footnote{https://projects.spring.io/spring-boot/} foi utilizado para o desenvolvimento por oferecer diversos recursos facilitadores, configurações de ambiente e um \emph{container} para inversão de controle (\emph{IoC - Inversion of Control}) e injeção de dependência. Essa técnica diminui o acoplamento entre classes e permite a evolução e implementação de novas funcionalidades de maneira mais fácil \cite{iocFowler}. Assim, cada módulo recebe em seu construtor todas as dependências que serão utilizadas. A responsabilidade da construção de tais dependências passa, então, a ser responsabilidade do gerenciador de contexto, e não mais do módulo.
 
-Além disso, o gerenciador de dependências Gradle\footnote{https://gradle.org/} também foi utilizado por oferecer um poderoso ambiente para configurar, construir e distribuir aplicações. Gradle faz uso de Groovy\footnote{http://groovy-lang.org/}, tecnologia que também roda na \emph{Java Virtual Machine} (JVM). Por outro lado, o uso de tais ferramentas e plataformas necessita de hardware mais robusto para que funcione, sendo uma desvantagem. Contudo, frente aos benefícios, ainda é vantajosa a utilização de Java neste caso.
+Além disso, o gerenciador de dependências Gradle\footnote{https://gradle.org/} também foi utilizado por oferecer um poderoso ambiente para configurar, construir e distribuir aplicações. Gradle faz uso de Groovy\footnote{http://groovy-lang.org/}, tecnologia que também roda na Java Virtual Machine (JVM). Por outro lado, o uso de tais ferramentas e plataformas necessita de hardware mais robusto para que funcione, sendo uma desvantagem. Contudo, frente aos benefícios, ainda é vantajosa a utilização de Java neste caso.
 
 Internamente, o Morpheus é dividido em pacotes, que são responsáveis pela modelagem do problema. Há classes que modelam o domínio, que executam as regras de negócio, que fazem a interface entre outros sistemas (\wmqtt{} Mosquitto Broker e nuvem), e que fazem a execução de tarefas como backup de mensagens, e serviços de conversão.
 Assim que uma mensagem chega ao Morpheus, ela é reconhecida e é realizado o seu \emph{parsing} para as estruturas de domínio internas. Caso haja algum erro nas mensagens vindas da nuvem, há o envio de relatório com os problemas encontrados. A partir daí, a mensagem é colocada em uma fila interna, onde outro módulo será responsável por capturá-la e realizar o processamento necessário.
@@ -46,7 +46,7 @@ De acordo com as regras e interfaces estabelecidas, os módulos podem ser config
 
 \item \textbf{Envio de dados para a nuvem}
 
-Dados provenientes de sensores são enviados para a nuvem, para que possam ser tratados de acordo com as regras de \emph{Business Intelligence} e utilizados em algoritmos de \emph{Machine Learning}.
+Dados provenientes de sensores são enviados para a nuvem, para que possam ser tratados de acordo com as regras de \emph{Business Intelligence} e utilizados em algoritmos de aprendizado de máquina.
 
 \item \textbf{Persistência de dados}
 
@@ -249,7 +249,7 @@ swreset: <0 | 1>
 \end{lstlisting}
 0 = não; 1 = confirmar reinício
 
-\textbf{Requisição de teste de Auto Reset}
+\textbf{Requisição de teste de \emph{auto reset}}
 \begin{lstlisting}
 #action_request
 $ts: <timestamp>
@@ -334,7 +334,7 @@ swreset: <0 | 1>
 @
 \end{lstlisting}
 
-\textbf{Confirmação de teste de Auto Reset}
+\textbf{Confirmação de teste de \emph{auto reset}}
 \begin{lstlisting}
 #confirmation
 $ts: <timestamp>
@@ -690,7 +690,7 @@ swreset: 1
 
 \emph{Resultado: de acordo.}
 
-\textbf{Requisição e confirmação de teste de Auto Reset}
+\textbf{Requisição e confirmação de teste de \emph{auto reset}}
 \begin{lstlisting}
 #action request
 $ts: <timestamp>
@@ -792,7 +792,7 @@ messageToSend = UmiTempPresReles(0,80,25,1,1,0);
 \emph{Resultado: de acordo.}
 
 \subsection{Protocolo para troca de mensagens com a nuvem}
-A troca de mensagens entre Morpheus e servidor na nuvem ocorre por meio de WebSockets. Como explicado anteriormente, caso o servidor local provesse uma \emph{API REST} aberta à conexões externas, seriam necessárias configurações, software e hardware avançados para a proteção, o que seria inviável para o propósito em questão. Além disso, usuários domésticos possuem endereços IP dinâmicos, de maneira que seria necessária a atualização desse endereço na nuvem a cada mudança. Com a utilização do WebSocket, o servidor local é um cliente que solicita a abertura de uma conexão com a nuvem, que é mantida aberta a partir daí.
+A troca de mensagens entre Morpheus e servidor na nuvem ocorre por meio de WebSockets. Como explicado anteriormente, caso o servidor local provesse uma API REST aberta à conexões externas, seriam necessárias configurações, software e hardware avançados para a proteção, o que seria inviável para o propósito em questão. Além disso, usuários domésticos possuem endereços IP dinâmicos, de maneira que seria necessária a atualização desse endereço na nuvem a cada mudança. Com a utilização do WebSocket, o servidor local é um cliente que solicita a abertura de uma conexão com a nuvem, que é mantida aberta a partir daí.
 
 A comunicação com a nuvem é baseada em eventos, que são recebidos e enviados com os dados relevantes. Os eventos estão descritos a seguir.
 

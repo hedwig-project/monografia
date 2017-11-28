@@ -2,7 +2,7 @@
 \label{att:configMosquitto}
 
 Para a demonstração da implementação, foram configuradas instâncias independentes do MQTT Mosquitto Broker, em um servidor virtual. Este anexo documenta as configurações disponíveis para conexão com tais instâncias.
-Os passos abaixo com o firewall são manuais. Eles estão concentrados em um script, que deve ser rodado após o cadastro de um nova casa (necessário alterar o contador do script).
+Os passos abaixo com o \emph{firewall} são manuais. Eles estão concentrados em um script, que deve ser rodado após o cadastro de um nova casa (necessário alterar o contador do script).
 
 \textbf{Execução do Script}
 
@@ -10,13 +10,13 @@ Os passos abaixo com o firewall são manuais. Eles estão concentrados em um scr
 
 \textbf{Passos manuais (não necessários se o script acima for executado)}
 
-Para cadastrar novo módulo, primeiro desativar o firewall:
+Para cadastrar novo módulo, primeiro desativar o \emph{firewall}:
 \lstinline{sudo ufw disable}
 
 Cadastrar o módulo e liberar a porta:
 \lstinline{sudo ufw allow <porta>/tcp}
 
-Ativar o firewall:
+Ativar o \emph{firewall}:
 \lstinline{sudo ufw enable}
 
 \textbf{Configurações}
@@ -28,11 +28,11 @@ Ativar o firewall:
     Porta: 8883
     MorpheusId: adf654wae84fea5d8ea6
     Password: 123456789
-    
+
     Modulos
     IP: 138.197.83.143
     Porta: 1883
-    
+
     Passwd file
     00164304:359985
     adf654wae84fea5d8ea6:123456789
@@ -70,7 +70,7 @@ Ativar o firewall:
     Modulos
     IP: 138.197.83.143
     Porta: 1885
-    
+
     Passwd file
     00163205:958668
     e5d5e8f4w8e89wef48s9:159753
@@ -87,7 +87,7 @@ Ativar o firewall:
     Modulos
     IP: 138.197.83.143
     Porta: 1886
-    
+
     Passwd file
     01681382:664361
     eeqeo345439do0982o29:987456321
