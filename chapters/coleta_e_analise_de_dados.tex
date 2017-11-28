@@ -1,4 +1,4 @@
-\chapter{Coleta e Análise de Dados}
+\chapter{Coleta e análise de dados}
 
 Um dos processos mais críticos para o sucesso de um projeto é a obtenção de resultados e dados, de onde se obterá conhecimento sobre o comportamento do sistema em atividade.
 
@@ -49,7 +49,7 @@ O módulo de Jarinu possui uma interface com o sistema de alarmes (já instalado
 
 \begin{figure}[H]
 	\centering
-	\caption{Controle do Sistema de Alarme e módulo de interface de Jarinu}
+	\caption{Controle do Sistema de Alarme e Módulo de Interface de Jarinu}
 	\includegraphics[width=0.8\textwidth]{ModuloSistAlarme}
 	\label{fig:ModuloSistAlarme}
 \end{figure}
@@ -68,7 +68,7 @@ O módulo de Jarinu possui uma interface com o sistema de alarmes (já instalado
 	\label{fig:SensorPortasJarinu}
 \end{figure}
 
-Os demais módulos possuem coleta de dados a partir de persistência na nuvem e, passando pelo controlador local Morpheus, e possuem como principal objetivo prover dados para o Machine Learning.
+Os demais módulos possuem coleta de dados a partir de persistência na nuvem e, passando pelo controlador local Morpheus, e possuem como principal objetivo prover dados para o aprendizado de máquina.
 
 \begin{figure}[H]
 	\centering
@@ -83,7 +83,7 @@ De modo geral, temos a coleta dos seguintes dados:
 
 \begin{figure}[H]
 	\centering
-	\caption{Relação dos Módulos e Dados Coletados}
+	\caption{Relação dos módulos e dados coletados}
 	\includegraphics[width=1.0\textwidth]{DiagramaModulosDados}
 	\label{fig:DiagramaModulosDados}
 \end{figure}
@@ -106,7 +106,7 @@ Foram coletados dados desde o dia 10 de setembro de 2017 até o dia 13 de novemb
 \section{Análise}
 
 \begin{table}[H]
-    \caption{Análise Consolidada de Disponibilidade}
+    \caption{Análise consolidada de disponibilidade}
     \setlength\tabcolsep{1.5pt}
     \centering
     \footnotesize
@@ -131,7 +131,7 @@ Foram coletados dados desde o dia 10 de setembro de 2017 até o dia 13 de novemb
         35 &
         20 &
         91 \\
-        \# (desconexões do WiFi) &
+        \# (desconexões do \wwifi) &
         15 &
         26 &
         24 &
@@ -140,19 +140,19 @@ Foram coletados dados desde o dia 10 de setembro de 2017 até o dia 13 de novemb
     \end{tabular}
 \end{table}
 
-Ao analisar o aspecto de disponibilidade a partir da média da memória disponível (quanto maior, melhor), o número de loops de 1s que ocorreram em 2s ou mais (indicando a existência de procedimentos que estão atrasando a correta execução de rotinas periódicas, como aquelas de “keep alive” de comunicação), o número de reinícios e desconexões da rede WiFi (isentos de updates de firmware, isto é, eventos de reinício e desconexões desconsiderando aqueles causados por updates de firmware dos módulos).
+Ao analisar o aspecto de disponibilidade a partir da média da memória disponível (quanto maior, melhor), o número de loops de 1s que ocorreram em 2s ou mais (indicando a existência de procedimentos que estão atrasando a correta execução de rotinas periódicas, como aquelas de “keep alive” de comunicação), o número de reinícios e desconexões da rede \wwifi (isentos de updates de firmware, isto é, eventos de reinício e desconexões desconsiderando aqueles causados por updates de firmware dos módulos).
 
 Como o firmware do Corredor, Lavanderia e SalaCozinha é o mesmo (basic), conclui-se que:
 
 \begin{itemize}
-	\item A versão aquário possui mais memória disponível, possui um menor número de desconexões da rede WiFi e número perto da média de reinícios. Contudo, possui maior ocorrência de loops de 1s maiores que 2s, indicando algum procedimento que está consumindo tempo do loop;
+	\item A versão aquário possui mais memória disponível, possui um menor número de desconexões da rede \wwifi e número perto da média de reinícios. Contudo, possui maior ocorrência de loops de 1s maiores que 2s, indicando algum procedimento que está consumindo tempo do loop;
 	\item A versão basic possui ocorrências de desconexões, reinícios e memória livre em valores médios;
-	\item A versão entrada possui o maior número de reinícios e desconexões da rede WiFi (o que já era esperado, pois é o módulo mais longe do roteador da residência, que está em outro andar);
+	\item A versão entrada possui o maior número de reinícios e desconexões da rede \wwifi (o que já era esperado, pois é o módulo mais longe do roteador da residência, que está em outro andar);
 	\item A memória livre média das versões basic e entrada possuem valores próximos.
 \end{itemize}
 
 \begin{table}[H]
-	\caption{Análise Consolidada de Uso dos Reles}
+	\caption{Análise consolidada de uso dos relês}
 	\setlength\tabcolsep{1.5pt}
 	\centering
 	\footnotesize
@@ -223,7 +223,7 @@ Quanto ao uso dos acionamentos possíveis (botão físico presente no módulo, p
 
 \begin{figure}[H]
 	\centering
-	\caption{Curva Diária Santo André - Terça}
+	\caption{Curva diária Santo André -- terça-feira}
 	\includegraphics[width=0.8\textwidth]{diaStoAndreTerca}
 	\label{fig:diaStoAndreTerca}
 \end{figure}
@@ -248,7 +248,7 @@ Tomando o dia de terça como exemplo dos gráficos consolidados de Santo André 
 
 \begin{figure}[H]
 	\centering
-	\caption{Temperatura e Aquecedor - Aquário}
+	\caption{Temperatura e aquecedor -- Módulo do Aquário}
 	\includegraphics[width=1.0\textwidth]{TempAquecedorAqua}
 	\label{fig:TempAquecedorAqua}
 \end{figure}
@@ -259,19 +259,19 @@ Considerando a curva diária e histórico do período dos sensores e atuador do 
 	\item Às 3hs da manhã, temos lâmpada acesa e aquecedor aceso. Isso pode ter ocorrido em um dia em particular (25/11/2017, dia atípico, como observado no gráfico do período);
 	\item Das 9hs às 23hs, há uma regra para que a lâmpada do aquário fique acesa;
 	\item A temperatura é menor às 10hs, e das 14hs às 18hs. O comportamento do aquecedor é no sentido de ligar nesses períodos.
-	
+
 \end{itemize}
 
 \begin{figure}[H]
 	\centering
-	\caption{Consolidado Diário - Aquário}
+	\caption{Consolidado Diário -- Módulo do Aquário}
 	\includegraphics[width=1.0\textwidth]{AquaDia}
 	\label{fig:AquaDia}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\caption{Memória e loops do Corredor}
+	\caption{Memória e loops -- Módulo do Corredor}
 	\includegraphics[width=1.0\textwidth]{MemLivreCorredor}
 	\label{fig:MemLivreCorredor}
 \end{figure}
@@ -285,16 +285,16 @@ Observando sua curva diária de memória livre e loops de 1s que foram executado
 
 \begin{figure}[H]
 	\centering
-	\caption{Consolidado no Período - Corredor}
+	\caption{Consolidado no período -- Módulo do Corredor}
 	\includegraphics[width=1.0\textwidth]{periodoCorredor}
 	\label{fig:periodoCorredor}
 \end{figure}
 
-Observamos, em verde, no gráfico acima, os updates de firmware (possibilidade de acompanhamento de melhoria de disponibilidade após a implantação de novas versões), a quantidade de reinícios e ocorrências de desconexão do WiFi. Entre 24/10 e 28/10, tivemos grande número de desconexões do WiFi, indicando indisponibilidade da rede nesses dias, que causaram certa quantidade de reinícios no mesmo período.	
+Observamos, em verde, no gráfico acima, os updates de firmware (possibilidade de acompanhamento de melhoria de disponibilidade após a implantação de novas versões), a quantidade de reinícios e ocorrências de desconexão do \wwifi. Entre 24/10 e 28/10, tivemos grande número de desconexões do \wwifi, indicando indisponibilidade da rede nesses dias, que causaram certa quantidade de reinícios no mesmo período.
 
 \begin{figure}[H]
 	\centering
-	\caption{Consolidado Diário dos Sensores - Corredor}
+	\caption{Consolidado diário dos sensores -- Módulo do Corredor}
 	\includegraphics[width=1.0\textwidth]{sensoresdiaCorredor}
 	\label{fig:sensoresdiaCorredor}
 \end{figure}
@@ -303,7 +303,7 @@ No gráfico acima, observamos inatividade às 4hs da manhã e entre as 14hs e 16
 
 \begin{figure}[H]
 	\centering
-	\caption{Uso dos acionamentos no período para a lâmpada do Corredor}
+	\caption{Uso dos acionamentos no período para a lâmpada -- Módulo do Corredor}
 	\includegraphics[width=1.0\textwidth]{UsoRele1periodoCorredor}
 	\label{fig:UsoRele1periodoCorredor}
 \end{figure}
@@ -312,14 +312,14 @@ No primeiro gráfico, observamos a evolução do uso dos acionamentos para o rel
 
 \begin{figure}[H]
 	\centering
-	\caption{Uso dos acionamentos por dia para a lâmpada do Corredor}
+	\caption{Uso dos acionamentos por dia para a lâmpada -- Módulo do Corredor}
 	\includegraphics[width=0.8\textwidth]{UsoRele1DiaCorredor}
 	\label{fig:UsoRele1DiaCorredor}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\caption{curva Diária do Módulo de Acesso}
+	\caption{Curva diária -- Módulo de Acesso}
 	\includegraphics[width=1.0\textwidth]{EntradaConsolidadoDia}
 	\label{fig:EntradaConsolidadoDia}
 \end{figure}
@@ -333,7 +333,7 @@ Com a curva diária de comportamento para o módulo de entrada, observa-se que:
 
 \begin{figure}[H]
 	\centering
-	\caption{Nível da Caixa d'água - Consolidado Diário}
+	\caption{Nível da caixa d'água -- consolidado diário}
 	\includegraphics[width=1.0\textwidth]{CxAguaDia}
 	\label{fig:CxAguaDia}
 \end{figure}
@@ -343,21 +343,21 @@ Na curva diária do módulo da caixa d’água, nota-se que:
 \begin{itemize}
 	\item Há maior uso de água (provavelmente para banho) nos períodos das 9hs às 12hs, e entre 16hs e 23hs;
 	\item Os horários em que temos, provavelmente, menor disponibilidade de água da rua (para preencher a caixa e fazer o nível voltar a ser alto) são das 5hs às 6hs da manhã e às 11hs da manhã.
-	
+
 \end{itemize}
 
 Observando o gráfico a seguir, observam-se os dias em que houve falta de água (picos de demora para preencher a caixa de água após algum uso perceptível pelo sensor do tipo boia).
 
 \begin{figure}[H]
 	\centering
-	\caption{Tempo para Encher a Caixa d'água - Período}
+	\caption{Tempo para encher a caixa d'água -- período}
 	\includegraphics[width=1.0\textwidth]{tempoPeriodocxAgua}
 	\label{fig:tempoPeriodocxAgua}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\caption{Atividade da Porta da Sala de Jarinu}
+	\caption{Atividade da porta -- Sala de Jarinu}
 	\includegraphics[width=1.0\textwidth]{AtivPortaSalaJarinu}
 	\label{fig:AtivPortaSalaJarinu}
 \end{figure}
@@ -372,14 +372,14 @@ Em Jarinu, temos um idoso, com boa saúde física, que mora sozinho em sua resid
 
 \begin{figure}[H]
 	\centering
-	\caption{Atividade da Presença da Sala de Jarinu}
+	\caption{Atividade da presença -- Sala de Jarinu}
 	\includegraphics[width=1.0\textwidth]{AtivPresencaJarinu}
 	\label{fig:AtivPresencaJarinu}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\caption{Consolidado no Período - Jarinu}
+	\caption{Consolidado no período -- Jarinu}
 	\includegraphics[width=1.0\textwidth]{JarinuPeriodo}
 	\label{fig:JarinuPeriodo}
 \end{figure}

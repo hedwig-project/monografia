@@ -1,9 +1,9 @@
-\section{Cliente Web}
+\section{Cliente web}
 A arquitetura do Hedwig permite o desenvolvimento de vários clientes, web ou mobile, independentes, para monitorar e controlar os dispositivos conectados de uma casa. Como toda a comunicação desses clientes é realizada através do servidor na nuvem por meio de WebSockets e da API REST, é possível realizar integrações nas mais diversas plataformas, seja navegadores ou sistemas operacionais nativos de smartphones.
 
 A fim de demonstrar como o usuário final poderia interagir com o sistema em sua totalidade, optou-se por desenvolver uma aplicação web. Esse tipo de aplicação foi escolhida devido a vasta quantidade de bibliotecas, frameworks, ferramentas e IDEs disponíveis. Outro fator favorável é a evolução dos navegadores modernos, que possuem funcionalidades de depuração e integrações com os ambientes de dispositivos móveis cada vez melhores. Tais melhorias possibilitaram que aplicativos web pudessem ter uma aparência e percepção mais próxima aos aplicativos nativos.
 
-\subsection{Progressive Web Apps}
+\subsection{\emph{Progressive Web Apps}}
 
 \subsubsection{Contexto}
 Durante a ascensão dos smartphones no mercado, os aplicativos nativos predominaram por serem mais rápidos e possuírem maior suporte para acessar funções do hardware, alcançando assim um padrão melhor de experiência de usuário do que aplicativos web. Em 2007, Steve Jobs chegou a afirmar que sua visão para o iPhone era de que todos os aplicativos de terceiros fossem web apps \cite{9to5mac}. Contudo, apesar desse incentivo, o panorama de Jobs não foi recebido com muita empolgação, e a App Store foi ao ar em 2008 com 500 aplicativos \cite{ricker}. Em janeiro de 2009, já estavam disponíveis mais de 15 mil aplicativos, com um total de download que superava 500 milhões \cite{myslewski}.
@@ -12,12 +12,12 @@ Desde então, ocorreram grandes avanços no desenvolvimento web com o amadurecim
 
 Assim, houve o crescimento do número de aplicativos híbridos, que combinam as técnicas de desenvolvimento web com benefícios dos aplicativos nativos como o suporte para usar funções do hardware. Pode-se dividir os aplicativos híbridos em dois grandes grupos \cite{rudolph}: aplicativos que usam WebView, uma espécie de navegador interno que é envolvido por uma aplicação nativa, permitindo que algumas APIs nativas sejam acessíveis por JavaScript, e aplicativos híbridos compilados, que são escritos em uma linguagem não nativa e então compilados para várias plataformas de dispositivos móveis. Isso permite obter versões para várias plataformas com o mesmo código, mas para obter tal resultado há limitações durante o desenvolvimento.
 
-Hoje, pesquisas indicam que os aplicativos nativos vêm perdendo força. O número de downloads de aplicativos no Estados Unidos diminui 20\% ano a ano \cite{benson}. Analisando os dados da \emph{Google Play}, descobriu-se que o aplicativo médio perde aproximadamente 77\% dos usuário após 3 dias da instalação \cite{chen} --- o que demonstra a dificuldade de se alcançar um bom nível de engajamento. Logo, pedir que o usuário baixe um aplicativo para continuar desfrutando dos serviços de um site pode acarretar em evasão de visitantes. Esses fatores somam-se ao fato de que as tecnologias de desenvolvimento web continuam progredindo e permitindo experiências de usuário cada vez mais ricas --- há um crescente suporte na forma de bibliotecas e metodologias para criar interfaces responsivas, transições e animações fluidas e novos tipos de interação. Nesse contexto, surge o conceito de \textit{Progressive Web Apps}, aplicações web que, de fato, podem oferecer uma experiência compatível à de uma aplicação nativa.
+Hoje, pesquisas indicam que os aplicativos nativos vêm perdendo força. O número de downloads de aplicativos no Estados Unidos diminui 20\% ano a ano \cite{benson}. Analisando os dados da Google Play, descobriu-se que o aplicativo médio perde aproximadamente 77\% dos usuário após 3 dias da instalação \cite{chen} --- o que demonstra a dificuldade de se alcançar um bom nível de engajamento. Logo, pedir que o usuário baixe um aplicativo para continuar desfrutando dos serviços de um site pode acarretar em evasão de visitantes. Esses fatores somam-se ao fato de que as tecnologias de desenvolvimento web continuam progredindo e permitindo experiências de usuário cada vez mais ricas --- há um crescente suporte na forma de bibliotecas e metodologias para criar interfaces responsivas, transições e animações fluidas e novos tipos de interação. Nesse contexto, surge o conceito de \textit{Progressive Web Apps}, aplicações web que, de fato, podem oferecer uma experiência compatível à de uma aplicação nativa.
 
 \subsubsection{Conceito}
-O conceito de \textit{Progressive Web Apps} ou \emph{PWAs} é recente --- o termo foi usado pela primeira vez em 2015 pelo designer Frances Berriman e pelo engenheiro do Google Chrome Alex Russell \cite{russell}. A ideia dessa classe de aplicativos é ir além das aplicações web tradicionais, aproveitando o máximo das funcionalidades mais modernas dos últimos navegadores lançados e combinando-as à navegação mobile para oferecer uma melhor experiência ao usuário.
+O conceito de \textit{Progressive Web Apps} ou PWAs é recente --- o termo foi usado pela primeira vez em 2015 pelo designer Frances Berriman e pelo engenheiro do Google Chrome Alex Russell \cite{russell}. A ideia dessa classe de aplicativos é ir além das aplicações web tradicionais, aproveitando o máximo das funcionalidades mais modernas dos últimos navegadores lançados e combinando-as à navegação mobile para oferecer uma melhor experiência ao usuário.
 
-De acordo com o  \emph{Google Developers} \cite{googledevpwa}, os \emph{PWAs} devem ser:
+De acordo com o Google Developers \cite{googledevpwa}, os PWAs devem ser:
 
 \begin{description}
 \item[Confiáveis -]devem carregar de forma instantânea, independentemente das condições de conectividade, sem prejudicar a experiência com erros e falhas na aplicação;
@@ -67,7 +67,7 @@ Uma token é uma string composta por três partes separadas por pontos. As três
 
 \subsubsection{Autenticação}
 
-Para realizar a autenticação com JWTs, as tokens são geradas na nuvem durante o cadastro ou login do usuário e então são enviadas ao navegador. A partir desse momento, todas as requisições ao servidor da nuvem irão conter a JWT no campo de Authentication do cabeçalho das requisições HTTP. Somente requisições contendo tal token, e cujo token seja válida, são aceitas no back-end da aplicação. Essa estratégia de implementação é amplamente utilizada para desenvolver a funcionalidade de \textit{single sign-on}.
+Para realizar a autenticação com JWTs, as tokens são geradas na nuvem durante o cadastro ou login do usuário e então são enviadas ao navegador. A partir desse momento, todas as requisições ao servidor da nuvem irão conter a JWT no campo \texttt{Authentication} do cabeçalho das requisições HTTP. Somente requisições contendo tal token, e cujo token seja válida, são aceitas no \emph{back-end} da aplicação. Essa estratégia de implementação é amplamente utilizada para desenvolver a funcionalidade de \textit{single sign-on}.
 
 Um exemplo de cabeçalho HTTP que usa JWT para autenticação é:
 

@@ -1,17 +1,17 @@
-\section{Criação de Módulos}
+\section{Módulos}
 Para a criação dos módulos de hardware, foram escolhidos componentes de \wiot{} comerciais, que possuem preços acessíveis, ampla documentação disponível e uma comunidade de desenvolvedores crescente.
 
-A interconexão dos componentes, bem como a comunicação com o mundo externo pela internet será intermediada por um servidor local, instalado e disponível na plataforma \emph{Raspberry Pi}, rodando um sistema operacional Linux (\emph{Raspbian}, baseado em \emph{Debian}) e que dispõe da interface de hardware necessária para conexão com a rede.
+A interconexão dos componentes, bem como a comunicação com o mundo externo pela internet será intermediada por um servidor local, instalado e disponível na plataforma Raspberry Pi, rodando um sistema operacional Linux (Raspbian, baseado em Debian) e que dispõe da interface de hardware necessária para conexão com a rede.
 
-Os sensores e atuadores devem ser conectados fisicamente com um módulo controlador, e para que essa limitação fosse contornada, foram utilizados dispositivos \emph{ESP8266} --- subseção \ref{subsec:esp8266} --- para transmissão sem fio por meio de \emph{Wi-Fi}. Esses módulos serão responsáveis pela transmissão das informações recebidas para o servidor local. Toda a arquitetura para essa transmissão será detalhada mais à frente. Os outros dispositivos a serem utilizados, como sensores \emph{DHT11}, \emph{LM555}, etc. podem ser vistos em uma lista completa no Anexo \ref{listamateriais}.
+Os sensores e atuadores devem ser conectados fisicamente com um módulo controlador, e para que essa limitação fosse contornada, foram utilizados dispositivos ESP8266 --- subseção \ref{subsec:esp8266} --- para transmissão sem fio por meio de Wi-Fi. Esses módulos são responsáveis pela transmissão das informações recebidas para o servidor local. Toda a arquitetura para essa transmissão será detalhada mais à frente. Os outros dispositivos a serem utilizados, como sensores DHT11, LM555, etc. podem ser vistos em uma lista completa no Anexo \ref{listamateriais}.
 
-Em geral, os módulos consistem do microcontrolador, relés, sensores e fontes\slash{}conversores de tensão a depender do módulo, além de um circuito para manutenção corretiva baseado no astável 555, conectados à rede \emph{Wi-Fi} ou trabalhando como pontos de acesso. Para casos de falha de conexão, há um algoritmo de novas tentativas com tempos progressivamente maiores conforme as falhas ocorrerem, que busca deixar o módulo disponível para outras funções enquanto o serviço não está disponível. Para mitigar o travamento, um sinal de \textit{keep alive} é monitorado, e um circuito anti-travamento deve ativar o \textit{hard reset} (reset por hardware), ou então uma rotina de \textit{soft reset} deve ser acionada, de modo que os requisitos \emph{RNF-5} e \emph{RF-9} sejam cumpridos. No entanto, observa-se que a segunda alternativa é a mais natural de se implementar, mas menos robusta, já que ainda pode não funcionar em casos de loop infinito.
+Em geral, os módulos consistem do microcontrolador, relés, sensores e fontes\slash{}conversores de tensão a depender do módulo, além de um circuito para manutenção corretiva baseado no astável 555, conectados à rede Wi-Fi ou trabalhando como pontos de acesso. Para casos de falha de conexão, há um algoritmo de novas tentativas com tempos progressivamente maiores conforme as falhas ocorrerem, que busca deixar o módulo disponível para outras funções enquanto o serviço não está disponível. Para mitigar o travamento, um sinal de \textit{keep alive} é monitorado, e um circuito anti-travamento deve ativar o \textit{hard reset} (\emph{reset} por hardware), ou então uma rotina de \textit{soft reset} deve ser acionada, de modo que os requisitos RNF-5 e RF-9 sejam cumpridos. No entanto, observa-se que a segunda alternativa é a mais natural de se implementar, mas menos robusta, já que ainda pode não funcionar em casos de loop infinito.
 
 \subsection{Módulos Base}
 \subsubsection{ESP8266 \label{subsec:esp8266}}
-O ESP8266 é um microprocessador com baixo consumo e radiotransmisor com conexão \emph{Wi-Fi 802.11} integrada \cite{espressif}. Pode ser programado usando a \emph{Arduino IDE}, vastamente utilizada \cite{thomsen}. Opera com uma tensão de 3.3 V, suporta \emph{WPA} e possui modo de interrupção somente por software. É amplamente usado como \textit{shield} para conexão \emph{Wi-Fi} de placas de desenvolvimento da plataforma Arduino. Contudo, no projeto Hedwig, o dispositivo será utilizado em modo \textit{StandAlone} como principal processador e responsável pela conexão dos diferentes módulos de automação. Suas duas principais plataformas de desenvolvimento são \emph{Wemos}\footnote{https://www.wemos.cc/} e \emph{NodeMCU}\footnote{http://nodemcu.com/}. O projeto utilizará o \emph{Wemos D1 Mini}, versão compacta da \emph{Wemos D1 R2}.
+O ESP8266 é um microprocessador com baixo consumo e radiotransmisor com conexão Wi-Fi 802.11 integrada \cite{espressif}. Pode ser programado usando a Arduino IDE, vastamente utilizada \cite{thomsen}. Opera com uma tensão de 3.3 V, suporta WPA e possui modo de interrupção somente por software. É amplamente usado como \textit{shield} para conexão Wi-Fi de placas de desenvolvimento da plataforma Arduino. Contudo, no projeto Hedwig, o dispositivo será utilizado em modo \textit{StandAlone} como principal processador e responsável pela conexão dos diferentes módulos de automação. Suas duas principais plataformas de desenvolvimento são Wemos\footnote{https://www.wemos.cc/} e NodeMCU\footnote{http://nodemcu.com/}. O projeto utiliza o Wemos D1 Mini, versão compacta do Wemos D1 R2.
 
-O \emph{ESP8266} possui um modo de operação de baixa potência (\textit{sleep mode}) em que o consumo de bateria fica muito menor --- em contrapartida, o número de funcionalidades é limitado. Pode-se utilizar 7 portas de E\slash{}S digitais e uma porta de entrada analógica. Duas portas não são acessíveis, pois são utilizadas para programação e outras tarefas do sistema integrado do \emph{ESP8266}. Alternativas para extensão de portas são:
+O ESP8266 possui um modo de operação de baixa potência (\textit{sleep mode}) em que o consumo de bateria fica muito menor --- em contrapartida, o número de funcionalidades é limitado. Pode-se utilizar 7 portas de E\slash{}S digitais e uma porta de entrada analógica. Duas portas não são acessíveis, pois são utilizadas para programação e outras tarefas do sistema integrado do ESP8266. Alternativas para extensão de portas são:
 
 \begin{enumerate}
 	\item Utilização três níveis de sinal análogico para detectar três tipos de acionamento, através de um circuito dedicado, com priorização de entrada;
@@ -27,7 +27,7 @@ Buscando garantir mais segurança e comodidade para o acesso à residência, al�
 
 \begin{figure}[H]
 	\centering
-	\caption{Diagrama ilustrativo do módulo de Acesso ao Portão}
+	\caption{Diagrama ilustrativo do Módulo de Acesso ao Portão}
   \includegraphics[width=0.8\textwidth]{diagramaModuloAcesso}
 \label{fig:diagramaModuloAcesso}
 \end{figure}
@@ -45,18 +45,18 @@ Entretanto, é necessário que a realização do controle de acesso seja feita d
 
 Na alternativa alternativa \ref{alt:manInTheMiddle}, a cada acesso, um novo mapeamento de teclas é gerado e enviado ao usuário. Mesmo que haja cópia das credenciais, ela não funcionará devido ao mapeamento ter mudado. Observe ainda que a fechadura eletrônica, por si só, já estava vulnerável a este tipo de ataque --- há, inclusive, dispositivos copiadores de senhas comercializados.
 
-Outro aspecto de segurança é a preocupação dos usuários em esquecer a porta ou portão abertos. Para mitigar esse perigo, o módulo deve monitorar, por meio de um sensor, o estado vigente (aberto/fechado), conforme o requisito \emph{RF-1}, e alertar localmente (por meio de \textit{buzzer}) e remotamente (e.g. por email ou notificação no \textit{smartphone}) o usuário, conforme o requisito \emph{RF-2}. Essa e outras configurações (como de rede) são acessadas por uma senha diferente daquela de abertura, de modo que a interface básica seja simples para uso.
+Outro aspecto de segurança é a preocupação dos usuários em esquecer a porta ou portão abertos. Para mitigar esse perigo, o módulo deve monitorar, por meio de um sensor, o estado vigente (aberto/fechado), conforme o requisito RF-1, e alertar localmente (por meio de \textit{buzzer}) e remotamente (e.g. por email ou notificação no smartphone) o usuário, conforme o requisito RF-2. Essa e outras configurações (como de rede) são acessadas por uma senha diferente daquela de abertura, de modo que a interface básica seja simples para uso.
 
 Para o caso de falha de envio de notificação (e.g. servidor fora do ar, ou indisponibilidade na conexão), há um algoritmo de novas tentativas com tempos progressivamente maiores conforme as falhas ocorrerem, buscando deixar o módulo disponível para outras funções. Tratamento análogo é realizado no servidor local, e no sistema de mensageria, de modo a evitar perdas de mensagens, mesmo em situações desfavoráveis. Para o caso de falta de conexão à internet, o módulo não seria controlável pela nuvem, com o aplicativo web, mas sim com o aplicativo emergencial, com a ativação do \textit{Access Point}, desenvolvido para operar diretamente com os módulos, sem intermédio do servidor local e dos serviços remotos.
 
-Por meio das credenciais disponíveis no sistema, é possível saber qual dos usuários que solicitou a abertura do portão. A persistência destes acessos pode ser analisada e, utilizando-se técnicas de \emph{Machine Learning}, perfis de acesso podem ser determinados, e evoluir até o sistema saber quando houver um acesso em horário inesperado e notificar o usuário remotamente, confome o requisito \emph{RF-5}. O aprendizado de máquina é fundamental aqui para descobrir comportamentos que podem ser entendidos como suspeitos. Um exemplo prático de caso de uso seria um usuário que costuma chegar em um horário semelhante todos os dias, e realizar certo conjunto de tarefas na casa. Uma tentativa de acesso que não se enquadre em tais padrões pode ser produto de atividade suspeita, a qual pode ser informada pela casa para uma central, que acionaria a polícia caso não seja um falso positivo.
+Por meio das credenciais disponíveis no sistema, é possível saber qual dos usuários que solicitou a abertura do portão. A persistência destes acessos pode ser analisada e, utilizando-se técnicas de aprendizado de máquina, perfis de acesso podem ser determinados, e evoluir até o sistema saber quando houver um acesso em horário inesperado e notificar o usuário remotamente, confome o requisito RF-5. O aprendizado de máquina é fundamental aqui para descobrir comportamentos que podem ser entendidos como suspeitos. Um exemplo prático de caso de uso seria um usuário que costuma chegar em um horário semelhante todos os dias, e realizar certo conjunto de tarefas na casa. Uma tentativa de acesso que não se enquadre em tais padrões pode ser produto de atividade suspeita, a qual pode ser informada pela casa para uma central, que acionaria a polícia caso não seja um falso positivo.
 
 \subsection{Módulo de Quarto/Sala/Cozinha}
 Um dos módulos com muitas opções de implementação e uso é o módulo de quarto, pois também pode ser usado no controle de iluminação para corredores, salas e ambientes externos.
 
 \begin{figure}[H]
 	\centering
-	\caption{Diagrama ilustrativo do módulo de Quarto/Sala/Cozinha}
+	\caption{Diagrama ilustrativo do Módulo de Quarto/Sala/Cozinha}
 	\includegraphics[width=0.8\textwidth]{diagramaModuloQuarto}
 	\label{fig:diagramaModuloQuarto}
 \end{figure}
@@ -67,9 +67,9 @@ Como principais funcionalidades, tem-se o despertador (configurado pelo usuário
 
 O módulo de quarto pode ser acoplado ao sistema existente (fisicamente, é instalado no mesmo lugar do interruptor), e possui estados para o despertador. No estado inicial, somente a luz indireta é ligada. Após determinado tempo (programável pelo usuário), há avisos sonoros periódicos. No terceiro estado, os períodos são menores. Finalmente, no quarto estado a luz direta é ligada e os avisos sonoros são ininterruptos. Até o terceiro estado, o alarme pode ser desarmado (apertar duas vezes) ou entrar em estado soneca (apertar única vez) diretamente no módulo. Já no estado 4, a critério anterior do usuário, o alarme pode ser desarmado somente fisicamente em outro módulo presente em um segundo aposento --- por exemplo, na sala. Esse módulo pode variar de dia para dia, caso o usuário assim desejar. O sistema desarma o alarme após 40 minutos.
 
-O display possui iluminação automática para não aparentar brilho muito intenso quando todas as luzes estiverem desligadas (por meio de circuito baseado em \emph{LDR}). Para o controle da iluminação, há diferentes tempos para desligamento. Por exemplo, quando ocorre controle manual (pelo botão presente no módulo), o tempo pode ser maior. Já pelo modo automático, quando a luz já foi ligada pelo próprio módulo, o tempo para desligamento pode ser menor (por exemplo, 4 minutos).
+O display possui iluminação automática para não aparentar brilho muito intenso quando todas as luzes estiverem desligadas (por meio de circuito baseado em LDR). Para o controle da iluminação, há diferentes tempos para desligamento. Por exemplo, quando ocorre controle manual (pelo botão presente no módulo), o tempo pode ser maior. Já pelo modo automático, quando a luz já foi ligada pelo próprio módulo, o tempo para desligamento pode ser menor (por exemplo, 4 minutos).
 
-Com o monitoramento da presença, há um \emph{preset} da contagem para desligamento sempre que houver presença detectada, de forma a inibir acionamentos desnecessários do relé. Outra aplicação para o monitoramento da presença é a descoberta de comportamento anormal. Por exemplo, se o usuário sempre toma café entre 8 e 10 horas, e não apresentar presença na casa até às 15 horas, o sistema pode notificar emails de parentes cadastrados.
+Com o monitoramento da presença, há um \emph{reset} da contagem para desligamento sempre que houver presença detectada, de forma a inibir acionamentos desnecessários do relé. Outra aplicação para o monitoramento da presença é a descoberta de comportamento anormal. Por exemplo, se o usuário sempre toma café entre 8 e 10 horas, e não apresentar presença na casa até às 15 horas, o sistema pode notificar emails de parentes cadastrados.
 
 \subsection{Módulo de Aquário}
 
@@ -77,7 +77,7 @@ Devido a altos custos de compra, implantação e manutenção de um aquário, qu
 
 \begin{table}[hbp]
 		\centering
-		\caption{Riscos para o Aquário}
+		\caption{Riscos para o aquário}
 		\resizebox{\textwidth}{!}{%
 		\begin{tabular}{cp{8cm}p{8cm}}
 			\toprule
@@ -105,7 +105,7 @@ Na ocasião de troca de água do aquário, cerca de 20\% do volume total é subs
 
 \begin{figure}[H]
 	\centering
-	\caption{Diagrama ilustrativo do módulo de Aquário}
+	\caption{Diagrama ilustrativo do Módulo de Aquário}
 	\includegraphics[width=0.8\textwidth]{diagramaAquario}
 	\label{fig:diagramaAquario}
 \end{figure}
@@ -117,7 +117,7 @@ Para mitigar os riscos descritos anteriormente, foi desenvolvido o módulo de aq
 	\item Monitoramento do nível de água do aquário principal, alerta pelo aplicativo quando não estiver no nível esperado (pode ocorrer por muita evaporação, vazamento ou problema com a bomba);
 	\item Monitoramento da temperatura do aquário, e bloqueamento do aquecedor caso a água já esteja numa temperatura desejável (evitar superaquecimento devido a mal funcionamento do termostato), feito por meio de ligação em série com o termostato do aquário;
 	\item Nos casos de perigo acima descritos, alerta sonoro também localmente (por meio do buzzer).
-	
+
 \end{enumerate}
 
 \subsection{Módulo de Interface com Sistema de Alarmes}
@@ -126,12 +126,12 @@ O módulo de interface com o sistema de alarmes monitora dois setores específic
 
 \begin{figure}[H]
 	\centering
-	\caption{Diagrama ilustrativo do módulo de Interface com Sistema de Alarmes}
+	\caption{Diagrama ilustrativo do Módulo de Interface com Sistema de Alarmes}
 	\includegraphics[width=0.8\textwidth]{diagramaAlarme}
 	\label{fig:diagramaAlarme}
 \end{figure}
 
-Um problema recorrente é a conexão com a internet, que apesar da indicação de estado válido e conectado, não fornecia acesso à sites, tampouco acesso externo por meio de abertura de porta no roteador. Para contornar esse problema, e permitir que o módulo esteja disponível para coleta de dados e persistência em cartão SD, foi instalado também um relê \emph{NF} (normalmente fechado) em série com a alimentação do roteador. Em caso do módulo estar desligado, o roteador ficará ligado.
+Um problema recorrente é a conexão com a internet, que apesar da indicação de estado válido e conectado, não fornecia acesso à sites, tampouco acesso externo por meio de abertura de porta no roteador. Para contornar esse problema, e permitir que o módulo esteja disponível para coleta de dados e persistência em cartão SD, foi instalado também um relê NF (normalmente fechado) em série com a alimentação do roteador. Em caso do módulo estar desligado, o roteador ficará ligado.
 
 Já quando há erro persistente (maior que 10 vezes em intervalos de 2 a 3 minutos), ao realizar a operação de \emph{ping} com sites ou servidores conhecidos, o módulo reinicia a conexão, atuando diretamente no roteador. Ocorre a execução deste procedimento em intervalos cada vez mais espaçados, de forma a não executar muitas vezes o reinício do roteador sem que a conexão seja reestabelecida com sucesso (nas primeiras tentativas, tem-se um intervalo de 3 minutos até a nova tentativa, a partir da terceira vez um intervalo de 10 minutos, e assim por diante).
 
