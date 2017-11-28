@@ -1,0 +1,94 @@
+\chapter{Configurações do Mosquitto}
+\label{att:configMosquitto}
+
+Para a demonstração da implementação, foram configuradas instâncias independentes do MQTT Mosquitto Broker, em um servidor virtual. Este anexo documenta as configurações disponíveis para conexão com tais instâncias.
+Os passos abaixo com o firewall são manuais. Eles estão concentrados em um script, que deve ser rodado após o cadastro de um nova casa (necessário alterar o contador do script).
+
+\textbf{Execução do Script}
+
+ \lstinline{. start.sh}
+
+\textbf{Passos manuais (não necessários se o script acima for executado)}
+
+Para cadastrar novo módulo, primeiro desativar o firewall:
+\lstinline{sudo ufw disable}
+
+Cadastrar o módulo e liberar a porta:
+\lstinline{sudo ufw allow <porta>/tcp}
+
+Ativar o firewall:
+\lstinline{sudo ufw enable}
+
+\textbf{Configurações}
+
+\textbf{Mosquitto 1}
+\begin{lstlisting}
+    Morpheus
+    IP: 138.197.83.143
+    Porta: 8883
+    MorpheusId: adf654wae84fea5d8ea6
+    Password: 123456789
+    
+    Modulos
+    IP: 138.197.83.143
+    Porta: 1883
+    
+    Passwd file
+    00164304:359985
+    adf654wae84fea5d8ea6:123456789
+\end{lstlisting}
+
+\textbf{Mosquitto 2}
+\begin{lstlisting}
+    Morpheus
+    IP: 138.197.83.143
+    Porta: 8884
+    MorpheusId: asd561asd5asd984faee
+    Password: 852456987
+
+    Modulos
+    IP: 138.197.83.143
+    Porta: 1884
+
+    Passwd file
+    0002D3D7:135876
+    01344682:374028
+    000750A1:524708
+    001A1B07:321115
+    0014BB3E:147203
+    asd561asd5asd984faee:852456987
+\end{lstlisting}
+
+\textbf{Mosquitto 3}
+\begin{lstlisting}
+    Morpheus
+    IP: 138.197.83.143
+    Porta: 8885
+    MorpheusId: e5d5e8f4w8e89wef48s9
+    Password: 159753
+
+    Modulos
+    IP: 138.197.83.143
+    Porta: 1885
+    
+    Passwd file
+    00163205:958668
+    e5d5e8f4w8e89wef48s9:159753
+\end{lstlisting}
+
+\textbf{Mosquitto 4}
+\begin{lstlisting}
+    Morpheus
+    IP: 138.197.83.143
+    Porta: 8886
+    MorpheusId: eeqeo345439do0982o29
+    Password: 987456321
+
+    Modulos
+    IP: 138.197.83.143
+    Porta: 1886
+    
+    Passwd file
+    01681382:664361
+    eeqeo345439do0982o29:987456321
+\end{lstlisting}
