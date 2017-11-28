@@ -1025,7 +1025,7 @@ Por fim, devem-se criar certificados válidos tanto para o \emph{broker} Mosquit
 
 \begin{enumerate}
 \item
-Criação da autoridade certificadora (chave e certificado). Para a versão atual, a senha é \textt{hedwig123}.
+Criação da autoridade certificadora (chave e certificado). Para a versão atual, a senha é \texttt{hedwig123}.
 
 \lstinline{openssl req -new -x509 -extensions v3\_ca -keyout ca.key -out ca.crt}
 \item
@@ -1038,7 +1038,7 @@ openssl x509 -req -in mosquitto.csr -CA ../ca.crt -CAkey ../ca.key -CAcreateseri
 \end{lstlisting}
 
 \item
-Criação de chave e certificado para o Morpheus. O \emph{common name} deve ser \textt{localhost}.
+Criação de chave e certificado para o Morpheus. O \emph{common name} deve ser \texttt{localhost}.
 
 \begin{lstlisting}[language=bash]
 openssl genrsa -out morpheus.key 2048
