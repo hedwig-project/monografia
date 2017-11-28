@@ -1,7 +1,7 @@
 \chapter{Especificação}
 
-\section{Stakeholders}
-Um dos passos iniciais na elaboração de um projeto é a determinação das partes interessadas. Com esse conhecimento, pode-se entender as necessidades dos diferentes perfis de clientes e as expectativas desses grupos em relação ao uso do produto. Por meio da análise de aplicação, tanto do projeto desenvolvido quanto dos dispositivos existentes, pode-se destacar os seguintes grupos dentre os potenciais consumidores:
+\section{Partes interessadas}
+Um dos passos iniciais na elaboração de um projeto é a determinação das partes interessadas (\emph{stakeholders}). Com esse conhecimento, pode-se entender as necessidades dos diferentes perfis de clientes e as expectativas desses grupos em relação ao uso do produto. Por meio da análise de aplicação, tanto do projeto desenvolvido quanto dos dispositivos existentes, pode-se destacar os seguintes grupos dentre os potenciais consumidores:
 
 \begin{itemize}
 \item Pessoas que moram sozinhas e seus familiares;
@@ -21,7 +21,7 @@ Considerando o Censo de 2010 \cite{ibge}, pode-se estimar as classes de consumid
 
 O levantamento de requisitos funcionais e não funcionais são definidos a seguir. Para requisitos funcionais, utilizou-se o termo \emph{RF} seguido de um número identificador --- e.g. \emph{RF-1}. Os requisitos não-funcionais levam o termo \emph{RNF}, também seguido de um identificador numérico --- e.g. \emph{RNF-1}.
 
-\subsection{Requisitos Funcionais}
+\subsection{Requisitos funcionais}
 \begin{description}
 \item[RF-1:]O sistema deve permitir o monitoramento de aparelhos do dia a dia, dentro de uma residência, de maneira independente;
 \item[RF-2:]O sistema deve ser capaz de noficar o usuário sobre o estado da casa --- e.g. temperatura, presença, etc;
@@ -38,7 +38,7 @@ O levantamento de requisitos funcionais e não funcionais são definidos a segui
 
 \end{description}
 
-\subsection{Requisitos Não-Funcionais}
+\subsection{Requisitos não-funcionais}
 O levantamento de requisitos não-funcionais foi realizado com base na norma ISO25010:2011 \cite{iso25010}.
 
 \begin{description}
@@ -52,9 +52,9 @@ O levantamento de requisitos não-funcionais foi realizado com base na norma ISO
 \item[RNF-8:]O sistema deve ser escalável a até 10 mil usuários, sem perdas de desempenho consideráveis, ou aumento na latência para as requisições serem atendidas, com variação de até 5\%. A verificação deve ser realizadas com softwares de análise de performance comerciais\footnote{Um exemplo de aplicação de monitoramento de rede é desenvolvida pela empresa Dynatrace \url{https://www.dynatrace.com/} };
 \item[RNF-9:]O sistema deve possuir instalação intuitiva e simplificada --- a instalação é realizada em passos, seguindo o manual de instruções, sem a necessidade de conhecimentos de computação ou eletrônica;
 \item[RNF-10:]O sistema deve atender e processar requisições em paralelo, tanto dos usuários quanto dos dispositivos físicos;
-\item[RNF-11:]O sistema deve autenticar e autorizar as requisições recebidas, descartando as requisições inválidas. 
+\item[RNF-11:]O sistema deve autenticar e autorizar as requisições recebidas, descartando as requisições inválidas.
 \end{description}
 
-\subsection{Funcionalidades por Nível de Conectividade}
+\subsection{Funcionalidades por nível de conectividade}
 
 Os requisitos apresentados anteriormente detalham o sistema completo. Para que o requisito \emph{RNF-4} fosse implementado, o projeto incorporou três níveis de funcionalidade --- \emph{Online}, \emph{Local} e \emph{Offline}. O primeiro nível, \emph{Online}, é o mais amplo e caracteriza o comportamento normal do sistema, quando todas as conexões estão disponíveis, e os dispositivos e serviços funcionam corretamente. O nível \emph{Local} modela o cenário de não haver possibilidade de conexão externa com a casa, como é o caso quando não há internet disponível. O último nível, \emph{Offline}, reflete uma situação emergencial, no caso de problemas com o servidor interno, por exemplo.

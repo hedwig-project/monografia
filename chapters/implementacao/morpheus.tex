@@ -146,8 +146,8 @@ O servidor foi desenvolvido com base nas regras de negócio seguintes. Cada regr
 
 \paragraph{Configuração (\texttt{configuration})}
 \begin{itemize}
-\item Sentido: Morpheus para módulo
-\item Uso: Envio de parâmetros para configuração dos módulos.
+\item Sentido: Morpheus para módulo.
+\item Uso: envio de parâmetros para configuração dos módulos.
 \end{itemize}
 
 \textbf{Configuração de hora}
@@ -211,8 +211,8 @@ backlight: <0 | 1 | 2>
 
 \paragraph{Requisição de ação (\texttt{action\_request})}
 \begin{itemize}
-\item Sentido: Servidor para módulo
-\item Uso: Quando um usuário faz a requisição de uma ação por meio do aplicativo. Por exemplo, quando deseja-se acender uma luz, o aplicativo envia uma requisição para o servidor local, o qual enviará uma mensagem de action\_request para o módulo correspondente.
+\item Sentido: Morpheus para módulo.
+\item Uso: quando um usuário faz a requisição de uma ação por meio do aplicativo. Por exemplo, quando deseja-se acender uma luz, o aplicativo envia uma requisição para o Morpheus, que enviará uma mensagem de \texttt{action\_request} para o módulo correspondente.
 \end{itemize}
 
 \textbf{Requisição de acionamento}
@@ -224,7 +224,7 @@ $ty: rele1_action
 rele1: <0 | 1>
 @
 \end{lstlisting}
-Essa mensagem fica sem efeito no caso do módulo de acesso, que usa mensagens com senha para o acionamento o Rele 1.
+Essa mensagem fica sem efeito no caso do Módulo de Acesso, que usa mensagens com senha para o acionamento do relê 1.
 
 Rele1: 0 = desligar; 1 = ligar
 
@@ -238,7 +238,7 @@ rele2: <0 | 1>
 \end{lstlisting}
 Rele2: 0 = desligar; 1 = ligar
 
-\textbf{Requisição de SW Restart}
+\textbf{Requisição de reinício de software}
 \begin{lstlisting}
 #action_request
 $ts: <timestamp>
@@ -247,9 +247,9 @@ $ty: sw_reset
 swreset: <0 | 1>
 @
 \end{lstlisting}
-0 = não; 1 = confirmar reinicio
+0 = não; 1 = confirmar reinício
 
-\textbf{Requisição de Teste de Auto Reset}
+\textbf{Requisição de teste de Auto Reset}
 \begin{lstlisting}
 #action_request
 $ts: <timestamp>
@@ -258,12 +258,12 @@ $ty: autoreset_test
 autoreset: <0 | 1>
 @
 \end{lstlisting}
-0 = não; 1 = confirmar reinicio
+0 = não; 1 = confirmar reinício
 
-\textbf{Confirmação (\texttt{confirmation})}
+\paragraph{Confirmação (\texttt{confirmation})}
 \begin{itemize}
-\item Sentido: Do módulo para o servidor
-\item Uso: Confirmação de uma configuração, patch ou requisição de ação, vindas do servidor.
+\item Sentido: do módulo para o servidor.
+\item Uso: confirmação de uma configuração, \emph{patch} ou requisição de ação vindas do servidor.
 \end{itemize}
 
 \textbf{Confirmação de hora}
@@ -303,7 +303,7 @@ ap password: <senha do ap para acesso direto>
 @
 \end{lstlisting}
 
-\textbf{Confirmação de RF}
+\textbf{Confirmação de configuração de RF}
 \begin{lstlisting}
 #confirmation
 $ts: <timestamp>
@@ -313,7 +313,7 @@ $ty: rf_confirm
 @
 \end{lstlisting}
 
-\textbf{Configuração de Display}
+\textbf{Configuração de configuração de display}
 \begin{lstlisting}
 #confirmation
 $ts: <timestamp>
@@ -324,7 +324,7 @@ backlight: <0 | 1>
 @
 \end{lstlisting}
 
-\textbf{Confirmação de SW Restart}
+\textbf{Confirmação de reinício de software}
 \begin{lstlisting}
 #confirmation
 $ts: <timestamp>
@@ -334,7 +334,7 @@ swreset: <0 | 1>
 @
 \end{lstlisting}
 
-\textbf{Confirmação de Teste de Auto Reset}
+\textbf{Confirmação de teste de Auto Reset}
 \begin{lstlisting}
 #confirmation
 $ts: <timestamp>
@@ -346,11 +346,11 @@ autoreset: <0 | 1>
 
 \paragraph{Transmissão de dados (\texttt{data\_transmission})}
 \begin{itemize}
-\item Sentido: Do módulo para o servidor
-\item Uso: Envio de dados de sensores para o servidor
+\item Sentido: do módulo para o servidor.
+\item Uso: envio de dados de sensores para o servidor.
 \end{itemize}
 
-\textbf{Transmissão de Umidade, Temperatura, Presença e Reles}
+\textbf{Transmissão de umidade, temperatura, presença e relês}
 \begin{lstlisting}
 #data_transmission
 $ts: <timestamp>
@@ -371,16 +371,16 @@ vl5: <value>
 
 \paragraph{Requisição de dados (\texttt{data\_request})}
 \begin{itemize}
-\item Sentido: Do módulo para o servidor
+\item Sentido: do módulo para o servidor.
 \item Protocolo: \wmqtt{}
-\item Uso: Requisição de alguma informação do servidor. Ex.: atualização de hora
+\item Uso: requisição de alguma informação do servidor (ex.: atualização de hora).
 \end{itemize}
 
 
 \textbf{Mensagens próprias para o Módulo de Acesso}
 
 
-\textbf{Configuração de Alarme}
+\textbf{Configuração de alarme}
 \begin{lstlisting}
 #configuration
 $ts: <timestamp>
@@ -391,7 +391,7 @@ alarme_tempo: <int do tempo em segundos>
 @
 \end{lstlisting}
 
-\textbf{Configuração de Luz Automática}
+\textbf{Configuração de luz automática}
 \begin{lstlisting}
 #configuration
 $ts: <timestamp>
@@ -416,7 +416,7 @@ time_deslmanual2: <tempo em minutos>
 @
 \end{lstlisting}
 
-\textbf{Configuração de Senha}
+\textbf{Configuração de senha}
 \begin{lstlisting}
 #configuration
 $ts: <timestamp>
@@ -427,7 +427,7 @@ new_password: <string>
 @
 \end{lstlisting}
 
-\textbf{Abertura de Portão}
+\textbf{Abertura de portão}
 \begin{lstlisting}
 #action_request
 $ts: <timestamp>
@@ -437,7 +437,7 @@ password: <string>
 @
 \end{lstlisting}
 
-\textbf{Confirmação de Alarme}
+\textbf{Confirmação de alarme}
 \begin{lstlisting}
 #confirmation
 $ts: <timestamp>
@@ -448,7 +448,7 @@ alarme_tempo: <tempo em minutos>
 @
 \end{lstlisting}
 
-\textbf{Confirmação de Luz Automática}
+\textbf{Confirmação de configuracão de luz automática}
 \begin{lstlisting}
 #confirmation
 $ts: <timestamp>
@@ -473,7 +473,7 @@ time_deslmanual2: <tempo em minutos>
 @
 \end{lstlisting}
 
-\textbf{Confirmação de Senha}
+\textbf{Confirmação de senha}
 \begin{lstlisting}
 #confirmation
 $ts: <timestamp>
@@ -483,7 +483,7 @@ password: <string>
 @
 \end{lstlisting}
 
-\textbf{Transmissão de Estado de Acesso}
+\textbf{Transmissão de estado de acesso}
 \begin{lstlisting}
 #data_transmission
 $ts: <timestamp>
@@ -498,11 +498,11 @@ vl: <value>
 @
 \end{lstlisting}
 
-tempo alarme: tempo em minutos em que o sensor de abertura está aberto.
+tempo\_alarme: tempo em minutos em que o sensor de abertura está aberto.
 
 \textbf{Mensagens próprias para o Módulo do Quarto}
 
-\textbf{Configuração de Despertador}
+\textbf{Configuração de despertador}
 \begin{lstlisting}
 #configuration
 $ts: <timestamp>
@@ -513,7 +513,7 @@ despertador_tempo: <tempo em minutos>
 @
 \end{lstlisting}
 
-\textbf{Configuração de Luz Automática}
+\textbf{Configuração de luz automática}
 \begin{lstlisting}
 #configuration
 $ts: <timestamp>
@@ -526,7 +526,7 @@ time_deslmanual: <tempo em minutos>
 @
 \end{lstlisting}
 
-\textbf{Confirmação de Despertador}
+\textbf{Confirmação de despertador}
 \begin{lstlisting}
 #confirmation
 $ts: <timestamp>
@@ -537,7 +537,7 @@ despertador_tempo: <tempo em minutos>
 @
 \end{lstlisting}
 
-\textbf{Confirmação de Luz Automática}
+\textbf{Confirmação de luz automática}
 \begin{lstlisting}
 $ts: <timestamp>
 $ty: acesso_config
@@ -550,7 +550,7 @@ time_deslmanual: <tempo em minutos>
 
 \textbf{Mensagens próprias para o Módulo do Externo}
 
-\textbf{Configuração de Alerta de 1 (Água) e 2 (Energia Elétrica)}
+\textbf{Configuração de alerta de 1 (água) e 2 (energia elétrica)}
 \begin{lstlisting}
 #configuration
 $ts: <timestamp>
@@ -563,7 +563,7 @@ alerta2_nivel: <vl>
 @
 \end{lstlisting}
 
-\textbf{Confirmação de Alerta de 1 (Água) e 2 (Energia Elétrica)}
+\textbf{Confirmação de configuração de alerta de 1 (água) e 2 (energia elétrica)}
 \begin{lstlisting}
 #confirmation
 $ts: <timestamp>
@@ -576,7 +576,7 @@ alerta2_nivel: <vl>
 @
 \end{lstlisting}
 
-\textbf{Transmissão de Estado de Externo}
+\textbf{Transmissão de estado de Módulo Externo}
 \begin{lstlisting}
 #data_transmission
 $ts: <timestamp>
@@ -608,7 +608,7 @@ cook_mode: <"auto" | "manual">
 @
 \end{lstlisting}
 
-\textbf{Confirmação de Programação para Preparo (café ou arroz)}
+\textbf{Confirmação de programação para preparo (café ou arroz)}
 \begin{lstlisting}
 #confirmation
 $ts: <timestamp>
@@ -621,7 +621,7 @@ cook_mode: <"auto" | "manual">
 @
 \end{lstlisting}
 
-\textbf{Transmissão de Estado de Cozinha}
+\textbf{Transmissão de estado do Módulo da Cozinha}
 \begin{lstlisting}
 #data_transmission
 $ts: <timestamp>
@@ -644,7 +644,7 @@ $ty: gas_offset
 @
 \end{lstlisting}
 
-\subsubsection{Testes realizados da comunicação Morpheus e módulos:}
+\subsubsection{Testes realizados da comunicação Morpheus e módulos}
 
 Para que fosse simulado o envio de mensagens, o aplicativo \wmqtt{} Fx\footnote{http://mqttfx.jensd.de/} foi utilizado. Com o uso deste software, é possível se inscrever em determinado tópico, enviar as credenciais para o \emph{broker}, tanto em forma de usuário e senha, quando em forma de certificados, além de publicar no tópico desejado.
 
@@ -658,9 +658,9 @@ rele1: 0
 @
 \end{lstlisting}
 
-\emph{Esperado: 0 no serial do Arduino, indicando recebimento}
+\emph{Esperado: 0 no serial do Arduino, indicando recebimento.}
 
-\emph{Resultado: De acordo}
+\emph{Resultado: de acordo.}
 
 \textbf{Requisição de acionamento 2}
 \begin{lstlisting}
@@ -672,11 +672,11 @@ rele2: 1
 @
 \end{lstlisting}
 
-\emph{Esperado: 1 no serial do Arduino, indicando recebimento}
+\emph{Esperado: 1 no serial do Arduino, indicando recebimento.}
 
-\emph{Resultado: De acordo}
+\emph{Resultado: de acordo.}
 
-\textbf{Requisição e confirmação de SW Restart}
+\textbf{Requisição e confirmação de reinício de software}
 \begin{lstlisting}
 #action_request
 $ts: <timestamp>
@@ -686,11 +686,11 @@ swreset: 1
 @
 \end{lstlisting}
 
-\emph{Esperado: Confirmação de SW Restart no tópico \wmqtt{} m2s}
+\emph{Esperado: confirmação de SW Restart no tópico \wmqtt{} m2s.}
 
-\emph{Resultado: De acordo}
+\emph{Resultado: de acordo.}
 
-\textbf{Requisição e confirmação de Teste de Auto Reset}
+\textbf{Requisição e confirmação de teste de Auto Reset}
 \begin{lstlisting}
 #action request
 $ts: <timestamp>
@@ -700,9 +700,9 @@ autoreset: 1
 @
 \end{lstlisting}
 
-\emph{Esperado: Confirmação no tópico \wmqtt{} m2s}
+\emph{Esperado: confirmação no tópico \wmqtt{} m2s.}
 
-\emph{Resultado: De acordo}
+\emph{Resultado: de acordo.}
 
 \textbf{Configuração e confirmação de hora}
 \begin{lstlisting}
@@ -714,9 +714,9 @@ updated_ntp: 293029
 @
 \end{lstlisting}
 
-\emph{Esperado: Confirmação no tópico \wmqtt{} m2s}
+\emph{Esperado: confirmação no tópico \wmqtt{} m2s.}
 
-\emph{Resultado: De acordo}
+\emph{Resultado: de acordo.}
 
 \textbf{Configuração e confirmação de nome}
 \begin{lstlisting}
@@ -730,9 +730,9 @@ new_rele2name: Portal2
 @
 \end{lstlisting}
 
-\emph{Esperado: Confirmação no tópico \wmqtt{} m2s}
+\emph{Esperado: confirmação no tópico \wmqtt{} m2s.}
 
-\emph{Resultado: De acordo}
+\emph{Resultado: de acordo.}
 
 \textbf{Configuração e confirmação de comunicação}
 \begin{lstlisting}
@@ -749,9 +749,9 @@ ap_password: 1234
 @
 \end{lstlisting}
 
-\emph{Esperado: Confirmação no tópico \wmqtt{} m2s}
+\emph{Esperado: confirmação no tópico \wmqtt{} m2s.}
 
-\emph{Resultado: De acordo}
+\emph{Resultado: de acordo.}
 
 \textbf{Configuração e confirmação de RF}
 \begin{lstlisting}
@@ -763,9 +763,9 @@ Janela4: 01234
 @
 \end{lstlisting}
 
-\emph{Esperado: Confirmação no tópico \wmqtt{} m2s}
+\emph{Esperado: confirmação no tópico \wmqtt{} m2s.}
 
-\emph{Resultado: De acordo}
+\emph{Resultado: de acordo.}
 
 \textbf{Configuração e confirmação de display}
 \begin{lstlisting}
@@ -778,18 +778,18 @@ backlight: 1
 @
 \end{lstlisting}
 
-\emph{Esperado: Confirmação no tópico \wmqtt{} m2s}
+\emph{Esperado: confirmação no tópico \wmqtt{} m2s.}
 
-\emph{Resultado: De acordo}
+\emph{Resultado: de acordo.}
 
-\textbf{Transmissão de Umidade Temperatura e Presença e Reles}
+\textbf{Transmissão de umidade, temperatura, presença e relês}
 \begin{lstlisting}
 messageToSend = UmiTempPresReles(0,80,25,1,1,0);
 \end{lstlisting}
 
-\emph{Esperado: Mensagem no Tópico \wmqtt{} m2s}
+\emph{Esperado: mensagem no tópico \wmqtt{} m2s.}
 
-\emph{Resultado: De acordo}
+\emph{Resultado: de acordo.}
 
 \subsection{Protocolo para troca de mensagens com a nuvem}
 A troca de mensagens entre Morpheus e servidor na nuvem ocorre por meio de WebSockets. Como explicado anteriormente, caso o servidor local provesse uma \emph{API REST} aberta à conexões externas, seriam necessárias configurações, software e hardware avançados para a proteção, o que seria inviável para o propósito em questão. Além disso, usuários domésticos possuem endereços IP dinâmicos, de maneira que seria necessária a atualização desse endereço na nuvem a cada mudança. Com a utilização do WebSocket, o servidor local é um cliente que solicita a abertura de uma conexão com a nuvem, que é mantida aberta a partir daí.
@@ -797,7 +797,7 @@ A troca de mensagens entre Morpheus e servidor na nuvem ocorre por meio de WebSo
 A comunicação com a nuvem é baseada em eventos, que são recebidos e enviados com os dados relevantes. Os eventos estão descritos a seguir.
 
 \subsubsection{Morpheus}
-O Morpheus ouve os seguintes eventos vindos da nuvem.
+O Morpheus ouve os seguintes eventos vindos da nuvem:
 
 \begin{itemize}
 \item \texttt{configuration}
@@ -806,7 +806,7 @@ O Morpheus ouve os seguintes eventos vindos da nuvem.
 \end{itemize}
 
 \subsubsection{Nuvem}
-A nuvem ouve os seguintes eventos vindos do Morpheus.
+A nuvem ouve os seguintes eventos vindos do Morpheus:
 
 \begin{itemize}
 \item \texttt{confirmation}
@@ -1061,43 +1061,43 @@ Conforme mostrado anteriormente no guia de instalação (item \ref{sec:arquivosC
 \item
 Conectar na porta 1883 sem usuário e senha.
 
-Esperado: Falha de conexão
+Esperado: falha de conexão.
 
-Resultado: Bem sucedido.
+Resultado: bem-sucedido.
 \item Conectar na porta 1883 com usuário e senha corretos.
 
-Esperado: Permissão de conexão
+Esperado: permissão de conexão.
 
-Resultado: Bem sucedido.
+Resultado: bem-sucedido.
 \item
-Conectar com credenciais corretas e tentar publicar em tópico que não pertence ao seu usuário
+Conectar com credenciais corretas e tentar publicar em tópico que não pertence ao seu usuário.
 
-Esperado: Não publicação
+Esperado: não-publicação.
 
-Resultado: Bem sucedido.
+Resultado: bem-sucedido.
 \item
-Conectar com credenciais corretas e tentar publicar em tópico que pertence ao seu usuário
+Conectar com credenciais corretas e tentar publicar em tópico que pertence ao seu usuário.
 
-Esperado: Publicação
+Esperado: publicação.
 
-Resultado: Bem sucedido.
+Resultado: bem-sucedido.
 \item
-Conectar com credenciais corretas e tentar ouvir de um tópico que não pertence ao seu usuário
+Conectar com credenciais corretas e tentar ouvir um tópico que não pertence ao seu usuário.
 
-Esperado: Não receber dados
+Esperado: não receber dados.
 
-Resultado: Bem sucedido.
+Resultado: bem-sucedido.
 \item
-Conectar com credenciais corretas e tentar ouvir de um tópico que pertence ao seu usuário
+Conectar com credenciais corretas e tentar ouvir um tópico que pertence ao seu usuário.
 
-Esperado: Receber dados
+Esperado: receber dados.
 
-Resultado: Bem sucedido.
+Resultado: bem-sucedido.
 
 \item
-Conectar com credenciais referentes ao Morpheus e tentar publicar ou ouvir qualquer tópico começando com hw.
+Conectar com credenciais referentes ao Morpheus e tentar publicar ou ouvir qualquer tópico começando com \texttt{hw}.
 
-Esperado: Publicação ou subscrição com sucesso
+Esperado: publicação ou subscrição com sucesso.
 
-Resultado: Bem sucedido.
+Resultado: bem-sucedido.
 \end{enumerate}
