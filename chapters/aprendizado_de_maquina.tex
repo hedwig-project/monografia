@@ -7,29 +7,68 @@
 		% TODO colocar referencia https://hbr.org/2017/07/whats-driving-the-machine-learning-explosion
 		Apesar do conceito de aprendizado de máquina existir desde a década de 50, seu crescimento e relevância aumentaram apenas na última decada. Alguns fatores levaram a esse crescimento acelerado. Os principais foram o aumento da quantidade de dados - e aplicações de \emph{IoT} têm propulsionado esse aumento - coletados e disponíveis, a melhora nos algoritmos, e o \emph{hardware} cada vez mais poderoso dos computadores. Esses últimos dois fatores permitem que a vasta quantidade de dados que possuímos possam ser analisados em tempo viável.
 
-	\section{Relação com o projeto Hedwig}
+	\section{Aprendizado de máquina no projeto Hedwig}
 		No projeto Hedwig, a utilização de aprendizado de máquina tem o intuito de trazer melhorias de usabilidade do sistema ao usuário, além de poder trazer medidas de segurança à casa do mesmo.
 
 		As melhorias de usabilidade podem ocorrer, por exemplo, quando o sistema aprende alguma rotina do usuário e se torna então capaz de prever quando determinada ação seria solicitada pelo usuário. A partir disso, ele então poderia passar a realizar tal ação automaticamente, ou sugerir a realização de tal ação para o usuário, sem que seja necessário que o usuário proativamente aja para solicitar a ação.
 
 		No quesito de segurança, o sistema pode, a partir do aprendizado de rotinas, detectar ações suspeitas na casa (como por exemplo a abertura da porta de entrada em horário não usual), e opcionalmente agir para intervir quando tal tipo de ação é detectada.
 
-		% TODO possivelmente falar sobre a utilização de sistemas prontos em nuvem para ML
+		No Hedwig, foi desenvolvida uma análise baseada em dados coletados durante os meses de setembro e outubro, em um dos módulos que mantivemos instalados - o módulo de corredor, que já foi citado no capítulo anterior. A análise aqui descrita focou-se em gerar um algoritmo capaz de prever quando o usuário iria solicitar ao sistema a ativação do relé 1, que, no caso do módulo em análise está conectado à lampada do corredor. 
+
+		% TODO adicionar aqui caso mais análises tenham sido feitas
+
 
 	\section{Implementação}
+		% TODO possivelmente falar sobre a possiblidade de utilização de sistemas prontos em nuvem para ML
+		% (Google Cloud, Tensor Flow, AWS ML, Microsoft (Luis?), IBM (Bluemix?))
 
 		\subsection{Linguagem, ferramentas e bibliotecas}
 			% TODO maybe get some references for paragraph below
 
-			Uma das vantagens da popularização que se vê atualmente do uso de aprendizado de máquina é o surgimento de muitas facilidades para o desenvolvimento de aplicações de aprendizado de máquina, devido às vantagens que advém de grande comunidade trabalhando com o tema. 
+			Uma das vantagens da popularização que se vê atualmente do uso de aprendizado de máquina é o surgimento de muitas facilidades para o desenvolvimento de aplicações que envolvam esse tema, devido às vantagens que advém de existir grande comunidade trabalhando com o tema.
 
 			Atualmente as duas principais linguagens sendo utilizadas para ciência de dados e aprendizado de máquina são Python e R. As duas são linguagens interpretadas, e que possuem funcionalidade REPL (Read-Eval-Print-Loop), possibilitando desenvolvimento altamente interativo e de fácil visualização de dados e gráficos, enquanto se programa.
 
-			Para o desenvolvimento de funcionalidades de aprendizado de máquina no Hedwig, foi escolhida a linguagem Python. Apesar de R ser uma linguagem que já nasceu voltada à análise de dados e tratamento estatístico, Python possui diversos pacotes e bibliotecas que conseguem adicionar tais funcionalidades à linguagem. Tais pacotes estão altamente popularizados, e portanto é muito fácil percorrer suas documentações e procurar ajuda em fóruns online para acelerar o aprendizado de suas funcionalidades. Python, por sua vez, é uma linguagem de uso geral (\emph{general purpose language}), o que também tem seus lados positivos. Além de ser uma linguagem extremamente bem estabelecida, o fato de ser de uso geral implica que existem também pacotes e bibliotecas que possibilitam o uso de Python para desenvolvimento de aplicativos com funcionalidades de \emph{back-end} para serviços \emph{web}. Isso se torna de altamente interessante por nos possibilitar facilmente transformar essa aplicação em um microsserviço, que também interaja em tempo real com o servidor em nuvem do Hedwig, permitindo que o serviço de aprendizado de máquina aja em tempo real com toda a aplicação.
+			Para o desenvolvimento de funcionalidades de aprendizado de máquina no Hedwig, foi escolhida a linguagem Python. Apesar de R ser uma linguagem que já nasceu voltada à análise de dados e tratamento estatístico, Python possui diversos pacotes e bibliotecas que conseguem adicionar tais funcionalidades à mesma. Tais pacotes estão altamente popularizados, e portanto é muito fácil percorrer suas documentações e procurar ajuda em fóruns online para acelerar o aprendizado de suas funcionalidades. Python, por sua vez, é uma linguagem de uso geral (\emph{general purpose language}), o que também tem seus lados positivos. Além de ser uma linguagem extremamente bem estabelecida, o fato de ser de uso geral implica que existem também pacotes e bibliotecas que possibilitam o uso de Python para desenvolvimento de aplicativos com funcionalidades de \emph{back-end} para serviços \emph{web}. Isso se torna de altamente interessante por nos possibilitar facilmente transformar essa aplicação em um microsserviço, que também interaja em tempo real com o servidor em nuvem do Hedwig, permitindo que o serviço de aprendizado de máquina aja em tempo real com toda a aplicação. Dessa forma, a linguagem escolhida para o desenvolvimento do microsserviço de aprendizado de máquina foi Python.
 
-			Alguns dos pacotes sendo utilizados 
+			Os principais pacotes sendo utilizados para auxiliar nas funcionalidades de análise de dados e aprendizado de máquina são:
+
+			\begin{description}
+				\item [Numpy] Pacote que dá à linguagem Python algumas facilidades para se lidar com estruturas numéricas como matrizes.
+				\item [Pandas] Pacote para manuseio de dados. Dá facilidades para a importação de dados de fontes externas, e a utilzação dos mesmos a partir disso.
+				\item [Scikit] Pacote com funcionalidades de análise de dados, e implementação dos principais algoritmos de aprendizado de máquina.
+				\item [Pylab] Pacote que implementa funcionalidades para geração de gráficos
+				% \item [Matplotlib] 
+				% \item [Seaborn]
+			\end{description}
+
+			A principal ferramenta utilizada durante o desenvolvimento de código de aprendizado de máquina chama-se Jupyter Notebook \footnote{http://jupyter.org/}. Essa ferramenta é uma aplicação \emph{web} de distribuição gratuita, que permite a criação e compartilhamento de documentos com código que pode ser interpretado interativamente, conforme se vai programando, e que, junto com os trechos de código executado coloca suas saídas, bem como gráficos gerados pelo trecho, permitindo ao usuário também colocar explicações ou textos gerais em liguagem Markdown, em meio ao código, de forma a explicá-lo. É uma ferramenta altamente utilizada para aplicações de análise de dados atualmente.
 
 		\subsection{Etapas}
+
+		% https://www.ibm.com/developerworks/community/blogs/jfp/entry/What_Is_Machine_Learning?lang=en 
+		% https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+		% https://medium.com/dunder-data/how-to-learn-pandas-108905ab4955
+
+			O desenvolvimento de aplicações de aprendizado de máquina é caracterizado por algumas etapas  
+
+
+			Problem definition
+Data capture
+Data analysis & preparation
+Model training
+Train and test data
+https://www.digitalocean.com/community/tutorials/how-to-build-a-machine-learning-classifier-in-python-with-scikit-learn  → fala sobre como funciona a divisao em pedaços do data set
+Model evaluation
+Final product: application or report
+
+
 		\subsection{Algoritmos}
+		% É algoritmo supervisionado, de classificacao --> pegar referencias do ISLR
+
 		\subsection{Tratamento de Dados}
+		% http://scott.fortmann-roe.com/docs/BiasVariance.html 
+		% Falar sobre tratamento dos dados: undersampling/oversampling (fato de que a maioria dos dados de ativação é falso)
+
 		\subsection{Seleção de Características}
