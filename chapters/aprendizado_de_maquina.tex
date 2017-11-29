@@ -45,14 +45,14 @@
 
 			A principal ferramenta utilizada durante o desenvolvimento de código de aprendizado de máquina chama-se Jupyter Notebook \footnote{http://jupyter.org/}. Essa ferramenta é uma aplicação \emph{web} de distribuição gratuita, que permite a criação e compartilhamento de documentos com código que pode ser interpretado interativamente, conforme se vai programando, e que, junto com os trechos de código executado coloca suas saídas, bem como gráficos gerados pelo trecho, permitindo ao usuário também colocar explicações ou textos gerais em liguagem Markdown, em meio ao código, de forma a explicá-lo. É uma ferramenta altamente utilizada para aplicações de análise de dados atualmente.
 
-		\subsection{Etapas}
+		\subsection{Etapas para o desenvolvimento de aplicação de aprendizado de máquina}
 
-		% https://www.ibm.com/developerworks/community/blogs/jfp/entry/What_Is_Machine_Learning?lang=en 
-		% https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
-		% https://medium.com/dunder-data/how-to-learn-pandas-108905ab4955
-		% https://www.digitalocean.com/community/tutorials/
-		% how-to-build-a-machine-learning-classifier-in-python-with-scikit-learn  → fala sobre como funciona a divisao em pedaços do data set
-		% TODO colocar referencia à seção direito
+			% https://www.ibm.com/developerworks/community/blogs/jfp/entry/What_Is_Machine_Learning?lang=en 
+			% https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
+			% https://medium.com/dunder-data/how-to-learn-pandas-108905ab4955
+			% https://www.digitalocean.com/community/tutorials/
+			% how-to-build-a-machine-learning-classifier-in-python-with-scikit-learn  → fala sobre como funciona a divisao em pedaços do data set
+			% TODO colocar referencia à seção direito
 
 			O desenvolvimento de aplicações de aprendizado de máquina é caracterizado por algumas etapas. 
 
@@ -66,21 +66,50 @@
 
 			A partir do treinamento dos modelos, e da separação de alguns dados para teste, é possível então avaliar quão bem os algoritmos estão performando para a previsão de resultados.
 
-			O último passo costuma ser a elaboração do produto final: normalmente a integração sistema de aprendizado com outras aplicações ou então a elaboração de relatórios.
-			% TODO explicar um pouco melhor o que sao esses relatorios
+			O último passo costuma ser a elaboração do produto final: normalmente a integração sistema de aprendizado com outras aplicações ou então a elaboração de relatórios para que os modelos treinados para o problema sejam levados adiante.
 
 			Nas próximas seções exploraremos o desenvolvimento desses últimos passos no projeto Hedwig.
 
-		\subsection{Tratamento de dados}
-		% http://scott.fortmann-roe.com/docs/BiasVariance.html 
-		% Falar sobre tratamento dos dados: undersampling/oversampling (fato de que a maioria dos dados de ativação é falso)
-
-		No problema em análise, os dados que possuímos são
-
 		\subsection{Algoritmos}
-		% É algoritmo supervisionado, de classificacao --> pegar referencias do ISLR
+			% É algoritmo supervisionado, de classificacao --> pegar referencias do ISLR
 
-		\subsection{Seleção de características e treinamento dos modelos}
+
+					ISLR: Broadly speaking,
+			supervised statistical learning involves building a statistical model for pre-
+			dicting, or estimating, an output based on one or more inputs. Problems of
+			this nature occur in fields as diverse as business, medicine, astrophysics, and
+			public policy. With unsupervised statistical learning, there are inputs but
+			no supervising output; nevertheless we can learn relationships and struc-
+			ture from such data. To provide an illustration of some applications of
+			statistical learning, we briefly discuss three real-world data sets that are
+			considered in this book.
+
+		\subsection{Tratamento de dados}
+			% http://scott.fortmann-roe.com/docs/BiasVariance.html 
+			% Falar sobre tratamento dos dados: undersampling/oversampling (fato de que a maioria dos dados de ativação é falso)
+
+			No problema em análise, os dados que possuímos são:
+
+			\begin{itemize}
+				\item \emph{Timestamp} com dia e hora 
+				\item Luminosidade
+				\item Temperatura
+				\item Umidade
+				\item Presença
+				\item Ativação do relé (para o relé 1 e para o relé 2)
+				\item Tipo de ativação (via botão, app backup, controle remoto, ativação agendada)
+				\item Status dos relés
+			\end{itemize}
+
+			O objetivo de nosso primeiro estudo então é o desenvolvimento de um modelo que aprenda a prever quando ocorrerá uma ativação do relé pelo usuário.
+
+			A primeira coisa que é necessária de ser levada em consideração é que a ativação pode ter ocorrido em decorrência de um agendamento. Nesse caso, devemos desconsiderar essa ativação, já que não se trata de uma ativação do usuário e não nos ajuda a prever quando o usuário irá deseajar ativar o relé.
+
+			Outra questão a ser levada em analisada é a presença de uma disparidade entre a quantidade de amostras de treino que estão em uma classificação, em relação à quantidade que está em outra. Esse evento é conhecido como oversamplig/undersampling . No caso em análise, existem muito mais dados nos quais não ocorreu ativação do relé pelo usuário (71) do que os que ocorreram (6851). Ou seja, aproximadamente 99\% dos dados estão em uma classificação, e apenas 1\% na outra.
+			% TODO ver se é over ou under
+
+
+		\subsection{Treinamento dos modelos}
 		
 		\subsection{Resultados obtidos}
 
