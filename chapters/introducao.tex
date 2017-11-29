@@ -1,11 +1,11 @@
 \chapter{Introdução}
 
 \section{Motivação}
-Há uma expectativa de que, no ano de 2017, o número de casas inteligentes aumente cerca de 17\% nos Estados Unidos \cite{mckinseyReport}, onde já se tem investimentos de grandes empresas, como \emph{Google}, \emph{Amazon} e \emph{Apple}. O interesse nessa área é tamanho que a \emph{Google} investiu cerca de 5 milhões de dólares em um comercial de seu produto \emph{Google Home} no \emph{Super Bowl} 2017, jogo que decide o time campeão da temporada de futebol americano nos EUA \cite{kennemer}. É esperado que os consumidores invistam cada vez mais em casas inteligentes nos próximos anos, com previsões de que o valor total desse mercado chegue a mais de 63 bilhões de dólares em 2020 \cite{businessWire}.
+Há uma expectativa de que, no ano de 2017, o número de casas inteligentes aumente cerca de 17\% nos Estados Unidos \cite{mckinseyReport}, onde já se tem investimentos de grandes empresas, como Google, Amazon e Apple. O interesse nessa área é tamanho que a Google investiu cerca de 5 milhões de dólares em um comercial de seu produto Google Home no Super Bowl 2017, jogo que decide o time campeão da temporada de futebol americano nos EUA \cite{kennemer}. É esperado que os consumidores invistam cada vez mais em casas inteligentes nos próximos anos, com previsões de que o valor total desse mercado chegue a mais de 63 bilhões de dólares em 2020 \cite{businessWire}.
 
 As aplicações de automação residencial não mais se limitam aos sistemas de iluminação, controle da ventilação e temperatura de cômodos. Elas contemplam também segurança, eficiência energética e até mesmo soluções voltadas à área da saúde, com dispositivos desenvolvidos especificamente para pessoas idosas, com problemas de mobilidade ou doenças crônicas \cite{iscoop}.
 
-Os avanços das tecnologias de Internet das Coisas (\textit{Internet of Things} ou \wiot{}) apontam para um futuro no qual qualquer dispositivo da casa possa estar conectado à Internet, onde surge uma série de possibilidades de inovações em funcionalidades e integrações. É previsto que o número de conexões \textit{Machine to Machine} (M2M) de dispositivos de casa conectada tenha uma taxa de crescimento anual composta (\emph{Compound Annual Growth Rate} ou \emph{CAGR}) de 18\% entre 2016 e 2021 \cite{ciscoReport}.
+Os avanços das tecnologias de Internet das Coisas (\textit{Internet of Things} ou \wiot{}) apontam para um futuro no qual qualquer dispositivo da casa possa estar conectado à Internet, onde surge uma série de possibilidades de inovações em funcionalidades e integrações. É previsto que o número de conexões \textit{Machine to Machine} (M2M) de dispositivos de casa conectada tenha uma taxa de crescimento anual composta (\emph{Compound Annual Growth Rate} ou CAGR) de 18\% entre 2016 e 2021 \cite{ciscoReport}.
 
 \begin{figure}[H]
 	\centering
@@ -27,7 +27,7 @@ Para a elaboração do projeto, e o alinhamento das expectativas e requisitos qu
 \begin{description}
 \item \textbf{Robustez}
 
-Com foco na robustez e disponibilidade, devem ser previstos níveis de operação para o sistema, os quais dispõem de diferentes requisitos de funcionalidades para garantir serviços essenciais, mesmo na ocorrência de problemas como a queda do servidor local, indisponibilidade de internet, falha no roteador, dentre diversas outras possibilidades. Há medidas tratativas, nos diferentes níveis, para a tentativa automática de reconexão, monitoramento de estado e manutenções preventivas e corretivas do sistema.
+Com foco na robustez e disponibilidade, devem ser previstos níveis de operação para o sistema, os quais dispõem de diferentes requisitos de funcionalidades para garantir serviços essenciais, mesmo na ocorrência de problemas como a queda do servidor local, indisponibilidade de Internet, falha no roteador, dentre diversas outras possibilidades. Há medidas tratativas, nos diferentes níveis, para a tentativa automática de reconexão, monitoramento de estado e manutenções preventivas e corretivas do sistema.
 
 \item \textbf{Modularidade}
 
@@ -37,7 +37,7 @@ A modularidade, principalmente relacionada aos dispositivos físicos e as decis�
 
 A arquitetura do projeto é concebida em camadas e níveis, cujas responsabilidades são independentes. Cada parte do sistema exercita um conjunto de tarefas específicas (de transporte, análise, tomada de ações, etc.), e seus efeitos são traduzidos em entradas para o nível seguinte.
 
-\item \textbf{Machine Learning}
+\item \textbf{Aprendizado de máquina}
 
 Geração de aprendizado de máquina por meio de análise automática do uso do sistema pelos usuários, de forma a entender suas rotinas e poder atuar no conhecimento obtido, com notificações, alertas e acionamentos automáticos de funções para o usuário.
 
@@ -47,11 +47,12 @@ A proteção da privacidade do usuário é tão importante, ou talvez mais, quan
 
 \end{description}
 
-\subsection{Nome do Projeto}
-O nome do projeto foi escolhido em homenagem a Hedy Lamarr. Nascida Hedwig Eva Maria Kiesler \cite{shearer}, a atriz e inventora desenvolveu, durante a Segunda Guerra Mundial, um aparelho de interferência em rádio para despistar radares nazistas, cujos princípios estão incorporados nas tecnologias atuais de \emph{Wi-Fi}, \emph{CDMA} e \emph{Bluetooth} \cite{electronicFrontier}. Baseado na ideia de um sistema de comunicação seguro, e como reconhecimento de seu trabalho, foi dado esse nome ao projeto aqui descrito.
+\subsection{Nome do projeto}
+O nome do projeto foi escolhido em homenagem a Hedy Lamarr. Nascida Hedwig Eva Maria Kiesler \cite{shearer}, a atriz e inventora desenvolveu, durante a Segunda Guerra Mundial, um aparelho de interferência em rádio para despistar radares nazistas, cujos princípios estão incorporados nas tecnologias atuais de Wi-Fi, CDMA e Bluetooth \cite{electronicFrontier}. Baseado na ideia de um sistema de comunicação seguro, e como reconhecimento de seu trabalho, foi dado esse nome ao projeto aqui descrito.
 
 \subsection{Logo}
-O logo do projeto é uma coruja, em referência à coruja \textit{Hedwig} do personagem \textit{Harry Potter}, da série de livros de mesmo nome. A coruja é responsável por encaminhar mensagens de maneira segura entre os interlocutores, assim como o projeto desenvolvido promove uma maneira segura de comunicação com sua casa.
+O logo do projeto é uma coruja, em referência à coruja Hedwig do personagem Harry Potter, da série de livros de mesmo nome. A coruja é responsável por encaminhar mensagens de maneira segura entre os interlocutores, assim como o projeto desenvolvido promove uma maneira segura de comunicação com sua casa.
+
 \begin{figure}[H]
 	\centering
 	\caption{Logotipo do projeto Hedwig}

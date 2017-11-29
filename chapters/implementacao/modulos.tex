@@ -1,7 +1,7 @@
 \section{Módulos}
 \subsection {Rotinas}
 \subsubsection{Multiplexação no tempo}
-Para tratar indisponibilidade dos módulos devido a tentativas de reconexão e conexão e requisições não gerenciadas, e aumentar a disponibilidade, além do circuito antitravamento e \textit{hard reset}, as diversas rotinas - desde configuração inicial, reconfigurações, coletas de dados, atuar por meio de relés, até conexão, desconexão, reconexão e envio de dados - foram multiplexadas no tempo da seguinte forma:
+Para tratar indisponibilidade dos módulos devido a tentativas de reconexão e conexão e requisições não-gerenciadas, e, assim, aumentar a disponibilidade, existem além do circuito antitravamento e \textit{hard reset} diversas rotinas de tratamento. Elas contemplam desde configuração inicial, reconfigurações, coletas de dados e atuação por meio de relés até conexão, desconexão, reconexão e envio de dados. Elas foram multiplexadas no tempo da seguinte forma:
 
 \begin{figure} [H]
 	\centering
@@ -22,8 +22,8 @@ Nos casos de indisponibilidade de Internet, servidor ou rede local, o seguinte p
 
 Com esse procedimento, as tentativas de reconexão à Internet, servidor e rede local estão segregadas e com tentativas realizadas em intervalos de tempo sucessivamente maiores. Desta forma, conseguimos gerenciar esses procedimentos, já que o nível de processamento é baixo.
 
-\subsubsection{DoS Local (\textit{Evil Twin})}
-No caso de ataque de \textit{Evil Twin} - no qual uma rede mal intencionada, usualmente aberta, usa o mesmo SSID da rede original, com o objetivo de obter a senha - o sistema pode ficar indisponível até ao nível local. Módulos podem se conectar à rede mal-intencionada e ficarem somente com as funcionalidades offline, como acionamento de lâmpada por botão físico acoplado ao módulo. Outro problema é a queda da rede por interferência de radio frequência ou outro mecanismo utilizado pelo usuário mal intencionado para que os clientes se desconectem, tentem reconexão e forneçam a senha da rede.
+\subsubsection{DoS local (\textit{Evil Twin})}
+No caso de ataque de \textit{Evil Twin} - no qual uma rede mal-intencionada, usualmente aberta, usa o mesmo SSID da rede original com o objetivo de obter a senha - o sistema pode ficar indisponível até ao nível local. Módulos podem se conectar à rede mal-intencionada e ficarem somente com as funcionalidades offline, como acionamento de lâmpada por botão físico acoplado ao módulo. Outro problema é a queda da rede por interferência de radiofrequência ou outro mecanismo utilizado pelo usuário mal-intencionado para que os clientes se desconectem, tentem reconexão e forneçam a senha da rede.
 
 Para mitigar esses riscos, os módulos executam o seguinte procedimento:
 
@@ -35,33 +35,32 @@ Para mitigar esses riscos, os módulos executam o seguinte procedimento:
 \end{figure}
 
 \subsubsection{Comunicação por MQTT}
-Para o desenvolvimento da comunicação por MQTT com o Morpheus no módulo, houve o uso da biblioteca PubSub para Arduino.
+Para o desenvolvimento da comunicação por MQTT com o Morpheus no módulo, foi usada a biblioteca PubSub para Arduino.
 
-Para cada módulo, temos de fábrica id e senhas próprias, além de configurações de porta e endereço do morpheus locais padrões.
+Para cada módulo existem identificador e senha, que são parâmetros próprios saídos de fábrica, além de configurações de porta e endereço do Morpheus local padrões.
 
-Houve o controle de comunicação da seguinte forma:
+O controle de comunicação foi realizado da seguinte forma:
 
 \begin{enumerate}
-	\item Só há tentativa de conexão MQTT em caso de houver conexão do WiFi e o horário interno estar configurado (em caso contrário, podemos provocar travamento do módulo ou envio de mensagens sem timestamp);
-	\item Configuração de callback e servidor MQTT a cada reconexão (este ponto foi crítico para o bom funcionamento da comunicação);
-	\item No callback (recebimento de mensagens, tratamento (“parse”) da mensagem recebida, através de obtenção de seu tipo e redirecionamento para rotinas específicas para obtenção dos parâmetros de interesse de cada mensagem;
-	\item Envio de mensagens de estado a cada 1 minuto, ou quando houver mudança brusca em um dos sensores (presença, abertura, umidade ou temperatura) ou então requisição de atuação (nesses casos de envio rápido, a mensagem é inserida no início da fila de saída, e enviada logo em seguida, em até um segundo);
-	\item Após o tratamento inicial das mensagens (obtenção dos parâmetros de interesse), persistência nas variáveis internas e gravação da EEPROM para que configurações e estados executados no aplicativo backup ou pela dashboard sejam refletidos dos dois lados, tornando transparente ao usuário o uso de qualquer um dos aplicativos, e para que suas funcionalidades estejam integradas;
-	\item Ainda, em fase final, após a persistência de variáveis na EEPROM, a inclusão na fila de saída de mensagens de confirmação para o servidor local;
-	\item Uso da fila de saída para o envio periódico das mensagens de estado.
+	\item Só há tentativa de conexão MQTT em caso de haver conexão do Wi-Fi e o horário interno estar configurado --- caso contrário, pode-se provocar travamento do módulo ou envio de mensagens sem \emph{timestamp}.
+	\item É executada configuração de \emph{callback} e de servidor MQTT a cada reconexão -- este ponto foi crítico para o bom funcionamento da comunicação.
+	\item No \emph{callback} ocorre recebimento de mensagens e tratamento (\emph{parsing} da mensagem recebida, o que é feito por meio de obtenção de seu tipo e redirecionamento para rotinas específicas para obtenção dos parâmetros de interesse de cada mensagem.
+	\item Envio de mensagens de estado a cada um minuto ou quando houver mudança brusca em um dos sensores (presença, abertura, umidade ou temperatura) ou então requisição de atuação; nesses casos de envio rápido, a mensagem é inserida no início da fila de saída e enviada logo em seguida, em até um segundo.
+	\item Após o tratamento inicial das mensagens e a obtenção dos parâmetros de interesse, ocorre a persistência nas variáveis internas e gravação da EEPROM para que configurações e estados executados no aplicativo backup ou pela dashboard sejam refletidos dos dois lados, tornando transparente ao usuário o uso de qualquer um dos aplicativos e integrando suas funcionalidades.
+	\item Ainda em fase final, após a persistência de variáveis na EEPROM, ocorre a inclusão na fila de saída de mensagens de confirmação para o servidor local.
+	\item A fila de saída é usada para o envio periódico das mensagens de estado.
 \end{enumerate}
 
 \begin{figure}[H]
 	\centering
-	\caption{Exemplo de estado da fila de saída de mensagens MQTT do Módulo}
+	\caption{Exemplo de estado da fila de saída de mensagens MQTT do módulo}
 	\includegraphics[width=0.5\textwidth]{filasaidaMQTT}
 	\label{fig:filasaidaMQTT}
 \end{figure}
 
-Mensagens de estado periódicas (azuis) são inseridas no final da fila.
-No caso de acionamento, uma mensagem de estado (vermelha) é inserida no início da fila, e em caso de configuração, uma mensagem de confirmação também é inserida no início da fila.
+Mensagens de estado periódicas (azuis) são inseridas no final da fila. No caso de acionamento, uma mensagem de estado (vermelha) é inserida no início da fila, e, em caso de configuração, uma mensagem de confirmação também é inserida no início da fila.
 
-Por fim, vale destacar a necessidade de alteração da biblioteca PubSub para suportar mensagens maiores (em caso de impossibilidade de envio de mensagens maiores, todo o protocolo deveria ser alterado para comportar mensagens mais compactas ou então deveria haver o uso de algum mecanismo de codificação/compactação em conjunto com o protocolo desenvolvido).
+Por fim, vale destacar a necessidade de alteração da biblioteca PubSub para suportar mensagens maiores. Em caso de impossibilidade de envio de mensagens maiores, todo o protocolo deveria ser alterado para comportar mensagens mais compactas ou então deveria haver o uso de algum mecanismo de codificação ou compactação em conjunto com o protocolo desenvolvido.
 
 \subsection{Diagrama}
 Abaixo está o diagrama do circuito impresso (PCB).
@@ -80,7 +79,7 @@ Abaixo está o diagrama do circuito impresso (PCB).
 \item \textit{Buzzer}
 \item Relé 1
 \item Relé 2
-\item Hard Reset
+\item \emph{Hard reset}
 \item Botões
 \item Presença
 \item RF-RX
@@ -89,35 +88,36 @@ Abaixo está o diagrama do circuito impresso (PCB).
 
 \begin{figure}[H]
 	\centering
-	\caption{Diagrama Elétrico do Módulo Base}
+	\caption{Diagrama elétrico do Módulo Base}
   \includegraphics[width=0.8\textwidth]{esquematicoModuloBase}
 \label{fig:esquematicoModuloBase}
 \end{figure}
 
+% TODO revisar as legendas desse cara, usar as letras da imagem?
 \begin{description}
-\item [A - Saídas] Circuitos simples de transistor para acionamento de relés (para lâmpadas) e buzzer.
+\item [A - Saídas] Circuitos simples de transistor para acionamento de relés (para lâmpadas) e \emph{buzzer}.
 \item [Proteção 3V3 5V] Como o display trabalha com tensão de 5V, há proteções com diodos para não danificar as entradas digitais do Wemos D1 mini, que trabalha com tensão de 3V3.
-\item [3 Entradas em A0] O circuito tem como entradas um botão (para acionamento do relé 1), o LDR (para chaveamento do backlight do display), e um outro botão para hard reset do dispositivo, todos numa entrada analógica, cujo mapeamento E/S é da seguinte forma:
+\item [3 Entradas em A0] O circuito tem como entradas um botão (para acionamento do relé 1), o LDR (para chaveamento da luz de fundo do display) e um outro botão para \emph{hard reset} do dispositivo, todos em uma entrada analógica, cujo mapeamento E/S é da seguinte forma:
 
 \begin{figure}[H]
 	\centering
-	\caption{Entradas Em A0}
+	\caption{Entradas em A0}
   \includegraphics[width=0.4\textwidth]{entradasEmA0}
 \label{fig:entradasEmA0}
 \end{figure}
 
 \item [Presença ou RF-TX] A entrada digital D6 é usada exclusivamente como entrada do sensor de presença PIR ou receptor RF.
-\item [Astável 555 para Hard Reset e Botão] A porta D6 é usada como LED \textit{keep alive} do módulo. Sua demora ao piscar indica que o módulo está travado ou demorando muito para processar algo, o que não deveria acontecer, uma vez que os procedimentos estão multiplexados no tempo, de acordo com seus tempos limite. Dessa forma, conectamos essa saída a um circuito antitravamento, que executa o reset nos casos mencionados, de travamento ou \textit{timeout}.
+\item [Astável 555 para \emph{hard reset} e Botão] A porta D6 é usada como LED \textit{keep alive} do módulo. Sua demora ao piscar indica que o módulo está travado ou demorando muito para processar algo, o que não deveria acontecer, uma vez que os procedimentos estão multiplexados no tempo de acordo com seus tempos limite. Dessa forma, essa saída está conectada a um circuito antitravamento, que executa o \emph{reset} nos casos mencionados, de travamento ou \textit{timeout}.
 
-O primeiro capacitor tem como objetivo desacoplamento DC, de forma que a entrada do circuito envolvendo o astável 555 seja somente AC. Assim, travamentos em 0 ou 1 indicam travamento.
+O primeiro capacitor tem como objetivo desacoplamento DC, de forma que a entrada do circuito envolvendo o astável 555 seja somente AC. Assim, permanências em 0 ou 1 indicam travamento.
 
-Enquanto o LED pisca em intervalos esperados (regularmente), o transistor conduz e mantém uma saída dente de serra muito próxima de 0. Quando o módulo trava, o transistor não conduz mais, e a saída passa a oscilar entre 1/3 e 2/3 da tensão total (observe que o carregamento é feito pelo resistor de 4M7, muito maior que o resistor de 100k, fazendo com que o tempo de carga seja muito maior que o tempo de descarga, uma vez que esses tempos são diretamente proporcionais à constante de tempo dos circuitos RC, que é dada pelo produto do R*C). Durante a descarga, o reset da placa é realizado. Observe que os tempos foram ajustados pelos valores dos componentes discretos, para que o tempo entre resets sucessivos seja menor que o tempo necessário para o módulo voltar a funcionar após um reset.
+Enquanto o LED pisca em intervalos esperados regularmente, o transistor conduz e mantém uma saída dente de serra muito próxima de 0. Quando o módulo trava, o transistor não conduz mais, e a saída passa a oscilar entre 1/3 e 2/3 da tensão total. Observe que o carregamento é feito pelo resistor de 4M7, muito maior que o resistor de 100k, fazendo com que o tempo de carga seja muito maior que o tempo de descarga, uma vez que esses tempos são diretamente proporcionais à constante de tempo dos circuitos RC, que é dada pelo produto do R*C. Durante a descarga, o \emph{reset} da placa é realizado. Observe que os tempos foram ajustados pelos valores dos componentes discretos, para que o tempo entre \emph{resets} sucessivos seja menor que o tempo necessário para o módulo voltar a funcionar após um \emph{reset}.
 
 Segue abaixo uma ilustração sobre o funcionamento do circuito.
 
 \begin{figure}[H]
 	\centering
-	\caption{Funcionamento do Circuito de Antitravamento}
+	\caption{Funcionamento do circuito antitravamento}
   \includegraphics[width=0.8\textwidth]{circuitoAntiTravamento}
 \label{fig:circuitoAntiTravamento}
 \end{figure}
@@ -128,19 +128,19 @@ Segue abaixo uma ilustração sobre o funcionamento do circuito.
 
 \subsection {Montagem}
 
-As fotos e comentários seguintes descrevem o processo de montagem física dos quatro módulos usados neste trabalho. Além destes, outras versões também foram construídas anteriormente no decorrer do projeto, instaladas na residência de um dos membros do grupo e usados para coleta de dados (que, por se tratarem de protótipos, não tem sua montagem completamente documentada tampouco, uniformidade como os módulos seguintes).
+As fotos e comentários seguintes descrevem o processo de montagem física dos quatro módulos usados neste trabalho. Além destes, outras versões também foram construídas anteriormente no decorrer do projeto, instaladas na residência de um dos membros do grupo e usados para coleta de dados. Tais versões, por se tratarem de protótipos, não têm sua montagem completamente documentada, tampouco a uniformidade apresentada nos módulos seguintes.
 Ao final, também consta o procedimento utilizado para validação dos módulos após sua construção, que contribuiu para a identificação de ligações não realizadas e outros problemas de montagem.
 
 \begin{figure}[H]
 	\centering
-	\caption{Evolução do Hardware (de fevereiro/17 a setembro/17)}
+	\caption{Evolução do hardware (de fevereiro/17 a setembro/17)}
 	\includegraphics[width=0.8\textwidth]{evolHW}
 	\label{fig:evolHW}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\caption{Evolução da Caixa de Proteção e Display}
+	\caption{Evolução da caixa de proteção e display}
 	\includegraphics[width=0.8\textwidth]{evolProtDisplay}
 	\label{fig:evolProtDisplay}
 \end{figure}
@@ -153,26 +153,26 @@ Ao final, também consta o procedimento utilizado para validação dos módulos 
 \end{figure}
 
 \begin{enumerate}
-	\item Primeiramente, a partir do esquemático em escala real, foram cortados e realizados furos na placa padrão, conforme figura acima.
-	
+	\item Primeiramente, a partir do esquemático em escala real, foram cortados e realizados furos na placa padrão.
+
 	\begin{figure}[H]
 		\centering
-		\caption{Posicionamento dos Componentes}
+		\caption{Posicionamento dos componentes}
 		\includegraphics[width=0.8\textwidth]{PosicionamentoComp}
 		\label{fig:PosicionamentoComp}
 	\end{figure}
-	
-	\item Em seguida, foram posicionados os componentes, conforme mostra a figura acima.
-	
+
+	\item Em seguida, foram posicionados os componentes.
+
 	\begin{figure}[H]
 		\centering
 		\caption{Preparação dos displays com o I2C e soldagem}
 		\includegraphics[width=0.8\textwidth]{PrepI2CSoldagem}
 		\label{fig:PrepI2CSoldagem}
 	\end{figure}
-	
-	\item A próxima etapa é soldar as trilhas por baixo conforme o diagrama. Também é necessário soldar o I2C com o display. Essa é a etapa mais demorada, que poderia ser facilmente operacionalizada ao adotarmos placas de circuito impresso, o que aumentaria muito a capacidade de montagem.
-	
+
+	\item A próxima etapa foi soldar as trilhas por baixo conforme o diagrama. Também foi necessário soldar o I2C com o display. Essa é a etapa mais demorada, que poderia ser facilmente operacionalizada ao serem adotadas placas de circuito impresso, o que aumentaria muito a capacidade de montagem.
+
 	\begin{figure}[H]
 		\centering
 		\caption{Preparação das caixas para os módulos}
@@ -180,20 +180,20 @@ Ao final, também consta o procedimento utilizado para validação dos módulos 
 		\label{fig:PrepCaixasModulos}
 	\end{figure}
 
-	\item Prossegue-se para a marcação das caixas para uso das furadeiras e lixas (com ferramentas mais adequadas, essa etapa também poderia ser mais rápida e eficiente).
-	
+	\item Prossegue-se para a marcação das caixas para uso das furadeiras e lixas. Com ferramentas mais adequadas, essa etapa também poderia ser mais rápida e eficiente.
+
 	\begin{figure}[H]
 		\centering
-		\caption{Caixa protetora; ligação dos botões e cabos de força}
+		\caption{Caixa protetora, ligação dos botões e cabos de força}
 		\includegraphics[width=0.8\textwidth]{BotoesCabosForca}
 		\label{fig:BotoesCabosForca}
 	\end{figure}
 
-	\item Com a caixa preparada, foi possível inserir as placas padrão com os componentes e trilhas. Resta fixá-los com parafusos, montar a sustentação do display e sensor de presença (também integrado nesse passo), isopor para isolar termicamente o medidor de temperatura e umidade DHT, além das ligações dos botões, cabos de força e fios dos relés.
+	\item Com a caixa preparada, foi possível inserir as placas padrão com os componentes e trilhas. Restou fixá-los com parafusos, montar a sustentação do display e sensor de presença (também integrado nesse passo), isopor para isolar termicamente o medidor de temperatura e umidade DHT, além de fazer as ligações dos botões, cabos de força e fios dos relés.
 
 	\begin{figure}[H]
 		\centering
-		\caption{Quatro Módulos Prontos}
+		\caption{Quatro módulos prontos}
 		\includegraphics[width=0.8\textwidth]{QuatroModulos}
 		\label{fig:QuatroModulos}
 	\end{figure}
@@ -202,17 +202,17 @@ Ao final, também consta o procedimento utilizado para validação dos módulos 
 
 \subsubsection {Montagem}
 \begin{enumerate}
-	\item Carregar Programa para testar módulo;
-	\item Realizar Setup da Conexão com sua rede WiFi;
+	\item Carregar programa para testar módulo;
+	\item Realizar setup da conexão com a rede Wi-Fi;
 	\item Verificar com o multímetro se há curto em algumas ligações principais (terra, VCC);
 	\item Checar a alimentação da fonte e sua saída correta;
-	\item Realizar o Hard Reset ao apertar o botão atrás do isopor do DHT até ouvir 10 beeps
-	\item Fazer o passo 2 novamente (pois o módulo deve ter voltado à versão de fábrica). Logo em seguida fazer o teste de Auto Reset, que é o teste para verificar se o circuito antitravamento está funcionando. Para esse teste, é simulado uma pausa do sinal keep alive que o circuito baseado no astável 555 monitora;
+	\item Realizar o \emph{hard reset} ao apertar o botão atrás do isopor do DHT até ouvir 10 bipes;
+	\item Fazer o passo 2 novamente, pois o módulo deve ter voltado à versão de fábrica. Logo em seguida, fazer o teste de \emph{auto reset}, que serve para verificar se o circuito antitravamento está funcionando. Para esse teste, é simulado uma pausa do sinal \emph{keep alive} que o circuito baseado no astável 555 monitora;
 	\item Cobrir o sensor de presença. Verificar a inatividade no aplicativo. Descobrí-lo e verificar atividade;
 	\item Executar o passo 7 para o sensor de luminosidade (LDR) também;
 	\item Verificar com um medidor externo ou consulta a um site de previsões do tempo se as medidas de temperatura e umidade estão de acordo. Realizar ajuste (offset) no aplicativo se necessário;
-	\item Verifique o funcionamento dos botões, acionando-os um por um;
-	\item Checar o acionamento dos reles pelo aplicativo web também;
+	\item Verificar o funcionamento dos botões, acionando-os um por um;
+	\item Checar o acionamento dos relés pelo aplicativo web também;
 	\item Após gravar o RF de um controle para os dois relés, testar seu funcionamento;
-	\item Verifique com um multímetro a saída dos relés (se troca de nível com acionamento pela página web, botões e controle RF).
+	\item Verificar com um multímetro a saída dos relés (se troca de nível com acionamento pela página web, botões e controle RF).
 \end{enumerate}

@@ -1,7 +1,7 @@
 \chapter{Especificação}
 
-\section{Stakeholders}
-Um dos passos iniciais na elaboração de um projeto é a determinação das partes interessadas. Com esse conhecimento, pode-se entender as necessidades dos diferentes perfis de clientes e as expectativas desses grupos em relação ao uso do produto. Por meio da análise de aplicação, tanto do projeto desenvolvido quanto dos dispositivos existentes, pode-se destacar os seguintes grupos dentre os potenciais consumidores:
+\section{Partes interessadas}
+Um dos passos iniciais na elaboração de um projeto é a determinação das partes interessadas (\emph{stakeholders}). Com esse conhecimento, pode-se entender as necessidades dos diferentes perfis de clientes e as expectativas desses grupos em relação ao uso do produto. Por meio da análise de aplicação, tanto do projeto desenvolvido quanto dos dispositivos existentes, pode-se destacar os seguintes grupos dentre os potenciais consumidores:
 
 \begin{itemize}
 \item Pessoas que moram sozinhas e seus familiares;
@@ -12,33 +12,33 @@ Um dos passos iniciais na elaboração de um projeto é a determinação das par
 Considerando o Censo de 2010 \cite{ibge}, pode-se estimar as classes de consumidores para a cidade de São Paulo:
 
 \begin{itemize}
-\item Considerando que 1/10 da população com mais de 60 anos more sozinha e que 1/4 deles adquiriria o produto, temos uma estimativa de 33 mil consumidores. Como essa população está envelhecendo em taxas cada vez maiores (8,96\% em 2000 contra 13,6\% em 2016) \cite{bibliotecaVirtual}, a tendência é que essa classe aumente;
-\item Considerando que 1/100 dos domicílios ocupados tenha uma pessoa com esse perfil, temos uma estimativa de 35 mil consumidores em potencial;
-\item Considerando que cerca de 70\% das residências reduziram o consumo com campanhas de redução de uso de água em 2015 \cite{g1}, supondo que 5\% ficariam preocupados/interessados ao nível de se tornarem consumidores, temos uma estimativa de 71 mil consumidores em potencial.
+\item Considerando que 1/10 da população com mais de 60 anos more sozinha e que 1/4 deles adquiriria o produto, obtém-se uma estimativa de 33 mil consumidores. Como essa população está envelhecendo em taxas cada vez maiores (8,96\% em 2000 contra 13,6\% em 2016) \cite{bibliotecaVirtual}, a tendência é que essa classe aumente;
+\item Considerando que 1/100 dos domicílios ocupados tenha uma pessoa com esse perfil, obtém-se uma estimativa de 35 mil consumidores em potencial;
+\item Considerando que cerca de 70\% das residências reduziram o consumo com campanhas de redução de uso de água em 2015 \cite{g1}, supondo que 5\% ficariam preocupados/interessados ao nível de se tornarem consumidores, obtém-se uma estimativa de 71 mil consumidores em potencial.
 \end{itemize}
 
 \section{Requisitos \label{sec:requisitos}}
 
 O levantamento de requisitos funcionais e não funcionais são definidos a seguir. Para requisitos funcionais, utilizou-se o termo \emph{RF} seguido de um número identificador --- e.g. \emph{RF-1}. Os requisitos não-funcionais levam o termo \emph{RNF}, também seguido de um identificador numérico --- e.g. \emph{RNF-1}.
 
-\subsection{Requisitos Funcionais}
+\subsection{Requisitos funcionais}
 \begin{description}
-\item[RF-1:]O sistema deve permitir o monitoramento de aparelhos do dia a dia, dentro de uma residência, de maneira independente;
+\item[RF-1:]O sistema deve permitir o monitoramento de aparelhos do dia-a-dia, dentro de uma residência, de maneira independente;
 \item[RF-2:]O sistema deve ser capaz de noficar o usuário sobre o estado da casa --- e.g. temperatura, presença, etc;
 \item[RF-3:]O sistema deve poder ser personalizável pelo usuário, o qual pode adicionar ou remover funcionalidades;
 \item[RF-4:]O sistema deve permitir o acionamento de dispositivos da residência;
-\item[RF-5:]O sistema deve ser capaz de aprender a respeito de cada usuário, podendo detectar padrões no seu comportamento e, a partir disso, sugerir ações a serem tomadas automaticamente --- e.g. acendimento automátio de lâmpadas;
+\item[RF-5:]O sistema deve ser capaz de aprender a respeito de cada usuário, podendo detectar padrões no seu comportamento e, a partir disso, sugerir ações a serem tomadas automaticamente --- e.g. acendimento automático de lâmpadas;
 \item[RF-6:]O sistema deve permitir o cadastro, remoção e atualização de usuários;
 \item[RF-7:]O sistema deve permitir o cadastro, remoção e atualização de casas, para cada usuário;
 \item[RF-8:]O sistema deve permitir o cadastro, remoção e atualização de dispositivos, para cada casa;
 \item[RF-9:]O sistema deve permitir o seu reinício (\emph{reset});
 \item[RF-10:]O sistema deve permitir a autenticação de usuários;
 \item[RF-11:]O sistema deve permitir a configuração de dispositivos;
-\item[RF-12:]O sistema deve disponibilizar uma \emph{API} para comunicação.
+\item[RF-12:]O sistema deve disponibilizar uma API para comunicação.
 
 \end{description}
 
-\subsection{Requisitos Não-Funcionais}
+\subsection{Requisitos não-funcionais}
 O levantamento de requisitos não-funcionais foi realizado com base na norma ISO25010:2011 \cite{iso25010}.
 
 \begin{description}
@@ -47,14 +47,14 @@ O levantamento de requisitos não-funcionais foi realizado com base na norma ISO
 \item[RNF-3:]Os dados de cadastro do sistema devem ser armazenados em servidores seguros \cite{softwareSecurity};
 \item[RNF-4:]O sistema deve ser robusto, de modo a continuar operando, mesmo com menor nível de funcionalidades, quando há ocorrência de falhas na comunicação entre a casa e serviços externos --- e.g. indisponibilidade parcial devido a problemas com servidores remotos, indisponibilidade total devido a perda da conexão com a Internet --- ou falhas na rede interna, como a indisponibilidade de conexão local. A validação é realizada com interrupções na rede, desconexão e desligamentos de servidores e dispositivos, seguida da verificação dos serviços disponíveis;
 \item[RNF-5:]O sistema deve identificar e se recuperar de travamentos em suas partes, reiniciando-as;
-\item[RNF-6:]O sistema deve possuir mecanismos de proteção contra ataques de negação de serviço (\emph{DoS});
+\item[RNF-6:]O sistema deve possuir mecanismos de proteção contra ataques de negação de serviço (DoS);
 \item[RNF-7:]O sistema deve apresentar disponibilidade de 99,9\% --- cerca de 8 horas de indisponibilidade por ano. Essa medida de disponbilidade refere-se somente aos serviços remotos, não levando em consideração indisponibilidades das residências;
-\item[RNF-8:]O sistema deve ser escalável a até 10 mil usuários, sem perdas de desempenho consideráveis, ou aumento na latência para as requisições serem atendidas, com variação de até 5\%. A verificação deve ser realizadas com softwares de análise de performance comerciais\footnote{Um exemplo de aplicação de monitoramento de rede é desenvolvida pela empresa Dynatrace \url{https://www.dynatrace.com/} };
+\item[RNF-8:]O sistema deve ser escalável a até 10 mil usuários, sem perdas de desempenho consideráveis, ou aumento na latência para as requisições serem atendidas, com variação de até 5\%. A verificação deve ser realizada com softwares de análise de performance comerciais\footnote{Um exemplo de aplicação de monitoramento de rede é desenvolvida pela empresa Dynatrace \url{https://www.dynatrace.com/} };
 \item[RNF-9:]O sistema deve possuir instalação intuitiva e simplificada --- a instalação é realizada em passos, seguindo o manual de instruções, sem a necessidade de conhecimentos de computação ou eletrônica;
 \item[RNF-10:]O sistema deve atender e processar requisições em paralelo, tanto dos usuários quanto dos dispositivos físicos;
-\item[RNF-11:]O sistema deve autenticar e autorizar as requisições recebidas, descartando as requisições inválidas. 
+\item[RNF-11:]O sistema deve autenticar e autorizar as requisições recebidas, descartando as requisições inválidas.
 \end{description}
 
-\subsection{Funcionalidades por Nível de Conectividade}
+\subsection{Funcionalidades por nível de conectividade}
 
-Os requisitos apresentados anteriormente detalham o sistema completo. Para que o requisito \emph{RNF-4} fosse implementado, o projeto incorporou três níveis de funcionalidade --- \emph{Online}, \emph{Local} e \emph{Offline}. O primeiro nível, \emph{Online}, é o mais amplo e caracteriza o comportamento normal do sistema, quando todas as conexões estão disponíveis, e os dispositivos e serviços funcionam corretamente. O nível \emph{Local} modela o cenário de não haver possibilidade de conexão externa com a casa, como é o caso quando não há internet disponível. O último nível, \emph{Offline}, reflete uma situação emergencial, no caso de problemas com o servidor interno, por exemplo.
+Os requisitos apresentados anteriormente detalham o sistema completo. Para que o requisito RNF-4 fosse implementado, o projeto incorporou três níveis de funcionalidade --- \emph{Online}, \emph{Local} e \emph{Offline}. O primeiro nível, \emph{Online}, é o mais amplo e caracteriza o comportamento normal do sistema, quando todas as conexões estão disponíveis, e os dispositivos e serviços funcionam corretamente. O nível \emph{Local} modela o cenário de não haver possibilidade de conexão externa com a casa, como é o caso quando não há Internet disponível. O último nível, \emph{Offline}, reflete uma situação emergencial, no caso de problemas com o servidor interno, por exemplo.

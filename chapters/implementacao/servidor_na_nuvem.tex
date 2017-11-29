@@ -2,7 +2,7 @@
 
 \subsection{Descrição}
 
-O servidor na nuvem é composto por um servidor WebSocket para comunicação entre clientes e casas, um banco de dados em memória para armazenar informações sobre conexões WebSocket ativas, uma API REST para acesso aos dados persistidos, um banco de dados não-relacional para armazenar dados dos sensores, módulos, Morpheus e usuários, um proxy reverso e um firewall.
+O servidor na nuvem é composto por um servidor WebSocket para comunicação entre clientes e casas, um banco de dados em memória para armazenar informações sobre conexões WebSocket ativas, uma API REST para acesso aos dados persistidos, um banco de dados não-relacional para armazenar dados dos sensores, módulos, Morpheus e usuários, um proxy reverso e um \emph{firewall}.
 
 Para fins de prova de conceito, optou-se por prosseguir com uma arquitetura monolítica. A implementação da arquitetura de microsserviços aumentaria consideravelmente a complexidade do projeto, e seus principais benefícios não seriam tão bem aproveitados, visto que o sistema não seria colocado a provas de carga real no momento. Contudo, ressalta-se que o monolito que compõe o servidor na nuvem poderia sim ser implementado como um conjunto de microsserviços, o que seria uma evolução natural à medida que o sistema escala.
 
@@ -40,7 +40,7 @@ Com base nos requisitos funcionais e não-funcionais, discutidos na Subseção \
 
 \begin{itemize}
 \item O servidor permite o estabelecimento de conexões HTTPS seguras e criptografadas.
-\item O firewall bloqueia conexões em portas que não estão sendo utilizadas.
+\item O \emph{firewall} bloqueia conexões em portas que não estão sendo utilizadas.
 \end{itemize}
 
 \end{description}
@@ -57,7 +57,7 @@ Para implementar a comunicação entre aplicativos e casas, foi escolhida a bibl
 
 A arquitetura possui um proxy reverso que é responsável por enviar as requisições ao servidor em Node.js. Para isso, foi usado o nginx \footnote{https://nginx.org/}, popularmente utilizado como servidor HTTP e proxy genérico para TCP e UDP. Ele permite a configuração de conexões seguras via HTTPS e dispensa a necessidade de delegar privilégios para acessar as portas reservadas 80 e 443 ao processo que roda o servidor Node.js.
 
-Por fim, foi usada a ferramenta padrão do Ubuntu para firewall, ufw, que permite criar regras para bloquear tráfego IPv4 e IPv6.
+Por fim, foi usada a ferramenta padrão do Ubuntu para \emph{firewall}, ufw, que permite criar regras para bloquear tráfego IPv4 e IPv6.
 
 \begin{figure}[H]
 	\centering
@@ -74,7 +74,7 @@ Para hospedar o servidor do Hedwig, foi utilizado o serviço de computação na 
 
 O servidor na nuvem suporta conexões HTTPS, permitindo que navegadores verifiquem a autenticidade do servidor e garantindo a privacidade e integridade dos dados transmitidos. Para isso, foi usado o Let's Encrypt\footnote{https://letsencrypt.org}, uma autoridade de certificação aberta, gratuita e automatizada. O Let's Encrypt usa o protocolo ACME (\emph{Automatic Certificate Management Environment}) para automatizar a comunicação entre autoridade e candidato para assegurar a autenticidade deste e conceder-lhe certificados de forma rápida e prática. É realizado um teste para verificar que o candidato possui controle sobre o domínio e, então, é gerado um certificado válido por 90 dias que pode ser renovado a qualquer momento. Para usá-lo no servidor, basta acrescentar novas configurações ao nginx.
 
-Além disso, outra medida de segurança foi usar um firewall para bloquear conexões nas portas TCP que não estão sendo usadas.
+Além disso, outra medida de segurança foi usar um \emph{firewall} para bloquear conexões nas portas TCP que não estão sendo usadas.
 
 \subsection{Operação}
 
