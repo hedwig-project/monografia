@@ -56,7 +56,7 @@ Quando não houver conexão, o servidor armazena os dados localmente e, quando s
 
 Quando uma mensagem não é enviada com sucesso à nuvem, o Morpheus tenta novamente por um número configurável de vezes em um curto espaço de tempo. Isso ocorre porque, se determinada mensagem não pode ser enviada em uma janela temporal, ela perde o seu sentido.
 
-\item \textbf{Verificação do timestamp}
+\item \textbf{Verificação do \emph{timestamp}}
 
 Quando uma nova mensagem chegar, seu \emph{timestamp} é verificado, e a mensagem tomará curso somente se não for obsoleta.
 
@@ -122,7 +122,7 @@ O servidor foi desenvolvido com base nas regras de negócio seguintes. Cada regr
 \begin{description}
 \item[mRN-1:]Após a compra de cada módulo, o usuário deve registrar online a aquisição. O servidor da nuvem enviará para o servidor local da casa a requisição para configurar o módulo.
 \item[mRN-2:]Cada módulo envia mensagens para o servidor local com o seus dados por meio do \wmqtt{}.
-\item[mRN-3:]Para a troca de senha do \wwifi, o usuário cadastra no aplicativo a nova senha. O servidor na nuvem faz a requisição para o servidor local, o qual enviará um arquivo de configuração com a nova senha para cada um dos módulos registrados. Após a configuração de todos os módulos, o servidor local envia resposta de sucesso para a nuvem, a qual indica ao usuário que a troca de senha já pode ser feita com sucesso.
+\item[mRN-3:]Para a troca de senha do Wi-Fi, o usuário cadastra no aplicativo a nova senha. O servidor na nuvem faz a requisição para o servidor local, o qual enviará um arquivo de configuração com a nova senha para cada um dos módulos registrados. Após a configuração de todos os módulos, o servidor local envia resposta de sucesso para a nuvem, a qual indica ao usuário que a troca de senha já pode ser feita com sucesso.
 \item[mRN-4:]Todo módulo sai de fábrica configurado com o tópico que deve se inscrever e publicar com base no seu ID, o qual será o seu usuário, também havendo uma senha para se autenticar junto ao \emph{broker} \wmqtt{}.
 \end{description}
 
@@ -224,7 +224,7 @@ $ty: rele1_action
 rele1: <0 | 1>
 @
 \end{lstlisting}
-Essa mensagem fica sem efeito no caso do Módulo de Acesso, que usa mensagens com senha para o acionamento do relê 1.
+Essa mensagem fica sem efeito no caso do Módulo de Acesso, que usa mensagens com senha para o acionamento do relé 1.
 
 Rele1: 0 = desligar; 1 = ligar
 
@@ -350,7 +350,7 @@ autoreset: <0 | 1>
 \item Uso: envio de dados de sensores para o servidor.
 \end{itemize}
 
-\textbf{Transmissão de umidade, temperatura, presença e relês}
+\textbf{Transmissão de umidade, temperatura, presença e relés}
 \begin{lstlisting}
 #data_transmission
 $ts: <timestamp>
@@ -782,7 +782,7 @@ backlight: 1
 
 \emph{Resultado: de acordo.}
 
-\textbf{Transmissão de umidade, temperatura, presença e relês}
+\textbf{Transmissão de umidade, temperatura, presença e relés}
 \begin{lstlisting}
 messageToSend = UmiTempPresReles(0,80,25,1,1,0);
 \end{lstlisting}
