@@ -49,23 +49,32 @@
 		% https://www.ibm.com/developerworks/community/blogs/jfp/entry/What_Is_Machine_Learning?lang=en 
 		% https://machinelearningmastery.com/machine-learning-in-python-step-by-step/
 		% https://medium.com/dunder-data/how-to-learn-pandas-108905ab4955
+		% https://www.digitalocean.com/community/tutorials/
+		% how-to-build-a-machine-learning-classifier-in-python-with-scikit-learn  → fala sobre como funciona a divisao em pedaços do data set
+		% TODO colocar referencia à seção direito
 
-			O desenvolvimento de aplicações de aprendizado de máquina é caracterizado por algumas etapas  
+			O desenvolvimento de aplicações de aprendizado de máquina é caracterizado por algumas etapas. 
 
+			Inicialmente, é necessário explicitar qual o problema a ser resolvido. Na seção "Aprendizado de máquina no projeto Hedwig" foi exposto o problema aqui explorado. 
 
-Problem definition
-Data capture
-Data analysis & preparation
-Model training
-Train and test data
-https://www.digitalocean.com/community/tutorials/how-to-build-a-machine-learning-classifier-in-python-with-scikit-learn  → fala sobre como funciona a divisao em pedaços do data set
-Model evaluation
-Final product: application or report
+			O próximo passo é a coleta de dados, para que os modelos possam ser treinados. Expusemos essa etapa no capítulo anterior.
 
+			Em seguida, é necessário realizar algumas análises de dados e tratamentos dos mesmos, para que se possa sanitizá-los e deixá-los em formato propício ao uso pelos algoritmos.
+
+			Tendo isso pronto, pode-se então passar a uma etapa de treinamento de modelos. Para isso, é necessário fazer uma análise de quais algoritmos poderiam se encaixar bem para o problema em questão. Também é necessário separar uma parcela dos dados para servir para treinamento dos modelos, e outra parcela para servir de dados de teste.
+
+			A partir do treinamento dos modelos, e da separação de alguns dados para teste, é possível então avaliar quão bem os algoritmos estão performando para a previsão de resultados.
+
+			O último passo costuma ser a elaboração do produto final: normalmente a integração sistema de aprendizado com outras aplicações ou então a elaboração de relatórios.
+			% TODO explicar um pouco melhor o que sao esses relatorios
+
+			Nas próximas seções exploraremos o desenvolvimento desses últimos passos no projeto Hedwig.
 
 		\subsection{Tratamento de Dados}
 		% http://scott.fortmann-roe.com/docs/BiasVariance.html 
 		% Falar sobre tratamento dos dados: undersampling/oversampling (fato de que a maioria dos dados de ativação é falso)
+
+		No problema em análise, os dados que possuímos são
 
 		\subsection{Algoritmos}
 		% É algoritmo supervisionado, de classificacao --> pegar referencias do ISLR
