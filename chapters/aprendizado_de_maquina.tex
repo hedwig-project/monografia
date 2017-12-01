@@ -98,10 +98,11 @@
 
 			Para que possamos utilizar tais dados, alguns tratamentos são necessários.
 
-			A primeira coisa que é necessária de ser levada em consideração é que a ativação pode ter ocorrido em decorrência de um agendamento. Nesse caso, devemos desconsiderar essa ativação, já que não se trata de uma ativação do usuário e não nos ajuda a prever quando o usuário irá deseajar ativar o relé.
+			A primeira coisa que foi observada foi que as primeiras entradas de dados ainda estavam incompletas, e não possuiam dados a respeito do estado corrente dos relés. Essas entradas foram então descartadas, já que não nos permitiriam saber se a ação executada pelo usuário foi para acender ou apagar as luzes, e desejamos selecionar apenas os casos relativos ao acendimento da luz.
 
-			% TODO tratar timestamp
-			% TODO separar ligar de desligar
+			Em seguida, levamos em consideração que a ativação pode ter ocorrido em decorrência de um agendamento. Nesse caso, portanto, devemos desconsiderar essa ativação, já que não se trata de uma ativação do usuário e não nos ajuda a prever quando o usuário irá deseajar ativar o relé.
+
+			Outro simples tratamento que foi necessário de se fazer foi o tratamento do \emph{timestamp}. O valor de interesse no estudo atual é apenas o referente ao instante no dia em que ocorreu a ativação (horas, minutos, segundos), relevando-se a informação do dia em si que tal evento foi capturado. Dessa forma, separamos apenas o componente de horário dos \emph{timestamps}, e convertemos para um número inteiro referente à quantidade de segundos desde a meia noite.
 
 			Outra questão a ser levada em consideração é a presença de uma disparidade entre a quantidade de amostras de treino que estão em uma classificação, em relação à quantidade que está em outra. No caso em análise, existem muito mais dados nos quais não ocorreu ativação do relé pelo usuário (71) do que os que ocorreram (6851). Ou seja, aproximadamente 99\% dos dados estão em uma classificação, e apenas 1\% na outra. Esse problema é conhecido como \emph{Class Imbalance Problem}. Para resolvê-lo, há duas táticas principais: \emph{oversampling} e \emph{undersampling}. Essa disparidade é um problema devido ao fato de que os algoritmos classificadores têm como objetivo a maximização da sua taxa de acerto. Dessa forma, teria alta tendência a sempre classificar os dados como pertencentes à classe majoritária. Isso é um problema principalmente em casos onde as situações de interesse são exatamente as que menos ocorre, como é o caso do problema aqui em exploração.
 
