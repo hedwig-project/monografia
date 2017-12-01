@@ -1,10 +1,8 @@
 \chapter{Aprendizado de máquina}
 
-	% TODO colocar referência ao curso do Andrew Ng
-	O termo Aprendizado de Máquina (\emph{Machine Learning}) surgiu em 1959, sendo utilizado pela primeira vez  pelo cientista americano Arthur Samuel. O termo foi por ele definido como "o campo de estudos que dá a um computador a habilidade de aprender sem ser explicitamente programado" (tradução livre dos autores). Em 1998, Tom Mitchel - outro cientista da computação americano - propôs uma explicação menos abstrata do termo da seguinte maneira: "um programa de computador aprende com a experiência E com respeito a uma classe de tarefas T e medida de performance P se sua performace nas tarefas T, sendo medida por P, aumenta com o aumento da experiência E".
+	O termo Aprendizado de Máquina (\emph{Machine Learning}) surgiu em 1959, sendo utilizado pela primeira vez  pelo cientista americano Arthur Samuel. O termo foi por ele definido como "o campo de estudos que dá a um computador a habilidade de aprender sem ser explicitamente programado" (tradução livre dos autores). Em 1998, Tom Mitchel - outro cientista da computação americano - propôs uma explicação menos abstrata do termo da seguinte maneira: "um programa de computador aprende com a experiência E com respeito a uma classe de tarefas T e medida de performance P se sua performace nas tarefas T, sendo medida por P, aumenta com o aumento da experiência E" \cite{Coursera}.
 
-	% TODO colocar referencia https://hbr.org/2017/07/whats-driving-the-machine-learning-explosion
-	Apesar do conceito de aprendizado de máquina existir desde a década de 50, seu crescimento e relevância aumentaram apenas na última decada. Alguns fatores levaram a esse crescimento acelerado. Os principais foram o aumento da quantidade de dados coletados e disponíveis - e aplicações de \emph{IoT} têm propulsionado esse aumento -, a melhora nos algoritmos, e o \emph{hardware} cada vez mais poderoso dos computadores. Esses últimos dois fatores permitem que a vasta quantidade de dados que possuímos possam ser analisados em tempo viável.
+	Apesar do conceito de aprendizado de máquina existir desde a década de 50, seu crescimento e relevância aumentaram apenas na última decada. Alguns fatores levaram a esse crescimento acelerado. Os principais foram o aumento da quantidade de dados coletados e disponíveis - e aplicações de \emph{IoT} têm propulsionado esse aumento -, a melhora nos algoritmos, e o \emph{hardware} cada vez mais poderoso dos computadores. Esses últimos dois fatores permitem que a vasta quantidade de dados que possuímos possam ser analisados em tempo viável \cite{hbrMlExplosion}.
 
 	\section{Aprendizado de máquina no projeto Hedwig}
 
@@ -23,10 +21,10 @@
 		% (Google Cloud, Tensor Flow, AWS ML, Microsoft (Luis?), IBM (Bluemix?))
 
 		\subsection{Linguagem, ferramentas e bibliotecas}
-			% TODO maybe get some references for paragraph below
 
 			Uma das vantagens da popularização que se vê atualmente do uso de aprendizado de máquina é o surgimento de muitas facilidades para o desenvolvimento de aplicações que envolvam esse tema, devido às vantagens que advém de existir grande comunidade trabalhando com isso.
 
+			% TODO maybe get some references for paragraph below
 			Atualmente as duas principais linguagens sendo utilizadas para ciência de dados e aprendizado de máquina são Python e R. As duas são linguagens interpretadas, e que possuem funcionalidade REPL (Read-Eval-Print-Loop), possibilitando desenvolvimento altamente interativo e de fácil visualização de dados e gráficos enquanto se programa.
 
 			Para o desenvolvimento de funcionalidades de aprendizado de máquina no Hedwig, foi escolhida a linguagem Python. Apesar de R ser uma linguagem que já nasceu voltada à análise de dados e tratamento estatístico, Python possui diversos pacotes e bibliotecas que conseguem adicionar tais funcionalidades à mesma. Esses pacotes estão altamente popularizados, e portanto é muito fácil percorrer suas documentações e procurar ajuda em fóruns online para acelerar o aprendizado de suas funcionalidades. Python, por sua vez, é uma linguagem de uso geral (\emph{general purpose language}), o que também tem seus lados positivos. Além de ser uma linguagem extremamente bem estabelecida, o fato de ser de uso geral implica que existem também pacotes e bibliotecas que possibilitam o uso de Python para desenvolvimento de aplicativos com funcionalidades de \emph{back-end} para serviços \emph{web}. Isso se torna altamente interessante por nos possibilitar facilmente transformar essa aplicação em um microsserviço, que interaja em tempo real com o servidor em nuvem do Hedwig, permitindo que o serviço de aprendizado de máquina aja em tempo real com toda a aplicação.
@@ -70,25 +68,22 @@
 			Nas próximas seções exploraremos o desenvolvimento desses últimos passos no projeto Hedwig.
 
 		\subsection{Algoritmos}
-			% É algoritmo supervisionado, de classificacao --> pegar referencias do ISLR
 
-				Existem duas classificações gerais para algoritmos de aprendizado de máquina: os de aprendizado supervisionado e os de aprendizado não supervisionado. Os algoritmos de aprendizado supervisionado são caracterizados por tratarem de problemas nos quais se possui uma
+				Existem duas classificações gerais para algoritmos de aprendizado de máquina: os de aprendizado supervisionado e os de aprendizado não supervisionado. Os algoritmos de aprendizado supervisionado são caracterizados por tratarem de problemas nos quais se espera conseguir prever uma determinada saída baseada em um ou mais dados de entrada. Já os algoritmos de aprendizado não supervisionado se caracterizam por tratarem de casos onde não há uma saída supervisionada. Nesses casos o objetivo é apenas de encontrar algum relacionamento ou estrutura nos dados de entrada \cite{islr}. O caso aqui estudado encaixa-se na definição de aprendizado supervisionado, já que temos nos dados de treinamento as saídas que desejamos que o modelo passe a conseguir prever.
 
-					ISLR: Broadly speaking,
-			supervised statistical learning involves building a statistical model for pre-
-			dicting, or estimating, an output based on one or more inputs. Problems of
-			this nature occur in fields as diverse as business, medicine, astrophysics, and
-			public policy. With unsupervised statistical learning, there are inputs but
-			no supervising output; nevertheless we can learn relationships and struc-
-			ture from such data. To provide an illustration of some applications of
-			statistical learning, we briefly discuss three real-world data sets that are
-			considered in this book.
+				Outro plano no qual os algoritmos são divididos tem relação ao tipo de resposta que se espera deles. Há dois tipos principais de resposta: qualitativa e quantitativa  \cite{islr}. Os problemas para os quais a saída é uma variável quantitativa são chamados de problemas de regressão. Um dos métodos mais comuns para se tratar esse tipo de problema é o da regressão linear com utilização do método dos mínimos quadrados.
+
+				Para os problemas nos quais a saída esperada é uma variável quantitativa, o nome dado é de problemas de classificação - já que o que se deseja obter como repsosta é a qual classe a resposta pertence. Um tipo de algortimo que costuma ser utilizado para problemas desse tipo é o de regressão logística.
+
+				Adicionalmente, vale citar que há alguns tipos de algoritmos que podem ser utilizados tanto para problemas quantitativos quanto para problemas qualitativos, dentre eles: K vizinhos mais próximos (\emph{K-nearest neighbors}) e \emph{boosting} \cite{islr}.
+
+				O algoritmo aqui em desenvolvimento então pode ser classificado como aprendizado supervisionado, de classificação (já que a saída esperada é do tipo "Sim, o usuário provavelmente gostaria de acender a luz nesse momento" ou "Não, o usuário provavelmente não gostaria de acender a luz").
 
 		\subsection{Tratamento de dados}
 			% http://scott.fortmann-roe.com/docs/BiasVariance.html
 			% Falar sobre tratamento dos dados: undersampling/oversampling (fato de que a maioria dos dados de ativação é falso)
 
-			No problema em análise, os dados que possuímos são:
+			Neste nosso primeiro estudo, o objetivo é o desenvolvimento de um modelo que aprenda a prever quando ocorrerá uma ativação do relé pelo usuário. No problema em análise, os dados que possuímos são:
 
 			\begin{itemize}
 				\item \emph{Timestamp} com dia e hora
@@ -101,11 +96,14 @@
 				\item Status dos relés
 			\end{itemize}
 
-			O objetivo de nosso primeiro estudo então é o desenvolvimento de um modelo que aprenda a prever quando ocorrerá uma ativação do relé pelo usuário.
+			Para que possamos utilizar tais dados, alguns tratamentos são necessários.
 
 			A primeira coisa que é necessária de ser levada em consideração é que a ativação pode ter ocorrido em decorrência de um agendamento. Nesse caso, devemos desconsiderar essa ativação, já que não se trata de uma ativação do usuário e não nos ajuda a prever quando o usuário irá deseajar ativar o relé.
 
-			Outra questão a ser levada em analisada é a presença de uma disparidade entre a quantidade de amostras de treino que estão em uma classificação, em relação à quantidade que está em outra. No caso em análise, existem muito mais dados nos quais não ocorreu ativação do relé pelo usuário (71) do que os que ocorreram (6851). Ou seja, aproximadamente 99\% dos dados estão em uma classificação, e apenas 1\% na outra. Esse problema é conhecido como \emph{Class Imbalance Problem}. Para resolvê-lo, há duas táticas principais: \emph{oversampling} e \emph{undersampling}. Essa disparidade é um problema devido ao fato de que os algoritmos classificadores têm como objetivo a maximização da sua taxa de acerto. Dessa forma, teria alta tendência a sempre classificar os dados como pertencentes à classe majoritária. Isso é um problema principalmente em casos onde as situações de interesse são exatamente as que menos ocorre, como é o caso do problema aqui em exploração.
+			% TODO tratar timestamp
+			% TODO separar ligar de desligar
+
+			Outra questão a ser levada em consideração é a presença de uma disparidade entre a quantidade de amostras de treino que estão em uma classificação, em relação à quantidade que está em outra. No caso em análise, existem muito mais dados nos quais não ocorreu ativação do relé pelo usuário (71) do que os que ocorreram (6851). Ou seja, aproximadamente 99\% dos dados estão em uma classificação, e apenas 1\% na outra. Esse problema é conhecido como \emph{Class Imbalance Problem}. Para resolvê-lo, há duas táticas principais: \emph{oversampling} e \emph{undersampling}. Essa disparidade é um problema devido ao fato de que os algoritmos classificadores têm como objetivo a maximização da sua taxa de acerto. Dessa forma, teria alta tendência a sempre classificar os dados como pertencentes à classe majoritária. Isso é um problema principalmente em casos onde as situações de interesse são exatamente as que menos ocorre, como é o caso do problema aqui em exploração.
 
 			% loans.bad_loans.value_counts()
 
@@ -135,7 +133,24 @@
 
 		\subsection{Treinamento dos modelos}
 
+		In this chapter we discuss three of the most
+widely-used classifiers: logistic regression, linear discriminant analysis, and
+K-nearest neighbors. We discuss more computer-intensive methods in later
+chapters, such as generalized additive models (Chapter 7), trees, random
+forests, and boosting (Chapter 8), and support vector machines (Chap-
+ter 9).
+
 		\subsection{Resultados obtidos}
+
+		There
+		is no free lunch in statistics: no one method dominates all others over all
+		possible data sets. On a particular data set, one specific method may work
+		best, but some other method may work better on a similar but different
+		data set. Hence it is an important task to decide for any given set of data
+		which method produces the best results. Selecting the best approach can
+		be one of the most challenging parts of performing statistical learning in
+		practice.
+
 
 		\subsection{Otimização dos modelos}
 
