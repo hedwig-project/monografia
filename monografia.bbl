@@ -12,13 +12,6 @@
   \url{https://9to5mac.com/2011/10/21/jobs-original-vision-for-the-iphone-no-third-party-native-apps/}.
 Accessed: 2017-11-07.}
 
-\bibitem[Affairs 2017]{OVHDDoS}
-\abntrefinfo{Affairs}{AFFAIRS}{2017}
-{AFFAIRS, S. \emph{1Tbps no ataque contra OVH (serviço de hosting), com
-  dispositivos de IoT (09/2016)}. 2017.
-  \url{http://securityaffairs.co/wordpress/51640/cyber-crime/tbps-ddos-attack.html}.
-Accessed: 2017-12-02.}
-
 \bibitem[Akamai 2017]{akamai}
 \abntrefinfo{AKAMAI}{AKAMAI}{2017}
 {AKAMAI. \emph{Denial of service attacks (DoS)}. 2017.
@@ -275,6 +268,12 @@ Accessed: 2017-10-21.}
   \url{http://www.mckinsey.com/spContent/connected_homes/index.html}.
 Accessed: 2017-04-24.}
 
+\bibitem[MongoDB 2017]{mongodbsharding}
+\abntrefinfo{MongoDB}{MONGODB}{2017}
+{MONGODB. \emph{Sharding}. 2017.
+  \url{https://docs.mongodb.com/manual/sharding/}.
+Accessed: 2017-12-02.}
+
 \bibitem[Mozilla Developer Network 2016]{mdnjs}
 \abntrefinfo{MDN}{MDN}{2016}
 {MOZILLA DEVELOPER NETWORK. \emph{JavaScript}. 2016.
@@ -313,6 +312,18 @@ Accessed: 2017-11-10.}
 {NETWORK WORKING GROUP. \emph{The Syslog Protocol}. 2009.
   \url{https://tools.ietf.org/html/rfc5424}.
 Accessed: 2017-11-20.}
+
+\bibitem[NGINX 2017]{nginxscalability}
+\abntrefinfo{NGINX}{NGINX}{2017}
+{NGINX. \emph{Inside NGINX: How We Designed for Performance \& Scale}. 2017.
+  \url{https://www.nginx.com/blog/inside-nginx-how-we-designed-for-performance-scale/}.
+Accessed: 2017-12-02.}
+
+\bibitem[Node.js 2017]{nodejscluster}
+\abntrefinfo{Node.js}{NODE.JS}{2017}
+{NODE.JS. \emph{Node.js v9.2.0 Documentation - Cluster}. 2017.
+  \url{https://nodejs.org/api/cluster.html}.
+Accessed: 2017-12-02.}
 
 \bibitem[NOSQL Databases 2009]{nosql}
 \abntrefinfo{NOSQL}{NOSQL}{2009}
@@ -389,6 +400,13 @@ Accessed: 2017-11-07.}
   Failure}. 2013.
   \url{https://blogs.oracle.com/jsavit/availability-best-practices-avoiding-single-points-of-failure}.
 Accessed: 2017-10-19.}
+
+\bibitem[Security Affairs 2017]{OVHDDoS}
+\abntrefinfo{Security Affairs}{SECURITY AFFAIRS}{2017}
+{SECURITY AFFAIRS. \emph{1Tbps no ataque contra OVH (serviço de hosting), com
+  dispositivos de IoT (09/2016)}. 2017.
+  \url{http://securityaffairs.co/wordpress/51640/cyber-crime/tbps-ddos-attack.html}.
+Accessed: 2017-12-02.}
 
 \bibitem[SHEARER 2010]{shearer}
 \abntrefinfo{SHEARER}{SHEARER}{2010}
