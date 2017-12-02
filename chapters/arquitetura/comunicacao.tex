@@ -9,8 +9,8 @@ A arquitetura de comunicação é representada pela Figura \ref{fig:diagramaComu
 \begin{figure}[H]
 	\centering
 	\caption{Visão alto nível da comunicação no Hedwig}
-  \includegraphics[width=0.8\textwidth]{arquiteturaHedwig}
-\label{fig:diagramaComunicacao}
+	\includegraphics[width=0.8\textwidth]{arquiteturaHedwig}
+	\label{fig:diagramaComunicacao}
 \end{figure}
 
 \subsection{Comunicação entre controlador local e módulos}
@@ -38,3 +38,56 @@ Uma forma de contornar o problema se encontra no uso de WebSockets, protocolo de
 \subsection{Comunicação entre nuvem e aplicativos}
 
 Similarmente à comunicação entre controlador local e nuvem, a troca de informações entre nuvem e aplicativos clientes em geral é feita por meio de WebSockets. Como aplicações web podem ter como requisito oferecer suporte à navegadores mais antigos, é usado um \emph{fallback} para um mecanismo de \emph{polling} caso não haja suporte para WebSockets.
+
+\subsection{Comunicação entre módulos e aplicativos}
+
+Em caso de indisponibilidade da rede local ou internet, a comunicação é feita diretamente entre módulos e aplicativo backup com escopo local (por meio de HTTP). Esse canal de comunicação fica aberto para uso somente nesses casos, para evitar exposição desnecessária a possíveis ataques. O módulo atua como servidor e o aplicativo como cliente, sendo que cada aplicativo pode se conecta diretamente ao módulo que desejar.
+
+\subsection{Diagramas de Sequência}
+
+Seguem diagramas de sequência UML para ilustrar a comunicação fim a fim utilizada no projeto:
+
+\begin{figure}[H]
+	\centering
+	\caption{Diagrama de Sequência - Data Transmission}
+	\includegraphics[width=0.8\textwidth]{sequencia_data}
+	\label{fig:sequencia_data}
+\end{figure}
+
+No sistema instalado nas residências para coleta de dados, ocorre atualização a cada 10 segundos. No caso de mudança considerável no estado de algum sensor ou acionamento de algum relé, há uma atualização para o aplicativo com tempo de resposta de 1 segundo.
+
+Para os casos de mudança de configuração e atuação (acionamento de relés), temos:
+
+\begin{figure}[H]
+	\centering
+	\caption{Diagrama de Sequência - Configuration e Action Request}
+	\includegraphics[width=0.8\textwidth]{sequencia_action_configuration}
+	\label{fig:sequencia_action_configuration}
+\end{figure}
+
+Se não houver conexões disponíveis, os procedimentos de atualização de estado de dados, requisição de ação e configuração ocorrem diretamente entre módulos e aplicativos. O usuário ainda pode atuar no sistema através de controles de rádio frequência e botões físicos, utilizando uma comunicação direta entre usuário e módulo (sem uso do aplicativo).
+
+\begin{figure}[H]
+	\centering
+	\caption{Diagrama de Sequência - Data Transmission do Aplicativo Backup}
+	\includegraphics[width=0.8\textwidth]{app_backup-sequencia_data}
+	\label{fig:app_backup-sequencia_data}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\caption{Diagrama de Sequência - Configuration e Action Request do Aplicativo Backup}
+	\includegraphics[width=0.8\textwidth]{app_backup-sequencia_action_configuration}
+	\label{fig:app_backup-sequencia_action_configuration}
+\end{figure}
+
+É importante destacar que não há possibilidade do usuário requisitar múltiplos acionamentos (causando muitas trocas de estado em um período pequeno de tempo), uma vez que a requisição é realizada a partir do estado atual do relé (dessa forma, se este estiver ativo, múltiplos cliques do usuário mandam a requisição "desligar").
+
+Outro ponto é a inclusão de um mecanismo simples para segurança do sistema, mesmo no canal de comunicação redundante local, mostrando uma possibilidade de aumento do nível de segurança do sistema.
+
+\begin{figure}[H]
+	\centering
+	\caption{Diagrama de Sequência - Action Request com Senha no Aplicativo Backup}
+	\includegraphics[width=0.8\textwidth]{app_backup-sequencia_action_seg}
+	\label{fig:app_backup-sequencia_action_seg}
+\end{figure}
