@@ -4,25 +4,36 @@
 % TODO Alguns dos itens abaixo podem/serão movidos para os apêndices
 Para realizar a gerência do projeto Hedwig, foram usadas as diretrizes do Guia PMBOK \cite{pmi} e da norma ISO/IEC 12207 \cite{iso12207} como referência para coordenar os processos.
 
-Para gerenciar as tarefas, estudos e pesquisas necessárias para a realização do projeto, foi utilizado o Trello\footnote{Pode ser acessado gratuitamente em https://trello.com/} - sistema online para organização de ideias e projetos, que permite listagem e acompanhamento de tarefas a serem realizadas, com deadlines, responsáveis e categorização em diversos tipos de tarefas.
-
 % \subsection{Gerência de Tempo}
 
 \subsection{Gerência de aquisição}
 
+O gerenciamento de aquisições envolve primariamente a compra dos materiais necessários para implementação dos módulos físicos. Foi necessário analisar o que adquirir e como fazê-lo, levando em consideração as limitações de tempo do projeto --- a demora ou atraso na entrega dos componentes eletrônicos causaria um atraso no cronograma. A escolha dos fornecedores priorizou então o custo e o prazo de entrega.
+
+A relação de materiais necessários para a confecção de um módulo básico encontra-se no Anexo \ref{listamateriais}.
+
 \subsection{Gerência de processos de software}
 
-Para gerenciar o código-fonte e permitir o trabalho da equipe em múltiplas partes do projeto ao mesmo tempo, foi utilizado o Git, um sistema de controle de versão distribuído. Para publicação do código, foi escolhido o GitHub, onde está a organização do projeto Hedwig\footnote{https://github.com/hedwig-project} e os repositórios de código dos módulos associados ao sistema. A preferência pelo GitHub se deu pelas suas funcionalidades de gerenciamento e colaboração como a notificação de bugs, acompanhamento do progresso de tarefas e criação de wikis, além de ser uma plataforma conhecida por abrigar grandes projetos \emph{open-source} que chegam a ter centenas ou milhares de contribuidores \cite{github}.
+Para gerenciar o código-fonte e permitir o trabalho da equipe em múltiplas partes do projeto ao mesmo tempo, foi utilizado o Git, um sistema de controle de versão distribuído. Para publicação do código, foi escolhido o GitHub, no qual está a organização do projeto Hedwig\footnote{https://github.com/hedwig-project} e os repositórios que contêm o código das diversas partes do sistema. A preferência pelo GitHub se deu pelas suas funcionalidades de gerenciamento e colaboração como a notificação de \emph{bugs}, acompanhamento do progresso de tarefas e criação de wikis, além de ser uma plataforma conhecida por abrigar grandes projetos \emph{open-source} que chegam a ter centenas ou milhares de contribuidores \cite{github}.
 
-Para o fluxo de trabalho nesses repositórios, foi utilizado o fluxo conhecido como \textit{Feature Branch Workflow} \cite{atlassian}, caracterizado pela criação de \textit{branches} (ramificações) para o desenvolvimento de cada nova funcionalidade. Ao final do desenvolvimento de cada funcionalidade, é feito um pedido para mesclar o código desenvolvido em tal ramificação com o da ramificação principal (\textit{master branch}).
+% TODO falar mais do sistema de issues do GitHub?
+
+Para o fluxo de trabalho nesses repositórios, foi utilizado o fluxo conhecido como \textit{Feature Branch Workflow} \cite{atlassian}, caracterizado pela criação de \textit{branches} (ramificações) para o desenvolvimento de cada nova funcionalidade. Ao final do desenvolvimento de cada funcionalidade, é feito um pedido para mesclar o código desenvolvido em tal ramificação com o da ramificação principal, a \textit{master branch}.
+
+Já outros tipos de documentação formal do sistema como textos e planilhas foram editados e armazenados no Google Drive\footnote{https://www.google.com/drive/}, ferramenta de armazenamento e backup da Google que também permite colaboração, compartilhamento e controle de versão.
 
 % \subsection{Gerência de Partes Interessadas}
 
 \subsection{Gerência de comunicação}
 
+Para comunicar as tarefas, estudos e pesquisas sendo realizadas durante o projeto, foi utilizado o Trello\footnote{https://trello.com/}, um sistema online para organização de ideias e projetos, que permite listagem e acompanhamento das atividades a serem realizadas, permitindo a adição de prazos, delegação de responsáveis e categorização das tarefas.
+
+Foram realizadas várias reuniões online usando ferramentas de videoconferência como o Google Hangouts\footnote{https://hangouts.google.com} e o Skype\footnote{https://www.skype.com}, que, além do \emph{streaming} de vídeo com áudio, possuem funcionalidades como mensagens de texto, envio de arquivo e compartilhamento de tela, facilitando demonstrações e testes integrados.
 % \subsection{Gerência de Escopo}
 
 \subsection{Gerência de riscos}
+
+Para gerenciar os riscos do projeto, foram realizadas reuniões periódicas com participação das partes interessadas --- grupo e orientadores --- nas quais os discutiam-se táticas de análise, planejamento e monitoramento. Nessas sessões, foi possível identificar riscos por meio da revisão da documentação e de técnicas de \emph{brainstorming} e definir estratégias de abordagem tanto para riscos positivos quanto negativos.
 % TODO colocar matriz de probabilidade e impacto?
 
 \section{Pesquisa bibliográfica}
