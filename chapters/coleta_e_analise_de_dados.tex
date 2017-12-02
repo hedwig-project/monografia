@@ -1,10 +1,10 @@
-\chapter{Coleta e análise de dados}
+\chapter{Arquitetura: Tecnologia - Coleta e Análise de Dados \label{coletaAnaliseDados}}
 
 Um dos processos mais críticos para o sucesso de um projeto é a obtenção de resultados e dados, dos quais se obtém conhecimento sobre o comportamento do sistema em atividade e dos usuário que o utilizam.
 
 \section{Coleta}
 
-Para a coleta de dados, foram usados um total de onze módulos distribuidos em locais e residências diferentes, de modo a simular maior diversidade de utilização.
+Para a coleta de dados, foram usados um total de onze módulos distribuídos em locais e residências diferentes, de modo a simular maior diversidade de utilização.
 
 \begin{enumerate}
 	\item Aquário
@@ -110,7 +110,8 @@ Foram coletados dados desde o dia 10 de setembro de 2017 até o dia 13 de novemb
     \setlength\tabcolsep{1.5pt}
     \centering
     \footnotesize
-    \begin{tabular}{cccccc}
+	\begin{tabular}{cccccc}
+		\toprule
         \textbf{Item} & \textbf{Aquário} & \textbf{Corredor} & \textbf{Lavanderia} & \textbf{SalaCozinha} & \textbf{Entrada} \\
         \midrule
         memória livre [bytes] &
@@ -136,7 +137,8 @@ Foram coletados dados desde o dia 10 de setembro de 2017 até o dia 13 de novemb
         26 &
         24 &
         27 &
-        77 \\
+		77 \\
+		\bottomrule
     \end{tabular}
 \end{table}
 
@@ -157,6 +159,7 @@ Como o \emph{firmware} do Corredor, Lavanderia e SalaCozinha é o mesmo (\emph{b
 	\centering
 	\footnotesize
 	\begin{tabular}{ccccccc}
+		\toprule
 		\textbf{Nome} &
 		\textbf{Corredor} &
 		\textbf{Sabrina} &
@@ -207,6 +210,7 @@ Como o \emph{firmware} do Corredor, Lavanderia e SalaCozinha é o mesmo (\emph{b
 		85.07\% &
 		0.00\% &
 		0.00\% \\
+		\bottomrule
 	\end{tabular}
 \end{table}
 
@@ -384,4 +388,8 @@ Em Jarinu, um idoso com boa saúde física mora sozinho em sua residência. Ao a
 	\label{fig:JarinuPeriodo}
 \end{figure}
 
-Ao analisar por período, pode-se verificar o aumento ou diminuição de atividade, o que pode ser um indicativo de bem-estar. Por exemplo, no gráfico acima verifica-se que o dia 04/11 foi um dia atípico, com menores presença e atividade da porta da sala. Em geral, não houve tendência de crescimento ou diminuição do nível de atividade geral no período observado.
+Ao analisar por período, pode-se verificar o aumento ou diminuição de atividade, o que pode ser um indicativo de bem-estar. Por exemplo, no gráfico acima verifica-se que o dia 04/11 foi um dia atípico, com menores níveis de presença e atividade da porta da sala.
+
+Ainda, a partir do dia 30/11 (último movimento registrado em 29/11 às 16h20), observa-se que não há mais movimentação na residência (seria uma situação para geração de alerta). Nesse caso em específico, foi verificado que o idoso estava de fato fora de casa, através de ligação ao idoso.
+
+É importante destacar que é possível comprovar a continuidade de funcionamento do módulo após 29/11 ao inspecionar seus próprios registros e emails enviados com informações de estado da conexão (envio periódico a cada 6 horas), como forma de mitigar um falso negativo.
