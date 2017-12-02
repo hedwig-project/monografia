@@ -69,15 +69,15 @@
 
 		\subsection{Algoritmos}
 
-				Existem duas classificações gerais para algoritmos de aprendizado de máquina: os de aprendizado supervisionado e os de aprendizado não supervisionado. Os algoritmos de aprendizado supervisionado são caracterizados por tratarem de problemas nos quais se espera conseguir prever uma determinada saída baseada em um ou mais dados de entrada. Já os algoritmos de aprendizado não supervisionado se caracterizam por tratarem de casos onde não há uma saída supervisionada. Nesses casos o objetivo é apenas de encontrar algum relacionamento ou estrutura nos dados de entrada \cite{islr}. O caso aqui estudado encaixa-se na definição de aprendizado supervisionado, já que temos nos dados de treinamento as saídas que desejamos que o modelo passe a conseguir prever.
+			Existem duas classificações gerais para algoritmos de aprendizado de máquina: os de aprendizado supervisionado e os de aprendizado não supervisionado. Os algoritmos de aprendizado supervisionado são caracterizados por tratarem de problemas nos quais se espera conseguir prever uma determinada saída baseada em um ou mais dados de entrada. Já os algoritmos de aprendizado não supervisionado se caracterizam por tratarem de casos onde não há uma saída supervisionada. Nesses casos o objetivo é apenas de encontrar algum relacionamento ou estrutura nos dados de entrada \cite{islr}. O caso aqui estudado encaixa-se na definição de aprendizado supervisionado, já que temos nos dados de treinamento as saídas que desejamos que o modelo passe a conseguir prever.
 
-				Outro plano no qual os algoritmos são divididos tem relação ao tipo de resposta que se espera deles. Há dois tipos principais de resposta: qualitativa e quantitativa  \cite{islr}. Os problemas para os quais a saída é uma variável quantitativa são chamados de problemas de regressão. Um dos métodos mais comuns para se tratar esse tipo de problema é o da regressão linear com utilização do método dos mínimos quadrados.
+			Dentro do campo de aprendizado supervisionado os algoritmos são divididos tem relação ao tipo de resposta que se espera deles. Há dois tipos principais de resposta: qualitativa e quantitativa  \cite{islr}. Os problemas para os quais a saída é uma variável quantitativa são chamados de problemas de regressão. Um dos métodos mais comuns para se tratar esse tipo de problema é o da regressão linear com utilização do método dos mínimos quadrados.
 
-				Para os problemas nos quais a saída esperada é uma variável quantitativa, o nome dado é de problemas de classificação - já que o que se deseja obter como repsosta é a qual classe a resposta pertence. Um tipo de algortimo que costuma ser utilizado para problemas desse tipo é o de regressão logística.
+			Para os problemas nos quais a saída esperada é uma variável quantitativa, o nome dado é de problemas de classificação - já que o que se deseja obter como repsosta é a qual classe a resposta pertence. Um tipo de algortimo que costuma ser utilizado para problemas desse tipo é o de regressão logística.
 
-				Adicionalmente, vale citar que há alguns tipos de algoritmos que podem ser utilizados tanto para problemas quantitativos quanto para problemas qualitativos, dentre eles: K vizinhos mais próximos (\emph{K-nearest neighbors}) e \emph{boosting} \cite{islr}.
+			Adicionalmente, vale citar que há alguns tipos de algoritmos que podem ser utilizados tanto para problemas quantitativos quanto para problemas qualitativos, dentre eles: K vizinhos mais próximos (\emph{K-nearest neighbors}) e \emph{boosting} \cite{islr}.
 
-				O algoritmo aqui em desenvolvimento então pode ser classificado como aprendizado supervisionado, de classificação (já que a saída esperada é do tipo "Sim, o usuário provavelmente gostaria de acender a luz nesse momento" ou "Não, o usuário provavelmente não gostaria de acender a luz").
+			O algoritmo aqui em desenvolvimento então pode ser classificado como aprendizado supervisionado, de classificação (já que a saída esperada é do tipo "Sim, o usuário provavelmente gostaria de acender a luz nesse momento" ou "Não, o usuário provavelmente não gostaria de acender a luz").
 
 		\subsection{Tratamento de dados}
 			% http://scott.fortmann-roe.com/docs/BiasVariance.html
@@ -109,6 +109,8 @@
 			% loans.bad_loans.value_counts()
 
 			As duas táticas procuram balancear a quantidade de amostras em cada uma das classes. Pela tática de \emph{undersampling} isso é feito retirando-se algumas amostras da classe majoritária. Pela tática de \emph{oversampling}, isso é feito adicionando-se amostras da classe minoritária. Também existe a tática híbrida, que combina as duas anteriores.
+
+			% TODO colocar referencias e falar qual tecnica foi utilizada
 
 			% The disadvantage with undersampling is that it discards potentially useful data. The main disadvantage with oversampling, from our perspective, is that by making exact copies of existing examples, it makes overfitting likely.
 			% https://beckernick.github.io/oversampling-modeling/
