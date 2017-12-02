@@ -1,0 +1,19 @@
+\chapter{Teste integrado (App+Módulo+Morpheus)}
+\label{atttestefimafim}
+
+\begin{itemize}
+	\item \textbf{Data}: 15/11/2017
+	\item \textbf{Ferramentas usadas}: MQTT fx para acompanhar msgs MQTT do módulo e morpheus, tela e app backup para acompanhar mudanças no módulo e dashboard (http://hedwig.surge.sh)
+\item Reinício: implementado e testado. Mudar enunciado na dashboard para “Emite um sinal que permite simular um travamento do módulo e verificar se o circuito antitravamento age” - a questão é que o circuito antitravamento está sempre ativo, não é bem que ele é ativado quando realizamos o teste.  \textit{implementado e testado}
+\item Auto Reset Test: implementado e testado. Mudar enunciado na dashboard: “Reiniciar módulo por software.”  \textit{implementado e testado}
+\item Configuração de LCD: dashboard ok, msgs enviadas estão corretas, e o módulo responde aos três tipos de tela. Victor ainda deve tratar a parte do backlight;  \textit{implementado e testado}
+\item Sincronização de hora: dashboard confirma para o usuário? (check de timestamp enviado pelo módulo na confirmação próximo da hora do sistema é necessário?); Victor deve chamar procedimento de sincronização com NTP quando recebe a msg   \textit{implementado e testado}
+\item Configurações gerais: dashboard deveria estar mandando msgs de mudança de nome de módulo e relés, para que o app backup reflita os novos nomes? A troca de nome de módulo ocorre corretamente na dashboard, mas por enquanto não está sendo refletida no app backup -  \textit{implementado e testado}
+\item Reduzir tempo para confirmação após receber requisição (demora para acionar e desligar um rele em seguida)  \textit{implementado e testado}, melhorado para resposta em 1s;
+\item Msgs de Comunicação: Victor fazer os procedimentos no módulo \textit{implementado e testado}
+\item Config RF: msgs ok (requisição pela dashboard e confirmação de recebimento de requisição pelo módulo), mas falta Victor chamar procedimento no módulo \textit{implementado e testado}
+\item Config de acionamento de reles: incluir na dashboard do basic (possivelmente também parte de alarme) a fazer
+\item Logout: aumentar timeout de sessão \textit{implementado e testado}
+\item Config de Comunicação:8 caracteres na senha do módulo, deixar sempre setado “Automático” no modo do ponto de acesso do módulo e 192.168.0.20 no ip local fixo \textit{implementado e testado}
+\item Msgs específicas módulo de entrada: Victor implementar \textit{implementado e testado}
+\end{itemize}
