@@ -43,13 +43,13 @@ Similarmente à comunicação entre controlador local e nuvem, a troca de inform
 
 Em caso de indisponibilidade da rede local ou internet, a comunicação é feita diretamente entre módulos e aplicativo backup com escopo local (por meio de HTTP). Esse canal de comunicação fica aberto para uso somente nesses casos, para evitar exposição desnecessária a possíveis ataques. O módulo atua como servidor e o aplicativo como cliente, sendo que cada aplicativo pode se conectar diretamente ao módulo que desejar.
 
-\subsection{Diagramas de Sequência}
+\subsection{Diagramas de sequência}
 
-Seguem diagramas de sequência UML para ilustrar a comunicação fim a fim utilizada no projeto:
+Seguem diagramas de sequência UML para ilustrar a comunicação fim-a-fim utilizada no projeto:
 
 \begin{figure}[H]
 	\centering
-	\caption{Diagrama de Sequência - Data Transmission}
+	\caption{Diagrama de sequência - transmissão de dados}
 	\includegraphics[width=1\textwidth]{sequencia_data}
 	\label{fig:sequencia_data}
 \end{figure}
@@ -60,7 +60,7 @@ Para os casos de mudança de configuração e atuação (acionamento de relés),
 
 \begin{figure}[H]
 	\centering
-	\caption{Diagrama de Sequência - Configuration e Action Request}
+	\caption{Diagrama de sequência - configuração e requisição de ação}
 	\includegraphics[width=1\textwidth]{sequencia_action_configuration}
 	\label{fig:sequencia_action_configuration}
 \end{figure}
@@ -69,14 +69,14 @@ Se não houver conexões disponíveis, os procedimentos de atualização de esta
 
 \begin{figure}[H]
 	\centering
-	\caption{Diagrama de Sequência - Data Transmission do Aplicativo Backup}
+	\caption{Diagrama de sequência - transmissão de dados do Aplicativo Backup}
 	\includegraphics[width=1\textwidth]{app_backup-sequencia_data}
 	\label{fig:app_backup-sequencia_data}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\caption{Diagrama de Sequência - Configuration e Action Request do Aplicativo Backup}
+	\caption{Diagrama de sequência - configuração e requisição de ação do Aplicativo Backup}
 	\includegraphics[width=1\textwidth]{app_backup-sequencia_action_configuration}
 	\label{fig:app_backup-sequencia_action_configuration}
 \end{figure}
@@ -87,7 +87,7 @@ Outro ponto é a inclusão de um mecanismo simples para segurança do sistema, m
 
 \begin{figure}[H]
 	\centering
-	\caption{Diagrama de Sequência - Action Request com Senha no Aplicativo Backup}
+	\caption{Diagrama de sequência - requisição de ação com senha no Aplicativo Backup}
 	\includegraphics[width=1\textwidth]{app_backup-sequencia_action_seg}
 	\label{fig:app_backup-sequencia_action_seg}
 \end{figure}
