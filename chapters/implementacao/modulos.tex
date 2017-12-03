@@ -46,7 +46,7 @@ O controle de comunicação foi realizado da seguinte forma:
 \begin{enumerate}
 	\item Só há tentativa de conexão MQTT em caso de haver conexão do Wi-Fi e o horário interno estar configurado --- caso contrário, pode-se provocar travamento do módulo ou envio de mensagens sem \emph{timestamp}.
 	\item É executada configuração de \emph{callback} e de servidor MQTT a cada reconexão -- este ponto foi crítico para o bom funcionamento da comunicação.
-	\item No \emph{callback} ocorre recebimento de mensagens e tratamento (\emph{parsing} da mensagem recebida, o que é feito por meio de obtenção de seu tipo e redirecionamento para rotinas específicas para obtenção dos parâmetros de interesse de cada mensagem.
+	\item No \emph{callback} ocorre recebimento de mensagens e tratamento (\emph{parsing} da mensagem recebida, o que é feito por meio de obtenção de seu tipo e redirecionamento para rotinas específicas para obtenção dos parâmetros de interesse de cada mensagem).
 	\item Envio de mensagens de estado a cada um minuto ou quando houver mudança brusca em um dos sensores (presença, abertura, umidade ou temperatura) ou então requisição de atuação; nesses casos de envio rápido, a mensagem é inserida no início da fila de saída e enviada logo em seguida, em até um segundo.
 	\item Após o tratamento inicial das mensagens e a obtenção dos parâmetros de interesse, ocorre a persistência nas variáveis internas e gravação da EEPROM para que configurações e estados executados no aplicativo backup ou pela dashboard sejam refletidos dos dois lados, tornando transparente ao usuário o uso de qualquer um dos aplicativos e integrando suas funcionalidades.
 	\item Ainda em fase final, após a persistência de variáveis na EEPROM, ocorre a inclusão na fila de saída de mensagens de confirmação para o servidor local.
@@ -95,11 +95,10 @@ Abaixo está o diagrama do circuito impresso (PCB).
 \label{fig:esquematicoModuloBase}
 \end{figure}
 
-% TODO revisar as legendas desse cara, usar as letras da imagem?
 \begin{description}
 \item [A - Saídas] Circuitos simples de transistor para acionamento de relés (para lâmpadas) e \emph{buzzer}.
-\item [Proteção 3V3 5V] Como o display trabalha com tensão de 5V, há proteções com diodos para não danificar as entradas digitais do Wemos D1 mini, que trabalha com tensão de 3V3.
-\item [3 Entradas em A0] O circuito tem como entradas um botão (para acionamento do relé 1), o LDR (para chaveamento da luz de fundo do display) e um outro botão para \emph{hard reset} do dispositivo, todos em uma entrada analógica, cujo mapeamento E/S é da seguinte forma:
+\item [B - Proteção 3V3 5V] Como o display trabalha com tensão de 5V, há proteções com diodos para não danificar as entradas digitais do Wemos D1 mini, que trabalha com tensão de 3V3.
+\item [C - 3 Entradas em A0] O circuito tem como entradas um botão (para acionamento do relé 1), o LDR (para chaveamento da luz de fundo do display) e um outro botão para \emph{hard reset} do dispositivo, todos em uma entrada analógica, cujo mapeamento E/S é da seguinte forma:
 
 \begin{figure}[H]
 	\centering
@@ -108,8 +107,8 @@ Abaixo está o diagrama do circuito impresso (PCB).
 \label{fig:entradasEmA0}
 \end{figure}
 
-\item [Presença ou RF-TX] A entrada digital D6 é usada exclusivamente como entrada do sensor de presença PIR ou receptor RF.
-\item [Astável 555 para \emph{hard reset} e Botão] A porta D6 é usada como LED \textit{keep alive} do módulo. Sua demora ao piscar indica que o módulo está travado ou demorando muito para processar algo, o que não deveria acontecer, uma vez que os procedimentos estão multiplexados no tempo de acordo com seus tempos limite. Dessa forma, essa saída está conectada a um circuito antitravamento, que executa o \emph{reset} nos casos mencionados, de travamento ou \textit{timeout}.
+\item [D - Presença ou RF-TX] A entrada digital D6 é usada exclusivamente como entrada do sensor de presença PIR ou receptor RF.
+\item [E - Astável 555 para \emph{hard reset} e Botão] A porta D6 é usada como LED \textit{keep alive} do módulo. Sua demora ao piscar indica que o módulo está travado ou demorando muito para processar algo, o que não deveria acontecer, uma vez que os procedimentos estão multiplexados no tempo de acordo com seus tempos limite. Dessa forma, essa saída está conectada a um circuito antitravamento, que executa o \emph{reset} nos casos mencionados, de travamento ou \textit{timeout}.
 
 O primeiro capacitor tem como objetivo desacoplamento DC, de forma que a entrada do circuito envolvendo o astável 555 seja somente AC. Assim, permanências em 0 ou 1 indicam travamento.
 
@@ -124,7 +123,7 @@ Segue abaixo uma ilustração sobre o funcionamento do circuito.
 \label{fig:circuitoAntiTravamento}
 \end{figure}
 
-\item [DHT11] Entrada D3 é ligada a uma montagem básica para leitura de umidade e temperatura através do periférico DHT11.
+\item [F - DHT11] Entrada D3 é ligada a uma montagem básica para leitura de umidade e temperatura através do periférico DHT11.
 
 \end{description}
 
