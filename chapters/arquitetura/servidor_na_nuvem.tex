@@ -31,7 +31,7 @@ WebSocket é um protocolo de comunicação \emph{full-duplex} sobre conexões TC
 
 É um protocolo da camada de aplicação compatível com HTTP: a transição entre esses dois protocolos é feita por meio de um \textit{handshake} que usa o cabeçalho de \texttt{HTTP Upgrade}, como observado na Figura \ref{fig:websocketVsPolling}.
 
-A sua arquitetura diminui as latências de comunicação, fazendo-o ser um protocolo popular entre aplicações de tempo real. A compatibilidade com HTTP permite que toda a troca de dados ocorra nas portas 80 ou 443, mitigando os problemas de incompatibilidade com ambientes que possuem \emph{firewalls} bloqueando certas portas TCP. A maioria dos navegadores modernos implementa o protocolo de WebSockets, possibilitando o funcionamento de aplicações de chat e de notificações.
+A sua arquitetura diminui as latências de comunicação em relação às técnicas de \emph{polling}, que envolvem simplesmente a realização periódica de requisições HTTP, fazendo-o ser um protocolo popular entre aplicações de tempo real. A compatibilidade com HTTP permite que toda a troca de dados ocorra nas portas 80 ou 443, mitigando os problemas de incompatibilidade com ambientes que possuem \emph{firewalls} bloqueando certas portas TCP. A maioria dos navegadores modernos implementa o protocolo de WebSockets, possibilitando o funcionamento de aplicações de chat e de notificações.
 
 \begin{figure}[H]
 	\centering
@@ -43,7 +43,6 @@ A sua arquitetura diminui as latências de comunicação, fazendo-o ser um proto
 
 \subsection{Arquitetura de Microsserviços}
 
-\subsubsection{Características}
 A arquitetura de microsserviços é um modelo que compreende a estruturação de uma aplicação em um conjunto de serviços com baixo grau de acoplamento que se comunicam por meio de protocolos de comunicação leves.
 
 Para melhor compreender essa arquitetura, pode-se compará-la à arquitetura monolítica. Uma aplicação monolítica está contida em uma única unidade, que geralmente é dividida em camadas de funcionalidade tecnológica como interface web, camada de negócios \emph{server-side} e camada de persistência de dados. A escalabilidade desse modelo é dada por meio do aumento do número de servidores, máquinas virtuais ou contêineres juntamente a um balanceador de carga --- é a chamada escalabilidade horizontal. Uma alteração em uma pequena parte da aplicação significa que toda a aplicação deverá passar por um processo de \textit{build} e \textit{deploy}. Já a arquitetura de microsserviços divide as funcionalidades em serviços autônomos, muitas vezes usando as regras de negócios para realizar essa divisão. Cada serviço tem seu próprio ciclo de desenvolvimento e pode ser atualizado independentemente. A escalabilidade também é tratada serviço a serviço.
