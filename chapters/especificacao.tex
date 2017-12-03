@@ -1,7 +1,7 @@
 \chapter{Arquitetura: Especificação de Negócios e de Requisitos}
 
 \section{Partes Interessadas}
-Um dos passos iniciais na elaboração de um projeto é a determinação das partes interessadas (\emph{stakeholders}). Com esse conhecimento, pode-se entender as necessidades dos diferentes perfis de clientes e as expectativas desses grupos em relação ao uso do produto. Por meio da análise de aplicação, tanto do projeto desenvolvido quanto dos dispositivos existentes, pode-se destacar os seguintes grupos dentre os potenciais consumidores:
+Um dos passos iniciais na elaboração de um projeto é a determinação das partes interessadas (\emph{stakeholders}). Com esse conhecimento, pode-se entender as necessidades dos diferentes perfis de clientes e as expectativas desses grupos em relação ao uso do produto. Por meio da análise de aplicação, tanto do projeto desenvolvido quanto dos dispositivos existentes, podem-se destacar os seguintes grupos dentre os potenciais consumidores:
 
 \begin{itemize}
 \item Pessoas que moram sozinhas e seus familiares, na sua maioria idosos com boa saúde física;
@@ -49,7 +49,7 @@ O levantamento de requisitos não-funcionais foi realizado com base na norma ISO
 \item[RNF-5:]O sistema deve identificar e se recuperar de travamentos em suas partes, reiniciando-as;
 \item[RNF-6:]O sistema deve possuir mecanismos de proteção contra ataques de negação de serviço (DoS);
 \item[RNF-7:]O sistema deve apresentar disponibilidade de 99,9\% --- cerca de 8 horas de indisponibilidade por ano. Essa medida de disponibilidade refere-se somente aos serviços remotos, não levando em consideração indisponibilidades das residências;
-\item[RNF-8:]O sistema deve ser escalável a até 10 mil usuários, sem perdas de desempenho consideráveis, ou aumento na latência para as requisições serem atendidas, com variação de até 5\%. A verificação deve ser realizada com softwares de análise de performance comerciais\footnote{Um exemplo de aplicação de monitoramento de rede é desenvolvida pela empresa Dynatrace \url{https://www.dynatrace.com/} };
+\item[RNF-8:]O sistema deve ser escalável a até 10 mil usuários, sem perdas de desempenho consideráveis ou aumento na latência para as requisições serem atendidas, com variação de até 5\%. A verificação deve ser realizada com softwares de análise de performance comerciais\footnote{Um exemplo de aplicação de monitoramento de rede é desenvolvida pela empresa Dynatrace \url{https://www.dynatrace.com/} };
 \item[RNF-9:]O sistema deve possuir instalação intuitiva e simplificada --- a instalação é realizada em passos, seguindo o manual de instruções, sem a necessidade de conhecimentos de computação ou eletrônica;
 \item[RNF-10:]O sistema deve atender e processar requisições em paralelo, tanto dos usuários quanto dos dispositivos físicos;
 \item[RNF-11:]O sistema deve autenticar e autorizar as requisições recebidas, descartando as requisições inválidas.
