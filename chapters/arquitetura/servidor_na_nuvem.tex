@@ -29,7 +29,7 @@ Bancos de dados em memória usam a memória principal do computador para realiza
 
 WebSocket é um protocolo de comunicação \emph{full-duplex} sobre conexões TCP \cite{rfc6455}. Ele possibilita a comunicação interativa entre cliente e servidor sem a necessidade de disparar múltiplas requisições HTTP, permitindo também que o servidor envie conteúdo ao cliente sem que este tenha que requisitá-lo.
 
-É um protocolo da camada de aplicação compatível com HTTP: a transição entre esses dois protocolos é feita por meio de um \textit{handshake} que usa o cabeçalho de \texttt{HTTP Upgrade}, como observado na Figura \ref{websocketVsPolling}.
+É um protocolo da camada de aplicação compatível com HTTP: a transição entre esses dois protocolos é feita por meio de um \textit{handshake} que usa o cabeçalho de \texttt{HTTP Upgrade}, como observado na Figura \ref{fig:websocketVsPolling}.
 
 A sua arquitetura diminui as latências de comunicação, fazendo-o ser um protocolo popular entre aplicações de tempo real. A compatibilidade com HTTP permite que toda a troca de dados ocorra nas portas 80 ou 443, mitigando os problemas de incompatibilidade com ambientes que possuem \emph{firewalls} bloqueando certas portas TCP. A maioria dos navegadores modernos implementa o protocolo de WebSockets, possibilitando o funcionamento de aplicações de chat e de notificações.
 

@@ -3,7 +3,7 @@ Para a criação dos módulos de hardware, foram escolhidos componentes de \wiot
 
 A interconexão dos componentes, bem como a comunicação com o mundo externo pela Internet é intermediada por um servidor local, instalado e disponível na plataforma Raspberry Pi, rodando um sistema operacional Linux (Raspbian, baseado em Debian) e que dispõe da interface de hardware necessária para conexão com a rede.
 
-Os sensores e atuadores devem ser conectados fisicamente com um módulo controlador, e para que essa limitação fosse contornada, foram utilizados dispositivos ESP8266 --- subseção \ref{subsec:esp8266} --- para transmissão sem fio por meio de Wi-Fi. Esses módulos são responsáveis pela transmissão das informações recebidas para o servidor local. Toda a arquitetura para essa transmissão será detalhada mais à frente. Os outros dispositivos a serem utilizados, como sensores DHT11, LM555, etc. podem ser vistos em uma lista completa no Anexo \ref{listamateriais}.
+Os sensores e atuadores devem ser conectados fisicamente com um módulo controlador, e para que essa limitação fosse contornada, foram utilizados dispositivos ESP8266 --- Subseção \ref{subsec:esp8266} --- para transmissão sem fio por meio de Wi-Fi. Esses módulos são responsáveis pela transmissão das informações recebidas para o servidor local. Toda a arquitetura para essa transmissão será detalhada mais à frente. Os outros dispositivos a serem utilizados, como sensores DHT11, LM555, etc. podem ser vistos em uma lista completa no Anexo \ref{listamateriais}.
 
 Em geral, os módulos consistem do microcontrolador, relés, sensores e fontes\slash{}conversores de tensão a depender do módulo, além de um circuito para manutenção corretiva baseado no astável 555, conectados à rede Wi-Fi ou trabalhando como pontos de acesso. Para casos de falha de conexão, há um algoritmo de novas tentativas com tempos progressivamente maiores conforme as falhas ocorrerem, que busca deixar o módulo disponível para outras funções enquanto a conexão não está disponível. Para mitigar o travamento, um sinal de \textit{keep alive} é monitorado, e um circuito antitravamento deve ativar o \textit{hard reset} (\emph{reset} por hardware), ou então uma rotina de \textit{soft reset}, de modo que os requisitos RNF-5 e RF-9 sejam cumpridos. No entanto, observa-se que a segunda alternativa é a mais natural de se implementar, mas menos robusta, já que ainda pode não funcionar em casos de loop infinito.
 
@@ -95,14 +95,7 @@ Devido a altos custos de compra, implantação e manutenção de um aquário, qu
 
 Sobre o caso específico da residência onde foram executados os testes de campo, considere um aquário com 50 litros de água, com uma bomba para circulação de água e um aquecedor, com cerca de 50 peixes de pequeno porte, que são sensíveis à variação brusca de temperatura.
 
-\begin{figure}[H]
-	\centering
-	\caption{Aquário de Santo André}
-	\includegraphics[width=0.8\textwidth]{aquario}
-	\label{fig:aquario}
-\end{figure}
-
-Na ocasião de troca de água do aquário, cerca de 20\% do volume total é substituído. A saída de água se dá por um funil, e a adição é realizada pela bomba, que introduz água limpa, sem cloro e com certeza menos amônia e outros compostos nocivos aos peixes (que justificam essa troca periódica de água). O monitoramento do nível da água pode também mitigar o risco de esquecimento --- o que levaria o nível da água a tender a zero nesse caso.
+Na ocasião de troca de água do aquário, cerca de 20\% do volume total é substituído. A saída de água se dá por um funil, e a adição é realizada pela bomba, que introduz água limpa, sem cloro e com menos amônia e outros compostos nocivos aos peixes (que justificam essa troca periódica de água). O monitoramento do nível da água pode também mitigar o risco de esquecimento.
 
 \begin{figure}[H]
 	\centering

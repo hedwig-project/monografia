@@ -1,7 +1,7 @@
 \section{Aplicativo de \textit{dashboard}}
 
 \subsection{Descrição}
-O aplicativo desenvolvido é uma \textit{dashboard} que permite ao morador da casa ver os dados dos sensores em tempo real, enviar requisições para os módulos realizarem alguma ação, receber confirmações de que essas ações foram realizadas e gerenciar seus dispositivos - Morpheus e módulos. Essa \textit{dashboard} foi implementada com base nas características dos PWAs apresentadas no capítulo \ref{archweb}, relativo a arquitetura a fim de permitir uma boa experiência de usuário tanto em smartphones como em computadores.
+O aplicativo desenvolvido é uma \textit{dashboard} que permite ao morador da casa ver os dados dos sensores em tempo real, enviar requisições para os módulos realizarem alguma ação, receber confirmações de que essas ações foram realizadas e gerenciar seus dispositivos --- Morpheus e módulos. Essa \textit{dashboard} foi implementada com base nas características dos PWAs apresentadas no capítulo \ref{archweb}, relativo a arquitetura a fim de permitir uma boa experiência de usuário tanto em smartphones como em computadores.
 
 \subsection{Requisitos}
 
@@ -19,7 +19,7 @@ O aplicativo desenvolvido é uma \textit{dashboard} que permite ao morador da ca
 \item \textbf{Gerenciar Morpheus}
 
 \begin{itemize}
-\item O usuário pode adicionar e remover controladores locais - Morpheus, sendo que para o cadastro basta adicionar o número de série do dispositivo.
+\item O usuário pode adicionar e remover controladores locais --- Morpheus, sendo que para o cadastro basta adicionar o número de série do dispositivo.
 \item O usuário pode configurar o Morpheus, especificando se deseja que mensagens que não puderam ser enviadas por problemas de conectividade sejam mandadas assim que a conexão for reestabelecida.
 \end{itemize}
 
@@ -92,7 +92,7 @@ Para aproveitar as funcionalidades e facilidades sintáticas das especificaçõe
 
 Para agilizar o desenvolvimento e prevenir falhas, é tirado proveito do \textit{linter} dedicado a JavaScript ESLint\footnote{https://eslint.org/}. \textit{Linter} é uma ferramenta para verificar o código e identificar erros de programação ou inconsistências de estilo \cite{linter}, o que possibilita produzir programas mais consistentes e menos suscetíveis a bugs.
 
-Por fim, a \emph{pipeline} de desenvolvimento do cliente usa o Webpack\footnote{https://webpack.js.org} como \textit{module bundler}. O Webpack cria gráficos de dependência de todos os componentes da aplicação web - imagens, folhas de estilo, scripts - e então os processa transformando-nos em \textit{bundles} ou pacotes, que nada mais são que arquivos estáticos.
+Por fim, a \emph{pipeline} de desenvolvimento do cliente usa o Webpack\footnote{https://webpack.js.org} como \textit{module bundler}. O Webpack cria gráficos de dependência de todos os componentes da aplicação web --- imagens, folhas de estilo, scripts --- e então os processa transformando-nos em \textit{bundles} ou pacotes, que nada mais são que arquivos estáticos.
 
 \subsection{Interface}
 
@@ -152,7 +152,7 @@ O aplicativo foi publicado com o serviço Surge\footnote{https://surge.sh/}, que
 
 \subsection{Segurança}
 
-O Surge usa a comunicação via HTTPS por padrão, oferecendo o suporte básico a SSL. Dessa forma, os dados transmitidos entre navegador e servidor podem ser criptografados, permitindo uma maior segurança em operações como cadastro, login e recebimento dos dados dos sensores.
+O Surge usa a comunicação via HTTPS por padrão, oferecendo o suporte básico a TLS. Dessa forma, os dados transmitidos entre navegador e servidor podem ser criptografados, permitindo uma maior segurança em operações como cadastro, login e recebimento dos dados dos sensores.
 
 \subsection{Performance}
 
