@@ -12,7 +12,7 @@
 
 		No quesito de segurança, o sistema pode, a partir do aprendizado de rotinas, detectar ações suspeitas na casa (como por exemplo a abertura da porta de entrada em horário não usual), e opcionalmente agir para intervir quando tal tipo de ação é detectada.
 
-		No Hedwig, foi desenvolvida uma análise baseada em dados coletados durante os meses de setembro e outubro, em um dos módulos que mantivemos instalados - o módulo de corredor, que já foi citado no \ref{chap:coletaAnaliseDados}. A análise aqui descrita focou-se em gerar um algoritmo capaz de prever quando o usuário iria solicitar ao sistema a ativação do relé 1, que, no caso do módulo em análise está conectado à lampada do corredor, pois como analisado no \ref{chap:coletaAnaliseDados}, a funcionalidade de agendamento de ativação desse relé foi pouco aproveitada, já que o mesmo ainda obteve muitas ativações manuais, indicando que o usuário poderia se beneficiar de um algoritmo inteligente que pudesse prever a ativação do relé antes que a mesma venha a ocorrer pelo usuário.
+		No Hedwig, foi desenvolvida uma análise baseada em dados coletados durante os meses de setembro e outubro, em um dos módulos que mantivemos instalados - o módulo de corredor, que já foi citado no \ref{coletaAnaliseDados}. A análise aqui descrita focou-se em gerar um algoritmo capaz de prever quando o usuário iria solicitar ao sistema a ativação do relé 1, que, no caso do módulo em análise está conectado à lampada do corredor, pois como analisado no \ref{coletaAnaliseDados}, a funcionalidade de agendamento de ativação desse relé foi pouco aproveitada, já que o mesmo ainda obteve muitas ativações manuais, indicando que o usuário poderia se beneficiar de um algoritmo inteligente que pudesse prever a ativação do relé antes que a mesma venha a ocorrer pelo usuário.
 
 	\section{Implementação}
 
@@ -45,9 +45,7 @@
 
 			Em seguida, é necessário realizar algumas análises de dados e tratamentos dos mesmos, para que se possa sanitizá-los e deixá-los em formato propício ao uso pelos algoritmos. Também é necessário separar uma parcela dos dados para servir para treinamento dos modelos, e outra parcela para servir de dados de teste.
 
-			Tendo isso pronto, pode-se então passar a uma etapa de treinamento de modelos. Para isso, é necessário fazer uma análise de quais algoritmos poderiam se encaixar bem para o problema em questão.
-
-			A partir do treinamento dos modelos, e da separação de alguns dados para teste, é possível então avaliar quão bem os algoritmos estão performando para a previsão de resultados.
+			Tendo isso pronto, pode-se então passar a uma etapa de treinamento de modelos. Para isso, é necessário fazer uma análise de quais algoritmos poderiam se encaixar bem para o problema em questão. A partir do treinamento dos modelos, e da separação de alguns dados para teste, é possível então avaliar quão bem os algoritmos estão performando para a previsão de resultados, e possivelmente, adotar uma abordagem diferente para o treinamento dos modelos.
 
 			O último passo costuma ser a elaboração do produto final: normalmente a integração sistema de aprendizado com outras aplicações ou então a elaboração de relatórios para que os modelos treinados para o problema sejam levados adiante. No caso de um produto integrado com o resto de um sistema, passa-se então a entrar num ciclo de otimização do algoritmo baseado em novos dados obtidos.
 
@@ -61,7 +59,7 @@
 
 			Para os problemas nos quais a saída esperada é uma variável quantitativa, o nome dado é de problemas de classificação - já que o que se deseja obter como repsosta é a qual classe a resposta pertence. Um tipo de algortimo que costuma ser utilizado para problemas desse tipo é o de regressão logística.
 
-			Adicionalmente, vale citar que há alguns tipos de algoritmos que podem ser utilizados tanto para problemas quantitativos quanto para problemas qualitativos, dentre eles: K vizinhos mais próximos (\emph{K-nearest neighbors}) e \emph{boosting} \cite{islr}.
+			Adicionalmente, vale citar que há alguns tipos de algoritmos que podem ser utilizados tanto para problemas quantitativos quanto para problemas qualitativos, dentre eles: K-vizinhos mais próximos (\emph{K-nearest neighbors}) e \emph{boosting} \cite{islr}.
 
 			O algoritmo aqui em desenvolvimento então pode ser classificado como aprendizado supervisionado, de classificação (já que a saída esperada é do tipo "Sim, o usuário provavelmente gostaria de acender a luz nesse momento" ou "Não, o usuário provavelmente não gostaria de acender a luz").
 
@@ -96,47 +94,22 @@
 
 		\subsection{Treinamento dos Modelos}
 
-			% how-to-build-a-machine-learning-classifier-in-python-with-scikit-learn  → fala sobre como funciona a divisao em pedaços do data set
-		In this chapter we discuss three of the most
-widely-used classifiers: logistic regression, linear discriminant analysis, and
-K-nearest neighbors. We discuss more computer-intensive methods in later
-chapters, such as generalized additive models (Chapter 7), trees, random
-forests, and boosting (Chapter 8), and support vector machines (Chap-
-ter 9).
+			Em aprendizado de máquina, há diversos métodos de se treinar modelos. Nenhum deles será o melhor para todos os possíveis \emph{data sets}, e, portanto, a escolha da melhor abordagem é sempre uma parte importante do desenvolvimento de aprendizado de máquina \cite{islr}. Dessa forma, foram analisados diversos métodos.
 
-% pra que q é o quadratico?
+			Foram utilizados três dos classificadores (como são chamados os algoritmos para treinar modelos de aprendizado de máquina no caso de aprendizado supervisionado, para classificação) mais utilizados: regressão logística, análise discriminante linear, e K-vizinhos mais próximos \cite{islr}.
 
-% site do sklearn tem graficos e explicacoes dos algoritmos
+			Os algoritmos utilizados para esses classificadores foram os do pacote Scikit\footnote{http://scikit-learn.org/stable/}.
 
-% falar do uso da package de imblaanced learning
+			Para o treinamento dos modelos, os dados são particionados entre dados para treinamento e dados para teste. Os dados para teste são os utilizados para verificar a acurácia do modelo para prever resultados, utilizando tais dados para verificar se as saídas previstas foram as esperadas. Para fazer essa divisão, foi utilizada a função train\textunderscore test\textunderscore split, do pacote Scikit\footnote{\url{http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html}}.
 
-		\subsection{Resultados Obtidos}
+			Antes de se tratar o problema de desbalanceamento de classes, o algoritmo que melhor performou foi o de regressão logística, com precisão de 98,95\% nos dados de teste. Tal medida foi feita utilizando a função score, pertencente aos classificadores do Scikit.
 
-		There
-		is no free lunch in statistics: no one method dominates all others over all
-		possible data sets. On a particular data set, one specific method may work
-		best, but some other method may work better on a similar but different
-		data set. Hence it is an important task to decide for any given set of data
-		which method produces the best results. Selecting the best approach can
-		be one of the most challenging parts of performing statistical learning in
-		practice.
+			Em seguida, modificou-se os dados de treinamento para tratar a questão de desbalanceamento de classes. Para isso, foram utilizadas diversas funções pertencentes ao pacote Imbalanced learn \footnote{\url{http://contrib.scikit-learn.org/imbalanced-learn/stable/index.html}}.
 
-		% se possivel, graficos de erros e/ou falsos positivos
-
+			Utilizando-se a técnica de \emph{random over sampling}, o algoritmo com maior taxa de acerto foi o de K vizinhos mais próximos, com acerto em 97,57\% dos casos de teste. Aplicando \emph{oversampling} com a técnica \emph{SMOTE}, o melhor algoritmo também foi o de K vizinhos mais próximos, dessa vez com taxa de 84,19\% de acertos. Já com a técnica de \emph{undersampling}, a melhor taxa de acerto obtida foi de 98,87\%, com o algoritmo de análise discriminante linear. Por último, realizou-se um teste utilizando um misto das técnicas de \emph{oversampling} e \emph{undersampling}, obtendo-se uma taxa de 96,36\% de acerto nos casos de teste com o algoritmo de K vizinhos mais próximos.
 
 		\subsection{Otimização dos Modelos}
 
 			Para que o sistema torne-se cada vez mais acurado, o objetivo seria continuar alimentando-o com novos dados de entrada. Além disso, novos algoritmos e técnincas poderiam ser testados, a fim de continuar a exploração e comparação para encontrar o algoritmo de melhor performance para o sistema em questão.
 
 			Outros tipos de testes poderiam ser feitos também em relação aos dados de entrada, utilizando-se técnicas de seleção de características, ou técnicas como \emph{mean normalization} ou \emph{feature scaling} \cite{Coursera}, observando-se a diferença no modelo treinado, de forma a otimizar a performance do mesmo.
-
-
-% TODO missing this reference:
-
-% @article{unbalancedClassArticle,
-%   author    = {WEISS, Gary M. and MCCARTHY, Kate and ZABAR, Bibi},
-%   title     = {Cost-Sensitive Learning vs. Sampling: Which is Best for Handling Unbalanced Classes with Unequal Error Costs?},
-%   url = {\url{https://pdfs.semanticscholar.org/9908/404807bf6b63e05e5345f02bcb23cc739ebd.pdf}},
-%   year = {2016},
-%   note = {Accessed: 2017-12-03}
-% }
