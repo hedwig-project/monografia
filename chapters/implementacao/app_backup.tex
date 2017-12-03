@@ -69,13 +69,13 @@ A partir do menu principal, pode-se acessar o menu do módulo desejado (vide Fig
     \end{minipage}
 \end{figure}
 
-No caso de proteção de controle por senha, é exibido o painel numérico como na Figura \ref{fig:senhaBackup}. A cada requisição da página, o módulo manda um mapeamento das teclas diferente. Por exemplo, de teclas A, B, C, etc. para (3,1), (9,2), etc. Após o usuário entrar com a senha (sequência de teclas do tipo A, B, C, etc.), o módulo valida a sequência e autoriza o acionamento. Dessa forma, pessoas não conseguem copiar a senha ao visualizar a sequência de teclas do usuário, tampouco um invasor poderia copiar a sequência e utilizá-la para abertura logo em seguida, pois o mapeamento seria outro.
+No caso de proteção de controle por senha, é exibido o painel numérico como na Figura \ref{fig:senhaBackup}. A cada requisição da página, o módulo manda um mapeamento das teclas diferente. Por exemplo, as teclas A e B mapeiam para (3,1) e (9,2). Após o usuário entrar com a senha (sequência de teclas do tipo A, B, C, etc.), o módulo valida a sequência e autoriza o acionamento. Dessa forma, pessoas não conseguem copiar a senha ao visualizar a sequência de teclas do usuário, tampouco um invasor poderia copiar a sequência e utilizá-la para abertura logo em seguida, pois o mapeamento seria outro.
 
 \subsection{Configurações}
 
 A partir no menu principal do módulo, pode-se ter acesso ao seu log para depuração, uma opção disponível apenas para administradores, e um menu de configurações. Do menu de configurações, pode-se alterar o modo do display (dentre 3 opções) e as cores do módulo, conforme opções anteriormente citadas.
 
-Ainda do menu de configurações, podem-se configurar alertas e alarmes (sonoros a partir dos módulos e pela Internet através do provedor gratuito Blynk e email), relés (possibilidade de auto ligar a partir de um sensor específico ou de ser acionado a partir de um sinal de rádio - usualmente um controle remoto ou até um sensor de abertura adicional ou mais de uma opação) e o log (quais parâmetros são persistidos e mandados para a nuvem). Também pode-se acessar o menu de Ferramentas, no qual é possível realizar testes de \emph{auto reset} para verificação do funcionamento do circuito antitravamento, que age em cerca de 30 segundos, reiniciar o módulo, desconectá-lo, voltar à versão de fábrica (versão implementada em software, enquanto a versão em hardware é realizada por meio de botão oculto) e atualizar o \emph{firmware} (apenas disponível para administradores).
+Ainda do menu de configurações, podem-se configurar alertas e alarmes (sonoros a partir dos módulos e pela Internet através do provedor gratuito Blynk e email), relés (possibilidade de auto ligar a partir de um sensor específico ou de ser acionado a partir de um sinal de rádio --- usualmente um controle remoto ou até um sensor de abertura adicional ou mais de uma opação) e o log (quais parâmetros são persistidos e mandados para a nuvem). Também pode-se acessar o menu de Ferramentas, no qual é possível realizar testes de \emph{auto reset} para verificação do funcionamento do circuito antitravamento, que age em cerca de 30 segundos, reiniciar o módulo, desconectá-lo, voltar à versão de fábrica (versão implementada em software, enquanto a versão em hardware é realizada por meio de botão oculto) e atualizar o \emph{firmware} (apenas disponível para administradores).
 Ao acessar a atualização de \emph{firmware}, escolhe-se a o arquivo que contém a nova versão, para que seja feito \emph{upload} do mesmo, e o módulo seja atualizado.
 
 É possível também acessar as configurações avançadas (vide Figura \ref{fig:firmwareconfigavancadasDHT}). Nela, pode-se configurar um offset para temperatura e umidade, de preferência realizados a partir de um medidor confiável para calibração.
@@ -124,7 +124,7 @@ Para que o controle remoto seja corretamente configurado, são necessários os s
             Aperte + (ao lado do relé 1 ou relé 2), espere até a página indicar “Aguardando” e abra o sensor de abertura. É permitido incluir diversos sinais para o controle do mesmo relé, abertura ou fechamento de sensor).
 
             \item
-            Aperte "OK" no canto superior direito da página para salvar suas configurações.
+            Aperte ``OK'' no canto superior direito da página para salvar suas configurações.
 
         \end{enumerate}
 \end{enumerate}
