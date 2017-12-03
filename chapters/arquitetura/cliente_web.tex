@@ -1,4 +1,5 @@
-\section{Cliente web}
+\section{Cliente Web}
+\label{archweb}
 A arquitetura do Hedwig permite o desenvolvimento de múltiplos aplicativos clientes independentes para monitorar e controlar os dispositivos conectados de uma casa. Como toda a comunicação desses clientes é realizada através do servidor na nuvem por meio de WebSockets e da API REST, é possível realizar integrações em diversas plataformas, seja em navegadores ou em sistemas operacionais nativos de smartphones.
 
 A fim de demonstrar como o usuário final poderia interagir com o sistema em sua totalidade, optou-se por desenvolver uma aplicação web. Esse tipo de aplicação foi escolhida devido à vasta quantidade de bibliotecas, \emph{frameworks}, ferramentas e IDEs disponíveis. Outro fator favorável é a evolução dos navegadores modernos, que possuem funcionalidades de depuração e integrações com os ambientes de dispositivos móveis cada vez melhores. Tais melhorias possibilitaram que aplicativos web pudessem ter uma aparência e percepção mais próxima aos de aplicativos nativos.
@@ -6,13 +7,13 @@ A fim de demonstrar como o usuário final poderia interagir com o sistema em sua
 \subsection{\emph{Progressive Web Apps}}
 
 \subsubsection{Contexto}
-Durante a ascensão dos smartphones no mercado, os aplicativos nativos predominaram por serem mais rápidos e possuírem maior suporte para acessar funções do hardware, alcançando assim um padrão melhor de experiência de usuário do que aplicativos web. Em 2007, Steve Jobs chegou a afirmar que sua visão para o iPhone era de que todos os aplicativos de terceiros fossem web apps \cite{9to5mac}. Contudo, apesar desse incentivo, o panorama de Jobs não foi recebido com muita empolgação, e a App Store foi ao ar em 2008 com 500 aplicativos \cite{ricker}. Em janeiro de 2009, já estavam disponíveis mais de 15 mil aplicativos, com um total de downloads que superava 500 milhões \cite{myslewski}.
+Durante a ascensão dos smartphones no mercado, os aplicativos nativos predominaram por serem mais rápidos e possuírem maior suporte para acessar funções do hardware, alcançando assim um padrão melhor de experiência de usuário do que aplicativos web. Em 2007, Steve Jobs chegou a afirmar que sua visão para o iPhone era de que todos os aplicativos de terceiros fossem \textit{web apps} \cite{9to5mac}. Contudo, apesar desse incentivo, o panorama de Jobs não foi recebido com muita empolgação, e a App Store foi ao ar em 2008 com 500 aplicativos \cite{ricker}. Em janeiro de 2009, já estavam disponíveis mais de 15 mil aplicativos, com um total de downloads que superava 500 milhões \cite{myslewski}.
 
 Desde então, ocorreram grandes avanços no desenvolvimento web com o amadurecimento do HTML5, CSS3 e JavaScript, a criação de novas bibliotecas e ferramentas, surgimento de mais metodologias para design responsivo e a evolução dos navegadores para cumprir os padrões e especificações mais recentes.
 
 Assim, houve o crescimento do número de aplicativos híbridos, que combinam as técnicas de desenvolvimento web com benefícios dos aplicativos nativos como o suporte para usar funções do hardware. Pode-se dividir os aplicativos híbridos em dois grandes grupos \cite{rudolph}: aplicativos que usam WebView, uma espécie de navegador interno que é envolvido por uma aplicação nativa, permitindo que algumas APIs nativas sejam acessíveis por JavaScript, e aplicativos híbridos compilados, que são escritos em uma linguagem não nativa e então compilados para várias plataformas de dispositivos móveis. Isso permite obter versões para diversas plataformas com o mesmo código, apesar de que para obter tal resultado, são impostas diversas limitações durante o desenvolvimento.
 
-Hoje, pesquisas indicam que os aplicativos nativos vêm perdendo força. O número de downloads de aplicativos no Estados Unidos diminui 20\% ano a ano \cite{benson}. Analisando os dados da Google Play, descobriu-se que o aplicativo médio perde aproximadamente 77\% dos usuário após 3 dias da instalação \cite{chen} --- o que demonstra a dificuldade de se alcançar um bom nível de engajamento. Logo, pedir que o usuário baixe um aplicativo para continuar desfrutando dos serviços de um site pode acarretar em evasão de visitantes. Esses fatores somam-se ao fato de que as tecnologias de desenvolvimento web continuam progredindo e permitindo experiências de usuário cada vez mais ricas --- há um crescente suporte na forma de bibliotecas e metodologias para criar interfaces responsivas, transições e animações fluidas e novos tipos de interação. Nesse contexto, surge o conceito de \textit{Progressive Web Apps}, aplicações web que, de fato, podem oferecer uma experiência compatível à de uma aplicação nativa.
+Hoje, pesquisas indicam que os aplicativos nativos vêm perdendo força. O número de downloads de aplicativos no Estados Unidos diminui 20\% ano a ano \cite{benson}. Analisando os dados da Google Play, descobriu-se que o aplicativo médio perde aproximadamente 77\% dos usuários após 3 dias da instalação \cite{chen} --- o que demonstra a dificuldade de se alcançar um bom nível de engajamento. Logo, pedir que o usuário baixe um aplicativo para continuar desfrutando dos serviços de um site pode acarretar em evasão de visitantes. Esses fatores somam-se ao fato de que as tecnologias de desenvolvimento web continuam progredindo e permitindo experiências de usuário cada vez mais ricas --- há um crescente suporte na forma de bibliotecas e metodologias para criar interfaces responsivas, transições e animações fluidas e novos tipos de interação. Nesse contexto, surge o conceito de \textit{Progressive Web Apps}, aplicações web que, de fato, podem oferecer uma experiência compatível à de uma aplicação nativa.
 
 \subsubsection{Conceito}
 O conceito de \textit{Progressive Web Apps} ou PWAs é recente --- o termo foi usado pela primeira vez em 2015 pelo designer Frances Berriman e pelo engenheiro do Google Chrome Alex Russell \cite{russell}. A ideia dessa classe de aplicativos é ir além das aplicações web tradicionais, aproveitando o máximo das funcionalidades mais modernas dos últimos navegadores lançados e combinando-as à navegação móvel para oferecer uma melhor experiência ao usuário.
@@ -37,7 +38,7 @@ Além desses três principais aspectos, várias outras características para def
 
 As ideias em torno do desenvolvimento dos PWAs são fortemente relacionadas ao conceito de \textit{progressive enhancement} ou melhoria progressiva, que propõe que camadas de interface e funcionalidades sejam progressivamente adicionadas à aplicação à medida que a conexão e navegador do usuário permitam \cite{champeon}. Dessa forma, usuários com dificuldades de conectividade e dispositivos mais antigos podem acessar o conteúdo básico, e aqueles que possuem mais banda e navegadores mais modernos podem acessar uma versão mais completa.
 
-\subsubsection{Tecnologias e técnicas}
+\subsubsection{Tecnologias e Técnicas}
 
 \begin{description}
 
@@ -47,16 +48,16 @@ O manifesto é um arquivo de texto que oferece informações básicas sobre um a
 
 \item \textbf{\textit{Service Workers}}
 
-\textit{Service workers} são scripts executados em segundo plano pelo navegador que realizam tarefas que não necessitam de uma página web ou de interações imediatas com o usuário. Aplicações populares para \textit{service workers} são as notificações push e a sincronização em segundo plano.
+\textit{Service workers} são scripts executados em segundo plano pelo navegador que realizam tarefas que não necessitam de uma página web ou de interações imediatas com o usuário. Aplicações populares para \textit{service workers} são as notificações \textit{push} e a sincronização em segundo plano.
 
 \end{description}
 
 \subsubsection{Aplicações}
-Com o uso de notificações push, a eXtra Electronics, comércio de eletrônicos e eletrodomésticos da Arábia Saudita, obteve um grande aumento de conversão na sua loja virtual. Com uma taxa de cliques nas notificações de 12\%, os usuários que optaram por ativar essa funcionalidade retornavam 4 vezes mais ao site e o total das receitas de suas compras aumentou em 100\% \cite{googledevextra}.
+Com o uso de notificações \textit{push}, a eXtra Electronics, comércio de eletrônicos e eletrodomésticos da Arábia Saudita, obteve um grande aumento de conversão na sua loja virtual. Com uma taxa de cliques nas notificações de 12\%, os usuários que optaram por ativar essa funcionalidade retornavam 4 vezes mais ao site e o total das receitas de suas compras aumentou em 100\% \cite{googledevextra}.
 
-Outro caso de sucesso na área de e-commerce é o da AliExpress, que focou na performance e nas funcionalidades offline para obter um aumento de 104\% na conversão vinda de usuários novos \cite{googledevaliexpress}.
+Outro caso de sucesso na área de \textit{e-commerce} é o da AliExpress, que focou na performance e nas funcionalidades offline para obter um aumento de 104\% na conversão vinda de usuários novos \cite{googledevaliexpress}.
 
-O Twitter PWA Lite conseguiu reduzir o uso de dados em até 70\% usando imagens otimizadas e se aproveitando ao máximo das informações no cache. Houve um aumento de 75\% da quantidade de tweets enviados \cite{googledevtwitter}.
+O Twitter PWA Lite conseguiu reduzir o uso de dados em até 70\% usando imagens otimizadas e se aproveitando ao máximo das informações no cache. Houve um aumento de 75\% da quantidade de \textit{tweets} enviados \cite{googledevtwitter}.
 
 \subsection{JSON \textit{Web Tokens} \label{sec:JWT}}
 
@@ -79,7 +80,7 @@ No Hedwig, o servidor na nuvem, ao receber um pedido de autenticação e validá
 
 Os navegadores em geral podem armazenar em torno de 300 cookies, com um limite de aproximadamente 20 por domínio, cada um com um tamanho máximo de 4kB \cite{cookies}. Já os limites para o local storage geralmente são de, no mínimo, 5MB por domínio \cite{localstorage}.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\caption{Diagrama de interação na autenticação por JWT}
   \includegraphics[width=\textwidth]{jwtDiagram}

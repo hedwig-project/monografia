@@ -1,6 +1,6 @@
 \section{Módulos}
 \subsection {Rotinas}
-\subsubsection{Multiplexação no tempo}
+\subsubsection{Multiplexação no Tempo}
 Para tratar indisponibilidade dos módulos devido a tentativas de reconexão e conexão e requisições não-gerenciadas, e, assim, aumentar a disponibilidade, existem além do circuito antitravamento e \textit{hard reset} diversas rotinas de tratamento. Elas contemplam desde configuração inicial, reconfigurações, coletas de dados e atuação por meio de relés até conexão, desconexão, reconexão e envio de dados. Elas foram multiplexadas no tempo da seguinte forma:
 
 \begin{figure} [H]
@@ -10,7 +10,7 @@ Para tratar indisponibilidade dos módulos devido a tentativas de reconexão e c
 \label{fig:rotinaMultiplexacao}
 \end{figure}
 
-\subsubsection{Tratamento de indisponibilidade}
+\subsubsection{Tratamento de Indisponibilidade}
 Nos casos de indisponibilidade de Internet, servidor ou rede local, o seguinte procedimento foi adotado (observe que a indisponibilidade do próprio módulo é tratada pelo circuito antitravamento):
 
 \begin{figure}[H]
@@ -20,12 +20,12 @@ Nos casos de indisponibilidade de Internet, servidor ou rede local, o seguinte p
 \label{fig:tratamentoIndisponibilidade}
 \end{figure}
 
-Com esse procedimento, as tentativas de reconexão à Internet, servidor e rede local estão segregadas e com tentativas realizadas em intervalos de tempo sucessivamente maiores. Desta forma, conseguimos gerenciar esses procedimentos, já que o nível de processamento é baixo.
+Com esse procedimento, as tentativas de reconexão à Internet, servidor e rede local estão segregadas e com tentativas realizadas em intervalos de tempo sucessivamente maiores. Desta forma, conseguimos gerenciar esses procedimentos, já que a capacidade de processamento é baixa.
 
-\subsubsection{DoS local (\textit{Evil Twin})}
-No caso de ataque de \textit{Evil Twin} - no qual uma rede mal-intencionada, usualmente aberta, usa o mesmo SSID da rede original com o objetivo de obter a senha - o sistema pode ficar indisponível até ao nível local. Módulos podem se conectar à rede mal-intencionada e ficarem somente com as funcionalidades offline, como acionamento de lâmpada por botão físico acoplado ao módulo. Outro problema é a queda da rede por interferência de radiofrequência ou outro mecanismo utilizado pelo usuário mal-intencionado para que os clientes se desconectem, tentem reconexão e forneçam a senha da rede.
+\subsubsection{DoS Local (\textit{Evil Twin})}
+No caso de ataque de \textit{Evil Twin} --- no qual uma rede mal-intencionada, usualmente aberta, usa o mesmo SSID da rede original com o objetivo de obter a senha --- o sistema pode ficar indisponível até ao nível local. Módulos podem se conectar à rede mal-intencionada e ficarem somente com as funcionalidades offline, como acionamento de lâmpada por botão físico acoplado ao módulo. Outro problema é a queda da rede por interferência de radiofrequência ou outro mecanismo utilizado pelo usuário mal-intencionado para que os clientes se desconectem, tentem reconexão e forneçam a senha da rede.
 
-Além do problema de indisponibilidade, no caso do dispositivo ser capturado pela rede mal-intencionada e ser controlado por usuários não legítimos, há a possibilidade dos módulos contribuírem para um ataque de \textit{DDoS} \cite{OVHDDoS}.
+Além do problema de indisponibilidade, no caso do dispositivo ser capturado pela rede mal-intencionada e ser controlado por usuários não legítimos, há a possibilidade dos módulos serem usados para um ataque de DDoS \cite{OVHDDoS}.
 
 Para mitigar esses riscos, os módulos executam o seguinte procedimento:
 
@@ -37,9 +37,9 @@ Para mitigar esses riscos, os módulos executam o seguinte procedimento:
 \end{figure}
 
 \subsubsection{Comunicação por MQTT}
-Para o desenvolvimento da comunicação por MQTT com o Morpheus no módulo, foi usada a biblioteca PubSub para Arduino.
+Para o desenvolvimento da comunicação por MQTT com o Morpheus no módulo, foi usada a biblioteca PubSub \cite{PubSub} para Arduino.
 
-Para cada módulo existem identificador e senha, que são parâmetros próprios saídos de fábrica, além de configurações de porta e endereço do Morpheus local padrões.
+Para cada módulo existem identificador e senha, que são parâmetros próprios que vêm de fábrica, além de configurações de porta e endereço do Morpheus local padrões.
 
 O controle de comunicação foi realizado da seguinte forma:
 
@@ -62,9 +62,9 @@ O controle de comunicação foi realizado da seguinte forma:
 
 Mensagens de estado periódicas (azuis) são inseridas no final da fila. No caso de acionamento, uma mensagem de estado (vermelha) é inserida no início da fila, e, em caso de configuração, uma mensagem de confirmação também é inserida no início da fila.
 
-Por fim, vale destacar a necessidade de alteração da biblioteca PubSub para suportar mensagens maiores. Em caso de impossibilidade de envio de mensagens maiores, todo o protocolo deveria ser alterado para comportar mensagens mais compactas ou então deveria haver o uso de algum mecanismo de codificação ou compactação em conjunto com o protocolo desenvolvido.
+Por fim, vale destacar a necessidade de alteração da biblioteca PubSub \cite{PubSub} para suportar mensagens maiores. Em caso de impossibilidade de envio de mensagens maiores, todo o protocolo deveria ser alterado para comportar mensagens mais compactas ou então deveria haver o uso de algum mecanismo de codificação ou compactação em conjunto com o protocolo desenvolvido.
 
-\subsection{Diagrama}
+\subsection{Diagrama PCB}
 Abaixo está o diagrama do circuito impresso (PCB).
 
 \begin{figure}[H]
@@ -172,7 +172,7 @@ Ao final, também consta o procedimento utilizado para validação dos módulos 
 		\label{fig:PrepI2CSoldagem}
 	\end{figure}
 
-	\item A próxima etapa foi soldar as trilhas por baixo conforme o diagrama. Também foi necessário soldar o I2C com o display. Essa é a etapa mais demorada, que poderia ser facilmente operacionalizada ao serem adotadas placas de circuito impresso, o que aumentaria muito a capacidade de montagem.
+	\item A próxima etapa foi soldar as trilhas por baixo conforme o diagrama PCB (Figura \ref{fig:diagramaModuloBase}). Também foi necessário soldar o I2C com o display. Essa é a etapa mais demorada, que poderia ser facilmente operacionalizada ao serem adotadas placas de circuito impresso, o que aumentaria muito a capacidade de montagem.
 
 	\begin{figure}[H]
 		\centering
@@ -201,7 +201,7 @@ Ao final, também consta o procedimento utilizado para validação dos módulos 
 
 \end{enumerate}
 
-\subsubsection {Montagem}
+\subsubsection {Procedimento de Validação do Módulo}
 \begin{enumerate}
 	\item Carregar programa para testar módulo;
 	\item Realizar setup da conexão com a rede Wi-Fi;

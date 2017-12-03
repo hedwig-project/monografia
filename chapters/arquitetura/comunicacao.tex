@@ -13,7 +13,7 @@ A arquitetura de comunicação é representada pela Figura \ref{fig:diagramaComu
 	\label{fig:diagramaComunicacao}
 \end{figure}
 
-\subsection{Comunicação entre controlador local e módulos}
+\subsection{Comunicação entre Controlador Local e Módulos}
 
 A infraestrutura de comunicação entre o servidor local e os módulos com sensores e atuadores utiliza o protocolo de aplicação \wmqtt{}, referência em aplicações \wiot{} no mundo. O protocolo \wmqtt{} é estabelecido em cima dos protocolos TCP/IP e é orientado à sessão, diferentemente do protocolo HTTP, localizado na mesma camada \cite{ibmMqtt}.
 
@@ -27,7 +27,7 @@ As mensagens são transmitidas em texto puro, e é necessário estabelecer um pr
 
 O \textit{broker} Mosquitto\footnote{https://mosquitto.org/} é utilizado no Hedwig. Ele foi escolhido por ser amplamente adotado em projetos de \wiot{}, além de ser \emph{open-source} e ter licença abrangente (MIT). Entretanto, há outras diversas possibilidades, como o HiveMQ, adotado no projeto HomeSky e com grande uso em aplicações enterprise \cite{hiveMq}.
 
-\subsection{Comunicação entre controlador local e nuvem}
+\subsection{Comunicação entre Controlador Local e Nuvem}
 
 Inicialmente, foi proposto um modelo arquitetural para a comunicação com a nuvem no qual existiriam \emph{endpoints} para requisições HTTP tanto do lado da casa quanto do lado da nuvem. Assim, quando o Morpheus precisasse enviar uma mensagem, seria necessário realizar uma chamada ao \emph{endpoint} correspondente. Neste sentido (Morpheus para nuvem) não há nenhum problema, pois é possível garantir as configurações avançadas de segurança adequadas, bem como a utilização de balanceadores de carga e servidores terceiros para lidar com ataques do tipo DoS \cite{akamai}, conforme RNF-6.
 
@@ -35,13 +35,13 @@ O problema, no entanto, está em garantir a segurança e usabilidade do lado da 
 
 Uma forma de contornar o problema se encontra no uso de WebSockets, protocolo detalhado na Seção \ref{sub:websocket}. Assim, o Morpheus se comporta como um cliente em relação à nuvem e é sempre ele que abre uma conexão. Essa conexão se mantém aberta e forma um caminho \emph{full-duplex}, de modo que é possível receber as mensagens da nuvem a qualquer momento também. Com essa arquitetura, os desafios relativos à segurança recaem aos servidores e não mais à casa, de modo que é possível gerenciar esses riscos como o fazem grandes empresas, ou seja, de forma transparente ao cliente final.
 
-\subsection{Comunicação entre nuvem e aplicativos}
+\subsection{Comunicação entre Nuvem e Aplicativos}
 
 Similarmente à comunicação entre controlador local e nuvem, a troca de informações entre nuvem e aplicativos clientes em geral é feita por meio de WebSockets. Como aplicações web podem ter como requisito oferecer suporte à navegadores mais antigos, é usado um \emph{fallback} para um mecanismo de \emph{polling} caso não haja suporte para WebSockets.
 
-\subsection{Comunicação entre módulos e aplicativos}
+\subsection{Comunicação entre Módulos e Aplicativos}
 
-Em caso de indisponibilidade da rede local ou internet, a comunicação é feita diretamente entre módulos e aplicativo backup com escopo local (por meio de HTTP). Esse canal de comunicação fica aberto para uso somente nesses casos, para evitar exposição desnecessária a possíveis ataques. O módulo atua como servidor e o aplicativo como cliente, sendo que cada aplicativo pode se conecta diretamente ao módulo que desejar.
+Em caso de indisponibilidade da rede local ou internet, a comunicação é feita diretamente entre módulos e aplicativo backup com escopo local (por meio de HTTP). Esse canal de comunicação fica aberto para uso somente nesses casos, para evitar exposição desnecessária a possíveis ataques. O módulo atua como servidor e o aplicativo como cliente, sendo que cada aplicativo pode se conectar diretamente ao módulo que desejar.
 
 \subsection{Diagramas de Sequência}
 
@@ -54,7 +54,7 @@ Seguem diagramas de sequência UML para ilustrar a comunicação fim a fim utili
 	\label{fig:sequencia_data}
 \end{figure}
 
-No sistema instalado nas residências para coleta de dados, ocorre atualização a cada 10 segundos. No caso de mudança considerável no estado de algum sensor ou acionamento de algum relé, há uma atualização para o aplicativo com tempo de resposta de 1 segundo.
+No sistema instalado nas residências para coleta de dados, ocorre atualização a cada 1 minuto. No caso de mudança considerável no estado de algum sensor ou acionamento de algum relé, há uma atualização para o aplicativo com tempo de resposta de 1 segundo.
 
 Para os casos de mudança de configuração e atuação (acionamento de relés), temos:
 
@@ -81,9 +81,9 @@ Se não houver conexões disponíveis, os procedimentos de atualização de esta
 	\label{fig:app_backup-sequencia_action_configuration}
 \end{figure}
 
-É importante destacar que não há possibilidade do usuário requisitar múltiplos acionamentos (causando muitas trocas de estado em um período pequeno de tempo), uma vez que a requisição é realizada a partir do estado atual do relé (dessa forma, se este estiver ativo, múltiplos cliques do usuário mandam a requisição "desligar").
+É importante destacar que não há possibilidade do usuário requisitar múltiplos acionamentos (causando muitas trocas de estado em um período pequeno de tempo), uma vez que a requisição é realizada a partir do estado atual do relé (dessa forma, se este estiver ativo, múltiplos cliques do usuário mandam a requisição ``desligar'').
 
-Outro ponto é a inclusão de um mecanismo simples para segurança do sistema, mesmo no canal de comunicação redundante local, mostrando uma possibilidade de aumento do nível de segurança do sistema.
+Outro ponto é a inclusão de um mecanismo simples para segurança do sistema, mesmo no canal de comunicação emergencial de escopo local, mostrando uma possibilidade de aumento do nível de segurança do sistema (maiores detalhes estão na seção \label{acessomodulo}).
 
 \begin{figure}[H]
 	\centering
