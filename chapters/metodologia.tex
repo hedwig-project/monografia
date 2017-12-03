@@ -1,10 +1,8 @@
 \chapter{Metodologia}
 
 \section{Gerência do projeto}
-% TODO Alguns dos itens abaixo podem/serão movidos para os apêndices
-Para realizar a gerência do projeto Hedwig, foram usadas certas diretrizes do PMBOK \cite{pmi} e da norma ISO/IEC 12207 \cite{iso12207} como referência para coordenar os processos.
 
-% \subsection{Gerência de Tempo}
+Para realizar a gerência do projeto Hedwig, foram usadas certas diretrizes do PMBOK \cite{pmi} e da norma ISO/IEC 12207 \cite{iso12207} como referência para coordenar os processos.
 
 \subsection{Gerência de aquisição}
 
@@ -20,19 +18,15 @@ Para a coordenação de trabalho nesses repositórios, foi utilizado o fluxo con
 
 Já outros tipos de documentação formal do sistema, como textos e planilhas, foram editados e armazenados no Google Drive\footnote{https://www.google.com/drive/}, ferramenta de armazenamento e backup da Google que também permite colaboração, compartilhamento e controle de versão.
 
-% \subsection{Gerência de Partes Interessadas}
-
 \subsection{Gerência de comunicação}
 
 Para comunicar as tarefas, estudos e pesquisas sendo realizadas durante o projeto, foi utilizado o Trello\footnote{https://trello.com/}, um sistema online para organização de ideias e projetos, que permite listagem e acompanhamento das atividades a serem realizadas, permitindo a adição de prazos, delegação de responsáveis e categorização das tarefas.
 
-Foram realizadas várias reuniões online usando ferramentas de videoconferência, como o Google Hangouts\footnote{https://hangouts.google.com} e o Skype\footnote{https://www.skype.com}, que, além do \emph{streaming} de vídeo com áudio, possuem funcionalidades como mensagens de texto, envio de arquivo e compartilhamento de tela, facilitando demonstrações e testes integrados.
-% \subsection{Gerência de Escopo}
+Foram realizadas diversas reuniões online usando ferramentas de videoconferência, como o Google Hangouts\footnote{https://hangouts.google.com} e o Skype\footnote{https://www.skype.com}, que, além do \emph{streaming} de vídeo com áudio, possuem funcionalidades como mensagens de texto, envio de arquivo e compartilhamento de tela, facilitando demonstrações e testes integrados.
 
 \subsection{Gerência de riscos}
 
 Para gerenciar os riscos do projeto, foram realizadas reuniões periódicas com participação das partes interessadas --- grupo e orientadores --- nas quais discutiam-se táticas de análise, planejamento e monitoramento. Nessas sessões, foi possível identificar riscos por meio da revisão da documentação e de técnicas de \emph{brainstorming} e definir estratégias de abordagem de riscos.
-% TODO colocar matriz de probabilidade e impacto?
 
 \section{Pesquisa bibliográfica}
 
@@ -48,7 +42,9 @@ Para a aprendizagem da biblioteca React, para o desenvolvimento do \emph{front-e
 
 A estratégia de testes utilizada está fortemente relacionada com a estratégia de desenvolvimento. A implementação do projeto foi realizada em partes, segregadas de acordo a área de aplicação. Assim, as diversas frentes puderam ser desenvolvidas em paralelo, como os módulos, servidor local, aplicativo cliente, etc. juntamente com os seus respectivos testes.
 
-Para cada tarefa específica foram efetuados testes unitários, de pequeno alcance, para validar a funcionalidade ou alteração. O desenvolvimento do servidor local contou também com testes unitários automatizados, entretanto sem cobertura do sistema inteiro. Durante a integração das partes, houveram diversos testes ponta-a-ponto, para verificação do funcionamento completo do sistema. Utilizou-se para isso o Software MQTT Fx\footnote{http://mqttfx.jensd.de/}, onde é possível obter as mensagens encaminhadas pelo sistema de mensageria, e compará-las com os resultados esperados. Na Subseção \ref{testesTopicos} são mostrados alguns casos de testes utilizados durante a configuração do Broker Mosquitto, enquanto a seção \ref{atttestefimafim} contém um exemplo de teste fim a fim realizado com aplicativo, servidor local, nuvem e módulo.
+Para cada tarefa específica foram efetuados testes unitários, de pequeno alcance, para validar a funcionalidade ou alteração. O desenvolvimento do servidor local contou também com testes unitários automatizados, entretanto sem cobertura do sistema inteiro. Para testes específicos dos \emph{endpoints} do servidor na nuvem foi utilizada a ferramenta Postman\footnote{https://www.getpostman.com/}, que permite simular requisições a tais \emph{endpoints}, configurando todos os parâmetros necessários e informações de cabeçalho HTTP, e apresenta ao usuário a resposta recebida.
+
+Durante a integração das partes, houveram diversos testes ponta-a-ponto, para verificação do funcionamento completo do sistema. Utilizou-se para isso o Software MQTT Fx\footnote{http://mqttfx.jensd.de/}, onde é possível obter as mensagens encaminhadas pelo sistema de mensageria, e compará-las com os resultados esperados. Na Subseção \ref{testesTopicos} são mostrados alguns casos de testes utilizados durante a configuração do Broker Mosquitto, enquanto a seção \ref{atttestefimafim} contém um exemplo de teste fim a fim realizado com aplicativo, servidor local, nuvem e módulo.
 
 Com a instalação do sistema em duas residências distintas, houve uma validação contínua de premissas e levantamento de requisitos, principalmente aqueles relacionados à usabilidade. Foram realizados diversos testes de conceito em campo, de forma que muitas soluções, embora fizessem sentido experimentalmente em implementações isoladas, não eram adequadas para módulos instalados em uma residência real. Ainda, atualizações e melhorias foram entregues frequentemente, contribuindo para o crescimento iterativo do projeto (destacam-se a aplicação dos princípios 2 e 4 do Agile Manifesto\footnote{http://agilemanifesto.org/iso/ptbr/manifesto.html}, que disserta sobre mudanças frequentes de requisitos e entregas frequentes de software).
 
