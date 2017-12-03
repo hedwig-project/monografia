@@ -88,33 +88,11 @@
 
 			Outro simples tratamento que foi necessário de se fazer foi o tratamento do \emph{timestamp}. O valor de interesse no estudo atual é apenas o referente ao instante no dia em que ocorreu a ativação (horas, minutos, segundos), relevando-se a informação do dia em si que tal evento foi capturado. Dessa forma, separamos apenas o componente de horário dos \emph{timestamps}, e convertemos para um número inteiro referente à quantidade de segundos desde a meia noite.
 
-			Outra questão a ser levada em consideração é a presença de uma disparidade entre a quantidade de amostras de treino que estão em uma classificação, em relação à quantidade que está em outra. No caso em análise, existem muito mais dados nos quais não ocorreu ativação do relé pelo usuário (71) do que os que ocorreram (6851). Ou seja, aproximadamente 99\% dos dados estão em uma classificação, e apenas 1\% na outra. Essa situação é conhecida como \emph{Class Imbalance Problem}. Essa disparidade é um problema devido ao fato de que os algoritmos classificadores têm como objetivo a maximização da sua taxa de acerto. Dessa forma, teria alta tendência a sempre classificar os dados como pertencentes à classe majoritária. Isso é um problema principalmente em casos onde as situações de interesse são exatamente as que menos ocorre, como é o caso do problema aqui em exploração. Para resolvê-lo, há duas táticas principais: \emph{oversampling} e \emph{undersampling}. 
+			Outra questão a ser levada em consideração é a presença de uma disparidade entre a quantidade de amostras de treino que estão em uma classificação, em relação à quantidade que está em outra. No caso em análise, existem muito mais dados nos quais não ocorreu ativação do relé pelo usuário (71) do que os que ocorreram (6851). Ou seja, aproximadamente 99\% dos dados estão em uma classificação, e apenas 1\% na outra. Essa situação é conhecida como \emph{Class Imbalance Problem} \cite{classImbalanceProblem}. Essa disparidade é um problema devido ao fato de que os algoritmos classificadores têm como objetivo a maximização da sua taxa de acerto. Dessa forma, teria alta tendência a sempre classificar os dados como pertencentes à classe majoritária. Isso é um problema principalmente em casos onde as situações de interesse são exatamente as que menos ocorre, como é o caso do problema aqui em exploração. Para resolvê-lo, há duas táticas principais: \emph{oversampling} e \emph{undersampling}. 
 
 			As duas táticas procuram balancear a quantidade de amostras em cada uma das classes. Pela tática de \emph{undersampling} isso é feito retirando-se algumas amostras da classe majoritária. Pela tática de \emph{oversampling}, isso é feito adicionando-se amostras da classe minoritária. Também existe a tática híbrida, que combina as duas anteriores.
 
-			% TODO colocar referencias e falar qual tecnica foi utilizada
-
-			% The disadvantage with undersampling is that it discards potentially useful data. The main disadvantage with oversampling, from our perspective, is that by making exact copies of existing examples, it makes overfitting likely.
-			% https://beckernick.github.io/oversampling-modeling/
-
-			% https://pdfs.semanticscholar.org/9908/404807bf6b63e05e5345f02bcb23cc739ebd.pdf
-
-			% http://www.chioka.in/class-imbalance-problem/
-
-% SMOTE technique
-
-% https://github.com/scikit-learn-contrib/imbalanced-learn
-% 			@article{JMLR:v18:16-365,
-% author  = {Guillaume  Lema{{\^i}}tre and Fernando Nogueira and Christos K. Aridas},
-% title   = {Imbalanced-learn: A Python Toolbox to Tackle the Curse of Imbalanced Datasets in Machine Learning},
-% journal = {Journal of Machine Learning Research},
-% year    = {2017},
-% volume  = {18},
-% number  = {17},
-% pages   = {1-5},
-% url     = {http://jmlr.org/papers/v18/16-365}
-% }
-
+			A desvantagem da técnica de \emph{undersampling} é que acaba por descartar dados potencialmente úteis. Já a técnica de \emph{oversampling}, muitas vezes pode levar ao \emph{overfitting} (fenômeno que ocorre em situações onde o modelo acaba acompanhando muito proximamente os erros --- ou ruído --- dos dados de treinamento \cite{islr}), devido às cópias que são feitas de alguns dados de treinamento \cite{unbalancedClassArticle}.
 
 		\subsection{Treinamento dos modelos}
 
@@ -129,6 +107,8 @@ ter 9).
 % pra que q é o quadratico?
 
 % site do sklearn tem graficos e explicacoes dos algoritmos
+
+% falar do uso da package de imblaanced learning
 
 		\subsection{Resultados obtidos}
 
@@ -149,3 +129,14 @@ ter 9).
 			Para que o sistema torne-se cada vez mais acurado, o objetivo seria continuar alimentando-o com novos dados de entrada. Além disso, novos algoritmos e técnincas poderiam ser testados, a fim de continuar a exploração e comparação para encontrar o algoritmo de melhor performance para o sistema em questão.
 
 			Outros tipos de testes poderiam ser feitos também em relação aos dados de entrada, utilizando-se técnicas de seleção de características, ou técnicas como \emph{mean normalization} ou \emph{feature scaling} \cite{Coursera}, observando-se a diferença no modelo treinado, de forma a otimizar a performance do mesmo.
+
+
+% TODO missing this reference:
+
+% @article{unbalancedClassArticle,
+%   author    = {WEISS, Gary M. and MCCARTHY, Kate and ZABAR, Bibi},
+%   title     = {Cost-Sensitive Learning vs. Sampling: Which is Best for Handling Unbalanced Classes with Unequal Error Costs?},
+%   url = {\url{https://pdfs.semanticscholar.org/9908/404807bf6b63e05e5345f02bcb23cc739ebd.pdf}},
+%   year = {2016},
+%   note = {Accessed: 2017-12-03}
+% }
