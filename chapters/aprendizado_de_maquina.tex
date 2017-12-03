@@ -1,35 +1,115 @@
 \chapter{Arquitetura: Tecnologia - Aprendizado de máquina}
 
-	\section{Conceito}
-		% TODO colocar referência ao curso do Andrew Ng
-		O termo Aprendizado de Máquina (\emph{Machine Learning}) surgiu em 1959, sendo utilizado pela primeira vez  pelo cientista americano Arthur Samuel. O termo foi por ele definido como "o campo de estudos que dá a um computador a habilidade de aprender sem ser explicitamente programado" (tradução livre dos autores). Em 1998, Tom Mitchel - outro cientista da computação americano - propôs uma explicação menos abstrata do termo da seguinte maneira: "um programa de computador aprende com a experiência E com respeito a uma classe de tarefas T e medida de performance P se sua performace nas tarefas T, sendo medida por P, aumenta com o aumento da experiência E".
+	O termo Aprendizado de Máquina (\emph{Machine Learning}) surgiu em 1959, sendo utilizado pela primeira vez  pelo cientista americano Arthur Samuel. O termo foi por ele definido como ``o campo de estudos que dá a um computador a habilidade de aprender sem ser explicitamente programado'' (tradução livre dos autores). Em 1998, Tom Mitchel --- outro cientista da computação americano --- propôs uma explicação menos abstrata do termo da seguinte maneira: ``um programa de computador aprende com a experiência E com respeito a uma classe de tarefas T e medida de performance P se sua performace nas tarefas T, sendo medida por P, aumenta com o aumento da experiência E'' \cite{Coursera}.
 
-		% TODO colocar referencia https://hbr.org/2017/07/whats-driving-the-machine-learning-explosion
-		Apesar do conceito de aprendizado de máquina existir desde a década de 50, seu crescimento e relevância aumentaram apenas na última decada. Alguns fatores levaram a esse crescimento acelerado. Os principais foram o aumento da quantidade de dados - e aplicações de \wiot têm propulsionado esse aumento - coletados e disponíveis, a melhora nos algoritmos, e o hardware cada vez mais poderoso dos computadores. Esses últimos dois fatores permitem que a vasta quantidade de dados que possuímos possam ser analisados em tempo viável.
+	Apesar do conceito de aprendizado de máquina existir desde a década de 50, seu crescimento e relevância aumentaram apenas na última decada. Alguns fatores levaram a esse crescimento acelerado. Os principais foram o aumento da quantidade de dados coletados e disponíveis --- e aplicações de \emph{IoT} têm propulsionado esse aumento ---, a melhora nos algoritmos, e o \emph{hardware} cada vez mais poderoso dos computadores. Esses últimos dois fatores permitem que a vasta quantidade de dados que possuímos possam ser analisados em tempo viável \cite{hbrMlExplosion}.
 
-	\section{Relação com o Projeto Hedwig}
+	\section{Aprendizado de Máquina no Projeto Hedwig}
+
 		No projeto Hedwig, a utilização de aprendizado de máquina tem o intuito de trazer melhorias de usabilidade do sistema ao usuário, além de poder trazer medidas de segurança à casa do mesmo.
 
-		As melhorias de usabilidade podem ocorrer, por exemplo, quando o sistema aprende alguma rotina do usuário e se torna então capaz de prever quando determinada ação seria solicitada pelo usuário. A partir disso, ele então poderia passar a realizar tal ação automaticamente, ou sugerir a realização de tal ação para o usuário, sem que seja necessário que o usuário proativamente aja para solicitar a ação.
+		As melhorias de usabilidade podem ocorrer, por exemplo, quando o sistema aprende alguma rotina do usuário e se torna então capaz de prever quando determinada ação seria solicitada pelo usuário. A partir disso, ele então poderia passar a realizar tal ação automaticamente, ou sugerir a realização dela para o usuário, sem que seja necessário que o usuário proativamente aja para solicitar a mesma.
 
 		No quesito de segurança, o sistema pode, a partir do aprendizado de rotinas, detectar ações suspeitas na casa (como por exemplo a abertura da porta de entrada em horário não usual), e opcionalmente agir para intervir quando tal tipo de ação é detectada.
 
-		% TODO possivelmente falar sobre a utilização de sistemas prontos em nuvem para ML
+		No Hedwig, foi desenvolvida uma análise baseada em dados coletados durante os meses de setembro e outubro, em um dos módulos que mantivemos instalados - o módulo de corredor, que já foi citado no \ref{coletaAnaliseDados}. A análise aqui descrita focou-se em gerar um algoritmo capaz de prever quando o usuário iria solicitar ao sistema a ativação do relé 1, que, no caso do módulo em análise está conectado à lampada do corredor, pois como analisado no \ref{coletaAnaliseDados}, a funcionalidade de agendamento de ativação desse relé foi pouco aproveitada, já que o mesmo ainda obteve muitas ativações manuais, indicando que o usuário poderia se beneficiar de um algoritmo inteligente que pudesse prever a ativação do relé antes que a mesma venha a ocorrer pelo usuário.
 
 	\section{Implementação}
 
 		\subsection{Linguagem, Ferramentas e Bibliotecas}
-			% TODO maybe get some references for paragraph below
 
-			Uma das vantagens da popularização que se vê atualmente do uso de aprendizado de máquina é o surgimento de muitas facilidades para o desenvolvimento de aplicações de aprendizado de máquina, devido às vantagens que advém de grande comunidade trabalhando com o tema.
+			Uma das vantagens da popularização que se vê atualmente do uso de aprendizado de máquina é o surgimento de muitas facilidades para o desenvolvimento de aplicações que envolvam esse tema, devido às vantagens que advém de existir grande comunidade trabalhando com isso.
 
-			Atualmente as duas principais linguagens sendo utilizadas para ciência de dados e aprendizado de máquina são Python e R. As duas são linguagens interpretadas, e que possuem funcionalidade REPL (Read-Eval-Print-Loop), possibilitando desenvolvimento altamente interativo e de fácil visualização de dados e gráficos, enquanto se programa.
+			Atualmente duas das principais linguagens sendo utilizadas para ciência de dados e aprendizado de máquina, e que foram consideradas para o projeto, são Python e R \cite{languagesForML}. As duas são linguagens interpretadas, e que possuem funcionalidade REPL (Read-Eval-Print-Loop), possibilitando desenvolvimento altamente interativo e de fácil visualização de dados e gráficos enquanto se programa.
 
-			Para o desenvolvimento de funcionalidades de aprendizado de máquina no Hedwig, foi escolhida a linguagem Python. Apesar de R ser uma linguagem que já nasceu voltada à análise de dados e tratamento estatístico, Python possui diversos pacotes e bibliotecas que conseguem adicionar tais funcionalidades à linguagem. Tais pacotes estão altamente popularizados, e portanto é muito fácil percorrer suas documentações e procurar ajuda em fóruns online para acelerar o aprendizado de suas funcionalidades. Python, por sua vez, é uma linguagem de uso geral (\emph{general purpose language}), o que também tem seus lados positivos. Além de ser uma linguagem extremamente bem estabelecida, o fato de ser de uso geral implica que existem também pacotes e bibliotecas que possibilitam o uso de Python para desenvolvimento de aplicativos com funcionalidades de \emph{back-end} para serviços web. Isso se torna de altamente interessante por nos possibilitar facilmente transformar essa aplicação em um microsserviço, que também interaja em tempo real com o servidor em nuvem do Hedwig, permitindo que o serviço de aprendizado de máquina aja em tempo real com toda a aplicação.
+			Para o desenvolvimento de funcionalidades de aprendizado de máquina no Hedwig, foi escolhida a linguagem Python. Apesar de R ser uma linguagem que já nasceu voltada à análise de dados e tratamento estatístico \cite{rLanguage}, Python possui diversos pacotes e bibliotecas que conseguem adicionar tais funcionalidades à mesma. Esses pacotes estão altamente popularizados, e portanto é muito fácil percorrer suas documentações e procurar ajuda em fóruns online para acelerar o aprendizado de suas funcionalidades. Python, por sua vez, é uma linguagem de uso geral (\emph{general purpose language}), o que também tem seus lados positivos \cite{pythonApplications}. Além de ser uma linguagem extremamente bem estabelecida, o fato de ser de uso geral implica que existem também pacotes e bibliotecas que possibilitam o uso de Python para desenvolvimento de aplicativos com funcionalidades de \emph{back-end} para serviços \emph{web}. Isso se torna altamente interessante por nos possibilitar facilmente transformar essa aplicação em um microsserviço, que interaja em tempo real com o servidor em nuvem do Hedwig, permitindo que o serviço de aprendizado de máquina aja em tempo real com toda a aplicação.
 
-			Alguns dos pacotes sendo utilizados
+			Os principais pacotes sendo utilizados para auxiliar nas funcionalidades de análise de dados e aprendizado de máquina são:
 
-		\subsection{Etapas}
+			\begin{description}
+				\item [Numpy\footnote{http://www.numpy.org/}] Pacote que dá à linguagem Python algumas facilidades para se lidar com estruturas numéricas como matrizes.
+				\item [Pandas\footnote{https://pandas.pydata.org/}] Pacote para manuseio de dados. Dá facilidades para a importação de dados de fontes externas, e a utilização dos mesmos a partir disso.
+				\item [Scikit\footnote{http://scikit-learn.org/stable/}] Pacote com funcionalidades de análise de dados, e implementação dos principais algoritmos de aprendizado de máquina.
+				\item [Matplotlib\footnote{https://matplotlib.org/}] Pacote que implementa funcionalidades para geração de gráficos.
+			\end{description}
+
+			A principal ferramenta utilizada durante o desenvolvimento de código de aprendizado de máquina chama-se Jupyter Notebook \footnote{http://jupyter.org/}. Essa ferramenta é uma aplicação \emph{web} de distribuição gratuita, que permite a criação e compartilhamento de documentos com código que pode ser interpretado interativamente, conforme se vai programando, e que, junto dos trechos de código executado coloca suas saídas, bem como gráficos gerados pelo trecho, além de permitir ao usuário colocar explicações ou textos gerais em liguagem Markdown, em meio ao código, de forma a explicá-lo. É uma ferramenta altamente utilizada para aplicações de análise de dados atualmente.
+
+		\subsection{Etapas para o Desenvolvimento de Aplicação de Aprendizado de Máquina}
+
+			O desenvolvimento de aplicações de aprendizado de máquina é caracterizado por algumas etapas \cite{whatIsML}.
+
+			Inicialmente, é necessário explicitar qual o problema a ser resolvido. Na seção "Aprendizado de máquina no projeto Hedwig" foi exposto o problema aqui explorado.
+
+			O próximo passo é a coleta de dados, para que os modelos possam ser treinados. Expusemos essa etapa no capítulo anterior.
+
+			Em seguida, é necessário realizar algumas análises de dados e tratamentos dos mesmos, para que se possa sanitizá-los e deixá-los em formato propício ao uso pelos algoritmos. Também é necessário separar uma parcela dos dados para servir para treinamento dos modelos, e outra parcela para servir de dados de teste.
+
+			Tendo isso pronto, pode-se então passar a uma etapa de treinamento de modelos. Para isso, é necessário fazer uma análise de quais algoritmos poderiam se encaixar bem para o problema em questão. A partir do treinamento dos modelos, e da separação de alguns dados para teste, é possível então avaliar quão bem os algoritmos estão performando para a previsão de resultados, e possivelmente, adotar uma abordagem diferente para o treinamento dos modelos.
+
+			O último passo costuma ser a elaboração do produto final: normalmente a integração sistema de aprendizado com outras aplicações ou então a elaboração de relatórios para que os modelos treinados para o problema sejam levados adiante. No caso de um produto integrado com o resto de um sistema, passa-se então a entrar num ciclo de otimização do algoritmo baseado em novos dados obtidos.
+
+			Nas próximas seções exploraremos o desenvolvimento desses últimos passos no projeto Hedwig.
+
 		\subsection{Algoritmos}
+
+			Existem duas classificações gerais para algoritmos de aprendizado de máquina: os de aprendizado supervisionado e os de aprendizado não supervisionado. Os algoritmos de aprendizado supervisionado são caracterizados por tratarem de problemas nos quais se espera conseguir prever uma determinada saída baseada em um ou mais dados de entrada. Já os algoritmos de aprendizado não supervisionado se caracterizam por tratarem de casos onde não há uma saída supervisionada. Nesses casos o objetivo é apenas de encontrar algum relacionamento ou estrutura nos dados de entrada \cite{islr}. O caso aqui estudado encaixa-se na definição de aprendizado supervisionado, já que temos nos dados de treinamento as saídas que desejamos que o modelo passe a conseguir prever.
+
+			Dentro do campo de aprendizado supervisionado os algoritmos são divididos tem relação ao tipo de resposta que se espera deles. Há dois tipos principais de resposta: qualitativa e quantitativa  \cite{islr}. Os problemas para os quais a saída é uma variável quantitativa são chamados de problemas de regressão. Um dos métodos mais comuns para se tratar esse tipo de problema é o da regressão linear com utilização do método dos mínimos quadrados.
+
+			Para os problemas nos quais a saída esperada é uma variável quantitativa, o nome dado é de problemas de classificação - já que o que se deseja obter como repsosta é a qual classe a resposta pertence. Um tipo de algortimo que costuma ser utilizado para problemas desse tipo é o de regressão logística.
+
+			Adicionalmente, vale citar que há alguns tipos de algoritmos que podem ser utilizados tanto para problemas quantitativos quanto para problemas qualitativos, dentre eles: K-vizinhos mais próximos (\emph{K-nearest neighbors}) e \emph{boosting} \cite{islr}.
+
+			O algoritmo aqui em desenvolvimento então pode ser classificado como aprendizado supervisionado, de classificação (já que a saída esperada é do tipo "Sim, o usuário provavelmente gostaria de acender a luz nesse momento" ou "Não, o usuário provavelmente não gostaria de acender a luz").
+
 		\subsection{Tratamento de Dados}
-		\subsection{Seleção de Características}
+			
+			Neste nosso primeiro estudo, o objetivo é o desenvolvimento de um modelo que aprenda a prever quando ocorrerá uma ativação do relé pelo usuário. No problema em análise, os dados que possuímos são:
+
+			\begin{itemize}
+				\item \emph{Timestamp} com dia e hora
+				\item Luminosidade
+				\item Temperatura
+				\item Umidade
+				\item Presença
+				\item Ativação do relé (para o relé 1 e para o relé 2)
+				\item Tipo de ativação (via botão, app backup, controle remoto, ativação agendada)
+				\item Status dos relés
+			\end{itemize}
+
+			Para que possamos utilizar tais dados, alguns tratamentos são necessários.
+
+			A primeira coisa que foi observada foi que as primeiras entradas de dados ainda estavam incompletas, e não possuiam dados a respeito do estado corrente dos relés. Essas entradas foram então descartadas, já que não nos permitiriam saber se a ação executada pelo usuário foi para acender ou apagar as luzes, e desejamos selecionar apenas os casos relativos ao acendimento da luz.
+
+			Em seguida, levamos em consideração que a ativação pode ter ocorrido em decorrência de um agendamento. Nesse caso, portanto, devemos desconsiderar essa ativação, já que não se trata de uma ativação do usuário e não nos ajuda a prever quando o usuário irá deseajar ativar o relé.
+
+			Outro simples tratamento que foi necessário de se fazer foi o tratamento do \emph{timestamp}. O valor de interesse no estudo atual é apenas o referente ao instante no dia em que ocorreu a ativação (horas, minutos, segundos), relevando-se a informação do dia em si que tal evento foi capturado. Dessa forma, separamos apenas o componente de horário dos \emph{timestamps}, e convertemos para um número inteiro referente à quantidade de segundos desde a meia noite.
+
+			Outra questão a ser levada em consideração é a presença de uma disparidade entre a quantidade de amostras de treino que estão em uma classificação, em relação à quantidade que está em outra. No caso em análise, existem muito mais dados nos quais não ocorreu ativação do relé pelo usuário (71) do que os que ocorreram (6851). Ou seja, aproximadamente 99\% dos dados estão em uma classificação, e apenas 1\% na outra. Essa situação é conhecida como \emph{Class Imbalance Problem} \cite{classImbalanceProblem}. Essa disparidade é um problema devido ao fato de que os algoritmos classificadores têm como objetivo a maximização da sua taxa de acerto. Dessa forma, teria alta tendência a sempre classificar os dados como pertencentes à classe majoritária. Isso é um problema principalmente em casos onde as situações de interesse são exatamente as que menos ocorre, como é o caso do problema aqui em exploração. Para resolvê-lo, há duas táticas principais: \emph{oversampling} e \emph{undersampling}. 
+
+			As duas táticas procuram balancear a quantidade de amostras em cada uma das classes. Pela tática de \emph{undersampling} isso é feito retirando-se algumas amostras da classe majoritária. Pela tática de \emph{oversampling}, isso é feito adicionando-se amostras da classe minoritária. Também existe a tática híbrida, que combina as duas anteriores.
+
+			A desvantagem da técnica de \emph{undersampling} é que acaba por descartar dados potencialmente úteis. Já a técnica de \emph{oversampling}, muitas vezes pode levar ao \emph{overfitting} (fenômeno que ocorre em situações onde o modelo acaba acompanhando muito proximamente os erros --- ou ruído --- dos dados de treinamento \cite{islr}), devido às cópias que são feitas de alguns dados de treinamento \cite{unbalancedClassArticle}.
+
+		\subsection{Treinamento dos Modelos}
+
+			Em aprendizado de máquina, há diversos métodos de se treinar modelos. Nenhum deles será o melhor para todos os possíveis \emph{data sets}, e, portanto, a escolha da melhor abordagem é sempre uma parte importante do desenvolvimento de aprendizado de máquina \cite{islr}. Dessa forma, foram analisados diversos métodos.
+
+			Foram utilizados três dos classificadores (como são chamados os algoritmos para treinar modelos de aprendizado de máquina no caso de aprendizado supervisionado, para classificação) mais utilizados: regressão logística, análise discriminante linear, e K-vizinhos mais próximos \cite{islr}.
+
+			Os algoritmos utilizados para esses classificadores foram os do pacote Scikit\footnote{http://scikit-learn.org/stable/}.
+
+			Para o treinamento dos modelos, os dados são particionados entre dados para treinamento e dados para teste. Os dados para teste são os utilizados para verificar a acurácia do modelo para prever resultados, utilizando tais dados para verificar se as saídas previstas foram as esperadas. Para fazer essa divisão, foi utilizada a função train\textunderscore test\textunderscore split, do pacote Scikit\footnote{\url{http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html}}.
+
+			Antes de se tratar o problema de desbalanceamento de classes, o algoritmo que melhor performou foi o de regressão logística, com precisão de 98,95\% nos dados de teste. Tal medida foi feita utilizando a função score, pertencente aos classificadores do Scikit.
+
+			Em seguida, modificou-se os dados de treinamento para tratar a questão de desbalanceamento de classes. Para isso, foram utilizadas diversas funções pertencentes ao pacote Imbalanced learn \footnote{\url{http://contrib.scikit-learn.org/imbalanced-learn/stable/index.html}}.
+
+			Utilizando-se a técnica de \emph{random over sampling}, o algoritmo com maior taxa de acerto foi o de K vizinhos mais próximos, com acerto em 97,57\% dos casos de teste. Aplicando \emph{oversampling} com a técnica \emph{SMOTE}, o melhor algoritmo também foi o de K vizinhos mais próximos, dessa vez com taxa de 84,19\% de acertos. Já com a técnica de \emph{undersampling}, a melhor taxa de acerto obtida foi de 98,87\%, com o algoritmo de análise discriminante linear. Por último, realizou-se um teste utilizando um misto das técnicas de \emph{oversampling} e \emph{undersampling}, obtendo-se uma taxa de 96,36\% de acerto nos casos de teste com o algoritmo de K vizinhos mais próximos.
+
+		\subsection{Otimização dos Modelos}
+
+			Para que o sistema torne-se cada vez mais acurado, o objetivo seria continuar alimentando-o com novos dados de entrada. Além disso, novos algoritmos e técnincas poderiam ser testados, a fim de continuar a exploração e comparação para encontrar o algoritmo de melhor performance para o sistema em questão.
+
+			Outros tipos de testes poderiam ser feitos também em relação aos dados de entrada, utilizando-se técnicas de seleção de características, ou técnicas como \emph{mean normalization} ou \emph{feature scaling} \cite{Coursera}, observando-se a diferença no modelo treinado, de forma a otimizar a performance do mesmo.
