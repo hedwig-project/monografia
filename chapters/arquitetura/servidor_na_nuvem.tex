@@ -1,8 +1,8 @@
-\section{Servidor na nuvem}
+\section{Servidor na Nuvem}
 
 O servidor na nuvem tem a responsabilidade de realizar a comunicação entre as aplicações cliente disponíveis para o usuário final e as casas inteligentes, de armazenar os dados coletados pelos sensores e de realizar processamentos que sejam muito onerosos para a capacidade dos dispositivos físicos locais. A seguir, são explorados os conceitos que orientaram o design da arquitetura e a implementação do servidor do Hedwig.
 
-\subsection{Computação em nuvem}
+\subsection{Computação em Nuvem}
 
 O projeto Hedwig opta por uma solução voltada à nuvem. Os componentes do servidor são hospedados na nuvem pelas seguintes vantagens \cite{viswanathan}:
 
@@ -13,13 +13,13 @@ O projeto Hedwig opta por uma solução voltada à nuvem. Os componentes do serv
 \item[Backup e recuperação de dados -]Os serviços de nuvem já providenciam funcionalidades de backup e restauração de dados, que podem ser tarefas arduosas para realizar em dispositivos físicos.
 \end{description}
 
-\subsection{Banco de dados não-relacional}
+\subsection{Banco de Dados Não-relacional}
 
 Bancos de dados não-relacionais são modelados de forma alternativa às tabelas relacionais dos sistemas SQL. São muitas vezes chamados de bancos NoSQL, que adquiriu o significado de \emph{Not Only SQL} \cite{nosql}. Algumas das características predominantes são a facilidade de escalabilidade horizontal, por meio de replicação e ``clusterização'', e a priorização da disponibilidade ao invés da consistência. Esse último ponto pode ser sintetizado no conceito de BASE --- \emph{Basically Available, Soft state, Eventual consistency} ---, que é colocado em contraposição às garantias popularmente oferecidas pelos bancos relacionais: Atomicidade, Consistência, Isolamento, Durabilidade (\emph{Atomicity, Consistency, Isolation, Durability} - ACID). Apesar disso, alguns dos bancos NoSQL possuem características compatíveis com ACID. Esse tipo de banco de dados é bastante utilizado em aplicações web de tempo real e de \emph{Big Data} \cite{pereira}.
 
 Os bancos de dados NoSQL podem usar vários esquemas para modelar os dados que armazenam: colunas, documentos, pares chave-valor, grafos ou uma mistura dos anteriores. Dentre eles, destacam-se os documentos, também chamados de dados semi-estruturados. Documentos são dados codificados em XML, JSON, YAML ou em outros formatos ou códigos, incluindo até mesmo binários. Geralmente, não seguem nenhum esquema rígido, o que torna o desenvolvimento mais flexível e facilita a incrementação dos modelos com novos dados.
 
-\subsection{Banco de dados em memória}
+\subsection{Banco de Dados em Memória}
 
 Bancos de dados em memória usam a memória principal do computador para realizar o armazenamento de dados ao invés de dispositivos de armazenamento em disco \cite{raima}. Como o tempo de acesso em disco é muito maior, esse tipo de banco de dados é capaz de atingir altos níveis de performance, proporcionando latências menores e mais previsíveis.
 
@@ -29,7 +29,7 @@ Bancos de dados em memória usam a memória principal do computador para realiza
 
 WebSocket é um protocolo de comunicação \emph{full-duplex} sobre conexões TCP \cite{rfc6455}. Ele possibilita a comunicação interativa entre cliente e servidor sem a necessidade de disparar múltiplas requisições HTTP, permitindo também que o servidor envie conteúdo ao cliente sem que este tenha que requisitá-lo.
 
-É um protocolo da camada de aplicação compatível com HTTP: a transição entre esses dois protocolos é feita por meio de um handshake que usa o cabeçalho de \texttt{HTTP Upgrade}, como observado na figura a seguir.
+É um protocolo da camada de aplicação compatível com HTTP: a transição entre esses dois protocolos é feita por meio de um \textit{handshake} que usa o cabeçalho de \texttt{HTTP Upgrade}, como observado na Figura \ref{websocketVsPolling}.
 
 A sua arquitetura diminui as latências de comunicação, fazendo-o ser um protocolo popular entre aplicações de tempo real. A compatibilidade com HTTP permite que toda a troca de dados ocorra nas portas 80 ou 443, mitigando os problemas de incompatibilidade com ambientes que possuem \emph{firewalls} bloqueando certas portas TCP. A maioria dos navegadores modernos implementa o protocolo de WebSockets, possibilitando o funcionamento de aplicações de chat e de notificações.
 
@@ -41,7 +41,7 @@ A sua arquitetura diminui as latências de comunicação, fazendo-o ser um proto
 \label{fig:websocketVsPolling}
 \end{figure}
 
-\subsection{Arquitetura de microsserviços}
+\subsection{Arquitetura de Microsserviços}
 
 \subsubsection{Características}
 A arquitetura de microsserviços é um modelo que compreende a estruturação de uma aplicação em um conjunto de serviços com baixo grau de acoplamento que se comunicam por meio de protocolos de comunicação leves.

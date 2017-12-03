@@ -5,7 +5,7 @@ A interconexão dos componentes, bem como a comunicação com o mundo externo pe
 
 Os sensores e atuadores devem ser conectados fisicamente com um módulo controlador, e para que essa limitação fosse contornada, foram utilizados dispositivos ESP8266 --- subseção \ref{subsec:esp8266} --- para transmissão sem fio por meio de Wi-Fi. Esses módulos são responsáveis pela transmissão das informações recebidas para o servidor local. Toda a arquitetura para essa transmissão será detalhada mais à frente. Os outros dispositivos a serem utilizados, como sensores DHT11, LM555, etc. podem ser vistos em uma lista completa no Anexo \ref{listamateriais}.
 
-Em geral, os módulos consistem do microcontrolador, relés, sensores e fontes\slash{}conversores de tensão a depender do módulo, além de um circuito para manutenção corretiva baseado no astável 555, conectados à rede Wi-Fi ou trabalhando como pontos de acesso. Para casos de falha de conexão, há um algoritmo de novas tentativas com tempos progressivamente maiores conforme as falhas ocorrerem, que busca deixar o módulo disponível para outras funções enquanto o serviço não está disponível. Para mitigar o travamento, um sinal de \textit{keep alive} é monitorado, e um circuito antitravamento deve ativar o \textit{hard reset} (\emph{reset} por hardware), ou então uma rotina de \textit{soft reset} deve ser acionada, de modo que os requisitos RNF-5 e RF-9 sejam cumpridos. No entanto, observa-se que a segunda alternativa é a mais natural de se implementar, mas menos robusta, já que ainda pode não funcionar em casos de loop infinito.
+Em geral, os módulos consistem do microcontrolador, relés, sensores e fontes\slash{}conversores de tensão a depender do módulo, além de um circuito para manutenção corretiva baseado no astável 555, conectados à rede Wi-Fi ou trabalhando como pontos de acesso. Para casos de falha de conexão, há um algoritmo de novas tentativas com tempos progressivamente maiores conforme as falhas ocorrerem, que busca deixar o módulo disponível para outras funções enquanto a conexão não está disponível. Para mitigar o travamento, um sinal de \textit{keep alive} é monitorado, e um circuito antitravamento deve ativar o \textit{hard reset} (\emph{reset} por hardware), ou então uma rotina de \textit{soft reset}, de modo que os requisitos RNF-5 e RF-9 sejam cumpridos. No entanto, observa-se que a segunda alternativa é a mais natural de se implementar, mas menos robusta, já que ainda pode não funcionar em casos de loop infinito.
 
 \subsection{Módulos Base}
 \subsubsection{ESP8266 \label{subsec:esp8266}}
@@ -22,6 +22,7 @@ O ESP8266 possui um modo de operação de baixa potência (\textit{sleep mode}) 
 \end{enumerate}
 
 \subsection{Módulo de Acesso}
+\label{acessomodulo}
 
 Buscando garantir mais segurança e comodidade para o acesso à residência, além do controle de abertura, o módulo de acesso atua em paralelo com uma fechadura eletrônica acionada por meio de controle remoto, que utiliza ondas de rádio para envio de dados. Assim, mesmo com falha total do sistema, o usuário poderá abrir o portão diretamente, sem a necessidade de acesso à Internet.
 
@@ -49,7 +50,7 @@ Outro aspecto de segurança é a preocupação dos usuários em esquecer a porta
 
 Para o caso de falha de envio de notificação (e.g. servidor fora do ar ou indisponibilidade na conexão), há um algoritmo de novas tentativas com tempos progressivamente maiores conforme as falhas ocorrerem, buscando deixar o módulo disponível para outras funções. Tratamento análogo é realizado no servidor local, e no sistema de mensageria, de modo a evitar perdas de mensagens mesmo em situações desfavoráveis. Para o caso de falta de conexão à Internet, o módulo não seria controlável pela nuvem com o aplicativo web, mas sim com o aplicativo emergencial usando a ativação do \textit{Access Point}, desenvolvido para operar diretamente com os módulos, sem intermédio do servidor local e dos serviços remotos.
 
-Por meio das credenciais disponíveis no sistema, é possível saber qual dos usuários solicitou a abertura do portão. A persistência destes acessos pode ser analisada e, utilizando-se técnicas de aprendizado de máquina, perfis de acesso podem ser determinados, e evoluir até que o sistema saiba quando houver um acesso em horário inesperado e possa notificar o usuário remotamente, confome o requisito RF-5. O aprendizado de máquina é fundamental aqui para descobrir comportamentos que podem ser entendidos como suspeitos. Um exemplo prático de caso de uso seria um usuário que costuma chegar em um horário semelhante todos os dias e realizar certo conjunto de tarefas na casa. Uma tentativa de acesso que não se enquadre em tais padrões pode ser produto de atividade suspeita, a qual pode ser informada pela casa para uma central, que acionaria a polícia caso não seja um falso positivo.
+Por meio das credenciais disponíveis no sistema, é possível saber qual dos usuários solicitou a abertura do portão. A persistência destes acessos pode ser analisada e, utilizando-se técnicas de aprendizado de máquina, perfis de acesso podem ser determinados, e evoluir até que o sistema saiba quando houver um acesso em horário inesperado e possa notificar o usuário remotamente, conforme o requisito RF-5. O aprendizado de máquina é fundamental aqui para descobrir comportamentos que podem ser entendidos como suspeitos. Um exemplo prático de caso de uso seria um usuário que costuma chegar em um horário semelhante todos os dias e realizar certo conjunto de tarefas na casa. Uma tentativa de acesso que não se enquadre em tais padrões pode ser produto de atividade suspeita, a qual pode ser informada pela casa para uma central, que acionaria a polícia caso seja confirmado que não se trata de um falso positivo.
 
 \subsection{Módulo de Quarto/Sala/Cozinha}
 Um dos módulos com muitas opções de implementação e uso é o módulo de quarto, pois ele também pode ser usado no controle de iluminação para corredores, salas e ambientes externos.
@@ -67,9 +68,9 @@ Como principais funcionalidades, tem-se o despertador (configurado pelo usuário
 
 O módulo de quarto pode ser acoplado ao sistema existente --- fisicamente, é instalado no mesmo lugar do interruptor ---, e possui estados para o despertador. No estado inicial, somente a luz indireta é ligada. Após determinado tempo programável pelo usuário, há avisos sonoros periódicos. No terceiro estado, os períodos são menores. Finalmente, no quarto estado a luz direta é ligada e os avisos sonoros são ininterruptos. Até o terceiro estado, o alarme pode ser desarmado (apertar duas vezes) ou entrar em estado soneca (apertar única vez) diretamente no módulo. Já no estado 4, a critério anterior do usuário, o alarme pode ser desarmado somente fisicamente em outro módulo presente em um segundo aposento --- por exemplo, na sala. Esse módulo pode variar de dia para dia, caso o usuário assim desejar. O sistema desarma o alarme após 40 minutos.
 
-O display possui iluminação automática por meio de circuito baseado em LDR para não aparentar brilho muito intenso quando todas as luzes estiverem desligadas. Para o controle da iluminação, há diferentes tempos de desligamento. Por exemplo, quando ocorre controle manual pelo botão presente no módulo, o tempo pode ser maior. Já pelo modo automático, quando a luz já foi ligada pelo próprio módulo, o tempo para desligamento pode ser menor (e.g. 4 minutos).
+O display possui iluminação automática por meio de circuito baseado em LDR para não apresentar brilho muito intenso quando todas as luzes estiverem desligadas. Para o controle da iluminação, há diferentes tempos de desligamento. Por exemplo, quando ocorre controle manual pelo botão presente no módulo, o tempo pode ser maior (e.g. 30 minutos). Já pelo modo automático, quando a luz já foi ligada pelo próprio módulo, o tempo para desligamento pode ser menor (e.g. 4 minutos).
 
-Com o monitoramento da presença, há um \emph{reset} da contagem para desligamento sempre que houver presença detectada, de forma a inibir acionamentos desnecessários do relé. Outra aplicação para o monitoramento da presença é a descoberta de comportamento anormal. Por exemplo, se o usuário sempre toma café entre 8 e 10 horas, e não apresentar presença na casa até às 15 horas, o sistema pode notificar emails de parentes cadastrados.
+Com o monitoramento da presença, há um reinício da contagem para desligamento sempre que houver presença detectada, de forma a inibir acionamentos desnecessários do relé. Outra aplicação para o monitoramento da presença é a descoberta de comportamento anormal. Por exemplo, se o usuário sempre toma café entre 8 e 10 horas, e não apresentar presença na casa até às 15 horas, o sistema pode notificar emails de parentes cadastrados.
 
 \subsection{Módulo de Aquário}
 
@@ -92,7 +93,7 @@ Devido a altos custos de compra, implantação e manutenção de um aquário, qu
 	\label{table:riscosaquario}
 \end{table}
 
-Sobre o caso específico da residência onde foram executados os testes de campo, considere um aquário com 50 litros de água, com uma bomba reserva (não a responsável pela circulação de água, que não muda o volume interno) e um aquecedor, com muitos peixes dentro, que são sensíveis à variação brusca de temperatura.
+Sobre o caso específico da residência onde foram executados os testes de campo, considere um aquário com 50 litros de água, com uma bomba para circulação de água e um aquecedor, com cerca de 50 peixes de pequeno porte, que são sensíveis à variação brusca de temperatura.
 
 \begin{figure}[H]
 	\centering
@@ -101,7 +102,7 @@ Sobre o caso específico da residência onde foram executados os testes de campo
 	\label{fig:aquario}
 \end{figure}
 
-Na ocasião de troca de água do aquário, cerca de 20\% do volume total é substituído. A saída de água se dá por um funil (simplificado, para se obter uma vazão de saída constante), e a adição é realizada pela bomba auxiliar, que possui água limpa, sem cloro e com certeza menos amônia e outros compostos nocivos aos peixes (que justificam essa troca periódica de água). O monitoramento do nível da água pode também mitigar o risco de esquecimento --- o que levaria o nível da água a tender a zero.
+Na ocasião de troca de água do aquário, cerca de 20\% do volume total é substituído. A saída de água se dá por um funil, e a adição é realizada pela bomba, que introduz água limpa, sem cloro e com certeza menos amônia e outros compostos nocivos aos peixes (que justificam essa troca periódica de água). O monitoramento do nível da água pode também mitigar o risco de esquecimento --- o que levaria o nível da água a tender a zero nesse caso.
 
 \begin{figure}[H]
 	\centering
@@ -131,8 +132,8 @@ O módulo de interface com o sistema de alarmes monitora dois aspectos específi
 	\label{fig:diagramaAlarme}
 \end{figure}
 
-Um problema recorrente é a conexão com a Internet, que, apesar da indicação de estado válido e conectado, não fornecia acesso a sites, tampouco acesso externo por meio de abertura de porta no roteador. Para contornar esse problema e permitir que o módulo esteja disponível para coleta de dados e persistência em cartão SD, foi instalado também um relé NF (normalmente fechado) em série com a alimentação do roteador. Em caso do módulo estar desligado, o roteador ficará ligado.
+Um problema recorrente é a conexão com a Internet, que, apesar da indicação de estado válido e conectado, não fornecia acesso a sites, tampouco acesso externo por meio de abertura de porta no roteador. Para contornar esse problema e permitir que o módulo esteja disponível para coleta de dados e persistência em cartão SD, foi instalado também um relé NF (normalmente fechado) em série com a alimentação do roteador (no caso do módulo estar desligado, o roteador ficará ligado).
 
-Já quando há erro persistente (maior que 10 vezes em intervalos de 2 a 3 minutos) ao realizar a operação de \emph{ping} com sites ou servidores conhecidos, o módulo reinicia a conexão atuando diretamente no roteador. Ocorre a execução deste procedimento em intervalos cada vez mais espaçados, de forma a não executar muitas vezes o reinício do roteador sem que a conexão seja reestabelecida com sucesso. Nas primeiras tentativas, tem-se um intervalo de 3 minutos até a nova tentativa, a partir da terceira vez um intervalo de 10 minutos, e assim por diante.
+Já quando há erro persistente (maior que 10 vezes em intervalos de 2 a 3 minutos) ao realizar a operação de \emph{ping} com sites ou servidores conhecidos, o módulo reinicia a conexão atuando diretamente no roteador. Ocorre a execução deste procedimento em intervalos cada vez mais espaçados, de forma a não executar muitas vezes o reinício do roteador sem que a conexão seja reestabelecida com sucesso. Nas primeiras tentativas, tem-se um intervalo de 3 minutos até a nova tentativa, a partir da terceira vez um intervalo de 10 minutos, e assim por diante, até um máximo de 30 minutos.
 
 Outra dificuldade encontrada em sua instalação em campo foi a obtenção de endereço IP dinâmico em uma rede em que outros dispositivos, tais como celulares e tablets, também obtinham endereços IP dinâmicos, gerando indisponibilidades do módulo. Com a mudança do endereço IP para fixo, em outro intervalo de endereçamento, o módulo passou a ter alta disponibilidade, ficando até semanas sem reiniciar.

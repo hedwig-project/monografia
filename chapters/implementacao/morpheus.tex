@@ -1,4 +1,4 @@
-\section{Morpheus \label{chap:morpheus}}
+\section{Controlador Local - Morpheus \label{chap:morpheus}}
 
 \subsection{Descrição}
 Morpheus é o servidor local responsável pela interconexão da casa inteligente com os serviços de nuvem. O nome tem sua origem na mitologia grega, cujo Deus dos sonhos, Morpheus, era responsável pelo envio de mensagens entre dois mundos diferentes, o dos deuses e o dos mortais \cite{morpheusName}. A principal atribuição do servidor local é garantir que a troca de mensagem entre os módulos e a nuvem seja realizada com segurança e confiabilidade, munindo-se de soluções robustas para desempenhar o seu papel.
@@ -8,8 +8,8 @@ O Morpheus tem seu desenvolvimento realizado em Java. Conforme será detalhado e
 
 Para se comunicar com os módulos, o Morpheus utiliza-se da conexão com um \emph{broker} \wmqtt{}. O \emph{broker} Mosquitto foi utilizado por ser uma solução \emph{open-source} largamente utilizada em projetos de \wiot. Conforme detalhado a frente, configurações de segurança específicas para o projeto foram registradas no \emph{broker}. Para a conexão com os serviços na nuvem, é utilizado um canal WebSocket aberto pelo Morpheus (cliente) e aceito pela nuvem (servidor). Esta solução veio a partir de uma discussão em relação à segurança, relativa ao requisito não-funcional RNF-6, conforme documentada na Subseção \ref{sub:websocket}.
 
-\subsection{Tecnologias utilizadas}
-Toda a implementação do Morpheus foi realizada na linguagem Java. Desde o começo do projeto, decidiu-se que a escolha de tecnologias para implementação das diversas camadas deveria ter por base os seus benefícios, e não necessitaria ser rígida ou uniforme. Assim, o principal esforço foi sempre no planejamento das interfaces de comunicação entre as partes, que poderiam ser implementadas em linguagens complementamente diferentes. Os sistemas de nuvem, por exemplo, foram implementados em Node.js. O aplicativo web também em foi feito em JavaScript, com utilização da biblioteca React. Os módulos de hardware foram programados em C e, como comentado acima, o controlador local em Java. Essa flexibilidade permitiu a utilização de recursos e tecnologias que fossem melhor integrados com os requisitos propostos.
+\subsection{Tecnologias Utilizadas}
+Toda a implementação do Morpheus foi realizada na linguagem Java. Desde o começo do projeto, decidiu-se que a escolha de tecnologias para implementação das diversas camadas deveria ter por base os seus benefícios, e não necessitaria ser rígida ou uniforme. Assim, o principal esforço foi sempre no planejamento das interfaces de comunicação entre as partes, que poderiam ser implementadas em linguagens complementamente diferentes. Os sistemas de nuvem, por exemplo, foram implementados em Node.js. O aplicativo web também em foi feito em JavaScript, com utilização da biblioteca React. Os módulos de hardware foram programados em linguagem textit{C-like} própria para Arduino e, como comentado acima, o controlador local em Java. Essa flexibilidade permitiu a utilização de recursos e tecnologias que fossem melhor integrados com os requisitos propostos.
 
 Um requisito essencial para o controlador local é a sua robustez (RNF-4). Em um cenário em que este controlador não esteja disponível, a casa passa a funcionar em estado de emergência, no qual os comandos são reduzidos e não permitem acesso remoto. Entretanto, há inúmeras possibilidades e eventos que poderiam causar a queda deste controlador, muitas das quais referem-se a situações fora de nosso alcance. Por exemplo, a falta de energia ou de Internet na residência interrompe o seu funcionamento, não sendo possível ter controle sobre tal situação. O mesmo ocorre no evento de problemas de hardware na plataforma que o sistema estiver rodando. Os planos para contenção dos seus efeitos de tais situações são complexos, custosos e fogem do escopo deste projeto, como seria o caso de implementar duplicações, banco de baterias e tecnologia celular para comunicação secundária.
 
@@ -19,14 +19,14 @@ O controlador local também precisa lidar com as requisições assincronamente, 
 
 Ainda, para a integração com os serviços da nuvem, é necessário a utilização de JSON, para a serialização das mensagens, em um formato que pode ser desserializado posteriormente, independentemente da plataforma. Para a utilização de WebSockets, é necessário o uso de bibliotecas disponíveis, de modo que o desenvolvimento seja facilitado. Por último, é necessário gerenciar eficientemente todas essas dependências. Atualizá-las quando necessário, ou substituí-las, se desejado, deve ser uma tarefa simples.
 
-A arquitetura oferecida pelo Java mostra ser efetiva para as necessidades levantadas acima. Com a utilização de uma IDE avançada, inúmeros recursos estão disponíveis para limpeza, refatoração, organização do código, etc. É uma linguagem utilizada em vasta gama de aplicações, desde complexos softwares comerciais como a IDE Eclipse, até software embutidos, como controladores de BlueRay \cite{javaBlueray}. A escolha do Java 8 foi decidida para que o desenvolvimento possa utilizar certos recursos de paradigmas funcionais, como o conceito de Streams de dados e Funções Lambdas.
+A arquitetura oferecida pelo Java mostra ser efetiva para as necessidades levantadas acima. Com a utilização de uma IDE avançada, inúmeros recursos estão disponíveis para limpeza, refatoração, organização do código, etc. É uma linguagem utilizada em vasta gama de aplicações, desde complexos softwares comerciais como a IDE Eclipse, até softwares embutidos, como controladores de BlueRay \cite{javaBlueray}. A escolha do Java 8 foi decidida para que o desenvolvimento possa utilizar certos recursos de paradigmas funcionais, como o conceito de Streams de dados e Funções Lambdas.
 
-O \emph{framework} Spring Boot\footnote{https://projects.spring.io/spring-boot/} foi utilizado para o desenvolvimento por oferecer diversos recursos facilitadores, configurações de ambiente e um \emph{container} para inversão de controle (\emph{IoC - Inversion of Control}) e injeção de dependência. Essa técnica diminui o acoplamento entre classes e permite a evolução e implementação de novas funcionalidades de maneira mais fácil \cite{iocFowler}. Assim, cada módulo recebe em seu construtor todas as dependências que serão utilizadas. A responsabilidade da construção de tais dependências passa, então, a ser responsabilidade do gerenciador de contexto, e não mais do módulo.
+O \emph{framework} Spring Boot\footnote{https://projects.spring.io/spring-boot/} foi utilizado para o desenvolvimento por oferecer diversos recursos facilitadores, configurações de ambiente e um \emph{container} para inversão de controle (\emph{IoC - Inversion of Control}) e injeção de dependência. Essa técnica diminui o acoplamento entre classes e permite a evolução e implementação de novas funcionalidades de maneira fácil \cite{iocFowler}. Assim, cada módulo recebe em seu construtor todas as dependências que serão utilizadas. A responsabilidade da construção de tais dependências passa, então, a ser responsabilidade do gerenciador de contexto, e não mais do módulo.
 
 Além disso, o gerenciador de dependências Gradle\footnote{https://gradle.org/} também foi utilizado por oferecer um poderoso ambiente para configurar, construir e distribuir aplicações. Gradle faz uso de Groovy\footnote{http://groovy-lang.org/}, tecnologia que também roda na Java Virtual Machine (JVM). Por outro lado, o uso de tais ferramentas e plataformas necessita de hardware mais robusto para que funcione, sendo uma desvantagem. Contudo, frente aos benefícios, ainda é vantajosa a utilização de Java neste caso.
 
 Internamente, o Morpheus é dividido em pacotes, que são responsáveis pela modelagem do problema. Há classes que modelam o domínio, que executam as regras de negócio, que fazem a interface entre outros sistemas (\wmqtt{} Mosquitto Broker e nuvem), e que fazem a execução de tarefas como backup de mensagens, e serviços de conversão.
-Assim que uma mensagem chega ao Morpheus, ela é reconhecida e é realizado o seu \emph{parsing} para as estruturas de domínio internas. Caso haja algum erro nas mensagens vindas da nuvem, há o envio de relatório com os problemas encontrados. A partir daí, a mensagem é colocada em uma fila interna, onde outro módulo será responsável por capturá-la e realizar o processamento necessário.
+Assim que uma mensagem chega ao Morpheus, ela é reconhecida e é realizado o seu \emph{parsing} para as estruturas de domínio internas. Caso haja algum erro nas mensagens vindas da nuvem, há o envio de relatório com os problemas encontrados. A partir do reconhecimento, a mensagem é colocada em uma fila interna, onde outro módulo será responsável por capturá-la e realizar o processamento necessário.
 
 \begin{figure}
 	\centering
@@ -35,7 +35,7 @@ Assim que uma mensagem chega ao Morpheus, ela é reconhecida e é realizado o se
 \label{fig:diagramaDeComunicacao}
 \end{figure}
 
-\subsection{Características e recursos}
+\subsection{Características e Recursos}
 Para a concepção do servidor local, foram considerados os requisitos funcionais e não-funcionais, discutidos na Seção \ref{sec:requisitos}. As características e recursos da implementação são discutidos em seguida.
 
 \begin{description}
@@ -54,7 +54,7 @@ Quando não houver conexão, o servidor armazena os dados localmente e, quando s
 
 \item \textbf{Tentativas de reenvio}
 
-Quando uma mensagem não é enviada com sucesso à nuvem, o Morpheus tenta novamente por um número configurável de vezes em um curto espaço de tempo. Isso ocorre porque, se determinada mensagem não pode ser enviada em uma janela temporal, ela perde o seu sentido.
+Quando uma mensagem não é enviada com sucesso à nuvem, o Morpheus tenta novamente por um número configurável de vezes em um curto espaço de tempo. Isso ocorre porque, se determinada mensagem não pode ser enviada em uma janela temporal, ela perde o seu sentido (e.g. requisição de abertura de portão).
 
 \item \textbf{Verificação do \emph{timestamp}}
 
@@ -70,7 +70,7 @@ As configurações básicas do Morpheus devem ser registradas em um arquivo YAML
 
 \item \textbf{Listeners para diferentes tipos de mensagens}
 
-Deve haver \emph{listeners} para todos os tipos de mensagens que são recebidos da nuvem e dos módulos.
+Devem haver \emph{listeners} para todos os tipos de mensagens que são recebidos da nuvem e dos módulos.
 
 \item \textbf{Processamento concorrente}
 
@@ -94,7 +94,7 @@ Ao ser desligado, todos os \emph{pools} de \emph{threads} criados são destruíd
 
 \end{description}
 
-\subsection{Protocolo para troca de mensagens com módulos}
+\subsection{Protocolo para Troca de Mensagens com Módulos}
 
 Toda a comunicação entre as partes do projeto é realizada por troca de mensagens. Foi desenvolvido um protocolo específico, leve e expansível, para a codificação dessas mensagens. As subseções seguintes definem e exemplificam o uso do protocolo.
 
@@ -117,7 +117,7 @@ Têm-se as seguintes regras:
 
 \emph{Module to Server} --- o servidor deve ser \emph{subscriber} desse tópico. O módulo deve ser \emph{publisher} desse tópico.
 
-\subsubsection{Regras de negócio}
+\subsubsection{Regras de Negócio}
 O servidor foi desenvolvido com base nas regras de negócio seguintes. Cada regra de negócio tem sua identificação dada por \emph{mRN}, seguida de um identificador numérico --- e.g. \emph{mRN-1}.
 \begin{description}
 \item[mRN-1:]Após a compra de cada módulo, o usuário deve registrar online a aquisição. O servidor da nuvem enviará para o servidor local da casa a requisição para configurar o módulo.
@@ -126,7 +126,7 @@ O servidor foi desenvolvido com base nas regras de negócio seguintes. Cada regr
 \item[mRN-4:]Todo módulo sai de fábrica configurado com o tópico que deve se inscrever e publicar com base no seu ID, o qual será o seu usuário, também havendo uma senha para se autenticar junto ao \emph{broker} \wmqtt{}.
 \end{description}
 
-\subsubsection{Definição de interfaces}
+\subsubsection{Definição de Interfaces}
 \begin{itemize}
 \item Há três tipos de mensagens que vão do Morpheus para os módulos:
   \begin{itemize}
@@ -142,7 +142,7 @@ O servidor foi desenvolvido com base nas regras de negócio seguintes. Cada regr
   \end{itemize}
 \end{itemize}
 
-\subsubsection{Definição das mensagens}
+\subsubsection{Definição das Mensagens}
 
 \paragraph{Configuração (\texttt{configuration})}
 \begin{itemize}
@@ -263,7 +263,7 @@ autoreset: <0 | 1>
 \paragraph{Confirmação (\texttt{confirmation})}
 \begin{itemize}
 \item Sentido: do módulo para o servidor.
-\item Uso: confirmação de uma configuração, \emph{patch} ou requisição de ação vindas do servidor.
+\item Uso: confirmação de uma configuração ou requisição de ação vindas do servidor.
 \end{itemize}
 
 \textbf{Confirmação de hora}
@@ -350,7 +350,7 @@ autoreset: <0 | 1>
 \item Uso: envio de dados de sensores para o servidor.
 \end{itemize}
 
-\textbf{Transmissão de umidade, temperatura, presença e relés}
+\textbf{Transmissão de umidade, temperatura, presença, relés, sensor de presença e luminosidade}
 \begin{lstlisting}
 #data_transmission
 $ts: <timestamp>
@@ -366,6 +366,10 @@ s4: rl1
 vl4: <value>
 s5: rl2
 vl5: <value>
+s6: abertura
+vl6: <0|1>
+s7: luz
+vl7: <int de 0 a 1000>
 @
 \end{lstlisting}
 
@@ -644,7 +648,7 @@ $ty: gas_offset
 @
 \end{lstlisting}
 
-\subsubsection{Testes realizados da comunicação Morpheus e módulos}
+\subsubsection{Testes realizados da Comunicação Morpheus e Módulos}
 
 Para que fosse simulado o envio de mensagens, o aplicativo \wmqtt{} Fx\footnote{http://mqttfx.jensd.de/} foi utilizado. Com o uso deste software, é possível se inscrever em determinado tópico, enviar as credenciais para o \emph{broker}, tanto em forma de usuário e senha, quando em forma de certificados, além de publicar no tópico desejado.
 
@@ -791,7 +795,7 @@ messageToSend = UmiTempPresReles(0,80,25,1,1,0);
 
 \emph{Resultado: de acordo.}
 
-\subsection{Protocolo para troca de mensagens com a nuvem}
+\subsection{Protocolo para Troca de Mensagens com a Nuvem}
 A troca de mensagens entre Morpheus e servidor na nuvem ocorre por meio de WebSockets. Como explicado anteriormente, caso o servidor local provesse uma API REST aberta à conexões externas, seriam necessárias configurações, software e hardware avançados para a proteção, o que seria inviável para o propósito em questão. Além disso, usuários domésticos possuem endereços IP dinâmicos, de maneira que seria necessária a atualização desse endereço na nuvem a cada mudança. Com a utilização do WebSocket, o servidor local é um cliente que solicita a abertura de uma conexão com a nuvem, que é mantida aberta a partir daí.
 
 A comunicação com a nuvem é baseada em eventos, que são recebidos e enviados com os dados relevantes. Os eventos estão descritos a seguir.
@@ -987,7 +991,7 @@ O passo-a-passo descrito aqui foi testado em um ambiente Ubuntu 16.10 x64.
     acl_file /etc/mosquitto/conf.d/home1/acl_list
 
     # General Listener
-    # When running in production, this dhould bind to localhost
+    # When running in production, this should bind to localhost
     port 1883
     require_certificate false
     use_username_as_clientid true
@@ -1019,7 +1023,7 @@ O passo-a-passo descrito aqui foi testado em um ambiente Ubuntu 16.10 x64.
 O conteúdo do script é mostrado no Anexo \ref{att:script}.
 \end{enumerate}
 
-\subsubsection{Criação dos certificados}
+\subsubsection{Criação dos Certificados}
 
 Por fim, devem-se criar certificados válidos tanto para o \emph{broker} Mosquitto, quanto para as instâncias do Morpheus. Neste projeto, os certificados são gerados e auto-assinados. Entretanto, em um ambiente de produção, deve haver uma autoridade certificadora independente para garantia da validade e segurança.
 
@@ -1056,7 +1060,7 @@ Conforme mostrado anteriormente no guia de instalação (item \ref{sec:arquivosC
   sudo mosquitto_passwd -U passwd
 \end{lstlisting}
 
-\subsubsection{Casos de teste para controle de acesso nos tópicos \wmqtt{} entre módulos e nuvem \label{testesTopicos}}
+\subsubsection{Casos de Teste para Controle de Acesso nos Tópicos \wmqtt{} entre Módulos e Nuvem \label{testesTopicos}}
 \begin{enumerate}
 \item
 Conectar na porta 1883 sem usuário e senha.

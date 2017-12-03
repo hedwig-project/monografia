@@ -1,4 +1,4 @@
-\section{Servidor na nuvem \label{servidorNaNuvem}}
+\section{Servidor na Nuvem \label{servidorNaNuvem}}
 
 \subsection{Descrição}
 
@@ -6,7 +6,7 @@ O servidor na nuvem é composto por um servidor WebSocket para comunicação ent
 
 Para fins de prova de conceito, optou-se por prosseguir com uma arquitetura monolítica. A implementação da arquitetura de microsserviços aumentaria consideravelmente a complexidade do projeto, e seus principais benefícios não seriam tão bem aproveitados, visto que o sistema não seria colocado a provas de carga real no momento. Contudo, ressalta-se que o monolito que compõe o servidor na nuvem poderia sim ser implementado como um conjunto de microsserviços, o que seria uma evolução natural à medida que o sistema escala.
 
-\subsection{Características da implementação}
+\subsection{Características da Implementação}
 
 Com base nos requisitos funcionais e não-funcionais, discutidos na Subseção \ref{sec:requisitos}, foi realizada a implementação na nuvem. Suas características são discutidas em seguida.
 
@@ -24,13 +24,13 @@ Com base nos requisitos funcionais e não-funcionais, discutidos na Subseção \
 \item Aplicativos cliente podem receber o status de conectividade dos Morpheus e receber notificações quando um Morpheus for desconectado.
 \end{itemize}
 
-\item \textbf{Persistência de dados}
+\item \textbf{Persistência de Dados}
 
 \begin{itemize}
 \item O servidor persiste dados de usuário, de configurações de Morpheus e módulo e de mensagens de dados (\texttt{data} e \texttt{report}).
 \end{itemize}
 
-\item \textbf{Gerenciamento de dados}
+\item \textbf{Gerenciamento de Dados}
 
 \begin{itemize}
 \item O servidor oferece uma API REST para leitura e escrita de dados de usuário, configurações de Morpheus e de módulos.
@@ -45,7 +45,7 @@ Com base nos requisitos funcionais e não-funcionais, discutidos na Subseção \
 
 \end{description}
 
-\subsection{Tecnologias utilizadas}
+\subsection{Tecnologias Utilizadas}
 
 O servidor foi desenvolvido usando Node.js \footnote{https://nodejs.org}, um ambiente em tempo de execução para código em JavaScript. Sua arquitetura usa um modelo orientado a eventos e realiza a execução de comandos concorrentemente sem bloquear o servidor. Assim, servidores em Node.js conseguem alcançar uma melhor escalabilidade, suportando múltiplas conexões simultâneas sem impactos de performance.
 
@@ -68,7 +68,7 @@ As tecnologias apresentadas aqui favorecem a escalabilidade do sistema. O Node.j
 \label{fig:componentesNuvem}
 \end{figure}
 
-\subsection{Tratamento de eventos}
+\subsection{Tratamento de Eventos}
 
 O servidor na nuvem possui uma arquitetura baseada em eventos, que transmitem dados, ações, configurações e confirmações e podem ser provenientes dos Morpheus ou dos aplicativos clientes conectados. O servidor também pode emitir seus próprios eventos para tais entidades conectadas ouvirem. Nessa seção, as rotinas de tratamento para cada tipo de evento são sucintamente descritas.
 
@@ -79,7 +79,7 @@ O servidor na nuvem possui uma arquitetura baseada em eventos, que transmitem da
 \item \textbf{Tratamento}: é criada uma \emph{string} única de identificação para a nova conexão.
 \end{itemize}
 
-\paragraph{Identificação de dispositivo conectado (\texttt{hello})}
+\paragraph{Identificação de Dispositivo Conectado (\texttt{hello})}
 \begin{itemize}
 \item \textbf{Descrição}: ao se conectar à nuvem, um novo dispositivo se identifica como Morpheus ou aplicativo cliente. Em ambos os casos, é enviado também a identificação serial do Morpheus --- no caso dos aplicativos, seria o Morpheus do qual se deseja receber notificações em tempo real. Caso um aplicativo queira receber notificações de múltiplos Morpheus, devem ser enviados múltiplos eventos de \texttt{hello}.
 \item \textbf{Emitido por}: Morpheus, aplicativos clientes.
@@ -150,4 +150,4 @@ O serviço Keymetrics\footnote{https://keymetrics.io/} permite verificar se o se
 \label{fig:keymetrics}
 \end{figure}
 
-Outro ponto abordado é o uso de logs, arquivos que gravam eventos relevantes que acontecem no sistema. Eles podem ser usados para realizar a auditoria de falhas ocorridas e compreender melhor o funcionamento de um programa. Por questões de simplicidade, para classificar os eventos, o servidor na nuvem do Hedwig usa três do sete níveis de severidade definidos pelo padrão syslog \cite{rfc5424}: \emph{error}, \emph{warning} e \emph{informational}. O servidor implementa um esquema de rotação de logs, criando arquivos individuais para cada dia, o que facilita o arquivamento de logs muito antigos e a pesquisa de eventos específicos. Com esse sistema, também é possível filtrar eventos de severidades diferentes em arquivos separados.
+Outro ponto abordado é o uso de logs, arquivos que gravam eventos relevantes que acontecem no sistema. Eles podem ser usados para realizar a auditoria de falhas ocorridas e compreender melhor o funcionamento de um programa. Por questões de simplicidade, para classificar os eventos, o servidor na nuvem do Hedwig usa três dos sete níveis de severidade definidos pelo padrão syslog \cite{rfc5424}: \emph{error}, \emph{warning} e \emph{informational}. O servidor implementa um esquema de rotação de logs, criando arquivos individuais para cada dia, o que facilita o arquivamento de logs muito antigos e a pesquisa de eventos específicos. Com esse sistema, também é possível filtrar eventos de severidades diferentes em arquivos separados.

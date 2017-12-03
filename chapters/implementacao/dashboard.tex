@@ -1,17 +1,17 @@
-\section{Aplicativo de dashboard}
+\section{Aplicativo de \textit{dashboard}}
 
 \subsection{Descrição}
-O aplicativo desenvolvido é uma dashboard que permite ao morador da casa ver os dados dos sensores em tempo real, enviar requisições para os módulos realizarem alguma ação, receber confirmações de que essas ações foram realizadas e gerenciar seus dispositivos - Morpheus e módulos. Essa dashboard foi implementada com base nas características dos PWAs apresentadas no capítulo de Arquitetura a fim de permitir uma boa experiência de usuário tanto em smartphones como em computadores.
+O aplicativo desenvolvido é uma \textit{dashboard} que permite ao morador da casa ver os dados dos sensores em tempo real, enviar requisições para os módulos realizarem alguma ação, receber confirmações de que essas ações foram realizadas e gerenciar seus dispositivos - Morpheus e módulos. Essa \textit{dashboard} foi implementada com base nas características dos PWAs apresentadas no capítulo \ref{archweb}, relativo a arquitetura a fim de permitir uma boa experiência de usuário tanto em smartphones como em computadores.
 
 \subsection{Requisitos}
 
-\subsubsection{Requisitos funcionais}
+\subsubsection{Requisitos Funcionais}
 \begin{description}
 
 \item \textbf{Realizar cadastro, login e gerenciamento de informações pessoais}
 
 \begin{itemize}
-\item O usuário pode se cadastrar com seu email, nome e data de nascimento, criando também um nome de usuário e senha para acessar a dashboard.
+\item O usuário pode se cadastrar com seu email, nome e data de nascimento, criando também um nome de usuário e senha para acessar a \textit{dashboard}.
 \item O usuário pode realizar login usando seu nome de usuário e senha.
 \item O usuário pode alterar as informações pessoais de seu cadastro.
 \end{itemize}
@@ -43,7 +43,7 @@ O aplicativo desenvolvido é uma dashboard que permite ao morador da casa ver os
 
 \begin{itemize}
 \item O usuário pode receber confirmações de que ações sensíveis foram recebidas pelos módulos corretamente.
-\item O usuário pode gerenciar o sensor de radiofrequência.
+\item O usuário pode gerenciar sensor e controle de radiofrequência.
 \item O usuário pode enviar uma ação para sincronizar a hora do módulo.
 \item O usuário pode enviar uma ação para reiniciar o módulo (\textit{soft reset}).
 \end{itemize}
@@ -51,18 +51,18 @@ O aplicativo desenvolvido é uma dashboard que permite ao morador da casa ver os
 \item \textbf{Visualizar estado das conexões}
 
 \begin{itemize}
-\item O usuário pode ver o status de sua conexão com o servidor da nuvem e da conexão de seus Morpheus com a nuvem.
+\item O usuário pode ver o \textit{status} de sua conexão com o servidor da nuvem e da conexão de seus Morpheus com a nuvem.
 \end{itemize}
 
 \end{description}
 
-\subsubsection{Requisitos não-funcionais}
+\subsubsection{Requisitos Não-funcionais}
 
 \begin{itemize}
 \item O aplicativo deve ser responsivo e totalmente funcional nos navegadores mais recentes em suas versões desktop e mobile.
 \end{itemize}
 
-\subsection{Tecnologias utilizadas}
+\subsection{Tecnologias Utilizadas}
 
 Para criar a aplicação web que demonstra a funcionamento do Hedwig, foi escolhido o React\footnote{https://reactjs.org/}, biblioteca \emph{open-source} de JavaScript mantida pelo Facebook. O React é conhecido por facilitar o desenvolvimento de aplicações \textit{single-page}, renderizadas do lado do cliente, que permitem a atualização dinâmica da página de forma fluida e rápida, o que acaba enriquecendo a experiência do usuário. Possui uma linguagem declarativa e baseada em componentes, tornando-a altamente modularizável e reutilizável. Uma de suas características mais reconhecidas é o uso de um DOM virtual e um algoritmo de reconciliação que consegue identificar quais as partes da página que precisam ser renderizadas a cada interação com o usuário \cite{reactdiff}, melhorando a performance e permitindo maior fluidez em animações e mudanças visuais.
 
@@ -84,7 +84,7 @@ A fim de facilitar a implementação das interações com o usuário, é usada j
 \label{fig:reduxFlowchart}
 \end{figure}
 
-Para receber dados dos módulos em tempo real, foi usado um cliente do socket.io, framework que já foi discutido na seção do servidor na nuvem. O cliente de JavaScript já permite monitorar o status da conexão do aplicativo com o servidor, emitindo eventos em caso de desconexão ou reconexão. Assim, foi necessário criar \textit{listeners} para os eventos customizados que foram criados para os protocolos do Hedwig.
+Para receber dados dos módulos em tempo real, foi usado um cliente do socket.io, \textit{framework} que já foi discutido na seção do servidor na nuvem. O cliente de JavaScript já permite monitorar o \textit{status} da conexão do aplicativo com o servidor, emitindo eventos em caso de desconexão ou reconexão. Assim, foi necessário criar \textit{listeners} para os eventos customizados que foram criados para os protocolos do Hedwig.
 
 Uma das vantagens em usar JavaScript para criar a \emph{view} da aplicação é sua versatilidade, visto que é uma linguagem multi-paradigmas que suporta programação imperativa, declarativa e orientada a objetos \cite{mdnjs}. Outro ponto é que ela é usada tanto para desenvolvimento \emph{front-end} como \emph{back-end}, permitindo que o conhecimento acumulado na execução de um projeto ajude no outro.
 
@@ -96,7 +96,7 @@ Por fim, a \emph{pipeline} de desenvolvimento do cliente usa o Webpack\footnote{
 
 \subsection{Interface}
 
-\subsubsection{Identidade visual}
+\subsubsection{Identidade Visual}
 
 Para facilitar o desenvolvimento, foram usados os componentes do Material Design\footnote{https://material.io/} da Google, que satisfazem várias necessidades básicas e casos de uso da criação de interfaces modernas. Para distinguir cada tipo de módulo, foram usados ícones e paletas de cores distintas.
 
@@ -124,7 +124,7 @@ Demais telas do aplicativo mostrando tanto a versão desktop como a móvel podem
 
 \subsubsection{Dados}
 
-Dados provenientes dos sensores dos módulos são atualizados em tempo real por meio de eventos do socket.io. Para situar o usuário, o instante de tempo em que a mensagem do módulo foi enviada fica visível no fim na página. Caso seja detectado que a conexão com o Morpheus se perdeu, isso é mostrado pela dashboard a fim de evitar que o usuário olhe dados antigos demais.
+Dados provenientes dos sensores dos módulos são atualizados em tempo real por meio de eventos do socket.io. Para situar o usuário, o instante de tempo em que a mensagem do módulo foi enviada fica visível no fim na página. Caso seja detectado que a conexão com o Morpheus se perdeu, isso é mostrado pela \textit{dashboard} a fim de evitar que o usuário olhe dados antigos demais.
 
 \subsubsection{Ações}
 
@@ -132,7 +132,7 @@ Ao enviar uma ação, o estado local do aplicativo não muda até que seja receb
 
 \subsubsection{Conectividade}
 
-O aplicativo possui um indicador no canto superior direito indicando o status da conexão. Ele pode assumir três estados:
+O aplicativo possui um indicador no canto superior direito indicando o \textit{status} da conexão. Ele pode assumir três estados:
 
 \begin{itemize}
 \item Aplicativos e todos os Morpheus do usuário estão devidamente conectados ao servidor na nuvem.
@@ -142,13 +142,13 @@ O aplicativo possui um indicador no canto superior direito indicando o status da
 
 Além disso, caso o aplicativo perca conexão com a nuvem, são emitidas notificações na parte inferior da tela. São realizadas 10 tentativas de reconexão e o resultado --- positivo ou não --- também aparece como um alerta na tela. Caso não haja sucesso em nenhuma das 10 tentativas, o usuário é aconselhado a atualizar a página.
 
-\subsubsection{Aplicativo na tela inicial do dispositivo móvel}
+\subsubsection{Aplicativo na Tela Inicial do Dispositivo Móvel}
 
 Usando um arquivo de manifesto, foi possível configurar como o aplicativo aparece na tela inicial de um dispositivo móvel como um smartphone. Diminuir o número de passos para o usuário acessar o aplicativo o encoraja a usá-lo mais vezes, além de criar uma sensação parecida com a de um aplicativo nativo.
 
 \subsection{Implantação}
 
-O aplicativo foi publicado com o serviço Surge\footnote{https://surge.sh/}, que permite a hospedagem de websites estáticos e oferece um domínio customizado. O Surge possui uma aplicação de linha de comando que permite a publicação de um diretório de arquivos HTML, CSS e JavaScript de maneira rápida e sem extensiva configuração. A dashboard está disponível em \url{https://hedwig.surge.sh}.
+O aplicativo foi publicado com o serviço Surge\footnote{https://surge.sh/}, que permite a hospedagem de websites estáticos e oferece um domínio customizado. O Surge possui uma aplicação de linha de comando que permite a publicação de um diretório de arquivos HTML, CSS e JavaScript de maneira rápida e sem extensiva configuração. A \textit{dashboard} está disponível em \url{https://hedwig.surge.sh}.
 
 \subsection{Segurança}
 
@@ -156,10 +156,10 @@ O Surge usa a comunicação via HTTPS por padrão, oferecendo o suporte básico 
 
 \subsection{Performance}
 
-Levando em consideração que o aplicativo pode ser acessado pelo celular em situações em que a qualidade da conexão não é a ideal, a otimização da dashboard para obter uma boa performance e baixos tempos de carregamento torna-se um ponto importante. Para isso, algumas medidas foram tomadas:
+Levando em consideração que o aplicativo pode ser acessado pelo celular em situações em que a qualidade da conexão não é a ideal, a otimização da \textit{dashboard} para obter uma boa performance e baixos tempos de carregamento torna-se um ponto importante. Para isso, algumas medidas foram tomadas:
 
 \begin{itemize}
-\item Arquivos estáticos são servidos por uma CDN e podem ser armazenados no cache do navegador, medida que diminui o tempo de carregamento nas visitas subsequentes à dashboard.
+\item Arquivos estáticos são servidos por uma CDN e podem ser armazenados no cache do navegador, medida que diminui o tempo de carregamento nas visitas subsequentes à \textit{dashboard}.
 \item Arquivos são compactados em formato \texttt{gzip} antes de serem enviados ao cliente, o que diminui seu tempo de download.
 \item Arquivos HTML, CSS e JavaScript são minificados, diminuindo consideravelmente seu tamanho.
 \item As imagens são redimensionadas e otimizadas, diminuindo consideravelmente seu tamanho.

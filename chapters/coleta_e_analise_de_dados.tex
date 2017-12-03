@@ -1,10 +1,10 @@
 \chapter{Arquitetura: Tecnologia - Coleta e Análise de Dados \label{coletaAnaliseDados}}
 
-Um dos processos mais críticos para o sucesso de um projeto é a obtenção de resultados e dados, dos quais se obtém conhecimento sobre o comportamento do sistema em atividade e dos usuário que o utilizam.
+Um dos processos mais críticos para o sucesso de um projeto é a obtenção de resultados e dados, dos quais se obtém conhecimento sobre o comportamento do sistema em atividade e dos usuários que o utilizam.
 
 \section{Coleta}
 
-Para a coleta de dados, foram usados um total de onze módulos distribuídos em locais e residências diferentes, de modo a simular maior diversidade de utilização.
+Para a coleta de dados, foram usados um total de oito módulos distribuídos em locais e residências diferentes, de modo a simular maior diversidade de utilização.
 
 \begin{enumerate}
 	\item Aquário
@@ -20,7 +20,7 @@ Para a coleta de dados, foram usados um total de onze módulos distribuídos em 
 	\item Gabriela
 \end{enumerate}
 
-Os módulos de 1 a 7 estão localizados na mesma residência, em Santo André. Já os módulos 9, 10 e 11 estão em casas diferentes na Grande São Paulo, e o módulo 8 está localizado na cidade de Jarinu - SP.
+Os módulos de 1 a 7 estão localizados na mesma residência, em Santo André e o módulo 8 está localizado na cidade de Jarinu - SP. Já os módulos 9, 10 e 11 estão em casas diferentes na Grande São Paulo, e foram usados para desenvolvimento integrado de \textit{dashboard} e Aplicativo Backup.
 
 \begin{figure}[H]
 	\centering
@@ -45,7 +45,7 @@ Para os módulos em Santo André, foi utilizado um dispositivo com cartão SD pa
 	\label{fig:ModulosStoAndre}
 \end{figure}
 
-O módulo de Jarinu possui uma interface com o sistema de alarmes já instalado no local e tem como objetivo obter dados de presença e abertura de portas, sendo uma prova de conceito para validar possível integração futura com parceiros estratégicos.
+O módulo de Jarinu possui uma interface com o sistema de alarmes já instalado no local e tem como objetivo obter dados de presença e abertura de portas, sendo uma prova de conceito para validar possível integração futura com parceiros estratégicos (e.g. Empresas de Segurança Residencial e Empresarial).
 
 \begin{figure}[H]
 	\centering
@@ -68,7 +68,7 @@ O módulo de Jarinu possui uma interface com o sistema de alarmes já instalado 
 	\label{fig:SensorPortasJarinu}
 \end{figure}
 
-Os demais módulos possuem coleta de dados a partir de persistência na nuvem, com as mensagens passando pelo controlador local Morpheus. Possuem como principal objetivo prover dados para o aprendizado de máquina.
+Os demais módulos usados para integração possuem coleta de dados a partir de persistência na nuvem, com as mensagens passando pelo controlador local Morpheus.
 
 \begin{figure}[H]
 	\centering
@@ -95,8 +95,8 @@ Foram coletados dados desde o dia 10 de setembro de 2017 até o dia 13 de novemb
 	\item \textbf{Dados de disponibilidade}: memória livre disponível (“\emph{free heap}”), pois em casos de pouca memória disponível o espaço de dados invade o espaço de programa e ocorre travamento do ESP; monitoramento do contador de loops de 1 segundo que, devido à espera ou demasiado processamento, demoraram mais que 2 segundos para ocorrerem; monitoramento de desconexões, reconexões, atualizações do \emph{firmware} dos módulos e reinícios;
 	\item \textbf{Luminosidade}: monitoramento a partir de dado analógico de um LDR.
 	\item \textbf{Temperatura e umidade}: sensor DHT.
-	\item \textbf{Presença}: sensor de presença PIR.
-	\item \textbf{Uso dos relés}: pelo botão físico presente no módulo, pela página web do aplicativo backup, automaticamente por regras configuradas pelo usuário e por controle de radiofrequência (RF) --- nos módulos usados para coleta, não havia a dashboard disponível.
+	\item \textbf{Presença}: sensor de movimento PIR, que foi usado para monitorar a atividade de presença.
+	\item \textbf{Uso dos relés}: pelo botão físico presente no módulo, pela página web do aplicativo backup, automaticamente por regras configuradas pelo usuário e por controle de radiofrequência (RF) --- nos módulos usados para coleta e período de coleta, não havia ainda a \textit{dashboard} disponível.
 	\item \textbf{Abertura e estado do portão}: monitoramento do estado do portão por sensor eletromagnético com fio, conectado diretamente ao módulo, e acompanhamento das aberturas por pessoa (Fabio, Victor ou Admin, que representa alguma das outras duas pessoas da casa), uso do sistema (aberturas pelo sensor versus aberturas pelo sistema) e monitoramento de uma porta intermediária da escada, por meio de sensor de abertura sem fio (comunicação por radiofrequência).
 	\item \textbf{Nível máximo da caixa d’água}: sensor de boia próximo ao nível máximo.
 	\item \textbf{Porta da sala (estado) e presença (corredor e cozinha) de Jarinu}: equipamentos próprios do sistema de alarmes.
@@ -293,7 +293,7 @@ Observando sua curva diária de memória livre e loops de 1s que foram executado
 	\label{fig:periodoCorredor}
 \end{figure}
 
-São observados em verde, no gráfico acima, as atualizações de \emph{firmware} --- o que possibilita acompanhar a melhoria de disponibilidade após a implantação de novas versões ---, a quantidade de reinícios e ocorrências de desconexão do Wi-Fi. Entre 24/10 e 28/10, ocorreu grande número de desconexões do Wi-Fi, indicando indisponibilidade da rede nesses dias, que causaram certa quantidade de reinícios no mesmo período.
+São observados em verde, no gráfico acima, as atualizações de \emph{firmware} --- o que possibilita acompanhar a melhoria de disponibilidade após a implantação de novas versões --- a quantidade de reinícios e ocorrências de desconexão do Wi-Fi. Entre 24/10 e 28/10, ocorreu grande número de desconexões do Wi-Fi, indicando indisponibilidade da rede nesses dias, que causaram uma quantidade considerável de reinícios no mesmo período.
 
 \begin{figure}[H]
 	\centering

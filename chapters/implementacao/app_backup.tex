@@ -18,7 +18,7 @@ Destacam-se os requisitos mais críticos do aplicativo backup:
 	\item Ter interface de fácil navegação, intuitiva.
 \end{enumerate}
 
-\subsection{Tecnologias utilizadas}
+\subsection{Tecnologias Utilizadas}
 
 Para o desenvolvimento do aplicativo backup, foram utilizados:
 
@@ -73,22 +73,22 @@ No caso de proteção de controle por senha, é exibido o painel numérico como 
 
 \subsection{Configurações}
 
-A partir do menu principal do módulo, pode-se ter acesso ao seu log para depuração, uma opção disponível apenas para administradores, e um menu de configurações. Do menu de configurações, pode-se alterar o modo do display (dentre 3 opções) e as cores do módulo, conforme opções anteriormente citadas.
+A partir no menu principal do módulo, pode-se ter acesso ao seu log para depuração, uma opção disponível apenas para administradores, e um menu de configurações. Do menu de configurações, pode-se alterar o modo do display (dentre 3 opções) e as cores do módulo, conforme opções anteriormente citadas.
 
 Ainda do menu de configurações, podem-se configurar alertas e alarmes (sonoros a partir dos módulos e pela Internet através do provedor gratuito Blynk e email), relés (possibilidade de auto ligar a partir de um sensor específico ou de ser acionado a partir de um sinal de rádio - usualmente um controle remoto ou até um sensor de abertura adicional ou mais de uma opação) e o log (quais parâmetros são persistidos e mandados para a nuvem). Também pode-se acessar o menu de Ferramentas, no qual é possível realizar testes de \emph{auto reset} para verificação do funcionamento do circuito antitravamento, que age em cerca de 30 segundos, reiniciar o módulo, desconectá-lo, voltar à versão de fábrica (versão implementada em software, enquanto a versão em hardware é realizada por meio de botão oculto) e atualizar o \emph{firmware} (apenas disponível para administradores).
 Ao acessar a atualização de \emph{firmware}, escolhe-se a o arquivo que contém a nova versão, para que seja feito \emph{upload} do mesmo, e o módulo seja atualizado.
 
-É possível também acessar as configurações avançadas \ref{fig:firmwareconfigavancadasDHT}. Nela, pode-se configurar um offset para temperatura e umidade, de preferência realizados a partir de um medidor confiável para calibração.
+É possível também acessar as configurações avançadas (vide Figura \ref{fig:firmwareconfigavancadasDHT}). Nela, pode-se configurar um offset para temperatura e umidade, de preferência realizados a partir de um medidor confiável para calibração.
 
-Do menu de configurações avançadas, podem ser configurados os sensores e controladores de radiofrequência (sem fio), aspectos de conectividade do servidor gratuito Blynk e possivelmente trocar a rede Wi-Fi em que o módulo está conectado. Ainda, para administradores, há a opção de configurar os usuários que têm acesso ao módulo.
+Do menu de configurações avançadas, podem ser configurados os sensores e controladores de radiofrequência (sem fio), aspectos de conectividade do servidor gratuito Blynk (usado no envio de emails) e possivelmente trocar a rede Wi-Fi em que o módulo está conectado. Ainda, para administradores, há a opção de configurar os usuários que têm acesso ao módulo.
 
 Ainda pode-se trocar o nome do módulo e ativar/desativar o ponto de acesso (para acesso direto ao módulo), além de configurar o nome (SSID) e senha de sua rede Wi-Fi.
 
 Demais ilustrações referentes às configurações do aplicativo backup estão disponíveis no Anexo \ref{attachmentsImagensBackup}{}.
 
-\subsection{Abertura de porta do roteador}
+\subsection{Abertura de Porta do Roteador}
 
-Para acessar o módulo e o menu remotamente, um solução é usar a abertura de porta (mecanismo NAT ou \emph{virtual servers}), configurável nas páginas de configuração dos roteadores. Maiores informações para essa configuração podem ser encontradas nos manuais dos roteadores. Observe que há uma segurança menor envolvida com essa configuração. Assim, essa alternativa provê a abertura da porta para acesso remoto sem a necessidade de serviços em nuvem, o que é indicado apenas para usuários que podem lidar com um nível de segurança mais baixo.
+Para acessar o módulo e o menu remotamente, uma solução é usar a abertura de porta (mecanismo NAT ou \emph{virtual servers}), configurável nas páginas de configuração dos roteadores. Maiores informações para essa configuração podem ser encontradas nos manuais dos roteadores. Observe que há uma segurança menor envolvida com essa configuração. Assim, essa alternativa provê a abertura da porta para acesso remoto sem a necessidade de serviços em nuvem, o que é indicado apenas para usuários que podem lidar com um nível de segurança mais baixo.
 
 \begin{figure}[H]
     \centering
@@ -97,9 +97,9 @@ Para acessar o módulo e o menu remotamente, um solução é usar a abertura de 
     \label{fig:tpLinkAppBackup}
 \end{figure}
 
-\emph{Obs.:} Caso sua operadora só forneça o CGNAT, a abertura de porta por parte do usuário não será possível.
+\emph{Observação:} Caso sua operadora só forneça o CGNAT, a abertura de porta por parte do usuário não será possível.
 
-\subsection{Controle remoto}
+\subsection{Controle Remoto}
 
 Para que o controle remoto seja corretamente configurado, são necessários os seguintes passos:
 \begin{enumerate}
@@ -134,7 +134,7 @@ Para que as notificações sejam ativadas, siga os próximos passos.
 
 \begin{enumerate}
     \item
-    Para que o suporte consiga acessar remotamente o módulo e realize a coleta de dados, acesse \# \textrightarrow{} Configurações Avançadas.\textrightarrow{} Blynk.
+    Para que seja possível o envio de emails de alerta, acesse \# \textrightarrow{} Configurações Avançadas.\textrightarrow{} Blynk.
 
     \item
     Insira o \emph{Auth Token} (e.g. aa7a6dc1170640f08e951ed8cd2198a1).
@@ -146,11 +146,11 @@ Para que as notificações sejam ativadas, siga os próximos passos.
     Aperte em OK, no canto superior direito, para salvar suas alterações.
 \end{enumerate}
 
-\subsection{Offset de temperatura e umidade}
+\subsection{Offset de Temperatura e Umidade}
 
 \begin{enumerate}
     \item
-    Para que o suporte consiga acessar remotamente o módulo e realize a coleta de dados, acesse \# \textrightarrow{} Configurações Avançadas.\textrightarrow{} Temperatura e Umidade.
+    Para calibração do módulo, acesse \# \textrightarrow{} Configurações Avançadas.\textrightarrow{} Temperatura e Umidade.
 
     \item
     Efetue a calibração do equipamento usando uma referência externa.
@@ -159,7 +159,7 @@ Para que as notificações sejam ativadas, siga os próximos passos.
     Aperte em OK, no canto superior direito, para salvar suas alterações.
 \end{enumerate}
 
-\subsection{\emph{Hard reset}}
+\subsection{\emph{Hard Reset}}
 \begin{enumerate}
 	\item Ligue na tomada
 	\item Abra a tampa do módulo, e retire o isopor que cobre o sensor de temperatura azul;
@@ -168,7 +168,7 @@ Para que as notificações sejam ativadas, siga os próximos passos.
 	\item O módulo retornará para a configuração de fábrica. Veja as seções a seguir para sua configuração inicial.
 \end{enumerate}
 
-\subsection{Setup inicial}
+\subsection{Setup Inicial}
 \begin{enumerate}
 	\item Primeiro, conecte à rede Wi-Fi do Módulo, com nome CONFIG (a senha da rede CONFIG é 12345678).
 	\item Abra um navegador e vá ao endereço 192.168.4.1 para entrar na página de configuração. Entre com as credenciais (login: admin e senha: 1234).
@@ -177,5 +177,5 @@ Para que as notificações sejam ativadas, siga os próximos passos.
 	\item Espere o módulo reiniciar (continue na rede CONFIG) e aguarde até a página recarregar. Insira o nome do módulo e depois aperte “Salvar e Reiniciar”.
 	\item Conecte-se novamente na rede Wi-Fi da sua casa.
 	\item Entre no endereço 192.168.0.X que foi mostrado no módulo, clique em \# e então em “Reiniciar Busca”. Aguarde até que todos os módulos sejam descobertos.
-	\item Retorne para a página anterior (usando o “\textless” no canto superior esquerdo). Você verá o menu principal da casa, e então poderá controlar relés, visualizar dados coletados pelos módulos e entrar em cada módulo. O menu é personalizado na página anterior (ao pressionar o “\#” no canto superior direito da tela).
+	\item Retorne para a página anterior (usando o “\textless” no canto superior esquerdo). Você verá o menu principal da casa, e então poderá controlar relés, visualizar dados coletados pelos módulos e acessar cada módulo. O menu é personalizado na página anterior (ao pressionar o “\#” no canto superior direito da tela).
 \end{enumerate}
