@@ -14,6 +14,8 @@
 
 		No Hedwig, foi desenvolvida uma análise baseada em dados coletados durante os meses de setembro e outubro, em um dos módulos que mantivemos instalados - o módulo de corredor, que já foi citado no capítulo anterior. A análise aqui descrita focou-se em gerar um algoritmo capaz de prever quando o usuário iria solicitar ao sistema a ativação do relé 1, que, no caso do módulo em análise está conectado à lampada do corredor.
 
+		% TODO relacionar com o negocio falado no capitulo de analise de dados de que agendamento de luz no corredor nao significou parcela tao grande assim do uso, ou seja, precisa ser bolado jeito mais inteligente de prever quando iriam querer acender a luz
+
 		% TODO adicionar aqui caso mais análises tenham sido feitas
 
 	\section{Implementação}
@@ -143,6 +145,8 @@ chapters, such as generalized additive models (Chapter 7), trees, random
 forests, and boosting (Chapter 8), and support vector machines (Chap-
 ter 9).
 
+% pra que q é o quadratico?
+
 % site do sklearn tem graficos e explicacoes dos algoritmos
 
 		\subsection{Resultados obtidos}
@@ -156,7 +160,17 @@ ter 9).
 		be one of the most challenging parts of performing statistical learning in
 		practice.
 
+		% se possivel, graficos de erros e/ou falsos positivos
+
 
 		\subsection{Otimização dos modelos}
 
 % citar que conforme fosse sendo usado o sistema iria aprendendo cada vez mais (da pra revisitar frase do comeco tb)
+
+% shift + tab + tab no jup nb --> help
+% checar data.describe em um pd DF
+% ver se tem algo a falar sobre bias variance trade off ou cross validation sets
+
+
+% possivelmente fazer boxplots relacionando sims e naos (ver pg 129 islr)
+
