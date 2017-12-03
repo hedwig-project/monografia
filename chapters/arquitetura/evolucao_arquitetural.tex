@@ -14,7 +14,7 @@ Com o crescimento no número de microsserviços, o \emph{overhead} para a comuni
 
 É possível observar que alguns microsserviços são classificados como sensitivos, os quais dependem de nova consulta ao serviço de autenticação e autorização para garantir a segurança. Esses serviços são todos aqueles responsáveis por tomar uma ação em relação à casa que envolva riscos, como a abertura de portões. Os microsserviços não-sensitivos utilizam a autenticação já realizada pelo \textit{gateway} na chegada da requisição.
 
-Quando uma requisição chega à nuvem, ela deve ser validada, para garantir a sua origem (RNF-11), e o método adotado faz uso de \emph{tokens}.  Caso passe nos critérios de autenticação e autorização, é retornado um JWT (\textit{JSON Web Token}), necessário para os passos seguintes. O JWT é discutido na seção \ref{sec:JWT}. % TODO marcar seção
+Quando uma requisição chega à nuvem, ela deve ser validada, para garantir a sua origem (RNF-11), e o método adotado faz uso de \emph{tokens}.  Caso passe nos critérios de autenticação e autorização, é retornado um JWT (\textit{JSON Web Token}), necessário para os passos seguintes. O JWT é discutido na seção \ref{sec:JWT}.
 
 De extrema importância, e não cobertos pela arquitetura anterior, são os requisitos de disponibilidade do projeto (RNF-4). Se o \textit{gateway} estiver inacessível em determinado momento, a casa não terá mais nenhuma forma de comunicação com os meios externos, mesmo para os serviços mais básicos. Para resolver este problema, foi proposta uma segunda versão, conforme ilustra a imagem seguinte.
 

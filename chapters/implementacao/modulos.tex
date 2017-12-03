@@ -95,11 +95,10 @@ Abaixo está o diagrama do circuito impresso (PCB).
 \label{fig:esquematicoModuloBase}
 \end{figure}
 
-% TODO revisar as legendas desse cara, usar as letras da imagem?
 \begin{description}
 \item [A - Saídas] Circuitos simples de transistor para acionamento de relés (para lâmpadas) e \emph{buzzer}.
-\item [Proteção 3V3 5V] Como o display trabalha com tensão de 5V, há proteções com diodos para não danificar as entradas digitais do Wemos D1 mini, que trabalha com tensão de 3V3.
-\item [3 Entradas em A0] O circuito tem como entradas um botão (para acionamento do relé 1), o LDR (para chaveamento da luz de fundo do display) e um outro botão para \emph{hard reset} do dispositivo, todos em uma entrada analógica, cujo mapeamento E/S é da seguinte forma:
+\item [B - Proteção 3V3 5V] Como o display trabalha com tensão de 5V, há proteções com diodos para não danificar as entradas digitais do Wemos D1 mini, que trabalha com tensão de 3V3.
+\item [C - 3 Entradas em A0] O circuito tem como entradas um botão (para acionamento do relé 1), o LDR (para chaveamento da luz de fundo do display) e um outro botão para \emph{hard reset} do dispositivo, todos em uma entrada analógica, cujo mapeamento E/S é da seguinte forma:
 
 \begin{figure}[H]
 	\centering
@@ -108,8 +107,8 @@ Abaixo está o diagrama do circuito impresso (PCB).
 \label{fig:entradasEmA0}
 \end{figure}
 
-\item [Presença ou RF-TX] A entrada digital D6 é usada exclusivamente como entrada do sensor de presença PIR ou receptor RF.
-\item [Astável 555 para \emph{hard reset} e Botão] A porta D6 é usada como LED \textit{keep alive} do módulo. Sua demora ao piscar indica que o módulo está travado ou demorando muito para processar algo, o que não deveria acontecer, uma vez que os procedimentos estão multiplexados no tempo de acordo com seus tempos limite. Dessa forma, essa saída está conectada a um circuito antitravamento, que executa o \emph{reset} nos casos mencionados, de travamento ou \textit{timeout}.
+\item [D - Presença ou RF-TX] A entrada digital D6 é usada exclusivamente como entrada do sensor de presença PIR ou receptor RF.
+\item [E - Astável 555 para \emph{hard reset} e Botão] A porta D6 é usada como LED \textit{keep alive} do módulo. Sua demora ao piscar indica que o módulo está travado ou demorando muito para processar algo, o que não deveria acontecer, uma vez que os procedimentos estão multiplexados no tempo de acordo com seus tempos limite. Dessa forma, essa saída está conectada a um circuito antitravamento, que executa o \emph{reset} nos casos mencionados, de travamento ou \textit{timeout}.
 
 O primeiro capacitor tem como objetivo desacoplamento DC, de forma que a entrada do circuito envolvendo o astável 555 seja somente AC. Assim, permanências em 0 ou 1 indicam travamento.
 
@@ -124,7 +123,7 @@ Segue abaixo uma ilustração sobre o funcionamento do circuito.
 \label{fig:circuitoAntiTravamento}
 \end{figure}
 
-\item [DHT11] Entrada D3 é ligada a uma montagem básica para leitura de umidade e temperatura através do periférico DHT11.
+\item [F - DHT11] Entrada D3 é ligada a uma montagem básica para leitura de umidade e temperatura através do periférico DHT11.
 
 \end{description}
 
