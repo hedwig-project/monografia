@@ -4,7 +4,7 @@
 
 	Apesar do conceito de aprendizado de máquina existir desde a década de 50, seu crescimento e relevância aumentaram apenas na última decada. Alguns fatores levaram a esse crescimento acelerado. Os principais foram o aumento da quantidade de dados coletados e disponíveis --- e aplicações de \emph{IoT} têm propulsionado esse aumento ---, a melhora nos algoritmos, e o \emph{hardware} cada vez mais poderoso dos computadores. Esses últimos dois fatores permitem que a vasta quantidade de dados que possuímos possam ser analisados em tempo viável \cite{hbrMlExplosion}.
 
-	\section{Aprendizado de máquina no projeto Hedwig}
+	\section{Aprendizado de Máquina no Projeto Hedwig}
 
 		No projeto Hedwig, a utilização de aprendizado de máquina tem o intuito de trazer melhorias de usabilidade do sistema ao usuário, além de poder trazer medidas de segurança à casa do mesmo.
 
@@ -16,7 +16,7 @@
 
 	\section{Implementação}
 
-		\subsection{Linguagem, ferramentas e bibliotecas}
+		\subsection{Linguagem, Ferramentas e Bibliotecas}
 
 			Uma das vantagens da popularização que se vê atualmente do uso de aprendizado de máquina é o surgimento de muitas facilidades para o desenvolvimento de aplicações que envolvam esse tema, devido às vantagens que advém de existir grande comunidade trabalhando com isso.
 
@@ -35,7 +35,7 @@
 
 			A principal ferramenta utilizada durante o desenvolvimento de código de aprendizado de máquina chama-se Jupyter Notebook \footnote{http://jupyter.org/}. Essa ferramenta é uma aplicação \emph{web} de distribuição gratuita, que permite a criação e compartilhamento de documentos com código que pode ser interpretado interativamente, conforme se vai programando, e que, junto dos trechos de código executado coloca suas saídas, bem como gráficos gerados pelo trecho, além de permitir ao usuário colocar explicações ou textos gerais em liguagem Markdown, em meio ao código, de forma a explicá-lo. É uma ferramenta altamente utilizada para aplicações de análise de dados atualmente.
 
-		\subsection{Etapas para o desenvolvimento de aplicação de aprendizado de máquina}
+		\subsection{Etapas para o Desenvolvimento de Aplicação de Aprendizado de Máquina}
 
 			O desenvolvimento de aplicações de aprendizado de máquina é caracterizado por algumas etapas \cite{whatIsML}.
 
@@ -65,7 +65,7 @@
 
 			O algoritmo aqui em desenvolvimento então pode ser classificado como aprendizado supervisionado, de classificação (já que a saída esperada é do tipo "Sim, o usuário provavelmente gostaria de acender a luz nesse momento" ou "Não, o usuário provavelmente não gostaria de acender a luz").
 
-		\subsection{Tratamento de dados}
+		\subsection{Tratamento de Dados}
 			
 			Neste nosso primeiro estudo, o objetivo é o desenvolvimento de um modelo que aprenda a prever quando ocorrerá uma ativação do relé pelo usuário. No problema em análise, os dados que possuímos são:
 
@@ -94,7 +94,7 @@
 
 			A desvantagem da técnica de \emph{undersampling} é que acaba por descartar dados potencialmente úteis. Já a técnica de \emph{oversampling}, muitas vezes pode levar ao \emph{overfitting} (fenômeno que ocorre em situações onde o modelo acaba acompanhando muito proximamente os erros --- ou ruído --- dos dados de treinamento \cite{islr}), devido às cópias que são feitas de alguns dados de treinamento \cite{unbalancedClassArticle}.
 
-		\subsection{Treinamento dos modelos}
+		\subsection{Treinamento dos Modelos}
 
 			% how-to-build-a-machine-learning-classifier-in-python-with-scikit-learn  → fala sobre como funciona a divisao em pedaços do data set
 		In this chapter we discuss three of the most
@@ -110,7 +110,7 @@ ter 9).
 
 % falar do uso da package de imblaanced learning
 
-		\subsection{Resultados obtidos}
+		\subsection{Resultados Obtidos}
 
 		There
 		is no free lunch in statistics: no one method dominates all others over all
@@ -124,7 +124,7 @@ ter 9).
 		% se possivel, graficos de erros e/ou falsos positivos
 
 
-		\subsection{Otimização dos modelos}
+		\subsection{Otimização dos Modelos}
 
 			Para que o sistema torne-se cada vez mais acurado, o objetivo seria continuar alimentando-o com novos dados de entrada. Além disso, novos algoritmos e técnincas poderiam ser testados, a fim de continuar a exploração e comparação para encontrar o algoritmo de melhor performance para o sistema em questão.
 
