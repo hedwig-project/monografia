@@ -92,6 +92,47 @@
 
 			A desvantagem da técnica de \emph{undersampling} é que acaba por descartar dados potencialmente úteis. Já a técnica de \emph{oversampling} muitas vezes pode levar ao \emph{overfitting} (fenômeno que ocorre em situações nas quais o modelo acaba acompanhando muito proximamente os erros --- ou ruído --- dos dados de treinamento \cite{islr}), devido às cópias que são feitas de alguns dados de treinamento \cite{unbalancedClassArticle}.
 
+			Algumas técnicas diferentes de \emph{oversampling} e \emph{undersampling} foram aplicadas. Os gráficos abaixo ajudam a compreender a diferença que a aplicação de tais técnicas causa nos dados que serão utilizados para treinamento dos modelos em seguida.
+
+			Primeiramente, analisou-sem a relação entre luminosidade e hora do dia e a ativação da luminária. Obteve-se então o seguinte gráfico:
+
+			\begin{figure}[H]
+				\centering
+				\caption{Relação entre luminosidade e hora do dia e a ativação da luminária}
+				\includegraphics[width=0.7\textwidth]{DadosML_original}
+				\label{fig:DadosML_original}
+			\end{figure}
+
+			Em seguida obteve-se os seguintes gráficos, com a utilização de diferentes técnicas para lidar com a situação de discrepância na quantidade de dados de treinamento cuja saída pertencia à classe de não-ativação do relé, em relação aos cuja saída pertencia à classe de ativação do relé.
+
+			\begin{figure}[H]
+				\centering
+				\caption{Relação entre luminosidade e hora do dia e a ativação da luminária, com aplicação de técnica de \emph{random oversampling}}
+				\includegraphics[width=0.7\textwidth]{DadosML_random_oversampling}
+				\label{fig:DadosML_random_oversampling}
+			\end{figure}
+
+			\begin{figure}[H]
+				\centering
+				\caption{Relação entre luminosidade e hora do dia e a ativação da luminária, com aplicação de técnica \emph{SMOTE}}
+				\includegraphics[width=0.7\textwidth]{DadosML_smote}
+				\label{fig:DadosML_smote}
+			\end{figure}
+
+			\begin{figure}[H]
+				\centering
+				\caption{Relação entre luminosidade e hora do dia e a ativação da luminária, com aplicação de técnica de \emph{undersampling}}
+				\includegraphics[width=0.7\textwidth]{DadosML_undersampling}
+				\label{fig:DadosML_undersampling}
+			\end{figure}
+
+			\begin{figure}[H]
+				\centering
+				\caption{Relação entre luminosidade e hora do dia e a ativação da luminária, com aplicação de técnica híbrida de \emph{oversampling} e \emph{undersampling}}
+				\includegraphics[width=0.7\textwidth]{DadosML_both}
+				\label{fig:DadosML_both}
+			\end{figure}
+
 		\subsection{Treinamento dos Modelos}
 
 			Em aprendizado de máquina, há diversos métodos de se treinar modelos. Nenhum deles será o melhor para todos os possíveis \emph{data sets}, e, portanto, a escolha da melhor abordagem é sempre uma parte importante do desenvolvimento de aprendizado de máquina \cite{islr}. Dessa forma, foram analisados diversos métodos.
@@ -106,10 +147,10 @@
 
 			Em seguida, modificaram-se os dados de treinamento para tratar a questão de desbalanceamento de classes. Para isso, foram utilizadas diversas funções pertencentes ao pacote Imbalanced learn \footnote{\url{http://contrib.scikit-learn.org/imbalanced-learn/stable/index.html}}.
 
-			Utilizando-se a técnica de \emph{random over sampling}, o algoritmo com maior taxa de acerto foi o de K vizinhos mais próximos, com acerto em 97,57\% dos casos de teste. Aplicando \emph{oversampling} com a técnica \emph{SMOTE}, o melhor algoritmo também foi o de K vizinhos mais próximos, dessa vez com taxa de 84,19\% de acertos. Já com a técnica de \emph{undersampling}, a melhor taxa de acerto obtida foi de 98,87\%, com o algoritmo de análise discriminante linear. Por último, realizou-se um teste utilizando um misto das técnicas de \emph{oversampling} e \emph{undersampling}, obtendo-se uma taxa de 96,36\% de acerto nos casos de teste com o algoritmo de K vizinhos mais próximos.
+			Utilizando-se a técnica de \emph{random over sampling}, o algoritmo com maior taxa de acerto foi o de K vizinhos mais próximos, com acerto em 96,02\% dos casos de teste. Aplicando \emph{oversampling} com a técnica \emph{SMOTE}, o melhor algoritmo também foi o de K vizinhos mais próximos, dessa vez com taxa de 80,39\% de acertos. Já com a técnica de \emph{undersampling}, a melhor taxa de acerto obtida foi de 72,34\%, com o algoritmo de análise discriminante linear. Por último, realizou-se um teste utilizando um misto das técnicas de \emph{oversampling} e \emph{undersampling}, obtendo-se uma taxa de 79,04\% de acerto nos casos de teste com o algoritmo de K vizinhos mais próximos.
 
 		\subsection{Otimização dos Modelos}
 
-			Para que o sistema torne-se cada vez mais acurado, o objetivo seria continuar alimentando-o com novos dados de entrada. Além disso, novos algoritmos e técnicas poderiam ser testados, a fim de continuar a exploração e comparação para encontrar o algoritmo de melhor performance para o sistema em questão.
+			Pela análise realizada aqui, o modelo que pareceu ter a melhor performance foi o com utilização do algoritmo de K vizinhos mais próximos, com utilização da técnica de \emph{random over sampling}. Entretanto é importante ressaltar que para que o sistema torne-se cada vez mais acurado, o objetivo seria continuar alimentando-o com novos dados de entrada. Além disso, novos algoritmos e técnicas poderiam ser testados, a fim de continuar a exploração e comparação para encontrar o algoritmo de melhor performance para o sistema em questão.
 
 			Outros tipos de testes poderiam ser feitos também em relação aos dados de entrada, utilizando-se técnicas de seleção de características, técnicas como \emph{mean normalization} ou \emph{feature scaling} \cite{Coursera}, observando-se a diferença no modelo treinado de forma a otimizar a performance deste.
