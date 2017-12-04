@@ -4,7 +4,7 @@
 
 	Apesar do conceito de aprendizado de máquina existir desde a década de 50, seu crescimento e relevância aumentaram apenas na última década. Alguns fatores levaram a esse crescimento acelerado: os principais foram o aumento da quantidade de dados coletados e disponíveis --- e aplicações de \emph{IoT} têm propulsionado esse aumento --- a melhora nos algoritmos e o \emph{hardware} cada vez mais poderoso dos computadores. Esses últimos dois fatores permitem que uma vasta quantidade de dados possa ser analisada em tempo viável \cite{hbrMlExplosion}.
 
-	\section{Aprendizado de Máquina no Projeto Hedwig \label{aprendizadoDeMaquinaNoProjetoHedwig}}
+	\section{Aprendizado de Máquina no Projeto Hedwig}\label{aprendizadoDeMaquinaNoProjetoHedwig}
 
 		No projeto Hedwig, a utilização de aprendizado de máquina tem o intuito de trazer melhorias de usabilidade do sistema ao usuário, além de trazer medidas de segurança à casa.
 
@@ -12,7 +12,7 @@
 
 		No quesito de segurança, o sistema pode, a partir do aprendizado de rotinas, detectar ações suspeitas na casa, como por exemplo a abertura da porta de entrada em horário não usual, e opcionalmente agir para intervir quando tal tipo de ação é detectada.
 
-		No Hedwig, foi desenvolvida uma análise baseada em dados coletados durante os meses de setembro e outubro, em um dos módulos instalados --- o módulo de corredor, que já foi citado no \ref{coletaAnaliseDados}. A análise aqui descrita focou-se em gerar um algoritmo capaz de prever quando o usuário solicitaria ao sistema a ativação do relé 1, que, no caso do módulo em análise, está conectado à lâmpada do corredor. Como analisado na Seção \ref{coletaAnaliseDados}, a funcionalidade de agendamento de ativação desse relé foi pouco aproveitada, já que também houveram muitas ativações manuais, indicando que o usuário poderia se beneficiar de um algoritmo inteligente que pudesse prever a ativação do relé antes da solicitação do usuário.
+		No Hedwig, foi desenvolvida uma análise baseada em dados coletados durante os meses de setembro e outubro, em um dos módulos instalados --- o módulo de corredor, que já foi citado no Capítulo \ref{coletaAnaliseDados}. A análise aqui descrita focou-se em gerar um algoritmo capaz de prever quando o usuário solicitaria ao sistema a ativação do relé 1, que, no caso do módulo em análise, está conectado à lâmpada do corredor. Como analisado na Capítulo \ref{coletaAnaliseDados}, a funcionalidade de agendamento de ativação desse relé foi pouco aproveitada, já que também houveram muitas ativações manuais, indicando que o usuário poderia se beneficiar de um algoritmo inteligente que pudesse prever a ativação do relé antes da solicitação do usuário.
 
 	\section{Implementação}
 
@@ -41,7 +41,7 @@
 
 			Inicialmente, é necessário explicitar qual o problema a ser resolvido. Na Seção \ref{aprendizadoDeMaquinaNoProjetoHedwig} foi exposto o problema aqui explorado.
 
-			O próximo passo é a coleta de dados para que os modelos possam ser treinados. Expusemos essa etapa na Seção \ref{coletachapter}.
+			O próximo passo é a coleta de dados para que os modelos possam ser treinados. Expusemos essa etapa no Capítulo \ref{coletaAnaliseDados}.
 
 			Em seguida, é necessário realizar algumas análises e tratamentos de dados para que se possa sanitizá-los e deixá-los em formato propício ao uso pelos algoritmos. Também é necessário separar uma parcela dos dados para servir para treinamento dos modelos e outra parcela para servir de dados de teste.
 
