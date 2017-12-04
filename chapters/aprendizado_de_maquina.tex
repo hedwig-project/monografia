@@ -114,7 +114,7 @@
 
 			\begin{figure}[H]
 				\centering
-				\caption{Relação entre luminosidade e hora do dia e a ativação da luminária, com aplicação de técnica \emph{SMOTE}}
+				\caption{Relação entre luminosidade e hora do dia e a ativação da luminária, com aplicação de técnica \emph{SMOTE} \cite{SMOTE}}
 				\includegraphics[width=0.7\textwidth]{DadosML_smote}
 				\label{fig:DadosML_smote}
 			\end{figure}
@@ -147,10 +147,20 @@
 
 			Em seguida, modificaram-se os dados de treinamento para tratar a questão de desbalanceamento de classes. Para isso, foram utilizadas diversas funções pertencentes ao pacote Imbalanced learn \footnote{\url{http://contrib.scikit-learn.org/imbalanced-learn/stable/index.html}}.
 
-			Utilizando-se a técnica de \emph{random over sampling}, o algoritmo com maior taxa de acerto foi o de K vizinhos mais próximos, com acerto em 96,02\% dos casos de teste. Aplicando \emph{oversampling} com a técnica \emph{SMOTE}, o melhor algoritmo também foi o de K vizinhos mais próximos, dessa vez com taxa de 80,39\% de acertos. Já com a técnica de \emph{undersampling}, a melhor taxa de acerto obtida foi de 72,34\%, com o algoritmo de análise discriminante linear. Por último, realizou-se um teste utilizando um misto das técnicas de \emph{oversampling} e \emph{undersampling}, obtendo-se uma taxa de 79,04\% de acerto nos casos de teste com o algoritmo de K vizinhos mais próximos.
+			Utilizando-se a técnica de \emph{random over sampling}, o algoritmo com maior taxa de acerto foi o de K vizinhos mais próximos, com acerto na previsão da saída em 96,02\% dos casos de teste. Aplicando \emph{oversampling} com a técnica \emph{SMOTE}, o melhor algoritmo também foi o de K vizinhos mais próximos, dessa vez com taxa de 80,39\% de acertos. Já com a técnica de \emph{undersampling}, a melhor taxa de acerto obtida foi de 72,34\%, com o algoritmo de análise discriminante linear. Por último, realizou-se um teste utilizando um misto das técnicas de \emph{oversampling} e \emph{undersampling}, obtendo-se uma taxa de 79,04\% de acerto nos casos de teste com o algoritmo de K vizinhos mais próximos.
 
 		\subsection{Otimização dos Modelos}
 
-			Pela análise realizada aqui, o modelo que pareceu ter a melhor performance foi o com utilização do algoritmo de K vizinhos mais próximos, com utilização da técnica de \emph{random over sampling}. Entretanto é importante ressaltar que para que o sistema torne-se cada vez mais acurado, o objetivo seria continuar alimentando-o com novos dados de entrada. Além disso, novos algoritmos e técnicas poderiam ser testados, a fim de continuar a exploração e comparação para encontrar o algoritmo de melhor performance para o sistema em questão.
+			Pela análise realizada aqui, o modelo que pareceu ter a melhor performance foi o com utilização do algoritmo de K vizinhos mais próximos, com utilização da técnica de \emph{random over sampling}. 
+
+% http://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html#sklearn.metrics.precision_recall_fscore_support
+
+% undersampling teve melhor recall pra true
+
+
+% The precision is the ratio tp / (tp + fp) where tp is the number of true positives and fp the number of false positives. The precision is intuitively the ability of the classifier not to label as positive a sample that is negative.
+% The recall is the ratio tp / (tp + fn) where tp is the number of true positives and fn the number of false negatives. The recall is intuitively the ability of the classifier to find all the positive samples.
+
+			Entretanto é importante ressaltar que para que o sistema torne-se cada vez mais acurado, o objetivo seria continuar alimentando-o com novos dados de entrada. Além disso, novos algoritmos e técnicas poderiam ser testados, a fim de continuar a exploração e comparação para encontrar o algoritmo de melhor performance para o sistema em questão.
 
 			Outros tipos de testes poderiam ser feitos também em relação aos dados de entrada, utilizando-se técnicas de seleção de características, técnicas como \emph{mean normalization} ou \emph{feature scaling} \cite{Coursera}, observando-se a diferença no modelo treinado de forma a otimizar a performance deste.
