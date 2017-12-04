@@ -6,34 +6,34 @@
 
 	\section{Aprendizado de Máquina no Projeto Hedwig \label{aprendizadoDeMaquinaNoProjetoHedwig}}
 
-		No projeto Hedwig, a utilização de aprendizado de máquina tem o intuito de trazer melhorias de usabilidade do sistema ao usuário, além de poder trazer medidas de segurança à casa dele.
+		No projeto Hedwig, a utilização de aprendizado de máquina tem o intuito de trazer melhorias de usabilidade do sistema ao usuário, além de trazer medidas de segurança à casa.
 
-		As melhorias de usabilidade podem ocorrer, por exemplo, quando o sistema aprende alguma rotina do usuário e se torna então capaz de prever quando determinada ação seria solicitada pelo usuário. A partir disso, ele então poderia passar a realizar tal ação automaticamente, ou sugerir a realização dela para o usuário, sem que seja necessário que o usuário proativamente aja para solicitar a mesma.
+		As melhorias de usabilidade podem ocorrer, por exemplo, quando o sistema aprende alguma rotina do usuário e se torna então capaz de prever quando determinada ação seria solicitada. A partir disso, ele poderia passar a realizar tal ação automaticamente, ou sugerir a sua realização, sem a requisição explícita do usuário.
 
-		No quesito de segurança, o sistema pode, a partir do aprendizado de rotinas, detectar ações suspeitas na casa (como por exemplo a abertura da porta de entrada em horário não usual) e, opcionalmente, agir para intervir quando tal tipo de ação é detectada.
+		No quesito de segurança, o sistema pode, a partir do aprendizado de rotinas, detectar ações suspeitas na casa, como por exemplo a abertura da porta de entrada em horário não usual, e opcionalmente agir para intervir quando tal tipo de ação é detectada.
 
-		No Hedwig, foi desenvolvida uma análise baseada em dados coletados durante os meses de setembro e outubro em um dos módulos que mantivemos instalados - o módulo de corredor, que já foi citado no Capítulo \ref{coletaAnaliseDados}. A análise aqui descrita focou-se em gerar um algoritmo capaz de prever quando o usuário iria solicitar ao sistema a ativação do relé 1, que, no caso do módulo em análise, está conectado à lampada do corredor. Como analisado no Capítulo \ref{coletaAnaliseDados}, a funcionalidade de agendamento de ativação desse relé foi pouco aproveitada, já que ele ainda obteve muitas ativações manuais, indicando que o usuário poderia se beneficiar de um algoritmo inteligente que pudesse prever a ativação do relé antes que a mesma venha a ocorrer pelo usuário.
+		No Hedwig, foi desenvolvida uma análise baseada em dados coletados durante os meses de setembro e outubro, em um dos módulos que mantivemos instalados --- o módulo de corredor, que já foi citado no \ref{coletaAnaliseDados}. A análise aqui descrita focou-se em gerar um algoritmo capaz de prever quando o usuário solicitaria ao sistema a ativação do relé 1, que, no caso do módulo em análise está conectado à lampada do corredor. Como analisado no \ref{coletaAnaliseDados}, a funcionalidade de agendamento de ativação desse relé foi pouco aproveitada, já que também houveram muitas ativações manuais, indicando que o usuário poderia se beneficiar de um algoritmo inteligente que pudesse prever a ativação do relé antes da solicitação do usuário.
 
 	\section{Implementação}
 
 		\subsection{Linguagem, Ferramentas e Bibliotecas}
 
-			Uma das vantagens da popularização que se vê atualmente do uso de aprendizado de máquina é o surgimento de muitas facilidades para o desenvolvimento de aplicações que envolvam esse tema, as quais advêm da existência de uma grande comunidade trabalhando com isso.
+			Uma das vantagens da popularização que se vê atualmente do uso de aprendizado de máquina é o surgimento de muitas facilidades para o desenvolvimento de aplicações que envolvam esse tema, devido às vantagens que advém de existir grande comunidade trabalhando no assunto.
 
 			Atualmente duas das principais linguagens sendo utilizadas para ciência de dados e aprendizado de máquina, e que foram consideradas para o projeto, são Python e R \cite{languagesForML}. As duas são linguagens interpretadas e possuem funcionalidade REPL (\emph{Read-Eval-Print-Loop}), possibilitando desenvolvimento altamente interativo e de fácil visualização de dados e gráficos enquanto se programa.
 
-			Para o desenvolvimento de funcionalidades de aprendizado de máquina no Hedwig, foi escolhida a linguagem Python. Apesar de R ser uma linguagem que já nasceu voltada à análise de dados e tratamento estatístico \cite{rLanguage}, Python possui diversos pacotes e bibliotecas que conseguem cumprir tais funcionalidades. Esses pacotes estão altamente popularizados, e, portanto, é muito fácil percorrer suas documentações e procurar ajuda em fóruns online para acelerar o aprendizado de suas funcionalidades. Python, por sua vez, é uma linguagem de uso geral (\emph{general purpose language}), o que também tem seus lados positivos \cite{pythonApplications}. Além de ser uma linguagem extremamente bem estabelecida, o fato de ser de uso geral implica que existem também pacotes e bibliotecas que possibilitam seu para desenvolvimento de aplicativos com funcionalidades de \emph{back-end} para serviços web. Isso se torna altamente interessante por nos possibilitar facilmente transformar essa aplicação em um microsserviço, que interage em tempo real com o servidor em nuvem do Hedwig, permitindo que o serviço de aprendizado de máquina aja em tempo real com toda a aplicação.
+			Para o desenvolvimento de funcionalidades de aprendizado de máquina no Hedwig, foi escolhida a linguagem Python. Apesar de R ser uma linguagem que já nasceu voltada à análise de dados e tratamento estatístico \cite{rLanguage}, Python possui diversos pacotes e bibliotecas responsáveis por adicionar tais funcionalidades. Esses pacotes são altamente popularizados, e é simples percorrer suas documentações e procurar ajuda em fóruns online para acelerar o aprendizado. Python, por sua vez, é uma linguagem de uso geral (\emph{general purpose language}), o que o torna vantajoso \cite{pythonApplications}. Além de ser uma linguagem extremamente bem estabelecida, o fato de ser de uso geral implica que existem também pacotes e bibliotecas que possibilitam o uso de Python para desenvolvimento de aplicativos com funcionalidades de \emph{back-end} para serviços \emph{web}. Isso se torna altamente interessante por possibilitar a transformação de uma aplicação em um microsserviço, que interaja em tempo real com o servidor em nuvem do Hedwig, permitindo que o serviço de aprendizado de máquina aja em tempo real com toda a aplicação.
 
 			Os principais pacotes sendo utilizados para auxiliar nas funcionalidades de análise de dados e aprendizado de máquina são:
 
 			\begin{description}
-				\item [Numpy\footnote{http://www.numpy.org/}] Pacote que dá à linguagem Python algumas facilidades para se lidar com estruturas numéricas como matrizes.
-				\item [Pandas\footnote{https://pandas.pydata.org/}] Pacote para manuseio de dados. Dá facilidades para a importação de dados de fontes externas e a utilização deles a partir disso.
-				\item [Scikit\footnote{http://scikit-learn.org/stable/}] Pacote com funcionalidades de análise de dados e implementação dos principais algoritmos de aprendizado de máquina.
+				\item [Numpy\footnote{http://www.numpy.org/}] Pacote que dá à linguagem Python algumas facilidades para se lidar com estruturas numéricas, como matrizes.
+				\item [Pandas\footnote{https://pandas.pydata.org/}] Pacote para manuseio de dados. Promove facilidades para a importação de dados de fontes externas, bem como a utilização destes.
+				\item [Scikit\footnote{http://scikit-learn.org/stable/}] Pacote com funcionalidades de análise de dados, e implementação dos principais algoritmos de aprendizado de máquina.
 				\item [Matplotlib\footnote{https://matplotlib.org/}] Pacote que implementa funcionalidades para geração de gráficos.
 			\end{description}
 
-			A principal ferramenta utilizada durante o desenvolvimento de código de aprendizado de máquina chama-se Jupyter Notebook \footnote{http://jupyter.org/}. Essa ferramenta é uma aplicação web de distribuição gratuita que permite a criação e compartilhamento de documentos com código que pode ser interpretado interativamente, conforme se vai programando, e que, junto dos trechos de código executado coloca suas saídas, bem como gráficos gerados pelo trecho. Além disso, permite ao usuário colocar explicações ou textos gerais em liguagem Markdown, em meio ao código, de forma a explicá-lo. É uma ferramenta altamente utilizada para aplicações de análise de dados atualmente.
+			A principal ferramenta utilizada durante o desenvolvimento de código de aprendizado de máquina chama-se Jupyter Notebook \footnote{http://jupyter.org/}. Essa ferramenta é uma aplicação \emph{web} de distribuição gratuita, que permite a criação e compartilhamento de documentos com código que pode ser interpretado interativamente. Junto dos trechos de código executado, coloca suas saídas, bem como gráficos gerados pelo trecho, além de permitir ao usuário colocar explicações ou textos gerais em liguagem Markdown, em meio ao código, de forma a explicá-lo. É uma ferramenta altamente utilizada para aplicações de análise de dados atualmente.
 
 		\subsection{Etapas para o Desenvolvimento de Aplicação de Aprendizado de Máquina}
 
@@ -49,7 +49,7 @@
 
 			O último passo costuma ser a elaboração do produto final: normalmente a integração sistema de aprendizado com outras aplicações ou então a elaboração de relatórios para que os modelos treinados para o problema sejam levados adiante. No caso de um produto integrado com o resto de um sistema, passa-se então a entrar num ciclo de otimização do algoritmo baseado em novos dados obtidos.
 
-			Nas próximas subseções exploraremos o desenvolvimento desses últimos passos no projeto Hedwig.
+			Nas próximas subseções serão explorados o desenvolvimento desses últimos passos no projeto Hedwig.
 
 		\subsection{Algoritmos}
 
@@ -61,10 +61,10 @@
 
 			Adicionalmente, vale citar que há alguns tipos de algoritmos que podem ser utilizados tanto para problemas quantitativos quanto para problemas qualitativos, dentre eles: K-vizinhos mais próximos (\emph{K-nearest neighbors}) e \emph{boosting} \cite{islr}.
 
-			O algoritmo aqui em desenvolvimento então pode ser classificado como aprendizado supervisionado de classificação (já que a saída esperada é do tipo "Sim, o usuário provavelmente gostaria de acender a luz nesse momento" ou "Não, o usuário provavelmente não gostaria de acender a luz").
+			O algoritmo aqui em desenvolvimento então pode ser classificado como aprendizado supervisionado, de classificação (já que a saída esperada é do tipo ``Sim, o usuário provavelmente gostaria de acender a luz nesse momento'' ou ``Não, o usuário provavelmente não gostaria de acender a luz'').
 
 		\subsection{Tratamento de Dados}
-
+			
 			Neste primeiro estudo, o objetivo é o desenvolvimento de um modelo que aprenda a prever quando ocorrerá uma ativação do relé pelo usuário. No problema em análise, os dados que possuímos são:
 
 			\begin{itemize}
