@@ -151,16 +151,10 @@
 
 		\subsection{Otimização dos Modelos}
 
-			Pela análise realizada aqui, o modelo que pareceu ter a melhor performance foi o com utilização do algoritmo de K vizinhos mais próximos, com utilização da técnica de \emph{random over sampling}. 
+			Pela análise aqui realizada, o modelo que pareceu ter a melhor performance foi o com utilização do algoritmo de K vizinhos mais próximos, com utilização da técnica de \emph{random over sampling}.
 
-% http://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html#sklearn.metrics.precision_recall_fscore_support
+			Entretanto, outra métrica interessante de ser levada em consideração é o \emph{recall} para os casos de classificação na classe de ativação do relé. O \emph{recall} pode ser descrito como a razão entre \texttt{tp} e \texttt{tp + fn}, onde \texttt{tp} é  o número de positivos verdadeiros e \texttt{fn} é o número de falsos negativos. Dessa forma, o \emph{recall} pode ser visto como a habilidade do classificador de encontrar todas as amostras positivas \cite{precisionAndRecall}. Na situação em análise, pode-se traçar a hipótese que o mais importante para o usuário é o acerto das situações onde gostaria de ter a luz acendida, ou seja, que o mais importante seja encontrar todas as amostras positivas. Nesse caso, seria interessante então considerar o caso com melhor valor de \emph{recall} para a classificação de ativação da luminária. Isso ocorreu na situação de \emph{undersampling}, onde a taxa de \emph{recall} para essa classificação foi de 83\% --- valor que foi encontrado com a utilização da função \texttt{classification\_report}, do pacote Scikit\footnote{\url{http://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html}}.
 
-% undersampling teve melhor recall pra true
-
-
-% The precision is the ratio tp / (tp + fp) where tp is the number of true positives and fp the number of false positives. The precision is intuitively the ability of the classifier not to label as positive a sample that is negative.
-% The recall is the ratio tp / (tp + fn) where tp is the number of true positives and fn the number of false negatives. The recall is intuitively the ability of the classifier to find all the positive samples.
-
-			Entretanto é importante ressaltar que para que o sistema torne-se cada vez mais acurado, o objetivo seria continuar alimentando-o com novos dados de entrada. Além disso, novos algoritmos e técnicas poderiam ser testados, a fim de continuar a exploração e comparação para encontrar o algoritmo de melhor performance para o sistema em questão.
+			De qualquer forma, é importante ressaltar que para que o sistema torne-se cada vez mais acurado, o objetivo seria continuar alimentando-o com novos dados de entrada. Além disso, novos algoritmos e técnicas poderiam ser testados, a fim de continuar a exploração e comparação para encontrar o algoritmo de melhor performance para o sistema em questão.
 
 			Outros tipos de testes poderiam ser feitos também em relação aos dados de entrada, utilizando-se técnicas de seleção de características, técnicas como \emph{mean normalization} ou \emph{feature scaling} \cite{Coursera}, observando-se a diferença no modelo treinado de forma a otimizar a performance deste.
